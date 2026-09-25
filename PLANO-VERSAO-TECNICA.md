@@ -34,6 +34,7 @@ A versão executiva respondeu às lideranças porque vale a pena ter um processo
 ### Princípios narrativos
 
 - Trocar argumento por artefacto. Cada página deve mostrar algo que a equipa reconhece ou vai receber, como um ticket, uma checklist, um fluxo com estados ou um componente.
+- Mostrar a estrutura dos artefactos sem recorrer a casos fictícios nem a exemplos demasiado específicos.
 - Contar o problema actual pelas situações que a equipa vive no sprint, sem atribuir falhas a pessoas ou áreas. O problema continua a ser a ausência de um processo partilhado.
 - Mostrar que o trabalho de UX acontece antes e em paralelo à implementação, e que o ganho para a equipa é menos ambiguidade e menos mudanças tardias, não mais documentação.
 - Não prometer ausência de bugs nem eliminação total de retrabalho.
@@ -108,7 +109,7 @@ Frentes da antiga página 05 que tocam a fábrica (interface e interacção, val
 
 ## 6. O mesmo ticket, antes e depois
 
-A página 05 deve ser a mais concreta da apresentação. Os dois lados mostram a mesma user story, de um projecto fictício, no formato da ferramenta de gestão de tickets que a fábrica utiliza.
+A página 05 compara a estrutura de uma user story, como chega hoje e como chega com o Núcleo envolvido, sem recorrer a um caso específico. O formato deve lembrar a ferramenta de gestão de tickets que a fábrica utiliza.
 
 ### Antes, sem processo estruturado de UX
 
@@ -220,7 +221,7 @@ Implementar a versão técnica no mesmo projecto, como uma segunda sequência de
 ### Fase 0: aprovação do plano
 
 - Aprovar a sequência de 12 páginas.
-- Escolher o projecto fictício do exemplo "antes e depois" e confirmar a ferramenta de tickets da fábrica.
+- Confirmar a ferramenta de tickets da fábrica, para o formato do "antes e depois".
 - Decidir entre a segunda sequência no mesmo projecto e uma apresentação separada.
 - Validar os pontos do contrato de handoff e da Definition of Ready com quem conduz o Núcleo.
 
@@ -257,7 +258,7 @@ Implementar a versão técnica no mesmo projecto, como uma segunda sequência de
 A versão técnica estará pronta quando:
 
 - um desenvolvedor conseguir dizer, depois de ver a página 04, em que etapas participa e o que lhe é pedido;
-- o exemplo "antes e depois" utilizar o formato de ticket que a fábrica reconhece;
+- o "antes e depois" usar uma estrutura de ticket que a fábrica reconheça, sem depender de um caso específico;
 - o contrato de handoff e os pontos de entrada no fluxo de sprint estiverem explícitos;
 - ficar claro de onde vêm os artefactos da análise de requisitos e para onde segue o trabalho até à QA;
 - a página de Design System explicar como os tokens chegam ao código e como contribuir;
@@ -270,7 +271,7 @@ A versão técnica estará pronta quando:
 
 1. Sequência das 12 páginas.
 2. Segunda sequência no mesmo projecto ou apresentação separada.
-3. Ferramenta de gestão de tickets usada pela fábrica e projecto fictício do exemplo.
+3. Ferramenta de gestão de tickets usada pela fábrica.
 4. Conteúdo do contrato de handoff e da Definition of Ready, validado pelo Núcleo.
 5. Canal e tempo de resposta para dúvidas durante a sprint.
 6. Projecto piloto e próximo passo apresentados no encerramento.
