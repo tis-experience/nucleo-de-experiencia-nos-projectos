@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
@@ -73,7 +73,42 @@ const stageNames = (stages: StageId[]) =>
 
 /* ── Abertura e fecho ─────────────────────────────────────────────────── */
 
+const MARK_IDLE_DELAY_MS = 560;
+const MARK_SPRING = { damping: 20, stiffness: 200, mass: 0.5 };
+
+/** Símbolo da capa: inclina-se em 3D conforme o rato e oscila sozinho quando o rato pára, como na apresentação actual. */
 function CoverMark({ rotate }: { rotate: number }) {
+  const tiltX = useSpring(useMotionValue(0), MARK_SPRING);
+  const tiltY = useSpring(useMotionValue(0), MARK_SPRING);
+  const rotateX = useTransform(tiltY, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(tiltX, [-0.5, 0.5], [-15, 15]);
+
+  useEffect(() => {
+    if (STILL || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    let frame = 0;
+    let lastMove = -Infinity;
+    const handleMove = (event: MouseEvent) => {
+      lastMove = performance.now();
+      tiltX.set((event.clientX / window.innerWidth - 0.5) * 1.32);
+      tiltY.set((event.clientY / window.innerHeight - 0.5) * 1.32);
+    };
+    const tick = (time: number) => {
+      if (time - lastMove > MARK_IDLE_DELAY_MS) {
+        const t = time / 1000;
+        tiltX.set(Math.sin(t * 0.82) * 0.34 + Math.sin(t * 0.35 + 1.7) * 0.08);
+        tiltY.set(Math.cos(t * 0.71 + 0.8) * 0.29 + Math.sin(t * 0.38 + 2.4) * 0.07);
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    window.addEventListener("mousemove", handleMove);
+    frame = requestAnimationFrame(tick);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(frame);
+    };
+  }, [tiltX, tiltY]);
+
   return (
     <motion.div
       className="v2-cover-mark"
@@ -81,7 +116,9 @@ function CoverMark({ rotate }: { rotate: number }) {
       animate={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={spring(0.2, 40, 14)}
     >
-      <Mark className="v2-float" />
+      <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}>
+        <Mark className="v2-cover-symbol" />
+      </motion.div>
     </motion.div>
   );
 }
@@ -94,9 +131,10 @@ export function CoverScene() {
         <h1 id="v2-cover-title" className="v2-cover-title">
           <MaskLine delay={0.15}>Núcleo de</MaskLine>
           <MaskLine delay={0.3}>Experiência</MaskLine>
+          <MaskLine delay={0.45}>nos projectos</MaskLine>
         </h1>
-        <motion.p className="v2-cover-lead" {...rise(0.9)}>
-          O que muda num projecto quando a experiência é tratada desde o primeiro dia.
+        <motion.p className="v2-cover-lead" {...rise(1)}>
+          Como o processo de UX, acelerado por IA, se integra nos projectos da TIS.
         </motion.p>
       </div>
     </section>
