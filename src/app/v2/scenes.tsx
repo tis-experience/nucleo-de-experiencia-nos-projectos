@@ -242,24 +242,30 @@ const PROBLEMS = [
   [0.98, 0.64, 0.4],
   [0.992, 0.87, 0.5],
 ];
-const PROBLEM_TONES = ["#04165d", "#036ef2", "#7db3f8", "#036ef2"];
 
+const PROBLEM_TONES = ["#04165d", "#036ef2", "#7db3f8", "#036ef2"];
 const CURRENT_PHASES = ["Proposta comercial", "Ecrãs", "Desenvolvimento", "Release", "Retrabalho"];
-const HIGHLIGHTED_PHASES = [[0, 1], [], [3, 4], []];
+const [ENTRY, MISSING, RESULT] = CURRENT_PROCESS;
 
 const CHANGE_HEADS = [
-  ...CURRENT_PROCESS.map((block) => ({
+  {
     kicker: "Como decorre actualmente o trabalho de UX",
-    title: block.headline,
-  })),
-  { kicker: "Como passa a decorrer", title: "Com o processo de UX, os problemas aparecem cedo" },
+    title: "UX começa pelo desenho, e os problemas aparecem depois da implementação",
+    lead: "",
+  },
+  {
+    kicker: "Como passa a decorrer",
+    title: "Com o processo de UX, os problemas aparecem cedo",
+    lead: "O problema é investigado e a solução é avaliada antes da construção, quando mudar ainda é simples.",
+  },
 ];
 
+/** Uma só cena: como entramos, o que fica por fazer e a consequência, na mesma linha do processo.
+    Os problemas nascem nos passos em falta e só aparecem, maiores, depois do release. */
 export function ChangeScene({ build }: { build: number }) {
   const head = CHANGE_HEADS[build];
-  const cards = build < CURRENT_PROCESS.length ? CURRENT_PROCESS[build].items : [];
-  const phases = build === 3 ? STAGES.map((stage) => stage.short) : CURRENT_PHASES;
-  const showProblems = build >= 2;
+  const current = build === 0;
+  const phases = current ? CURRENT_PHASES : STAGES.map((stage) => stage.short);
   const pushRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // As bolas afastam-se ligeiramente do cursor.
@@ -272,8 +278,8 @@ export function ChangeScene({ build }: { build: number }) {
         const dx = rect.left + rect.width / 2 - event.clientX;
         const dy = rect.top + rect.height / 2 - event.clientY;
         const distance = Math.hypot(dx, dy) || 1;
-        const reach = 220;
-        const force = distance < reach ? (1 - distance / reach) * 34 : 0;
+        const reach = 240;
+        const force = distance < reach ? (1 - distance / reach) * 40 : 0;
         element.style.transform = `translate(${(dx / distance) * force}px, ${(dy / distance) * force}px)`;
       }
     };
@@ -292,34 +298,55 @@ export function ChangeScene({ build }: { build: number }) {
             <h1 id="v2-change-title" className="v2-title">
               <MaskLine>{head.title}</MaskLine>
             </h1>
+            {head.lead && (
+              <motion.p className="v2-lead" {...rise(0.4, 20)}>
+                {head.lead}
+              </motion.p>
+            )}
           </motion.div>
         </Swap>
       </div>
 
       <Swap>
-        <motion.ul key={build} className="v2-notes" data-kind={["entry", "missing", "result"][build]} exit={exit}>
-          {cards.map((card, index) => (
-            <motion.li
-              key={card.title}
-              style={{ "--stem": `${card.stem}px` } as CSSProperties}
-              {...rise(0.3 + index * 0.14, 24)}
-            >
-              <h2>{card.title}</h2>
-              <p>{card.text}</p>
-            </motion.li>
-          ))}
-        </motion.ul>
+        {current && (
+          <motion.div key="current" className="v2-layer" exit={exit}>
+            <div className="v2-story">
+              <motion.p className="v2-label" {...fade(0.3)}>
+                {ENTRY.label}
+              </motion.p>
+              <motion.p className="v2-label" data-group="result" {...fade(3.4)}>
+                {RESULT.label}
+              </motion.p>
+              <ul>
+                {[...ENTRY.items, ...RESULT.items].map((card, index) => (
+                  <motion.li
+                    key={card.title}
+                    data-kind={index < ENTRY.items.length ? "entry" : "result"}
+                    {...rise(index < ENTRY.items.length ? 0.35 + index * 0.15 : 3.3 + index * 0.12, 24)}
+                  >
+                    <h2>{card.title}</h2>
+                    <p>{card.text}</p>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="v2-missing">
+              <motion.p className="v2-label" {...fade(1.3)}>
+                {MISSING.label}
+              </motion.p>
+              {MISSING.items.map((item, index) => (
+                <motion.p key={item.title} className="v2-missing-step" style={{ left: item.stem }} {...rise(1.4 + index * 0.2, 16)}>
+                  {item.title}
+                </motion.p>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </Swap>
 
       <div className="v2-change-chart">
-        <motion.svg
-          viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`}
-          fill="none"
-          aria-hidden
-          initial={false}
-          animate={{ opacity: showProblems ? 1 : 0 }}
-          transition={tween(0.8)}
-        >
+        <motion.svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`} fill="none" aria-hidden {...fade(current ? 2.2 : 0, 1)}>
           <defs>
             <linearGradient id="v2-effort" x1="0" x2="1" y1="0" y2="0">
               <stop offset="0" stopColor="#036EF2" stopOpacity="0" />
@@ -331,24 +358,24 @@ export function ChangeScene({ build }: { build: number }) {
         </motion.svg>
 
         {PROBLEMS.map(([late, early, lift], index) => {
-          const t = build === 3 ? early : late;
-          const size = 14 + 56 * Math.pow(t, 2.4);
+          const t = current ? late : early;
+          const size = 16 + 68 * Math.pow(t, 2.4);
+          const origin = MISSING.items[index % MISSING.items.length].stem;
           return (
             <motion.i
               key={index}
               className="v2-problem"
               aria-hidden
               style={{ x: "-50%", y: "-50%" }}
-              initial={false}
+              initial={STILL ? false : { opacity: 0, left: origin, top: CHART_BASELINE, width: 10, height: 10 }}
               animate={{
-                opacity: showProblems ? 1 : 0,
-                scale: showProblems ? 1 : 0,
+                opacity: 1,
                 left: t * CHART_WIDTH,
                 top: CHART_BASELINE - effort(t) * lift,
                 width: size,
                 height: size,
               }}
-              transition={spring(showProblems ? 0.2 + index * 0.05 : 0, 60, 14)}
+              transition={spring(current ? 2.3 + index * 0.09 : index * 0.04, 34, 11)}
             >
               <span
                 ref={(element) => {
@@ -356,31 +383,28 @@ export function ChangeScene({ build }: { build: number }) {
                 }}
               >
                 <span
-                  style={{
-                    background: PROBLEM_TONES[index % PROBLEM_TONES.length],
-                    opacity: 0.55 + ((index * 7) % 5) * 0.1,
-                    animationDuration: `${3.2 + (index % 4) * 0.7}s`,
-                    animationDelay: `${-index * 0.45}s`,
-                  }}
+                  style={
+                    {
+                      "--tone": PROBLEM_TONES[index % PROBLEM_TONES.length],
+                      opacity: 0.62 + ((index * 7) % 4) * 0.1,
+                      animationDuration: `${3.2 + (index % 4) * 0.7}s`,
+                      animationDelay: `${-index * 0.45}s`,
+                    } as CSSProperties
+                  }
                 />
               </span>
             </motion.i>
           );
         })}
 
-        <motion.p className="v2-chart-note" data-side="right" initial={false} animate={{ opacity: showProblems ? 1 : 0 }}>
+        <motion.p className="v2-chart-note" data-side="right" {...fade(current ? 2.6 : 0.2)}>
           Esforço para corrigir
-        </motion.p>
-        <motion.p className="v2-chart-note" initial={false} animate={{ opacity: showProblems ? 1 : 0 }}>
-          <i /> Problema descoberto
         </motion.p>
 
         <Swap>
-          <motion.ol key={phases.length} className="v2-phases" exit={exit} {...fade(0.2)}>
-            {phases.map((phase, index) => (
-              <li key={phase} data-on={HIGHLIGHTED_PHASES[build].includes(index)}>
-                {phase}
-              </li>
+          <motion.ol key={build} className="v2-phases" exit={exit} {...fade(0.2)}>
+            {phases.map((phase) => (
+              <li key={phase}>{phase}</li>
             ))}
           </motion.ol>
         </Swap>
@@ -397,10 +421,10 @@ export function ResultsScene() {
   return (
     <section className="v2-scene" aria-labelledby="v2-results-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        Cases e resultados de mercado
+        O processo de UX no mercado
       </motion.p>
       <h1 id="v2-results-title" className="v2-title v2-scene-title">
-        <MaskLine>Quem trabalhou assim e o que obteve</MaskLine>
+        <MaskLine>Cases e resultados de mercado</MaskLine>
       </h1>
 
       <ul className="v2-cases" aria-label="Cases de mercado">

@@ -273,6 +273,7 @@ const STAGE_VISUAL = [0, 2, 3, 4, 5];
 
 export function StageScene({ stageIndex }: { stageIndex: number }) {
   const stage = STAGES[stageIndex];
+  const next = STAGES[stageIndex + 1];
 
   return (
     <section className="v2-scene" aria-labelledby="v2-process-title">
@@ -298,19 +299,31 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
                 <dt>Apoio de IA</dt>
                 <dd>{stage.aiSupport}</dd>
               </div>
-              <div>
-                <dt>Entrega</dt>
-                <dd data-kind="delivery">{stage.delivery}</dd>
-              </div>
             </motion.dl>
           </motion.div>
         </Swap>
       </div>
 
-      <ArtifactCanvas stageIndex={STAGE_VISUAL[stageIndex]} />
-      <motion.p className="v2-footnote" {...fade(0.4)}>
-        O Núcleo entra na etapa necessária ao projecto e aproveita o que já foi confirmado.
-      </motion.p>
+      <div className="v2-preview" data-size="stage">
+        <ArtifactCanvas stageIndex={STAGE_VISUAL[stageIndex]} />
+      </div>
+
+      {/* A entrega fica presa ao desenho que a representa e aponta para a etapa que a recebe. */}
+      <div className="v2-stage-delivery">
+        <Swap>
+          <motion.div key={stage.id} exit={exit} {...rise(0.9, 16)}>
+            <p>
+              <span className="v2-label">Entrega</span>
+              <b>{stage.delivery}</b>
+            </p>
+            <p>{stage.deliveryContents}</p>
+            <p className="v2-stage-next">
+              <span className="v2-label">{next ? "Segue para" : "Volta a alimentar"}</span>
+              {next ? next.name : STAGES[0].name}
+            </p>
+          </motion.div>
+        </Swap>
+      </div>
     </section>
   );
 }

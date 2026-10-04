@@ -13,7 +13,7 @@ export const SURVEY = [
 ];
 
 /** Como decorre actualmente o trabalho de UX (página 03 da apresentação original).
-    `stem` é o ponto da nota que se liga à linha do processo, em px a partir da esquerda da nota. */
+    Nos passos em falta, `stem` é o ponto da linha do processo (em px) onde o passo devia acontecer. */
 export const CURRENT_PROCESS = [
   {
     label: "Como entramos",
@@ -38,17 +38,17 @@ export const CURRENT_PROCESS = [
       {
         title: "Escopo rígido e fragmentado",
         text: "As orientações chegam com pouco contexto, sem margem para investigar o problema real.",
-        stem: 168,
+        stem: 60,
       },
       {
         title: "Discovery inexistente ou superficial",
         text: "A compreensão do problema baseia-se em suposições, sem contacto directo com utilizadores.",
-        stem: 24,
+        stem: 336,
       },
       {
         title: "Validação sem utilizadores reais",
         text: "As decisões de design são validadas internamente, com base em opiniões.",
-        stem: 24,
+        stem: 672,
       },
     ],
   },
@@ -86,6 +86,8 @@ export type Stage = {
   work: string;
   aiSupport: string;
   delivery: string;
+  /** O que a entrega contém, segundo a tabela de entregáveis da proposta de actuação. */
+  deliveryContents: string;
 };
 
 export const STAGES: Stage[] = [
@@ -97,6 +99,7 @@ export const STAGES: Stage[] = [
     work: "Perceber a dificuldade, o resultado esperado e o que ainda é desconhecido, com o solicitante e o PO.",
     aiSupport: "Organiza os materiais, resume as evidências com a origem e prepara perguntas.",
     delivery: "Brief de UX",
+    deliveryContents: "Problema, pessoas, tarefa prioritária, evidências e dúvidas.",
   },
   {
     id: "desenhar",
@@ -106,6 +109,7 @@ export const STAGES: Stage[] = [
     work: "Desenhar o percurso da pessoa e o comportamento da interface, com o PO nas alternativas e a engenharia na viabilidade.",
     aiSupport: "Produz alternativas e constrói ecrãs a partir dos padrões do Design System.",
     delivery: "Solução de UX/UI",
+    deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
   },
   {
     id: "avaliar",
@@ -115,6 +119,7 @@ export const STAGES: Stage[] = [
     work: "Escolher uma validação proporcional à dúvida e observar se a pessoa consegue concluir a tarefa.",
     aiSupport: "Prepara guiões e cenários e agrupa os problemas observados.",
     delivery: "Solução revista",
+    deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
   },
   {
     id: "construir",
@@ -124,6 +129,7 @@ export const STAGES: Stage[] = [
     work: "Trabalhar com PO, engenharia e QA sobre a mesma versão executável, sem um handoff separado.",
     aiSupport: "Prepara a especificação de UX e compara a versão com os critérios.",
     delivery: "Especificação de UX",
+    deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
   },
   {
     id: "validar",
@@ -133,6 +139,7 @@ export const STAGES: Stage[] = [
     work: "Rever fluxos, conteúdo, consistência visual e acessibilidade na versão entregue.",
     aiSupport: "Compara ecrãs e estados e organiza achados e feedback de utilização.",
     delivery: "Validação de UX",
+    deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
   },
 ];
 
@@ -400,13 +407,8 @@ export type Step = { id: string; scene: SceneId; label: string; build?: number; 
 export const STEPS: Step[] = [
   { id: "capa", scene: "capa", label: "Abertura" },
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
-  ...CURRENT_PROCESS.map((block, build) => ({
-    id: ["como-entramos", "por-fazer", "consequencia"][build],
-    scene: "mudanca" as const,
-    label: block.label,
-    build,
-  })),
-  { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 3 },
+  { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
+  { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
   { id: "resultados", scene: "resultados", label: "Cases e resultados de mercado" },
   { id: "ia", scene: "ia", label: "Como a IA entra no trabalho de UX" },
