@@ -184,16 +184,6 @@
   animation: v2-bob 2.4s ease-in-out infinite alternate;
 }
 
-.v2-flow {
-  position: absolute;
-  left: -72px;
-  top: 190px;
-  width: 72px;
-  height: 3px;
-  background: repeating-linear-gradient(90deg, var(--blue) 0 8px, transparent 8px 16px);
-  animation: v2-flow 0.7s linear infinite;
-}
-
 /* ── Rodapé, ecrã inteiro e cursor de navegação ───────────────────────── */
 
 .v2-footer {
@@ -1320,6 +1310,10 @@
   gap: 72px;
 }
 
+.v2-ai {
+  height: 600px;
+}
+
 .v2-ai > div {
   position: relative;
 }
@@ -1370,21 +1364,24 @@
   color: #ffffff;
 }
 
-.v2-ai-tasks button i {
+/* Ligações curvas entre as colunas, com um ponto a percorrê-las. */
+.v2-ai-links {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  inset: 0;
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.7);
-  transform-origin: left;
-  animation: v2-progress linear forwards;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
 }
 
-@keyframes v2-progress {
-  from {
-    transform: scaleX(0);
-  }
+.v2-ai-links path {
+  fill: none;
+  stroke: #b9d4ff;
+  stroke-width: 2;
+}
+
+.v2-ai-links circle {
+  fill: var(--blue);
 }
 
 .v2-ai-output .v2-preview {
@@ -1463,8 +1460,9 @@
 
 .v2-ds-demo .v2-screen,
 .v2-ds-demo .v2-screen b,
-.v2-ds-demo .v2-screen-bar {
-  transition-duration: 0.45s;
+.v2-ds-demo .v2-screen-bar,
+.v2-ds-demo .v2-screen-bar i {
+  transition: all 1.1s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 /* Cliente B: cantos rectos, barra na cor do cliente e destaque em contorno. */
@@ -1514,8 +1512,9 @@
   font-size: 20px;
 }
 
-.v2-ds-parts > span {
-  transition: all 0.45s ease;
+.v2-ds-parts > span,
+.v2-ds-toggle::after {
+  transition: all 1.1s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .v2-ds-button {

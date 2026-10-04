@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
@@ -474,9 +474,34 @@ export function ResultsScene() {
 /* ── Como a IA entra no trabalho de UX ────────────────────────────────── */
 
 const AI_STEP_MS = 3600;
+/** Limites horizontais das três colunas da cena (px no palco). */
+const AI_X = { inputs: 330, tasksLeft: 402, tasksRight: 782, output: 854 };
+
+const curve = (x1: number, y1: number, x2: number, y2: number) => {
+  const middle = (x1 + x2) / 2;
+  return `M${x1} ${y1}C${middle} ${y1} ${middle} ${y2} ${x2} ${y2}`;
+};
 
 export function AiScene() {
-  const [selected, select, auto] = useSelected(AI_FLOW.assistants.length, AI_STEP_MS);
+  const [selected, select] = useSelected(AI_FLOW.assistants.length, AI_STEP_MS);
+  const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const taskRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const outputRef = useRef<HTMLDivElement | null>(null);
+  const [links, setLinks] = useState<string[]>([]);
+
+  // As ligações partem do que os assistentes recebem, passam pela tarefa activa e chegam ao que é produzido.
+  useLayoutEffect(() => {
+    const centre = (element: HTMLElement | null) => (element ? element.offsetTop + element.offsetHeight / 2 : 0);
+    const measure = () => {
+      const task = centre(taskRefs.current[selected]);
+      setLinks([
+        ...inputRefs.current.map((input) => curve(AI_X.inputs, centre(input), AI_X.tasksLeft, task)),
+        curve(AI_X.tasksRight, task, AI_X.output, centre(outputRef.current)),
+      ]);
+    };
+    measure();
+    void document.fonts.ready.then(measure);
+  }, [selected]);
 
   return (
     <section className="v2-scene" aria-labelledby="v2-ai-title">
@@ -488,10 +513,28 @@ export function AiScene() {
       </h1>
 
       <div className="v2-ai">
+        <motion.svg className="v2-ai-links" aria-hidden {...fade(1.2, 0.8)}>
+          {links.map((d, index) => (
+            <g key={index}>
+              <motion.path d={d} initial={false} animate={{ d }} transition={spring(0, 120, 20)} />
+              {!STILL && (
+                <circle r="5">
+                  <animateMotion dur="1.8s" begin={`${index * 0.3}s`} repeatCount="indefinite" path={d} />
+                </circle>
+              )}
+            </g>
+          ))}
+        </motion.svg>
+
         <motion.div className="v2-ai-inputs" {...rise(0.4, 24)}>
           <p className="v2-label">Os assistentes recebem</p>
-          {AI_FLOW.inputs.map((input) => (
-            <div key={input.title}>
+          {AI_FLOW.inputs.map((input, index) => (
+            <div
+              key={input.title}
+              ref={(element) => {
+                inputRefs.current[index] = element;
+              }}
+            >
               <h2>{input.title}</h2>
               <p>{input.text}</p>
             </div>
@@ -499,27 +542,25 @@ export function AiScene() {
         </motion.div>
 
         <motion.div className="v2-ai-tasks" {...rise(0.7, 24)}>
-          <span className="v2-flow" aria-hidden />
           <p className="v2-label">Os assistentes fazem</p>
           {AI_FLOW.assistants.map((assistant, index) => (
             <button
               key={assistant.task}
+              ref={(element) => {
+                taskRefs.current[index] = element;
+              }}
               type="button"
               aria-pressed={index === selected}
               onClick={() => select(index)}
             >
               {assistant.task}
-              {index === selected && auto && (
-                <i key={selected} style={{ animationDuration: `${AI_STEP_MS}ms` }} aria-hidden />
-              )}
             </button>
           ))}
         </motion.div>
 
         <motion.div className="v2-ai-output" {...rise(1, 24)}>
-          <span className="v2-flow" aria-hidden />
           <p className="v2-label">O que produzem, e as pessoas revêem</p>
-          <div className="v2-preview" data-size="large">
+          <div className="v2-preview" data-size="large" ref={outputRef}>
             <ArtifactCanvas stageIndex={AI_FLOW.assistants[selected].visual} />
           </div>
           <ul>
@@ -538,7 +579,8 @@ export function AiScene() {
 /* ── Design System TIS ────────────────────────────────────────────────── */
 
 export function DesignSystemScene() {
-  const [selected, select] = useSelected(THEMES.length);
+  // Os temas alternam sozinhos, com alguns segundos em cada um, até alguém escolher um.
+  const [selected, select] = useSelected(THEMES.length, 4500);
   const theme = THEMES[selected];
   const themeStyle = {
     "--theme": theme.color,
