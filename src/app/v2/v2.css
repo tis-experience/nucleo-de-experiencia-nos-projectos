@@ -426,11 +426,15 @@
   color: #ffffff;
 }
 
+/* Painel azul muito claro, como o do inquérito na apresentação original. */
 .v2-survey {
   position: absolute;
-  left: 1250px;
-  top: 400px;
-  width: 550px;
+  left: 1180px;
+  top: 330px;
+  width: 620px;
+  padding: 56px;
+  border-radius: 40px;
+  background: rgba(3, 110, 242, 0.06);
 }
 
 .v2-survey ul {
