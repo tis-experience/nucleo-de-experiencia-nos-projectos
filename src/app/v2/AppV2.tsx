@@ -173,6 +173,7 @@ export default function AppV2() {
       <div
         className={`v2-root${STILL ? " v2-still" : ""}`}
         data-dark={isDark}
+        data-scene={step.scene}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setCursorVisible(true)}
         onMouseLeave={() => setCursorVisible(false)}
