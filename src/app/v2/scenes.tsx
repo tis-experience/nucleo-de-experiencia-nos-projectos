@@ -1,21 +1,19 @@
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_FLOW,
   AREAS,
-  BENEFIT_METRICS,
   CURRENT_PROCESS,
-  DELIVERY_VISUALS,
   DS_POINTS,
-  MARKET_EXAMPLES,
+  MARKET_EVIDENCE,
   MATURITY_LEVELS,
   PHASES,
   STAGES,
+  STAGE_VISUAL,
   SURVEY,
   THEMES,
-  type StageId,
 } from "./content";
 import { CountUp, EASE, MaskLine, STILL, Swap, fade, rise, spring, tween } from "./fx";
 import { ArtifactCanvas, Screen } from "./StageScene";
@@ -63,13 +61,6 @@ function useSelected(count: number, autoAdvanceMs = 0) {
 }
 
 const number = (index: number) => String(index + 1).padStart(2, "0");
-
-const stageNames = (stages: StageId[]) =>
-  stages.length === STAGES.length
-    ? "todas"
-    : STAGES.filter((stage) => stages.includes(stage.id))
-        .map((stage) => stage.short)
-        .join(", ");
 
 /* ── Abertura e fecho ─────────────────────────────────────────────────── */
 
@@ -413,169 +404,6 @@ export function ChangeScene({ build }: { build: number }) {
   );
 }
 
-/* ── Cases e resultados de mercado ────────────────────────────────────── */
-
-export function ResultsScene() {
-  const [selected, select] = useSelected(MARKET_EXAMPLES.length);
-
-  return (
-    <section className="v2-scene" aria-labelledby="v2-results-title">
-      <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        O processo de UX no mercado
-      </motion.p>
-      <h1 id="v2-results-title" className="v2-title v2-scene-title">
-        <MaskLine>Cases e resultados de mercado</MaskLine>
-      </h1>
-
-      <ul className="v2-cases" aria-label="Cases de mercado">
-        {MARKET_EXAMPLES.map((example, index) => (
-          <motion.li key={example.name} data-active={index === selected} {...rise(0.35 + index * 0.1, 24)}>
-            <button type="button" aria-expanded={index === selected} onClick={() => select(index)}>
-              <span className="v2-label">{example.company}</span>
-              <span className="v2-case-name">{example.name}</span>
-              <b className="v2-case-result">{example.result}</b>
-              {index === selected && (
-                <motion.span className="v2-case-detail" {...fade(0.25, 0.5)}>
-                  <span className="v2-case-caption">{example.resultCaption}</span>
-                  <span className="v2-case-text">{example.description}</span>
-                  <span className="v2-source">
-                    Etapas: {stageNames(example.stages)} · Fonte: {example.source}
-                  </span>
-                </motion.span>
-              )}
-            </button>
-          </motion.li>
-        ))}
-      </ul>
-
-      <motion.p className="v2-label v2-studies-label" {...fade(0.8)}>
-        O que os estudos publicados medem
-      </motion.p>
-      <ul className="v2-studies">
-        {BENEFIT_METRICS.map((metric, index) => {
-          const delay = 0.85 + index * 0.12;
-          return (
-            <motion.li key={metric.source} {...rise(delay, 20)}>
-              <p className="v2-number">
-                {metric.prefix}
-                <CountUp value={metric.number} decimals={metric.decimals} delay={delay} />
-                <small>{metric.unit}</small>
-              </p>
-              <p>{metric.caption}</p>
-              <p className="v2-source">{metric.source}</p>
-            </motion.li>
-          );
-        })}
-      </ul>
-    </section>
-  );
-}
-
-/* ── Como a IA entra no trabalho de UX ────────────────────────────────── */
-
-const AI_STEP_MS = 3600;
-/** Limites horizontais das três colunas da cena (px no palco). */
-const AI_X = { inputs: 330, tasksLeft: 402, tasksRight: 782, output: 854 };
-
-const curve = (x1: number, y1: number, x2: number, y2: number) => {
-  const middle = (x1 + x2) / 2;
-  return `M${x1} ${y1}C${middle} ${y1} ${middle} ${y2} ${x2} ${y2}`;
-};
-
-export function AiScene() {
-  const [selected, select] = useSelected(AI_FLOW.assistants.length, AI_STEP_MS);
-  const inputRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const taskRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const outputRef = useRef<HTMLDivElement | null>(null);
-  const [links, setLinks] = useState<string[]>([]);
-
-  // As ligações partem do que os assistentes recebem, passam pela tarefa activa e chegam ao que é produzido.
-  useLayoutEffect(() => {
-    const centre = (element: HTMLElement | null) => (element ? element.offsetTop + element.offsetHeight / 2 : 0);
-    const measure = () => {
-      const task = centre(taskRefs.current[selected]);
-      setLinks([
-        ...inputRefs.current.map((input) => curve(AI_X.inputs, centre(input), AI_X.tasksLeft, task)),
-        curve(AI_X.tasksRight, task, AI_X.output, centre(outputRef.current)),
-      ]);
-    };
-    measure();
-    void document.fonts.ready.then(measure);
-  }, [selected]);
-
-  return (
-    <section className="v2-scene" aria-labelledby="v2-ai-title">
-      <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        Aceleração com IA
-      </motion.p>
-      <h1 id="v2-ai-title" className="v2-title v2-scene-title">
-        <MaskLine>Como a IA entra no trabalho de UX</MaskLine>
-      </h1>
-
-      <div className="v2-ai">
-        <motion.svg className="v2-ai-links" aria-hidden {...fade(1.2, 0.8)}>
-          {links.map((d, index) => (
-            <g key={index}>
-              <motion.path d={d} initial={false} animate={{ d }} transition={spring(0, 120, 20)} />
-              {!STILL && (
-                <circle r="5">
-                  <animateMotion dur="1.8s" begin={`${index * 0.3}s`} repeatCount="indefinite" path={d} />
-                </circle>
-              )}
-            </g>
-          ))}
-        </motion.svg>
-
-        <motion.div className="v2-ai-inputs" {...rise(0.4, 24)}>
-          <p className="v2-label">Os assistentes recebem</p>
-          {AI_FLOW.inputs.map((input, index) => (
-            <div
-              key={input.title}
-              ref={(element) => {
-                inputRefs.current[index] = element;
-              }}
-            >
-              <h2>{input.title}</h2>
-              <p>{input.text}</p>
-            </div>
-          ))}
-        </motion.div>
-
-        <motion.div className="v2-ai-tasks" {...rise(0.7, 24)}>
-          <p className="v2-label">Os assistentes fazem</p>
-          {AI_FLOW.assistants.map((assistant, index) => (
-            <button
-              key={assistant.task}
-              ref={(element) => {
-                taskRefs.current[index] = element;
-              }}
-              type="button"
-              aria-pressed={index === selected}
-              onClick={() => select(index)}
-            >
-              {assistant.task}
-            </button>
-          ))}
-        </motion.div>
-
-        <motion.div className="v2-ai-output" {...rise(1, 24)}>
-          <p className="v2-label">O que produzem, e as pessoas revêem</p>
-          <div className="v2-preview" data-size="large" ref={outputRef}>
-            <ArtifactCanvas stageIndex={AI_FLOW.assistants[selected].visual} />
-          </div>
-          <ul>
-            {AI_FLOW.reviewers.map((reviewer) => (
-              <li key={reviewer.who}>
-                <b>{reviewer.who}</b> {reviewer.what}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 /* ── Design System TIS ────────────────────────────────────────────────── */
 
 export function DesignSystemScene() {
@@ -642,34 +470,42 @@ export function DesignSystemScene() {
   );
 }
 
-/* ── O que o Núcleo entrega: por fase e por área ──────────────────────── */
+/* ── O que o Núcleo entrega: uma cena, três ópticas ─────────────────── */
 
-const ORBIT = { cx: 400, cy: 600, rx: 270, ry: 230 };
+const ORBIT = { cx: 370, cy: 610, rx: 215, ry: 215 };
+const LENSES = ["Com IA", "Por fase", "Por área"];
 
 const orbitPoint = (index: number) => {
   const angle = ((-90 + index * (360 / AREAS.length)) * Math.PI) / 180;
   return { x: ORBIT.cx + ORBIT.rx * Math.cos(angle), y: ORBIT.cy + ORBIT.ry * Math.sin(angle) };
 };
 
+/** A mesma entrega vista pela etapa de UX com apoio de IA, pela fase do projecto ou pela área que a recebe.
+    O desenho e a ficha ao lado são partilhados, e cada item da ficha leva à óptica correspondente. */
 export function DeliveriesScene({
-  view,
+  lens,
+  stageIndex,
   phaseIndex,
   areaId,
-  onView,
+  onLens,
+  onSelectStage,
   onSelectPhase,
   onSelectArea,
 }: {
-  view: number;
+  lens: number;
+  stageIndex: number;
   phaseIndex: number;
   areaId: string;
-  onView: (view: number) => void;
+  onLens: (lens: number) => void;
+  onSelectStage: (index: number) => void;
   onSelectPhase: (index: number) => void;
   onSelectArea: (id: string) => void;
 }) {
-  const byArea = view === 1;
   const phase = PHASES[phaseIndex];
   const area = AREAS.find((item) => item.id === areaId) ?? AREAS[0];
-  const visual = byArea ? area.visual : phase.visual;
+  const visual = [STAGE_VISUAL[stageIndex], phase.visual, area.visual][lens];
+  const stage = STAGES[STAGE_VISUAL.indexOf(visual)];
+  const selectionKey = [stage.id, phase.name, area.id][lens];
 
   return (
     <section className="v2-scene" aria-labelledby="v2-deliveries-title">
@@ -680,16 +516,50 @@ export function DeliveriesScene({
         <MaskLine>O que o Núcleo entrega</MaskLine>
       </h1>
 
-      <div className="v2-toggle" role="group" aria-label="Vista">
-        {["Por fase", "Por área"].map((label, index) => (
-          <button key={label} type="button" aria-pressed={view === index} onClick={() => onView(index)}>
+      <div className="v2-toggle" role="group" aria-label="Óptica">
+        {LENSES.map((label, index) => (
+          <button key={label} type="button" aria-pressed={lens === index} onClick={() => onLens(index)}>
             {label}
           </button>
         ))}
       </div>
 
       <Swap>
-        {byArea ? (
+        {lens === 0 && (
+          <motion.div key="ia" className="v2-lens" exit={exit}>
+            <motion.p className="v2-lens-note" {...fade(0.2)}>
+              <span className="v2-label">Os assistentes recebem</span>
+              {AI_FLOW.inputs.map((input) => input.title).join(" e ")}
+            </motion.p>
+            <ol className="v2-pick-list" aria-label="Etapas de UX">
+              {STAGES.map((item, index) => (
+                <motion.li key={item.id} {...rise(0.3 + index * 0.08, 20)}>
+                  <button type="button" aria-pressed={index === stageIndex} onClick={() => onSelectStage(index)}>
+                    <b>{item.short}</b>
+                    {item.aiSupport}
+                  </button>
+                </motion.li>
+              ))}
+            </ol>
+          </motion.div>
+        )}
+
+        {lens === 1 && (
+          <motion.div key="fases" className="v2-lens" exit={exit}>
+            <ol className="v2-pick-list" data-size="large" aria-label="Fases do projecto">
+              {PHASES.map((item, index) => (
+                <motion.li key={item.name} {...rise(0.3 + index * 0.08, 20)}>
+                  <button type="button" aria-pressed={index === phaseIndex} onClick={() => onSelectPhase(index)}>
+                    <b>{number(index)}</b>
+                    {item.name}
+                  </button>
+                </motion.li>
+              ))}
+            </ol>
+          </motion.div>
+        )}
+
+        {lens === 2 && (
           <motion.div key="areas" className="v2-layer" exit={exit} {...fade(0.1)}>
             <svg className="v2-orbit-lines" viewBox="0 0 1920 1080" fill="none" aria-hidden>
               {AREAS.map((item, index) => {
@@ -734,90 +604,102 @@ export function DeliveriesScene({
               })}
             </ul>
           </motion.div>
-        ) : (
-          <motion.ol key="phases" className="v2-phase-list" exit={exit} aria-label="Fases do projecto">
-            {PHASES.map((item, index) => (
-              <motion.li key={item.name} {...rise(0.3 + index * 0.08, 20)}>
-                <button type="button" aria-pressed={index === phaseIndex} onClick={() => onSelectPhase(index)}>
-                  <b>{number(index)}</b>
-                  {item.name}
-                </button>
-              </motion.li>
-            ))}
-          </motion.ol>
         )}
       </Swap>
 
-      <div className="v2-delivery" aria-live="polite">
-        <Swap>
-          <motion.div key={byArea ? area.id : phase.name} exit={exit}>
-            <h2 className="v2-delivery-name">
-              <MaskLine>{byArea ? area.name : phase.name}</MaskLine>
-            </h2>
-            {byArea && area.note && (
-              <motion.p className="v2-delivery-note" {...fade(0.2)}>
-                {area.note}
-              </motion.p>
-            )}
-            <motion.dl className="v2-delivery-facts" {...rise(0.25, 16)}>
-              {byArea ? (
-                <>
-                  <div>
-                    <dt>Entrega ao Núcleo</dt>
-                    <dd>{area.gives}</dd>
-                  </div>
-                  <div>
-                    <dt>Recebe do Núcleo</dt>
-                    <dd data-kind="strong">{area.gets}</dd>
-                  </div>
-                  <div>
-                    <dt>Fases em que participa</dt>
-                    <dd className="v2-links">
-                      {PHASES.map((item, index) =>
-                        item.areas.includes(area.id) ? (
-                          <button key={item.name} type="button" onClick={() => (onSelectPhase(index), onView(0))}>
-                            {item.name}
-                          </button>
-                        ) : null,
-                      )}
-                      {!PHASES.some((item) => item.areas.includes(area.id)) && "Iniciativas próprias da área"}
-                    </dd>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <dt>O Núcleo entrega</dt>
-                    <dd data-kind="strong">{phase.delivery}</dd>
-                  </div>
-                  <div>
-                    <dt>Áreas envolvidas</dt>
-                    <dd className="v2-links">
-                      {AREAS.filter((item) => phase.areas.includes(item.id)).map((item) => (
-                        <button key={item.id} type="button" onClick={() => (onSelectArea(item.id), onView(1))}>
-                          {item.name}
-                        </button>
-                      ))}
-                    </dd>
-                  </div>
-                </>
-              )}
-            </motion.dl>
-          </motion.div>
-        </Swap>
-      </div>
-
-      <motion.figure className="v2-delivery-visual" {...rise(0.5, 24)}>
+      <motion.figure className="v2-delivery-visual" {...rise(0.4, 24)}>
         <div className="v2-preview">
           <ArtifactCanvas stageIndex={visual} />
         </div>
-        <figcaption>{DELIVERY_VISUALS[visual]}</figcaption>
+        <figcaption>
+          <span className="v2-label">Entrega</span>
+          <b>{stage.delivery}</b>
+          {stage.deliveryContents}
+        </figcaption>
       </motion.figure>
+
+      <div className="v2-delivery" aria-live="polite">
+        <Swap>
+          <motion.dl key={selectionKey} className="v2-delivery-facts" exit={exit} {...rise(0.2, 16)}>
+            {lens === 0 && (
+              <div data-kind="main">
+                <dt>{stage.name}</dt>
+                <dd>{stage.aiSupport}</dd>
+                <dd className="v2-delivery-note">
+                  Revisto por pessoas: {AI_FLOW.reviewers.map((reviewer) => reviewer.who).join(", ")}.
+                </dd>
+              </div>
+            )}
+            {lens === 1 && (
+              <div data-kind="main">
+                <dt>{phase.name}</dt>
+                <dd>{phase.delivery}</dd>
+              </div>
+            )}
+            {lens === 2 && (
+              <div data-kind="main">
+                <dt>
+                  {area.name}
+                  {area.note && <small>{area.note}</small>}
+                </dt>
+                <dd>
+                  <span className="v2-label">Recebe do Núcleo</span>
+                  {area.gets}
+                </dd>
+                <dd>
+                  <span className="v2-label">Entrega ao Núcleo</span>
+                  {area.gives}
+                </dd>
+              </div>
+            )}
+
+            {lens !== 0 && (
+              <div>
+                <dt>Etapa de UX, com apoio de IA</dt>
+                <dd className="v2-links">
+                  <button type="button" onClick={() => (onSelectStage(STAGES.indexOf(stage)), onLens(0))}>
+                    {stage.name}
+                  </button>
+                </dd>
+              </div>
+            )}
+            {lens !== 1 && (
+              <div>
+                <dt>Fases do projecto</dt>
+                <dd className="v2-links">
+                  {PHASES.map((item, index) =>
+                    (lens === 2 ? item.areas.includes(area.id) : item.visual === visual) ? (
+                      <button key={item.name} type="button" onClick={() => (onSelectPhase(index), onLens(1))}>
+                        {item.name}
+                      </button>
+                    ) : null,
+                  )}
+                  {lens === 2 && !PHASES.some((item) => item.areas.includes(area.id)) && "Iniciativas próprias da área"}
+                </dd>
+              </div>
+            )}
+            {lens !== 2 && (
+              <div>
+                <dt>Áreas envolvidas</dt>
+                <dd className="v2-links">
+                  {AREAS.filter((item) => (lens === 1 ? phase.areas.includes(item.id) : item.visual === visual)).map(
+                    (item) => (
+                      <button key={item.id} type="button" onClick={() => (onSelectArea(item.id), onLens(2))}>
+                        {item.name}
+                      </button>
+                    ),
+                  )}
+                </dd>
+              </div>
+            )}
+          </motion.dl>
+        </Swap>
+      </div>
     </section>
   );
 }
 
-/* ── Como se mede a UX ────────────────────────────────────────────────── */
+/* ── Como se mede a UX, com o que o mercado já mediu ──────────────────── */
 
 const MEASURE_GROUPS = [
   [OPERACIONAL_COLUMNS[0]],
@@ -832,14 +714,14 @@ export function MeasureScene() {
   return (
     <section className="v2-scene" aria-labelledby="v2-measure-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        Como vamos medir
+        Resultados
       </motion.p>
       <div className="v2-head">
         <h1 id="v2-measure-title" className="v2-title">
           <MaskLine>Como se mede a UX</MaskLine>
         </h1>
         <motion.p className="v2-lead" {...rise(0.3, 20)}>
-          Começar com poucas perguntas e decidir o que manter, corrigir, investigar e registar.
+          Quatro perguntas, as métricas que as respondem e o que o mercado já mediu em cada uma.
         </motion.p>
       </div>
 
@@ -857,16 +739,29 @@ export function MeasureScene() {
       <div className="v2-metrics" aria-live="polite">
         <Swap>
           <motion.div key={selected} exit={exit}>
+            <motion.p className="v2-label" {...fade(0.1)}>
+              O que o mercado já mediu
+            </motion.p>
+            <ul className="v2-evidence">
+              {MARKET_EVIDENCE[selected].map((item, index) => (
+                <motion.li key={item.value} {...rise(0.15 + index * 0.12, 20)}>
+                  <b>{item.value}</b>
+                  <p>{item.caption}</p>
+                  <p className="v2-source">{item.source}</p>
+                </motion.li>
+              ))}
+            </ul>
+
             {MEASURE_GROUPS[selected].map((group, groupIndex) => (
-              <motion.div key={group.title} {...rise(0.1 + groupIndex * 0.12, 16)}>
-                <p className="v2-label">{group.title}</p>
+              <motion.div key={group.title} className="v2-metric-group" {...rise(0.4 + groupIndex * 0.12, 16)}>
+                <p className="v2-label">Métricas · {group.title}</p>
                 <ul>
                   {group.items.map((item, itemIndex) => (
                     <motion.li
                       key={item}
                       initial={STILL ? false : { opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.35, delay: 0.15 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
+                      transition={{ duration: 0.35, delay: 0.45 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
                     >
                       {item}
                     </motion.li>

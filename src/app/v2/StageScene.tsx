@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
-import { STAGES } from "./content";
+import { STAGES, STAGE_VISUAL } from "./content";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
 type Fidelity = "wire" | "final";
@@ -267,9 +267,6 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
     </div>
   );
 }
-
-/** Desenho que acompanha cada uma das cinco etapas: notas, alternativas, testes, construção e uso. */
-const STAGE_VISUAL = [0, 2, 3, 4, 5];
 
 export function StageScene({ stageIndex }: { stageIndex: number }) {
   const stage = STAGES[stageIndex];

@@ -1154,263 +1154,6 @@
   zoom: 0.78;
 }
 
-/* ── Cases e resultados ───────────────────────────────────────────────── */
-
-.v2-cases {
-  position: absolute;
-  left: 120px;
-  top: 250px;
-  width: 1680px;
-  height: 340px;
-  display: flex;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.v2-cases > li {
-  flex: 1 1 0;
-  min-width: 0;
-  transition: flex-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.v2-cases > li[data-active="true"] {
-  flex-grow: 2.3;
-}
-
-.v2-cases button {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 28px 32px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: #ffffff;
-  text-align: left;
-  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.24s ease;
-}
-
-.v2-cases > li[data-active="false"] button:hover {
-  box-shadow: var(--shadow);
-}
-
-.v2-cases > li[data-active="true"] button {
-  border-color: var(--blue);
-  background: var(--tint);
-  cursor: default;
-}
-
-.v2-case-name {
-  margin-top: 6px;
-  font-family: var(--display);
-  font-size: 26px;
-  line-height: 1.1;
-  color: var(--navy);
-}
-
-.v2-case-result {
-  margin-top: auto;
-  font-family: var(--display);
-  font-size: 48px;
-  font-weight: normal;
-  line-height: 1;
-  letter-spacing: -1.5px;
-  color: var(--blue);
-}
-
-.v2-cases > li[data-active="true"] .v2-case-result {
-  margin-top: 16px;
-  font-size: 84px;
-  letter-spacing: -3px;
-}
-
-/* Largura fixa, para o texto não se reorganizar enquanto o bloco abre. */
-.v2-case-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 720px;
-  margin-top: 10px;
-}
-
-.v2-case-caption {
-  font-family: var(--strong);
-  font-size: 20px;
-  line-height: 1.3;
-  color: var(--navy);
-}
-
-.v2-case-text {
-  font-size: 16px;
-}
-
-.v2-studies-label {
-  position: absolute;
-  left: 120px;
-  top: 640px;
-}
-
-.v2-studies {
-  position: absolute;
-  left: 120px;
-  top: 676px;
-  width: 1680px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 64px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.v2-studies p {
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-.v2-studies .v2-source {
-  margin-top: 6px;
-  font-size: 13px;
-}
-
-.v2-number {
-  margin-top: 0;
-  font-family: var(--display);
-  font-size: 68px;
-  line-height: 1;
-  letter-spacing: -2px;
-  font-variant-numeric: tabular-nums;
-  color: var(--navy);
-}
-
-.v2-studies p.v2-number {
-  margin-top: 0;
-  font-size: 68px;
-}
-
-.v2-number small {
-  margin-left: 4px;
-  font-size: 28px;
-  letter-spacing: 0;
-  color: var(--blue);
-}
-
-/* ── Como a IA entra ──────────────────────────────────────────────────── */
-
-.v2-ai {
-  position: absolute;
-  left: 120px;
-  top: 290px;
-  width: 1680px;
-  display: grid;
-  grid-template-columns: 330px 380px 1fr;
-  gap: 72px;
-}
-
-.v2-ai {
-  height: 600px;
-}
-
-.v2-ai > div {
-  position: relative;
-}
-
-.v2-ai-inputs > div {
-  margin-top: 16px;
-  padding: 22px 24px 24px;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-}
-
-.v2-ai-inputs h2 {
-  font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.15;
-  color: var(--navy);
-}
-
-.v2-ai-inputs p:not(.v2-label) {
-  margin-top: 8px;
-  font-size: 16px;
-}
-
-.v2-ai-tasks button {
-  position: relative;
-  width: 100%;
-  display: block;
-  overflow: hidden;
-  margin-top: 12px;
-  padding: 18px 22px 20px;
-  border: 0;
-  border-radius: 16px;
-  background: var(--tint);
-  font-family: var(--strong);
-  font-size: 19px;
-  line-height: 1.3;
-  text-align: left;
-  color: var(--navy);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.v2-ai-tasks .v2-label + button {
-  margin-top: 16px;
-}
-
-.v2-ai-tasks button[aria-pressed="true"] {
-  background: var(--blue);
-  color: #ffffff;
-}
-
-/* Ligações curvas entre as colunas, com um ponto a percorrê-las. */
-.v2-ai-links {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-}
-
-.v2-ai-links path {
-  fill: none;
-  stroke: #b9d4ff;
-  stroke-width: 2;
-}
-
-.v2-ai-links circle {
-  fill: var(--blue);
-}
-
-.v2-ai-output .v2-preview {
-  margin-top: 16px;
-  background: transparent;
-}
-
-.v2-ai-output ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 20px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.v2-ai-output li {
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: var(--tint);
-  font-size: 15px;
-}
-
-.v2-ai-output li b {
-  font-family: var(--strong);
-  font-weight: normal;
-  color: var(--navy);
-}
-
 /* ── Design System ────────────────────────────────────────────────────── */
 
 .v2-ds-points {
@@ -1631,50 +1374,83 @@
   color: #ffffff;
 }
 
-.v2-phase-list {
+/* Coluna da esquerda: o que se escolhe em cada óptica. */
+.v2-lens {
   position: absolute;
   left: 104px;
-  top: 300px;
+  top: 290px;
   width: 520px;
+}
+
+.v2-lens-note {
+  margin: 0 0 14px 24px;
+  font-size: 16px;
+}
+
+.v2-lens-note .v2-label {
+  display: block;
+}
+
+.v2-pick-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.v2-phase-list li + li {
-  margin-top: 8px;
+.v2-pick-list li + li {
+  margin-top: 6px;
 }
 
-.v2-phase-list button {
+.v2-pick-list button {
   width: 100%;
+  display: block;
+  padding: 14px 24px 16px;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.45;
+  text-align: left;
+  color: var(--text);
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.v2-pick-list b {
+  display: block;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: normal;
+  color: var(--navy);
+  transition: color 0.3s ease;
+}
+
+.v2-pick-list[data-size="large"] button {
   display: flex;
   align-items: baseline;
   gap: 20px;
   padding: 20px 24px;
-  border: 0;
-  border-radius: 20px;
-  background: transparent;
   font-family: var(--display);
   font-size: 28px;
-  text-align: left;
   color: var(--navy);
-  transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
 }
 
-.v2-phase-list b {
+.v2-pick-list[data-size="large"] b {
   font-family: var(--strong);
   font-size: 18px;
-  font-weight: normal;
   color: var(--blue);
 }
 
-.v2-phase-list button:hover {
+.v2-pick-list button:hover,
+.v2-pick-list button[aria-pressed="true"] {
   background: var(--tint);
 }
 
-.v2-phase-list button[aria-pressed="true"] {
+.v2-pick-list button[aria-pressed="true"] {
   padding-left: 36px;
-  background: var(--tint);
+}
+
+.v2-pick-list button[aria-pressed="true"] b,
+.v2-pick-list[data-size="large"] button[aria-pressed="true"] {
   color: var(--blue);
 }
 
@@ -1733,13 +1509,13 @@
 }
 
 .v2-orbit button {
-  padding: 10px 20px;
+  padding: 9px 16px;
   transform: translate(-50%, -50%);
   border: 1px solid var(--line);
   border-radius: 999px;
   background: #ffffff;
   font-family: var(--strong);
-  font-size: 17px;
+  font-size: 16px;
   white-space: nowrap;
   color: var(--navy);
   transition: background-color 0.24s ease, color 0.24s ease, box-shadow 0.24s ease;
@@ -1755,31 +1531,45 @@
   color: #ffffff;
 }
 
-.v2-delivery {
+/* Ao centro, o desenho da entrega; à direita, a ficha com as outras ópticas. */
+.v2-delivery-visual {
   position: absolute;
-  left: 760px;
+  left: 720px;
   top: 300px;
-  width: 440px;
+  width: 530px;
+  margin: 0;
 }
 
-.v2-delivery-name {
+.v2-delivery-visual figcaption {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.v2-delivery-visual figcaption .v2-label {
+  display: block;
+}
+
+.v2-delivery-visual figcaption b {
+  display: block;
+  margin: 2px 0 4px;
   font-family: var(--display);
-  font-size: 44px;
-  line-height: 1.04;
-  letter-spacing: -1px;
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1.15;
   color: var(--navy);
 }
 
-.v2-delivery-note {
-  margin-top: 6px;
-  font-size: 16px;
-  color: var(--muted);
+.v2-delivery {
+  position: absolute;
+  left: 1330px;
+  top: 296px;
+  width: 470px;
 }
 
 .v2-delivery-facts {
   display: grid;
-  gap: 24px;
-  margin: 28px 0 0;
+  gap: 26px;
+  margin: 0;
 }
 
 .v2-delivery-facts dt {
@@ -1792,14 +1582,41 @@
 
 .v2-delivery-facts dd {
   margin: 6px 0 0;
-  font-size: 18px;
+  font-size: 17px;
 }
 
-.v2-delivery-facts dd[data-kind="strong"] {
-  font-family: var(--strong);
-  font-size: 21px;
-  line-height: 1.35;
+.v2-delivery-facts div[data-kind="main"] dt {
+  font-family: var(--display);
+  font-size: 34px;
+  line-height: 1.08;
+  letter-spacing: -0.5px;
+  text-transform: none;
   color: var(--navy);
+}
+
+.v2-delivery-facts dt small {
+  display: block;
+  margin-top: 4px;
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.v2-delivery-facts div[data-kind="main"] dd {
+  margin-top: 12px;
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.v2-delivery-facts dd .v2-label {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.v2-delivery-facts dd.v2-delivery-note {
+  font-size: 15px;
+  color: var(--muted);
 }
 
 .v2-links {
@@ -1823,20 +1640,6 @@
 .v2-links button:hover {
   background: var(--blue);
   color: #ffffff;
-}
-
-.v2-delivery-visual {
-  position: absolute;
-  left: 1270px;
-  top: 304px;
-  width: 530px;
-  margin: 0;
-}
-
-.v2-delivery-visual figcaption {
-  margin-top: 14px;
-  font-size: 15px;
-  color: var(--muted);
 }
 
 /* ── Como se mede a UX ────────────────────────────────────────────────── */
@@ -1886,28 +1689,61 @@
 .v2-metrics {
   position: absolute;
   left: 860px;
-  top: 396px;
+  top: 384px;
   width: 940px;
 }
 
-.v2-metrics > div > div + div {
-  margin-top: 28px;
-}
-
-.v2-metrics ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 12px 0 0;
+.v2-evidence {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin: 14px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.v2-metrics li {
-  padding: 9px 18px;
+.v2-evidence b {
+  display: block;
+  font-family: var(--display);
+  font-size: 64px;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--blue);
+}
+
+.v2-evidence p {
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.v2-evidence .v2-source {
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.v2-metric-group {
+  margin-top: 30px;
+}
+
+.v2-metric-group + .v2-metric-group {
+  margin-top: 20px;
+}
+
+.v2-metric-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v2-metric-group li {
+  padding: 7px 16px;
   border-radius: 999px;
   background: var(--tint);
-  font-size: 16px;
+  font-size: 15px;
   color: var(--navy);
 }
 

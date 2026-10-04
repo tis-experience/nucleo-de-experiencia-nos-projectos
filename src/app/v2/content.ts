@@ -143,84 +143,52 @@ export const STAGES: Stage[] = [
   },
 ];
 
-export type MarketExample = {
-  company: string;
-  name: string;
-  description: string;
-  result: string;
-  resultCaption: string;
-  stages: StageId[];
-  source: string;
-};
-
-export const MARKET_EXAMPLES: MarketExample[] = [
-  {
-    company: "Bank of America, com a IDEO",
-    name: "Keep the Change",
-    description:
-      "A observação da relação das pessoas com o dinheiro revelou o hábito de arredondar valores, que deu origem a um serviço de poupança automática.",
-    result: "12 milhões",
-    resultCaption: "de clientes aderiram e pouparam mais de 2 mil milhões de dólares.",
-    stages: ["compreender", "desenhar"],
-    source: "This is Design Thinking, 2018",
-  },
-  {
-    company: "Government Digital Service",
-    name: "GOV.UK",
-    description:
-      "Um serviço desenhado com pesquisa contínua junto dos utilizadores substituiu 1 882 sites do governo britânico por um só.",
-    result: "< 30%",
-    resultCaption: "do custo anual dos sites que substituiu.",
-    stages: ["compreender", "desenhar", "avaliar", "construir", "validar"],
-    source: "Public Digital, GDS",
-  },
-  {
-    company: "Microsoft",
-    name: "Xbox Adaptive Controller",
-    description:
-      "Um comando desenhado com jogadores com mobilidade reduzida e com organizações que os representam, do primeiro protótipo à embalagem.",
-    result: "19 entradas",
-    resultCaption: "para ligar os dispositivos de que cada jogador precisa.",
-    stages: ["compreender", "desenhar", "avaliar", "construir"],
-    source: "Microsoft, 2018",
-  },
-];
-
-export type Metric = {
-  prefix?: string;
-  number: number;
-  decimals?: number;
-  unit: string;
-  caption: string;
-  source: string;
-};
-
-export const BENEFIT_METRICS: Metric[] = [
-  {
-    prefix: "+",
-    number: 32,
-    unit: "p.p.",
-    caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
-    source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
-  },
-  {
-    number: 301,
-    unit: "%",
-    caption: "de retorno em três anos de uma prática de design, com 75% menos tempo de design.",
-    source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
-  },
-  {
-    number: 34,
-    unit: "%",
-    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
-    source: "Figma, 2019. Experiência com designers.",
-  },
-  {
-    number: 47,
-    unit: "%",
-    caption: "mais depressa a desenvolver um formulário com um Design System.",
-    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
-  },
+/** O que o mercado já mediu, arrumado pelas quatro perguntas com que o Núcleo mede a UX
+    (Operação, Design System, Qualidade e Impacto, pela ordem da apresentação original). */
+export const MARKET_EVIDENCE = [
+  [
+    {
+      value: "< 30%",
+      caption: "do custo anual dos 1 882 sites que o GOV.UK substituiu, num serviço desenhado com pesquisa contínua.",
+      source: "Public Digital, GDS",
+    },
+    {
+      value: "19 entradas",
+      caption: "no Xbox Adaptive Controller, desenhado com jogadores com mobilidade reduzida desde o primeiro protótipo.",
+      source: "Microsoft, 2018",
+    },
+  ],
+  [
+    {
+      value: "34%",
+      caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
+      source: "Figma, 2019. Experiência com designers.",
+    },
+    {
+      value: "47%",
+      caption: "mais depressa a desenvolver um formulário com um Design System.",
+      source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
+    },
+  ],
+  [
+    {
+      value: "75%",
+      caption: "menos tempo de design e 33% menos tempo de desenvolvimento e testes, com 301% de retorno em três anos.",
+      source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
+    },
+  ],
+  [
+    {
+      value: "+32 p.p.",
+      caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
+      source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
+    },
+    {
+      value: "12 milhões",
+      caption: "de clientes aderiram ao Keep the Change, do Bank of America, e pouparam mais de 2 mil milhões de dólares.",
+      source: "This is Design Thinking, 2018",
+    },
+  ],
 ];
 
 /** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação). */
@@ -234,12 +202,6 @@ export const AI_FLOW = {
       title: "Contexto do projecto",
       text: "Problema, utilizadores, regras confirmadas, identidade do cliente e limitações.",
     },
-  ],
-  assistants: [
-    { task: "Organiza evidências e identifica dúvidas", visual: 0 },
-    { task: "Prepara fluxos e requisitos de experiência", visual: 2 },
-    { task: "Constrói a interface com os componentes disponíveis", visual: 4 },
-    { task: "Procura divergências em relação aos critérios", visual: 3 },
   ],
   reviewers: [
     { who: "Núcleo", what: "revê a coerência da experiência" },
@@ -266,6 +228,9 @@ export const DS_POINTS = [
     text: "Desvios ao Design System e problemas de acessibilidade detectados em cada alteração.",
   },
 ];
+
+/** Desenho que representa a entrega de cada etapa de UX (índices do desenho, pela ordem de STAGES). */
+export const STAGE_VISUAL = [0, 2, 3, 4, 5];
 
 /** Legenda do desenho que representa cada tipo de entrega do Núcleo. */
 export const DELIVERY_VISUALS: Record<number, string> = {
@@ -394,8 +359,6 @@ export type SceneId =
   | "partida"
   | "mudanca"
   | "etapas"
-  | "resultados"
-  | "ia"
   | "ds"
   | "entregas"
   | "medir"
@@ -410,11 +373,10 @@ export const STEPS: Step[] = [
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
-  { id: "resultados", scene: "resultados", label: "Cases e resultados de mercado" },
-  { id: "ia", scene: "ia", label: "Como a IA entra no trabalho de UX" },
+  { id: "ia", scene: "entregas", label: "O que o Núcleo entrega, com IA", build: 0 },
+  { id: "fases", scene: "entregas", label: "O que o Núcleo entrega, por fase", build: 1 },
+  { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 2 },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
-  { id: "fases", scene: "entregas", label: "O que o Núcleo entrega, por fase", build: 0 },
-  { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 1 },
-  { id: "medir", scene: "medir", label: "Como se mede a UX" },
+  { id: "medir", scene: "medir", label: "Como se mede a UX e o que o mercado já mediu" },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];

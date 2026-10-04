@@ -2,19 +2,17 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { AnimatePresence, MotionConfig, motion, useMotionValue, useSpring } from "motion/react";
 import forwardPaths from "../../imports/01Capa/svg-9xym7sn689";
 import backPaths from "../../imports/Back/svg-v4jzanzdmi";
-import { AREAS, PHASES, STEPS } from "./content";
+import { AREAS, PHASES, STAGES, STEPS } from "./content";
 import { STILL, Swap } from "./fx";
 import { StageScene } from "./StageScene";
 import { TisLogo } from "./TisLogo";
 import {
-  AiScene,
   ChangeScene,
   ClosingScene,
   CoverScene,
   DeliveriesScene,
   DesignSystemScene,
   MeasureScene,
-  ResultsScene,
   StartScene,
 } from "./scenes";
 import "./v2.css";
@@ -47,6 +45,7 @@ export default function AppV2() {
   const [stepIndex, setStepIndex] = useState(() => readHash().stepIndex);
   const [areaId, setAreaId] = useState(() => readHash().areaId);
   const [phaseIndex, setPhaseIndex] = useState(0);
+  const [deliveryStage, setDeliveryStage] = useState(0);
   const [cursorVisible, setCursorVisible] = useState(false);
   const [isLeftHalf, setIsLeftHalf] = useState(false);
   const [isOnInteractive, setIsOnInteractive] = useState(false);
@@ -124,6 +123,8 @@ export default function AppV2() {
           setAreaId(AREAS[(current + offset + AREAS.length) % AREAS.length].id);
         } else if (step.id === "fases") {
           setPhaseIndex((phaseIndex + offset + PHASES.length) % PHASES.length);
+        } else if (step.id === "ia") {
+          setDeliveryStage((deliveryStage + offset + STAGES.length) % STAGES.length);
         } else if (sceneLength > 1) {
           goTo(sceneStart + ((sectionIndex + offset + sceneLength) % sceneLength));
         } else return; // As restantes cenas tratam das suas próprias selecções.
@@ -133,7 +134,7 @@ export default function AppV2() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [stepIndex, step, areaId, phaseIndex]);
+  }, [stepIndex, step, areaId, phaseIndex, deliveryStage]);
 
   // ── Navegação pelo cursor: metade direita avança, metade esquerda recua ─
   const handleMouseMove = (event: MouseEvent) => {
@@ -197,15 +198,15 @@ export default function AppV2() {
               {step.scene === "partida" && <StartScene />}
               {step.scene === "mudanca" && <ChangeScene build={step.build ?? 0} />}
               {step.scene === "etapas" && <StageScene stageIndex={step.stageIndex ?? 0} />}
-              {step.scene === "resultados" && <ResultsScene />}
-              {step.scene === "ia" && <AiScene />}
               {step.scene === "ds" && <DesignSystemScene />}
               {step.scene === "entregas" && (
                 <DeliveriesScene
-                  view={step.build ?? 0}
+                  lens={step.build ?? 0}
+                  stageIndex={deliveryStage}
                   phaseIndex={phaseIndex}
                   areaId={areaId}
-                  onView={(view) => goTo(sceneStart + view)}
+                  onLens={(lens) => goTo(sceneStart + lens)}
+                  onSelectStage={setDeliveryStage}
                   onSelectPhase={setPhaseIndex}
                   onSelectArea={setAreaId}
                 />
