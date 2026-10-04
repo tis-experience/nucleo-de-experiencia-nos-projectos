@@ -244,13 +244,13 @@ const [ENTRY, MISSING, RESULT] = CURRENT_PROCESS;
 const CHANGE_HEADS = [
   {
     kicker: "Como decorre actualmente o trabalho de UX",
-    title: "UX começa pelo desenho, e os problemas aparecem depois da implementação",
+    title: "UX começa pelo desenho, e os problemas só são descobertos depois da implementação",
     lead: "",
   },
   {
     kicker: "Como passa a decorrer",
-    title: "Com o processo de UX, os problemas aparecem cedo",
-    lead: "O problema é investigado e a solução é avaliada antes da construção, quando mudar ainda é simples.",
+    title: "O processo de UX encontra os problemas antes da construção",
+    lead: "O problema é investigado e a solução é avaliada cedo, quando mudar ainda é simples.",
   },
 ];
 
