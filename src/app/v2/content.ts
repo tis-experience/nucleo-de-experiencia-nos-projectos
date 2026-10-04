@@ -143,52 +143,80 @@ export const STAGES: Stage[] = [
   },
 ];
 
-/** O que o mercado já mediu, arrumado pelas quatro perguntas com que o Núcleo mede a UX
-    (Operação, Design System, Qualidade e Impacto, pela ordem da apresentação original). */
-export const MARKET_EVIDENCE = [
-  [
-    {
-      value: "< 30%",
-      caption: "do custo anual dos 1 882 sites que o GOV.UK substituiu, num serviço desenhado com pesquisa contínua.",
-      source: "Public Digital, GDS",
-    },
-    {
-      value: "19 entradas",
-      caption: "no Xbox Adaptive Controller, desenhado com jogadores com mobilidade reduzida desde o primeiro protótipo.",
-      source: "Microsoft, 2018",
-    },
-  ],
-  [
-    {
-      value: "34%",
-      caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
-      source: "Figma, 2019. Experiência com designers.",
-    },
-    {
-      value: "47%",
-      caption: "mais depressa a desenvolver um formulário com um Design System.",
-      source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
-    },
-  ],
-  [
-    {
-      value: "75%",
-      caption: "menos tempo de design e 33% menos tempo de desenvolvimento e testes, com 301% de retorno em três anos.",
-      source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
-    },
-  ],
-  [
-    {
-      value: "+32 p.p.",
-      caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
-      source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
-    },
-    {
-      value: "12 milhões",
-      caption: "de clientes aderiram ao Keep the Change, do Bank of America, e pouparam mais de 2 mil milhões de dólares.",
-      source: "This is Design Thinking, 2018",
-    },
-  ],
+export type MarketExample = {
+  company: string;
+  name: string;
+  description: string;
+  result: string;
+  resultCaption: string;
+  source: string;
+};
+
+export const MARKET_EXAMPLES: MarketExample[] = [
+  {
+    company: "Bank of America, com a IDEO",
+    name: "Keep the Change",
+    description:
+      "A observação da relação das pessoas com o dinheiro revelou o hábito de arredondar valores, que deu origem a um serviço de poupança automática.",
+    result: "12 milhões",
+    resultCaption: "de clientes aderiram e pouparam mais de 2 mil milhões de dólares.",
+    source: "This is Design Thinking, 2018",
+  },
+  {
+    company: "Government Digital Service",
+    name: "GOV.UK",
+    description:
+      "Um serviço desenhado com pesquisa contínua junto dos utilizadores substituiu 1 882 sites do governo britânico por um só.",
+    result: "< 30%",
+    resultCaption: "do custo anual dos sites que substituiu.",
+    source: "Public Digital, GDS",
+  },
+  {
+    company: "Microsoft",
+    name: "Xbox Adaptive Controller",
+    description:
+      "Um comando desenhado com jogadores com mobilidade reduzida e com organizações que os representam, do primeiro protótipo à embalagem.",
+    result: "19 entradas",
+    resultCaption: "para ligar os dispositivos de que cada jogador precisa.",
+    source: "Microsoft, 2018",
+  },
+];
+
+export type Metric = {
+  prefix?: string;
+  number: number;
+  decimals?: number;
+  unit: string;
+  caption: string;
+  source: string;
+};
+
+export const BENEFIT_METRICS: Metric[] = [
+  {
+    prefix: "+",
+    number: 32,
+    unit: "p.p.",
+    caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
+    source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
+  },
+  {
+    number: 301,
+    unit: "%",
+    caption: "de retorno em três anos de uma prática de design, com 75% menos tempo de design.",
+    source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
+  },
+  {
+    number: 34,
+    unit: "%",
+    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
+    source: "Figma, 2019. Experiência com designers.",
+  },
+  {
+    number: 47,
+    unit: "%",
+    caption: "mais depressa a desenvolver um formulário com um Design System.",
+    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
+  },
 ];
 
 /** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação). */
@@ -371,7 +399,7 @@ export type SceneId =
   | "etapas"
   | "ds"
   | "entregas"
-  | "medir"
+  | "resultados"
   | "equipa"
   | "fecho";
 
@@ -388,7 +416,8 @@ export const STEPS: Step[] = [
   { id: "fases", scene: "entregas", label: "O que o Núcleo entrega, por fase", build: 1 },
   { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 2 },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
-  { id: "medir", scene: "medir", label: "Como se mede a UX e o que o mercado já mediu" },
+  { id: "mercado", scene: "resultados", label: "Resultados no mercado", build: 0 },
+  { id: "medir", scene: "resultados", label: "Como vamos medir na TIS", build: 1 },
   { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];

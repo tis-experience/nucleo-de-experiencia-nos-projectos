@@ -7,7 +7,8 @@ import {
   AREAS,
   CURRENT_PROCESS,
   DS_POINTS,
-  MARKET_EVIDENCE,
+  BENEFIT_METRICS,
+  MARKET_EXAMPLES,
   MATURITY_LEVELS,
   PHASES,
   STAGES,
@@ -701,7 +702,7 @@ export function DeliveriesScene({
   );
 }
 
-/* ── Como se mede a UX, com o que o mercado já mediu ──────────────────── */
+/* ── Resultados: uma cena, duas ópticas ───────────────────────────────── */
 
 const MEASURE_GROUPS = [
   [OPERACIONAL_COLUMNS[0]],
@@ -709,27 +710,64 @@ const MEASURE_GROUPS = [
   [OPERACIONAL_COLUMNS[2], OPERACIONAL_COLUMNS[3]],
   UX_COLUMNS,
 ];
+const RESULT_LENSES = ["No mercado", "Na TIS"];
+const RESULT_TITLES = ["O que o mercado já mediu", "Como vamos medir na TIS"];
 
-export function MeasureScene() {
+function MarketResults() {
+  const [selected, select] = useSelected(MARKET_EXAMPLES.length);
+
+  return (
+    <>
+      <ul className="v2-cases" aria-label="Cases de mercado">
+        {MARKET_EXAMPLES.map((example, index) => (
+          <motion.li key={example.name} data-active={index === selected} {...rise(0.3 + index * 0.1, 24)}>
+            <button type="button" aria-expanded={index === selected} onClick={() => select(index)}>
+              <span className="v2-label">{example.company}</span>
+              <span className="v2-case-name">{example.name}</span>
+              <b className="v2-case-result">{example.result}</b>
+              {index === selected && (
+                <motion.span className="v2-case-detail" {...fade(0.25, 0.5)}>
+                  <span className="v2-case-caption">{example.resultCaption}</span>
+                  <span className="v2-case-text">{example.description}</span>
+                  <span className="v2-source">Fonte: {example.source}</span>
+                </motion.span>
+              )}
+            </button>
+          </motion.li>
+        ))}
+      </ul>
+
+      <motion.p className="v2-label v2-studies-label" {...fade(0.7)}>
+        Estudos publicados
+      </motion.p>
+      <ul className="v2-studies">
+        {BENEFIT_METRICS.map((metric, index) => {
+          const delay = 0.75 + index * 0.12;
+          return (
+            <motion.li key={metric.source} {...rise(delay, 20)}>
+              <p className="v2-number">
+                {metric.prefix}
+                <CountUp value={metric.number} decimals={metric.decimals} delay={delay} />
+                <small>{metric.unit}</small>
+              </p>
+              <p>{metric.caption}</p>
+              <p className="v2-source">{metric.source}</p>
+            </motion.li>
+          );
+        })}
+      </ul>
+    </>
+  );
+}
+
+function TisMeasures() {
   const [selected, select] = useSelected(PILLAR_CARDS.length);
 
   return (
-    <section className="v2-scene" aria-labelledby="v2-measure-title">
-      <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        Resultados
-      </motion.p>
-      <div className="v2-head">
-        <h1 id="v2-measure-title" className="v2-title">
-          <MaskLine>Como se mede a UX</MaskLine>
-        </h1>
-        <motion.p className="v2-lead" {...rise(0.3, 20)}>
-          Quatro perguntas, as métricas que as respondem e o que o mercado já mediu em cada uma.
-        </motion.p>
-      </div>
-
+    <>
       <ul className="v2-questions" aria-label="Perguntas">
         {PILLAR_CARDS.map((pillar, index) => (
-          <motion.li key={pillar.title} {...rise(0.4 + index * 0.1, 20)}>
+          <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
             <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
               <span className="v2-label">{pillar.title}</span>
               {pillar.body}
@@ -741,29 +779,16 @@ export function MeasureScene() {
       <div className="v2-metrics" aria-live="polite">
         <Swap>
           <motion.div key={selected} exit={exit}>
-            <motion.p className="v2-label" {...fade(0.1)}>
-              O que o mercado já mediu
-            </motion.p>
-            <ul className="v2-evidence">
-              {MARKET_EVIDENCE[selected].map((item, index) => (
-                <motion.li key={item.value} {...rise(0.15 + index * 0.12, 20)}>
-                  <b>{item.value}</b>
-                  <p>{item.caption}</p>
-                  <p className="v2-source">{item.source}</p>
-                </motion.li>
-              ))}
-            </ul>
-
             {MEASURE_GROUPS[selected].map((group, groupIndex) => (
-              <motion.div key={group.title} className="v2-metric-group" {...rise(0.4 + groupIndex * 0.12, 16)}>
-                <p className="v2-label">Métricas · {group.title}</p>
+              <motion.div key={group.title} className="v2-metric-group" {...rise(0.1 + groupIndex * 0.12, 16)}>
+                <p className="v2-label">{group.title}</p>
                 <ul>
                   {group.items.map((item, itemIndex) => (
                     <motion.li
                       key={item}
                       initial={STILL ? false : { opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.35, delay: 0.45 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
+                      transition={{ duration: 0.35, delay: 0.15 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
                     >
                       {item}
                     </motion.li>
@@ -776,8 +801,38 @@ export function MeasureScene() {
       </div>
 
       <motion.p className="v2-footnote" {...fade(1)}>
-        Uma métrica só entra se tiver pergunta clara, forma de observação e decisão possível.
+        Começamos com poucas perguntas. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão
+        possível.
       </motion.p>
+    </>
+  );
+}
+
+export function ResultsScene({ lens, onLens }: { lens: number; onLens: (lens: number) => void }) {
+  return (
+    <section className="v2-scene" aria-labelledby="v2-results-title">
+      <p className="v2-kicker v2-scene-kicker">Resultados</p>
+      <h1 id="v2-results-title" className="v2-title v2-scene-title">
+        <Swap>
+          <motion.span key={lens} style={{ display: "block" }} exit={exit}>
+            <MaskLine>{RESULT_TITLES[lens]}</MaskLine>
+          </motion.span>
+        </Swap>
+      </h1>
+
+      <div className="v2-toggle" role="group" aria-label="Óptica">
+        {RESULT_LENSES.map((label, index) => (
+          <button key={label} type="button" aria-pressed={lens === index} onClick={() => onLens(index)}>
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <Swap>
+        <motion.div key={lens} className="v2-layer" exit={exit}>
+          {lens === 0 ? <MarketResults /> : <TisMeasures />}
+        </motion.div>
+      </Swap>
     </section>
   );
 }

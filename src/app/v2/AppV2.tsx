@@ -12,7 +12,7 @@ import {
   CoverScene,
   DeliveriesScene,
   DesignSystemScene,
-  MeasureScene,
+  ResultsScene,
   StartScene,
   TeamScene,
 } from "./scenes";
@@ -126,6 +126,8 @@ export default function AppV2() {
           setPhaseIndex((phaseIndex + offset + PHASES.length) % PHASES.length);
         } else if (step.id === "ia") {
           setDeliveryStage((deliveryStage + offset + STAGES.length) % STAGES.length);
+        } else if (step.scene === "resultados") {
+          return; // A cena trata das suas próprias selecções.
         } else if (sceneLength > 1) {
           goTo(sceneStart + ((sectionIndex + offset + sceneLength) % sceneLength));
         } else return; // As restantes cenas tratam das suas próprias selecções.
@@ -212,7 +214,9 @@ export default function AppV2() {
                   onSelectArea={setAreaId}
                 />
               )}
-              {step.scene === "medir" && <MeasureScene />}
+              {step.scene === "resultados" && (
+                <ResultsScene lens={step.build ?? 0} onLens={(lens) => goTo(sceneStart + lens)} />
+              )}
               {step.scene === "equipa" && <TeamScene />}
               {step.scene === "fecho" && <ClosingScene />}
             </motion.main>
