@@ -479,7 +479,7 @@
 .v2-notes li {
   position: relative;
   width: 312px;
-  height: 190px;
+  height: 214px;
   padding: 24px 26px;
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -489,18 +489,18 @@
 .v2-notes li::after {
   content: "";
   position: absolute;
-  left: 30px;
+  left: var(--stem);
   top: 100%;
   width: 2px;
-  height: 319px;
+  height: 295px;
   background: var(--line);
 }
 
 .v2-notes li::before {
   content: "";
   position: absolute;
-  left: 24px;
-  top: calc(100% + 312px);
+  left: calc(var(--stem) - 6px);
+  top: calc(100% + 288px);
   z-index: 1;
   width: 14px;
   height: 14px;
@@ -518,10 +518,6 @@
 .v2-notes p {
   margin-top: 8px;
   font-size: 16px;
-}
-
-.v2-notes[data-kind="missing"] {
-  left: 425px;
 }
 
 .v2-notes[data-kind="missing"] li {

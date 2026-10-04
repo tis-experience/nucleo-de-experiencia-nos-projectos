@@ -12,55 +12,64 @@ export const SURVEY = [
   { value: 34, caption: "acha que UX é responsabilidade apenas dos designers" },
 ];
 
-/** Como decorre actualmente o trabalho de UX (página 03 da apresentação original). */
+/** Como decorre actualmente o trabalho de UX (página 03 da apresentação original).
+    `stem` é o ponto da nota que se liga à linha do processo, em px a partir da esquerda da nota. */
 export const CURRENT_PROCESS = [
   {
     label: "Como entramos",
-    headline: "Entramos tarde, para desenhar ecrãs",
+    headline: "UX entra na proposta comercial, para desenhar ecrãs",
     items: [
       {
         title: "Entrada via proposta comercial",
         text: "O Núcleo é accionado para produzir ecrãs em prazos curtos, com pouca análise prévia.",
+        stem: 30,
       },
       {
         title: "O projecto inicia-se pelo desenho",
-        text: "A primeira entrega esperada são ecrãs para desenvolvimento.",
+        text: "Os ecrãs são a primeira entrega esperada e, quando aprovados, seguem directamente para desenvolvimento.",
+        stem: 30,
       },
     ],
   },
   {
     label: "O que fica por fazer",
-    headline: "O problema fica por investigar",
+    headline: "O problema por trás do pedido fica por investigar",
     items: [
       {
+        title: "Escopo rígido e fragmentado",
+        text: "As orientações chegam com pouco contexto, sem margem para investigar o problema real.",
+        stem: 168,
+      },
+      {
         title: "Discovery inexistente ou superficial",
-        text: "A compreensão do problema baseia-se em suposições.",
+        text: "A compreensão do problema baseia-se em suposições, sem contacto directo com utilizadores.",
+        stem: 24,
       },
       {
         title: "Validação sem utilizadores reais",
         text: "As decisões de design são validadas internamente, com base em opiniões.",
-      },
-      {
-        title: "Escopo rígido e fragmentado",
-        text: "As orientações chegam com pouco contexto.",
+        stem: 24,
       },
     ],
   },
   {
     label: "Consequência",
-    headline: "O projecto paga mais tarde",
+    headline: "Os problemas só aparecem depois da implementação",
     items: [
       {
         title: "Experiências comprometidas",
         text: "As soluções não correspondem ao problema real dos utilizadores.",
+        stem: 30,
       },
       {
         title: "Potencial inexplorado",
         text: "Oportunidades de melhoria passam despercebidas.",
+        stem: 30,
       },
       {
         title: "Retrabalho e projectos descartados",
         text: "Decisões sem validação voltam para trás depois da implementação.",
+        stem: 30,
       },
     ],
   },

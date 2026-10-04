@@ -248,11 +248,11 @@ const CURRENT_PHASES = ["Proposta comercial", "Ecrãs", "Desenvolvimento", "Rele
 const HIGHLIGHTED_PHASES = [[0, 1], [], [3, 4], []];
 
 const CHANGE_HEADS = [
-  ...CURRENT_PROCESS.map((block, index) => ({
-    kicker: `Processo actual · ${number(index)} ${block.label}`,
+  ...CURRENT_PROCESS.map((block) => ({
+    kicker: "Como decorre actualmente o trabalho de UX",
     title: block.headline,
   })),
-  { kicker: "Com o processo de UX", title: "Os problemas aparecem cedo, quando mudar ainda é simples" },
+  { kicker: "Como passa a decorrer", title: "Com o processo de UX, os problemas aparecem cedo" },
 ];
 
 export function ChangeScene({ build }: { build: number }) {
@@ -299,7 +299,11 @@ export function ChangeScene({ build }: { build: number }) {
       <Swap>
         <motion.ul key={build} className="v2-notes" data-kind={["entry", "missing", "result"][build]} exit={exit}>
           {cards.map((card, index) => (
-            <motion.li key={card.title} {...rise(0.3 + index * 0.14, 24)}>
+            <motion.li
+              key={card.title}
+              style={{ "--stem": `${card.stem}px` } as CSSProperties}
+              {...rise(0.3 + index * 0.14, 24)}
+            >
               <h2>{card.title}</h2>
               <p>{card.text}</p>
             </motion.li>
