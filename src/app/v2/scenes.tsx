@@ -63,6 +63,36 @@ function useSelected(count: number, autoAdvanceMs = 0) {
   return [selected, select, auto] as const;
 }
 
+/** Selector de ópticas: o marcador azul desliza para a opção escolhida. */
+function LensToggle({
+  id,
+  options,
+  value,
+  onChange,
+}: {
+  id: string;
+  options: string[];
+  value: number;
+  onChange: (index: number) => void;
+}) {
+  return (
+    <motion.div className="v2-toggle" role="group" aria-label="Óptica" {...rise(0.5, 16)}>
+      {options.map((label, index) => (
+        <button key={label} type="button" aria-pressed={value === index} onClick={() => onChange(index)}>
+          {value === index && (
+            <motion.span
+              layoutId={`v2-toggle-${id}`}
+              className="v2-toggle-thumb"
+              transition={STILL ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 32 }}
+            />
+          )}
+          <span>{label}</span>
+        </button>
+      ))}
+    </motion.div>
+  );
+}
+
 const number = (index: number) => String(index + 1).padStart(2, "0");
 
 /* ── Abertura e fecho ─────────────────────────────────────────────────── */
@@ -519,27 +549,17 @@ export function DeliveriesScene({
         <MaskLine>O que o Núcleo entrega</MaskLine>
       </h1>
 
-      <div className="v2-toggle" role="group" aria-label="Óptica">
-        {LENSES.map((label, index) => (
-          <button key={label} type="button" aria-pressed={lens === index} onClick={() => onLens(index)}>
-            {label}
-          </button>
-        ))}
-      </div>
+      <LensToggle id="entregas" options={LENSES} value={lens} onChange={onLens} />
 
       <Swap>
         {lens === 0 && (
           <motion.div key="ia" className="v2-lens" exit={exit}>
-            <motion.p className="v2-lens-note" {...fade(0.2)}>
-              <span className="v2-label">Os assistentes recebem</span>
-              {AI_FLOW.inputs.map((input) => input.title).join(" e ")}
-            </motion.p>
-            <ol className="v2-pick-list" aria-label="Etapas de UX">
+            <ol className="v2-pick-list" data-size="large" aria-label="Etapas de UX">
               {STAGES.map((item, index) => (
                 <motion.li key={item.id} {...rise(0.3 + index * 0.08, 20)}>
                   <button type="button" aria-pressed={index === stageIndex} onClick={() => onSelectStage(index)}>
-                    <b>{item.short}</b>
-                    {item.aiSupport}
+                    <b>{item.number}</b>
+                    {item.short}
                   </button>
                 </motion.li>
               ))}
@@ -627,9 +647,17 @@ export function DeliveriesScene({
             {lens === 0 && (
               <div data-kind="main">
                 <dt>{stage.name}</dt>
-                <dd>{stage.aiSupport}</dd>
-                <dd className="v2-delivery-note">
-                  Revisto por pessoas: {AI_FLOW.reviewers.map((reviewer) => reviewer.who).join(", ")}.
+                <dd>
+                  <span className="v2-label">Apoio de IA</span>
+                  {stage.aiSupport}
+                </dd>
+                <dd>
+                  <span className="v2-label">Os assistentes recebem</span>
+                  Base de conhecimento de UX e contexto do projecto.
+                </dd>
+                <dd>
+                  <span className="v2-label">Revisto por</span>
+                  {AI_FLOW.reviewers.map((reviewer) => reviewer.who).join(", ")}.
                 </dd>
               </div>
             )}
@@ -800,7 +828,7 @@ function TisMeasures() {
         </Swap>
       </div>
 
-      <motion.p className="v2-footnote" {...fade(1)}>
+      <motion.p className="v2-footnote" data-raised {...fade(1)}>
         Começamos com poucas perguntas. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão
         possível.
       </motion.p>
@@ -820,13 +848,7 @@ export function ResultsScene({ lens, onLens }: { lens: number; onLens: (lens: nu
         </Swap>
       </h1>
 
-      <div className="v2-toggle" role="group" aria-label="Óptica">
-        {RESULT_LENSES.map((label, index) => (
-          <button key={label} type="button" aria-pressed={lens === index} onClick={() => onLens(index)}>
-            {label}
-          </button>
-        ))}
-      </div>
+      <LensToggle id="resultados" options={RESULT_LENSES} value={lens} onChange={onLens} />
 
       <Swap>
         <motion.div key={lens} className="v2-layer" exit={exit}>

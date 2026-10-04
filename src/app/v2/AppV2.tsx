@@ -28,6 +28,7 @@ const FULLSCREEN_ENTER_PATH =
   "M5 19v-6h2v4h4v2H5Zm12-8V7h-4V5h6v6h-2Z";
 const FULLSCREEN_EXIT_PATH = "M11 13v6H9v-4H5v-2h6Zm4-8v4h4v2h-6V5h2Z";
 const INTERACTIVE = "button, a, input, select, textarea, [role='button']";
+const PROXIMITY_BUFFER = 32;
 const CURSOR_SPRING = { damping: 28, stiffness: 350, mass: 0.5 };
 
 /** `#/v2/<passo>/<área>`: ligação directa para um ecrã ou para a página de uma área. */
@@ -111,6 +112,10 @@ export default function AppV2() {
       if (event.altKey || event.ctrlKey || event.metaKey) return;
       // Num botão com foco, o espaço activa o botão em vez de avançar.
       const isSpace = event.key === " " && !(event.target instanceof HTMLButtonElement);
+      // Depois de um clique num controlo, as setas voltam a navegar sem deixar o contorno de foco nele.
+      if (event.key.startsWith("Arrow") || event.key.startsWith("Page")) {
+        if (document.activeElement instanceof HTMLButtonElement) document.activeElement.blur();
+      }
 
       if (event.key === "ArrowRight" || event.key === "PageDown" || isSpace) goTo(stepIndex + 1);
       else if (event.key === "ArrowLeft" || event.key === "PageUp") goTo(stepIndex - 1);
@@ -144,7 +149,21 @@ export default function AppV2() {
     mouseX.set(event.clientX);
     mouseY.set(event.clientY);
     setIsLeftHalf(event.clientX < window.innerWidth / 2);
-    setIsOnInteractive(Boolean((event.target as Element).closest(INTERACTIVE)));
+    // O cursor de navegação esconde-se antes de chegar a um controlo, como na apresentação actual.
+    let nearInteractive = false;
+    for (const element of document.querySelectorAll(INTERACTIVE)) {
+      const rect = element.getBoundingClientRect();
+      if (
+        event.clientX >= rect.left - PROXIMITY_BUFFER &&
+        event.clientX <= rect.right + PROXIMITY_BUFFER &&
+        event.clientY >= rect.top - PROXIMITY_BUFFER &&
+        event.clientY <= rect.bottom + PROXIMITY_BUFFER
+      ) {
+        nearInteractive = true;
+        break;
+      }
+    }
+    setIsOnInteractive(nearInteractive);
     if (!cursorVisible) setCursorVisible(true);
   };
 
