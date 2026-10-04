@@ -707,16 +707,6 @@
   width: 1000px;
 }
 
-.v2-stage-delivery::before {
-  content: "";
-  position: absolute;
-  left: 48px;
-  bottom: 100%;
-  width: 0;
-  height: 28px;
-  border-left: 2px dashed var(--blue);
-}
-
 .v2-stage-delivery > div {
   display: grid;
   grid-template-columns: 250px 1fr 230px;
