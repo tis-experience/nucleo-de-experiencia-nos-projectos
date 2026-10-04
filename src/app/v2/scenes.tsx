@@ -13,6 +13,8 @@ import {
   STAGES,
   STAGE_VISUAL,
   SURVEY,
+  TEAM,
+  TEAM_NEXT,
   THEMES,
 } from "./content";
 import { CountUp, EASE, MaskLine, STILL, Swap, fade, rise, spring, tween } from "./fx";
@@ -776,6 +778,63 @@ export function MeasureScene() {
       <motion.p className="v2-footnote" {...fade(1)}>
         Uma métrica só entra se tiver pergunta clara, forma de observação e decisão possível.
       </motion.p>
+    </section>
+  );
+}
+
+/* ── A equipa ─────────────────────────────────────────────────────────── */
+
+const initials = (name: string) =>
+  name
+    .split(" ")
+    .filter((part) => part.length > 2)
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("");
+
+export function TeamScene() {
+  return (
+    <section className="v2-scene" aria-labelledby="v2-team-title">
+      <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
+        Equipa
+      </motion.p>
+      <div className="v2-head">
+        <h1 id="v2-team-title" className="v2-title">
+          <MaskLine>Quem faz o Núcleo de Experiência</MaskLine>
+        </h1>
+        <motion.p className="v2-lead" {...rise(0.3, 20)}>
+          Três pessoas hoje, a trabalhar com as equipas dos projectos desde o pedido até à versão entregue.
+        </motion.p>
+      </div>
+
+      <div className="v2-team">
+        <motion.p className="v2-label" {...fade(0.4)}>
+          Hoje
+        </motion.p>
+        <motion.p className="v2-label" data-group="next" {...fade(1.1)}>
+          Cenário a 6 meses
+        </motion.p>
+        <ul>
+          {TEAM.map((person, index) => (
+            <motion.li key={index} {...rise(0.45 + index * 0.14, 28)}>
+              <span className="v2-avatar v2-bob" style={{ animationDelay: `${-index * 0.8}s` }}>
+                {person.photo ? <img src={person.photo} alt="" /> : initials(person.name) || <Mark className="v2-avatar-mark" />}
+              </span>
+              <b>{person.name || "Nome a indicar"}</b>
+              {person.role}
+            </motion.li>
+          ))}
+          {TEAM_NEXT.map((role, index) => (
+            <motion.li key={`next-${index}`} data-kind="next" {...rise(1.15 + index * 0.14, 28)}>
+              <span className="v2-avatar" aria-hidden>
+                +
+              </span>
+              <b>A contratar</b>
+              {role}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

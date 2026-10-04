@@ -354,6 +354,16 @@ export const THEMES = [
   { id: "c", name: "Cliente C", color: "#3126b4", card: 32, item: 18, pill: 16 },
 ];
 
+/** Equipa actual do Núcleo. `photo` é opcional: caminho de uma imagem em src/assets; sem ela mostram-se as iniciais. */
+export const TEAM: { name: string; role: string; photo?: string }[] = [
+  { name: "Marcell da Silva", role: "Design Lead" },
+  { name: "", role: "Designer Analista" },
+  { name: "", role: "Designer Analista" },
+];
+
+/** Reforço previsto no cenário a 6 meses da apresentação original (página de composição da equipa). */
+export const TEAM_NEXT = ["Designer Analista", "Designer Analista", "UX Researcher"];
+
 export type SceneId =
   | "capa"
   | "partida"
@@ -362,6 +372,7 @@ export type SceneId =
   | "ds"
   | "entregas"
   | "medir"
+  | "equipa"
   | "fecho";
 
 /** Cada passo é um avanço do apresentador; uma cena pode ter vários passos. */
@@ -378,5 +389,6 @@ export const STEPS: Step[] = [
   { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 2 },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
   { id: "medir", scene: "medir", label: "Como se mede a UX e o que o mercado já mediu" },
+  { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];

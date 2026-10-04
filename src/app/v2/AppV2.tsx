@@ -14,6 +14,7 @@ import {
   DesignSystemScene,
   MeasureScene,
   StartScene,
+  TeamScene,
 } from "./scenes";
 import "./v2.css";
 
@@ -212,6 +213,7 @@ export default function AppV2() {
                 />
               )}
               {step.scene === "medir" && <MeasureScene />}
+              {step.scene === "equipa" && <TeamScene />}
               {step.scene === "fecho" && <ClosingScene />}
             </motion.main>
           </Swap>
