@@ -1,7 +1,7 @@
 /* Versão alternativa da apresentação (#/v2). Palco fixo de 1920 × 1080, escalado por transform.
-   Cores e rodapé seguem as páginas da apresentação actual; Bronkoh nos títulos e destaques, Inter no conteúdo. */
+   Cores e rodapé seguem as páginas da apresentação actual; Bronkoh nos títulos e destaques, Manrope no conteúdo. */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap");
 
 .v2-root {
   --navy: #04165d;
@@ -20,7 +20,7 @@
   inset: 0;
   overflow: hidden;
   background: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 18px;
   line-height: 1.5;
   color: var(--text);
@@ -328,12 +328,10 @@
   margin-top: 48px;
   max-width: 700px;
   font-size: 28px;
-  font-weight: 200;
+  font-weight: 300;
   line-height: 1.4;
-  /* Azul claro translúcido, somado ao fundo. A transparência vai na cor porque a animação de entrada
-     controla a propriedade opacity. */
-  color: rgba(143, 193, 255, 0.82);
-  mix-blend-mode: screen;
+  /* Próximo do azul do "2026" no rodapé, um pouco mais claro para se ler neste tamanho. */
+  color: #3d8df5;
 }
 
 .v2-cover-mark {
@@ -958,7 +956,7 @@
 .v2-findings small {
   display: block;
   margin-top: 2px;
-  font-family: "Inter", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 17px;
   color: var(--muted);
 }
@@ -1457,7 +1455,7 @@
   border: 2px solid var(--theme);
   border-radius: var(--r-item);
   background: #ffffff;
-  font-family: "Inter", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 17px;
   color: var(--muted);
 }
