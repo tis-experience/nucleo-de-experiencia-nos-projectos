@@ -16,6 +16,39 @@ export const SURVEY = [
   { value: 34, caption: "acha que UX é responsabilidade apenas dos designers" },
 ];
 
+/** Descrição de cada nível da escala da NN/g, com os textos da janela de detalhe da apresentação original. */
+export const MATURITY_DETAILS: { quote: string; body: string; list?: string[] }[] = [
+  {
+    quote: "A UX é ignorada ou desconhecida. Foco total no produto/negócio, sem considerar o utilizador.",
+    body: "Nas organizações de estágio 1, a experiência do utilizador (UX) está completamente ausente. Uma empresa neste estágio ou não tem consciência do pensamento centrado no utilizador, ou acredita que não precisa dele. O trabalho de UX não é planeado, muito menos incorporado na visão da organização. As poucas pessoas na organização que pensam nos utilizadores são ignoradas ou desvalorizadas.",
+  },
+  {
+    quote: "Esforços de UX são esporádicos, informais e pouco valorizados. O design é considerado apenas fazer a interface.",
+    body: "Uma organização na fase limitada aborda o UX de forma errática. São feitos pequenos esforços de UX, geralmente por uma das três razões:",
+    list: [
+      "Necessidade legal",
+      "Um indivíduo consciente de UX (talvez líder) que toma a iniciativa",
+      "Uma equipa experimental que tenta métodos de UX",
+    ],
+  },
+  {
+    quote: "O trabalho de UX é funcional e promissor, mas é realizado de forma inconsistente e ineficiente.",
+    body: "Em empresas com maturidade emergente em UX, várias equipas realizam trabalho de UX. As empresas envolvem-se em algum planeamento relacionado com UX e podem ter orçamentos para UX. No entanto, os esforços de UX são pequenos, instáveis e baseados em iniciativas de gestores individuais, em vez de políticas organizacionais.",
+  },
+  {
+    quote: "A empresa reconhece o valor da UX. Existe uma equipa, processos definidos e apoio da liderança, resultando em qualidade.",
+    body: "As organizações de Nível 4 reconhecem o valor do UX e possuem uma ou mais equipas de UX estabelecidas. A liderança geralmente apoia o UX e, por vezes, até o incorpora em estratégias e iniciativas de alto nível. O design é amplamente compreendido em toda a organização e existe um processo iterativo de design centrado no ser humano bem estabelecido. A pesquisa com utilizadores é realizada ao longo de todo o ciclo de vida do produto.",
+  },
+  {
+    quote: "A UX está enraizada na cultura e no fluxo de trabalho. O design é contínuo e gera resultados consistentes.",
+    body: "Quando as organizações atingem o estágio de UX integrado, o seu trabalho de UX torna-se abrangente, omnipresente e universal. Quase todas as equipas dentro da organização realizam actividades relacionadas com UX de forma eficiente e eficaz. Muitas vezes há inovação nos métodos e processos de UX e até contribuições para o campo do UX.",
+  },
+  {
+    quote: "O nível mais alto, onde a investigação e a UX impulsionam a estratégia de negócios e a inovação.",
+    body: "Nas organizações de estágio 6, todos estão plenamente conscientes do valor do design centrado no utilizador. A investigação com utilizadores e o design centrado no utilizador são a força motriz por trás de tudo o que estas organizações fazem, desde o mais alto nível da estratégia organizacional até ao menor elemento de design dentro de um sistema de design. Tanto indivíduos como equipas planeiam para a mudança e inovação, e a investigação com utilizadores impulsiona novos investimentos ao responder a necessidades não satisfeitas no mercado.",
+  },
+];
+
 /** Como decorre actualmente o trabalho de UX (página 03 da apresentação original).
     Nos passos em falta, `stem` é o ponto da linha do processo (em px) onde o passo devia acontecer. */
 export const CURRENT_PROCESS = [

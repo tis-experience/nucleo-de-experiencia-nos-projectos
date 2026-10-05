@@ -14,6 +14,7 @@ import {
   DS_POINTS,
   BENEFIT_METRICS,
   MARKET_EXAMPLES,
+  MATURITY_DETAILS,
   MATURITY_LEVELS,
   PHASES,
   STAGES,
@@ -270,7 +271,100 @@ export function UxScene() {
   );
 }
 
+/** Janela com a descrição de um nível de maturidade. Fecha com Esc ou clique fora e muda de nível com as setas. */
+function MaturityModal({ index, onChange }: { index: number; onChange: (index: number | null) => void }) {
+  const detail = MATURITY_DETAILS[index];
+  const count = MATURITY_LEVELS.length;
+
+  // Enquanto a janela está aberta, as teclas ficam com ela e não chegam à navegação da apresentação.
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onChange(null);
+      else if (event.key === "ArrowRight" || event.key === "ArrowDown") onChange((index + 1) % count);
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") onChange((index - 1 + count) % count);
+      else if (event.key !== " " && event.key !== "PageDown" && event.key !== "PageUp") return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    };
+    window.addEventListener("keydown", handleKeyDown, true);
+    return () => window.removeEventListener("keydown", handleKeyDown, true);
+  }, [index, count, onChange]);
+
+  return (
+    <motion.div
+      className="v2-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="v2-modal-title"
+      initial={STILL ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={exit}
+      transition={tween(0.25)}
+      onClick={(event) => {
+        event.stopPropagation();
+        if (event.target === event.currentTarget) onChange(null);
+      }}
+    >
+      <motion.div
+        className="v2-modal-card"
+        initial={STILL ? false : { y: 24, scale: 0.97 }}
+        animate={{ y: 0, scale: 1 }}
+        transition={tween(0.35)}
+      >
+        <button type="button" className="v2-modal-close" aria-label="Fechar" onClick={() => onChange(null)}>
+          <svg viewBox="0 0 24 24" aria-hidden>
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <Swap>
+          <motion.div
+            key={index}
+            initial={STILL ? false : { opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={exit}
+            transition={tween(0.25)}
+          >
+            <p className="v2-modal-tag">
+              Nível {index + 1}
+              {index === 2 && <span>TIS hoje, entre o 2 e o 3</span>}
+            </p>
+            <h2 id="v2-modal-title">{MATURITY_LEVELS[index]}</h2>
+            <p className="v2-modal-quote">{detail.quote}</p>
+            <p>{detail.body}</p>
+            {detail.list && (
+              <ol>
+                {detail.list.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            )}
+          </motion.div>
+        </Swap>
+        <div className="v2-modal-nav">
+          <button type="button" aria-label="Nível anterior" onClick={() => onChange((index - 1 + count) % count)}>
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <path d="M19 12H5m6-6-6 6 6 6" />
+            </svg>
+          </button>
+          <span aria-hidden>
+            {MATURITY_LEVELS.map((level, dot) => (
+              <i key={level} data-on={dot === index || undefined} />
+            ))}
+          </span>
+          <button type="button" aria-label="Nível seguinte" onClick={() => onChange((index + 1) % count)}>
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function StartScene() {
+  const [openLevel, setOpenLevel] = useState<number | null>(null);
+
   return (
     <section className="v2-scene" aria-labelledby="v2-start-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
@@ -290,15 +384,17 @@ export function StartScene() {
         <ol>
           {MATURITY_LEVELS.map((level, index) => (
             <li key={level} data-state={index < 2 ? "done" : index === 2 ? "current" : "next"}>
-              <motion.i
-                style={{ height: 80 + index * 44 }}
-                initial={STILL ? false : { scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={tween(0.7, 0.4 + index * 0.1)}
-                aria-hidden
-              />
-              <span>Nível {index + 1}</span>
-              <b>{level}</b>
+              <button type="button" aria-haspopup="dialog" onClick={() => setOpenLevel(index)}>
+                <motion.i
+                  style={{ height: 80 + index * 44 }}
+                  initial={STILL ? false : { scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  transition={tween(0.7, 0.4 + index * 0.1)}
+                  aria-hidden
+                />
+                <span>Nível {index + 1}</span>
+                <b>{level}</b>
+              </button>
             </li>
           ))}
         </ol>
@@ -322,6 +418,10 @@ export function StartScene() {
           ))}
         </ul>
       </div>
+
+      <Swap mode="sync">
+        {openLevel !== null && <MaturityModal key="modal" index={openLevel} onChange={setOpenLevel} />}
+      </Swap>
     </section>
   );
 }

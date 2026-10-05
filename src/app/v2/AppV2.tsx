@@ -28,7 +28,7 @@ const REPEAT_ICON_PATH =
 const FULLSCREEN_ENTER_PATH =
   "M5 19v-6h2v4h4v2H5Zm12-8V7h-4V5h6v6h-2Z";
 const FULLSCREEN_EXIT_PATH = "M11 13v6H9v-4H5v-2h6Zm4-8v4h4v2h-6V5h2Z";
-const INTERACTIVE = "button, a, input, select, textarea, [role='button']";
+const INTERACTIVE = "button, a, input, select, textarea, [role='button'], [role='dialog']";
 const PROXIMITY_BUFFER = 32;
 const CURSOR_SPRING = { damping: 28, stiffness: 350, mass: 0.5 };
 
