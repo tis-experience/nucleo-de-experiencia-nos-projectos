@@ -372,7 +372,7 @@ export function StartScene() {
       </motion.p>
       <div className="v2-head">
         <h1 id="v2-start-title" className="v2-title">
-          <MaskLine>Onde está a UX na TIS</MaskLine>
+          <MaskLine>A maturidade de UX na TIS hoje</MaskLine>
         </h1>
         <motion.p className="v2-lead" {...rise(0.3, 20)}>
           A TIS situa-se entre os níveis 2 e 3 da escala de maturidade de UX da NN/g, um ponto de partida com espaço

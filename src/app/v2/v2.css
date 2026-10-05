@@ -2464,7 +2464,7 @@
 .v2-team-open {
   position: absolute;
   left: 1270px;
-  top: 25px;
+  top: 40px;
   width: 420px;
 }
 
@@ -2475,13 +2475,13 @@
 /* Empilhados como avatares: o anel branco separa cada círculo do anterior, sem os tracejados se cruzarem. */
 .v2-team-open i {
   position: relative;
-  width: 140px;
-  height: 140px;
-  margin-right: -40px;
-  border: 3px dashed var(--sky);
+  width: 110px;
+  height: 110px;
+  margin-right: -32px;
+  border: 2px dashed var(--sky);
   border-radius: 50%;
   background: var(--tint);
-  box-shadow: 0 0 0 7px #ffffff;
+  box-shadow: 0 0 0 6px #ffffff;
 }
 
 .v2-team-open i:nth-child(1) {
