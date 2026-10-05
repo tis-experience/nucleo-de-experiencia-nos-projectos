@@ -229,7 +229,7 @@ export default function AppV2() {
                   stageIndex={deliveryStage}
                   phaseIndex={phaseIndex}
                   areaId={areaId}
-                  onLens={(lens) => goTo(sceneStart + lens)}
+                  onLens={(lens) => goTo(sceneStart + lens - 1)}
                   onSelectStage={setDeliveryStage}
                   onSelectPhase={setPhaseIndex}
                   onSelectArea={setAreaId}

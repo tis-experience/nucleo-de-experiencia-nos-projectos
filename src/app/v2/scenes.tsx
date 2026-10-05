@@ -630,7 +630,8 @@ export function DesignSystemScene() {
 /* ── O que o Núcleo entrega: uma cena, três ópticas ─────────────────── */
 
 const ORBIT = { cx: 370, cy: 610, rx: 215, ry: 215 };
-const LENSES = ["Com IA", "Por fase", "Por área"];
+/** O apoio de IA faz parte do processo e aparece nos slides das etapas; aqui as entregas vêem-se por fase ou por área. */
+const LENSES = ["Por fase", "Por área"];
 
 const orbitPoint = (index: number) => {
   const angle = ((-90 + index * (360 / AREAS.length)) * Math.PI) / 180;
@@ -675,7 +676,7 @@ export function DeliveriesScene({
         <MaskLine>O que o Núcleo entrega</MaskLine>
       </h1>
 
-      <LensToggle id="entregas" options={LENSES} value={lens} onChange={onLens} />
+      <LensToggle id="entregas" options={LENSES} value={lens - 1} onChange={(index) => onLens(index + 1)} />
 
       <Swap>
         {lens === 0 && (
@@ -812,13 +813,13 @@ export function DeliveriesScene({
 
             {lens !== 0 && (
               <div>
-                <dt>Etapas de UX, com apoio de IA</dt>
+                <dt>Etapas de UX</dt>
                 <dd className="v2-links">
-                  {STAGES.map((item, index) =>
+                  {STAGES.map((item) =>
                     (lens === 1 ? phase.stages : area.stages).includes(item.id) ? (
-                      <button key={item.id} type="button" onClick={() => (onSelectStage(index), onLens(0))}>
-                        {item.name}
-                      </button>
+                      <span key={item.id}>
+                        {item.number} {item.name}
+                      </span>
                     ) : null,
                   )}
                 </dd>

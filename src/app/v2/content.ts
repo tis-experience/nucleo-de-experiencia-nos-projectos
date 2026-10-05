@@ -489,7 +489,6 @@ export const STEPS: Step[] = [
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
-  { id: "ia", scene: "entregas", label: "O que o Núcleo entrega, com IA", build: 0 },
   { id: "fases", scene: "entregas", label: "O que o Núcleo entrega, por fase", build: 1 },
   { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 2 },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
