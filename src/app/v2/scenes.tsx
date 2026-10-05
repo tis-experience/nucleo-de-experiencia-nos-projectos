@@ -40,8 +40,8 @@ function Mark({ className }: { className: string }) {
 }
 
 /** Selecção dentro de uma cena, por clique ou pelas setas cima e baixo; pode avançar sozinha até haver interacção. */
-function useSelected(count: number, autoAdvanceMs = 0) {
-  const [selected, setSelected] = useState(0);
+function useSelected(count: number, autoAdvanceMs = 0, initial = 0) {
+  const [selected, setSelected] = useState(initial);
   const [auto, setAuto] = useState(autoAdvanceMs > 0 && !STILL);
 
   useEffect(() => {
@@ -193,7 +193,8 @@ const LAYER_IMAGES = [layerSurface, layerSkeleton, layerStructure, layerScope, l
 
 /** A pilha das cinco camadas serve de índice: a camada escolhida (clique ou setas cima e baixo) destaca-se da pilha e o cartão ao lado mostra o conteúdo dela. */
 export function UxScene() {
-  const [selected, select] = useSelected(UX_LAYERS.length);
+  // Abre na camada mais profunda, onde o trabalho começa.
+  const [selected, select] = useSelected(UX_LAYERS.length, 0, UX_LAYERS.length - 1);
   const layer = UX_LAYERS[selected];
 
   // As cinco ilustrações ficam em memória logo à entrada, para a troca de camada não esperar pelo carregamento.
