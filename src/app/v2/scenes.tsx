@@ -984,10 +984,10 @@ export function TeamScene() {
       </motion.p>
       <div className="v2-head">
         <h1 id="v2-team-title" className="v2-title">
-          <MaskLine>Quem faz o Núcleo de Experiência</MaskLine>
+          <MaskLine>O Núcleo de Experiência</MaskLine>
         </h1>
         <motion.p className="v2-lead" {...rise(0.3, 20)}>
-          Três pessoas hoje, a trabalhar com as equipas dos projectos desde o pedido até à versão entregue.
+          Trabalhamos com as equipas dos projectos da TIS, desde o pedido inicial até à versão entregue.
         </motion.p>
       </div>
 
