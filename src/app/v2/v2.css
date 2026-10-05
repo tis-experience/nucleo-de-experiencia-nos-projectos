@@ -353,7 +353,7 @@
   position: absolute;
   left: 120px;
   top: 420px;
-  width: 1000px;
+  width: 940px;
 }
 
 .v2-maturity ol {
@@ -438,9 +438,10 @@
   color: var(--navy);
 }
 
+/* Centrado no intervalo entre os níveis 2 e 3: duas colunas, um intervalo e meio. */
 .v2-maturity-marker {
   position: absolute;
-  left: 331px;
+  left: 311px;
   top: 76px;
   width: 0;
   display: flex;
@@ -2495,6 +2496,12 @@
 .v2-seat-line + .v2-seat-line {
   width: 220px;
   margin-top: 12px;
+}
+
+.v2-seat-note {
+  margin-top: 28px;
+  font-size: 15px;
+  color: var(--muted);
 }
 
 @keyframes v2-breathe {
