@@ -353,7 +353,7 @@
   position: absolute;
   left: 120px;
   top: 420px;
-  width: 940px;
+  width: 1000px;
 }
 
 .v2-maturity ol {
@@ -438,10 +438,9 @@
   color: var(--navy);
 }
 
-/* Centrado no intervalo entre os níveis 2 e 3: duas colunas, um intervalo e meio. */
 .v2-maturity-marker {
   position: absolute;
-  left: 311px;
+  left: 331px;
   top: 76px;
   width: 0;
   display: flex;
@@ -2396,15 +2395,12 @@
   position: absolute;
   left: 120px;
   top: 400px;
-  width: 1800px;
-  /* Corta só à direita, na margem do palco, para a lista parecer continuar. */
-  clip-path: inset(-200px 0 -200px -200px);
+  width: 1680px;
 }
 
 .v2-team ul {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 420px;
+  grid-template-columns: repeat(3, 420px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2464,42 +2460,40 @@
   height: 84px;
 }
 
-/* Lugares por preencher: cartões esqueleto na mesma grelha, a continuar para fora do palco, sem brilho. */
-.v2-team-seat .v2-avatar {
-  background: #e9f2fe;
+/* Lugares vazios: círculos tracejados encostados uns aos outros, só a sugerir que a equipa precisa de crescer. */
+.v2-team-open {
+  position: absolute;
+  left: 1270px;
+  top: 25px;
+  width: 420px;
 }
 
-.v2-team-seat i {
-  display: block;
-  border-radius: 999px;
-  background: #e9f2fe;
+.v2-team-open div {
+  display: flex;
 }
 
-.v2-seat-name {
-  width: 220px;
-  height: 18px;
-  margin-top: 34px;
-}
-
-.v2-seat-role {
+/* Empilhados como avatares: o anel branco separa cada círculo do anterior, sem os tracejados se cruzarem. */
+.v2-team-open i {
+  position: relative;
   width: 140px;
-  height: 12px;
-  margin-top: 14px;
+  height: 140px;
+  margin-right: -40px;
+  border: 3px dashed var(--sky);
+  border-radius: 50%;
+  background: var(--tint);
+  box-shadow: 0 0 0 7px #ffffff;
 }
 
-.v2-seat-line {
-  width: 300px;
-  height: 12px;
+.v2-team-open i:nth-child(1) {
+  z-index: 3;
+}
+
+.v2-team-open i:nth-child(2) {
+  z-index: 2;
+}
+
+.v2-team-open p {
   margin-top: 20px;
-}
-
-.v2-seat-line + .v2-seat-line {
-  width: 220px;
-  margin-top: 12px;
-}
-
-.v2-seat-note {
-  margin-top: 28px;
   font-size: 15px;
   color: var(--muted);
 }

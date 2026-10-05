@@ -372,7 +372,7 @@ export function StartScene() {
       </motion.p>
       <div className="v2-head">
         <h1 id="v2-start-title" className="v2-title">
-          <MaskLine>Maturidade de UX actual na TIS</MaskLine>
+          <MaskLine>Onde está a UX na TIS</MaskLine>
         </h1>
         <motion.p className="v2-lead" {...rise(0.3, 20)}>
           A TIS situa-se entre os níveis 2 e 3 da escala de maturidade de UX da NN/g, um ponto de partida com espaço
@@ -1005,22 +1005,15 @@ export function TeamScene() {
               <p>{person.intro}</p>
             </motion.li>
           ))}
-          {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
-            <motion.li
-              key={`seat-${index}`}
-              className="v2-team-seat"
-              aria-hidden={index > 0}
-              {...rise(0.45 + (TEAM.length + index) * 0.14, 28)}
-            >
-              <span className="v2-avatar" />
-              <i className="v2-seat-name" />
-              <i className="v2-seat-role" />
-              <i className="v2-seat-line" />
-              <i className="v2-seat-line" />
-              {index === 0 && <p className="v2-seat-note">Espaço para a equipa crescer</p>}
-            </motion.li>
-          ))}
         </ul>
+        <motion.div className="v2-team-open" {...fade(1.1, 0.8)}>
+          <div aria-hidden>
+            {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
+              <i key={index} />
+            ))}
+          </div>
+          <p>Espaço para a equipa crescer</p>
+        </motion.div>
       </div>
     </section>
   );
