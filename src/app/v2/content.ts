@@ -125,7 +125,7 @@ export const STAGES: Stage[] = [
     id: "construir",
     number: "04",
     name: "Acompanhar a construção",
-    short: "Construir",
+    short: "Acompanhar",
     work: "Trabalhar com PO, engenharia e QA sobre a mesma versão executável, sem um handoff separado.",
     aiSupport: "Prepara a especificação de UX e compara a versão com os critérios.",
     delivery: "Especificação de UX",
@@ -263,43 +263,43 @@ export const STAGE_VISUAL = [0, 2, 3, 4, 5];
 /** Legenda do desenho que representa cada tipo de entrega do Núcleo. */
 export const DELIVERY_VISUALS: Record<number, string> = {
   0: "Evidências organizadas por temas",
-  2: "Alternativas de fluxo e demonstração",
+  2: "Fluxo, alternativas e demonstração",
   3: "Achados de validação com evidência",
   4: "Interface, componentes e especificação de UX",
   5: "Análise da utilização",
 };
 
 /** As cinco fases do processo de desenvolvimento da TIS e o que o Núcleo entrega em cada uma. */
-export const PHASES = [
+export const PHASES: { name: string; delivery: string; areas: string[]; stages: StageId[] }[] = [
   {
     name: "Proposta comercial",
     delivery: "Brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
     areas: ["pre-venda"],
-    visual: 2,
+    stages: ["desenhar", "compreender"],
   },
   {
     name: "Discovery",
     delivery: "Problema, utilizadores e métrica de sucesso, direcção visual e fluxos com os estados relevantes.",
     areas: ["requisitos", "produtos"],
-    visual: 0,
+    stages: ["compreender", "desenhar", "avaliar"],
   },
   {
     name: "Desenvolvimento",
     delivery: "Especificação de UX, componentes e revisão de design sobre a versão em construção.",
     areas: ["fabrica", "requisitos", "qa"],
-    visual: 4,
+    stages: ["construir"],
   },
   {
     name: "Aceite e release",
     delivery: "Validação de UX: usabilidade, consistência visual e acessibilidade da versão a entregar.",
     areas: ["qa", "requisitos"],
-    visual: 3,
+    stages: ["validar"],
   },
   {
     name: "Sustentação",
     delivery: "Análise do feedback e do uso real, com recomendações de melhoria.",
     areas: ["produtos", "fabrica"],
-    visual: 5,
+    stages: ["validar"],
   },
 ];
 
@@ -309,7 +309,8 @@ export type Area = {
   note?: string;
   gives: string;
   gets: string;
-  visual: number;
+  /** Etapas de UX em que a área participa; a primeira é a principal e dá o desenho e a entrega mostrados. */
+  stages: StageId[];
 };
 
 /** Participação do Núcleo nas áreas da TIS (secção 5 da proposta de actuação). */
@@ -319,29 +320,29 @@ export const AREAS: Area[] = [
     name: "Pré-venda",
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
-    visual: 2,
+    stages: ["desenhar", "compreender"],
   },
   {
     id: "fabrica",
     name: "Fábrica",
     gives: "Requisitos, limitações técnicas e a aplicação em construção.",
     gets: "Fluxos, interfaces, componentes e orientações de comportamento, com acompanhamento da implementação.",
-    visual: 4,
+    stages: ["construir", "desenhar"],
   },
   {
     id: "requisitos",
     name: "Requisitos e ritos",
     note: "PO e Scrum Master",
-    gives: "Regras e prioridades, com participação directa do PO na descoberta, no desenho e na validação.",
+    gives: "Regras e prioridades, com participação directa do PO na compreensão do problema, no desenho e na avaliação.",
     gets: "Fluxos, cenários, conteúdo e demonstrações para o refinamento e as revisões.",
-    visual: 2,
+    stages: ["desenhar", "compreender", "avaliar"],
   },
   {
     id: "qa",
     name: "QA",
     gives: "A versão em teste, os percursos que devem funcionar e os defeitos encontrados.",
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
-    visual: 3,
+    stages: ["validar", "construir"],
   },
   {
     id: "produtos",
@@ -349,7 +350,7 @@ export const AREAS: Area[] = [
     note: "Academia, Saúde, Finanças e Setor Público",
     gives: "Necessidades, regras, feedback e dados de utilização.",
     gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
-    visual: 5,
+    stages: ["validar", "compreender"],
   },
   {
     id: "marketing",
@@ -357,21 +358,21 @@ export const AREAS: Area[] = [
     note: "Marca TIS e produtos TIS",
     gives: "A comunicação da marca, o público e os canais.",
     gets: "Compreensão do público e experiência nos pontos de contacto, com apoio a conteúdo e navegação.",
-    visual: 4,
+    stages: ["compreender", "desenhar"],
   },
   {
     id: "pessoas",
     name: "Pessoas e Cultura",
     gives: "Procedimentos, ferramentas, avaliações e eventos internos.",
     gets: "Fluxos, orientações, materiais ou interfaces, e validações com colaboradores.",
-    visual: 0,
+    stages: ["compreender", "avaliar"],
   },
   {
     id: "inovacao",
     name: "Laboratório de Inovação",
     gives: "A ideia, o objectivo do experimento, o público previsto e as limitações.",
     gets: "Fluxos, demonstrações e recomendações fundamentadas no que foi observado.",
-    visual: 2,
+    stages: ["desenhar", "avaliar"],
   },
 ];
 

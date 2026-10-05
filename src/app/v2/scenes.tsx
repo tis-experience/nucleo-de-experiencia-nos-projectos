@@ -636,8 +636,10 @@ export function DeliveriesScene({
 }) {
   const phase = PHASES[phaseIndex];
   const area = AREAS.find((item) => item.id === areaId) ?? AREAS[0];
-  const visual = [STAGE_VISUAL[stageIndex], phase.visual, area.visual][lens];
-  const stage = STAGES[STAGE_VISUAL.indexOf(visual)];
+  // O desenho e a entrega são sempre os da etapa de UX: a escolhida, ou a principal da fase ou da área.
+  const stageId = [STAGES[stageIndex].id, phase.stages[0], area.stages[0]][lens];
+  const stage = STAGES.find((item) => item.id === stageId) ?? STAGES[0];
+  const visual = STAGE_VISUAL[STAGES.indexOf(stage)];
   const selectionKey = [stage.id, phase.name, area.id][lens];
 
   return (
@@ -786,11 +788,15 @@ export function DeliveriesScene({
 
             {lens !== 0 && (
               <div>
-                <dt>Etapa de UX, com apoio de IA</dt>
+                <dt>Etapas de UX, com apoio de IA</dt>
                 <dd className="v2-links">
-                  <button type="button" onClick={() => (onSelectStage(STAGES.indexOf(stage)), onLens(0))}>
-                    {stage.name}
-                  </button>
+                  {STAGES.map((item, index) =>
+                    (lens === 1 ? phase.stages : area.stages).includes(item.id) ? (
+                      <button key={item.id} type="button" onClick={() => (onSelectStage(index), onLens(0))}>
+                        {item.name}
+                      </button>
+                    ) : null,
+                  )}
                 </dd>
               </div>
             )}
@@ -799,7 +805,7 @@ export function DeliveriesScene({
                 <dt>Fases do projecto</dt>
                 <dd className="v2-links">
                   {PHASES.map((item, index) =>
-                    (lens === 2 ? item.areas.includes(area.id) : item.visual === visual) ? (
+                    (lens === 2 ? item.areas.includes(area.id) : item.stages.includes(stage.id)) ? (
                       <button key={item.name} type="button" onClick={() => (onSelectPhase(index), onLens(1))}>
                         {item.name}
                       </button>
@@ -813,7 +819,7 @@ export function DeliveriesScene({
               <div>
                 <dt>Áreas envolvidas</dt>
                 <dd className="v2-links">
-                  {AREAS.filter((item) => (lens === 1 ? phase.areas.includes(item.id) : item.visual === visual)).map(
+                  {AREAS.filter((item) => (lens === 1 ? phase.areas.includes(item.id) : item.stages.includes(stage.id))).map(
                     (item) => (
                       <button key={item.id} type="button" onClick={() => (onSelectArea(item.id), onLens(2))}>
                         {item.name}
