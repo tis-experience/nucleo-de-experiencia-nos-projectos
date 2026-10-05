@@ -404,7 +404,7 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
       <div className="v2-stage-head">
         <Swap>
           <motion.div key={stage.id} exit={exit}>
-            <motion.p className="v2-kicker" {...fade(0.1)}>
+            <motion.p className="v2-kicker v2-kicker-muted" {...fade(0.1)}>
               Etapa {stage.number} de 06
             </motion.p>
             <h2 className="v2-stage-name">

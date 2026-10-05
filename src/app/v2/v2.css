@@ -93,13 +93,17 @@
   line-height: 1.4;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--blue);
 }
 
 .v2-label {
   font-size: 13px;
   letter-spacing: 1.8px;
-  color: var(--blue);
+}
+
+/* Só por cima do nome de cada etapa. */
+.v2-kicker-muted {
+  color: var(--muted);
 }
 
 .v2-scene-kicker {
