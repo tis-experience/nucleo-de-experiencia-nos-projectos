@@ -406,27 +406,11 @@ export const TEAM_NEXT = ["Designer Analista", "Designer Analista", "UX Research
 
 /** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. */
 export const UX_LAYERS = [
-  { name: "Superfície", text: "A interface visual", questions: ["Como é visualmente a solução provável?"] },
-  {
-    name: "Esqueleto",
-    text: "Componentes, wireframes e navegação",
-    questions: ["Como são organizadas as informações e acções?"],
-  },
-  {
-    name: "Estrutura",
-    text: "Fluxos, arquitectura de informação e design de interacção",
-    questions: ["Como deve o utilizador interagir com o produto?", "Que interacções podem melhorar a experiência?"],
-  },
-  {
-    name: "Escopo",
-    text: "Funcionalidades, conteúdo e requisitos",
-    questions: ["Quais informações e acções são necessárias?"],
-  },
-  {
-    name: "Estratégia",
-    text: "Necessidades do utilizador e objectivos do produto",
-    questions: ["O quê? Porquê? Para quem? Onde? Quando?", "Que valor isso cria para o utilizador e para o negócio?"],
-  },
+  { name: "Superfície", text: "A interface visual" },
+  { name: "Esqueleto", text: "Componentes, wireframes e navegação" },
+  { name: "Estrutura", text: "Fluxos, arquitectura de informação e design de interacção" },
+  { name: "Escopo", text: "Funcionalidades, conteúdo e requisitos" },
+  { name: "Estratégia", text: "Necessidades do utilizador e objectivos do produto" },
 ];
 
 export type SceneId =

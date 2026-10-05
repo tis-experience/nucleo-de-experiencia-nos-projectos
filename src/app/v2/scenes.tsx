@@ -182,13 +182,10 @@ export function ClosingScene() {
 
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
-const LAYER_GAP = 100;
+const LAYER_GAP = 96;
 
-/** As cinco camadas em pilha: escolhe-se uma (rato, clique ou setas cima e baixo) para ver as perguntas a que responde. */
+/** As cinco camadas em pilha, que se separam ao entrar, como na primeira versão desta cena. */
 export function UxScene() {
-  const [selected, select] = useSelected(UX_LAYERS.length);
-  const layer = UX_LAYERS[selected];
-
   return (
     <section className="v2-scene" aria-labelledby="v2-ux-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
@@ -200,61 +197,28 @@ export function UxScene() {
           <MaskLine delay={0.12}>tem 5 camadas</MaskLine>
         </h1>
         <motion.p className="v2-lead" {...rise(0.4, 20)}>
-          A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
+          A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã. O Núcleo de
+          Experiência actua em todas as camadas.
+        </motion.p>
+        <motion.p className="v2-source" style={{ marginTop: 24 }} {...fade(0.8)}>
+          Modelo: Jesse James Garrett (2002)
         </motion.p>
       </div>
 
-      <motion.div className="v2-ux-detail" {...rise(0.9, 20)}>
-        <p className="v2-label">
-          Camada {selected + 1} de {UX_LAYERS.length} · {layer.name}
-        </p>
-        <Swap>
-          <motion.div
-            key={selected}
-            initial={STILL ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={exit}
-            transition={tween(0.3)}
-          >
-            {layer.questions.map((question) => (
-              <p key={question}>{question}</p>
-            ))}
-          </motion.div>
-        </Swap>
-      </motion.div>
-
-      <motion.p className="v2-ux-claim" {...rise(1.05, 20)}>
-        O Núcleo de Experiência deve actuar em todas as camadas.
-      </motion.p>
-      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002)</p>
-
       <ol className="v2-layers">
-        {UX_LAYERS.map((item, index) => (
+        {UX_LAYERS.map((layer, index) => (
           <motion.li
-            key={item.name}
-            data-active={selected === index || undefined}
+            key={layer.name}
             style={{ top: index * LAYER_GAP, zIndex: UX_LAYERS.length - index }}
             initial={STILL ? false : { y: -index * LAYER_GAP, opacity: index === 0 ? 1 : 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={spring(0.5 + index * 0.12, 60, 14)}
+            transition={spring(0.6 + index * 0.12, 60, 14)}
           >
-            <i
-              className="v2-plane"
-              data-depth={index}
-              aria-hidden
-              onMouseEnter={() => select(index)}
-              onClick={() => select(index)}
-            />
-            <button
-              type="button"
-              aria-pressed={selected === index}
-              onMouseEnter={() => select(index)}
-              onFocus={() => select(index)}
-              onClick={() => select(index)}
-            >
-              <b>{item.name}</b>
-              {item.text}
-            </button>
+            <i className="v2-plane" data-depth={index} aria-hidden />
+            <motion.p {...fade(1.1 + index * 0.12)}>
+              <b>{layer.name}</b>
+              {layer.text}
+            </motion.p>
           </motion.li>
         ))}
       </ol>
