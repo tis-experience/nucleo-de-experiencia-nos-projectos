@@ -20,7 +20,7 @@ import {
   STAGE_VISUAL,
   SURVEY,
   TEAM,
-  TEAM_NEXT,
+  TEAM_OPEN_SEATS,
   THEMES,
   UX_LAYERS,
 } from "./content";
@@ -992,12 +992,6 @@ export function TeamScene() {
       </div>
 
       <div className="v2-team">
-        <motion.p className="v2-label" {...fade(0.4)}>
-          Hoje
-        </motion.p>
-        <motion.p className="v2-label" data-group="next" {...fade(1.1)}>
-          Cenário a 6 meses
-        </motion.p>
         <ul>
           {TEAM.map((person, index) => (
             <motion.li key={index} {...rise(0.45 + index * 0.14, 28)}>
@@ -1009,16 +1003,15 @@ export function TeamScene() {
               <p>{person.intro}</p>
             </motion.li>
           ))}
-          {TEAM_NEXT.map((role, index) => (
-            <motion.li key={`next-${index}`} data-kind="next" {...rise(1.15 + index * 0.14, 28)}>
-              <span className="v2-avatar" aria-hidden>
-                +
-              </span>
-              <b>A contratar</b>
-              {role}
-            </motion.li>
-          ))}
         </ul>
+        <motion.div className="v2-team-open" {...fade(1.1, 0.8)}>
+          <div aria-hidden>
+            {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
+              <i key={index} />
+            ))}
+          </div>
+          <p>Espaço para a equipa crescer</p>
+        </motion.div>
       </div>
     </section>
   );

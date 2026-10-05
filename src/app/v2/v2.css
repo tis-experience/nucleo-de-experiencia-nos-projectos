@@ -2035,21 +2035,11 @@
   width: 1680px;
 }
 
-.v2-team > .v2-label {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.v2-team > .v2-label[data-group="next"] {
-  left: 840px;
-}
-
 .v2-team ul {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 420px);
   margin: 0;
-  padding: 48px 0 0;
+  padding: 0;
   list-style: none;
 }
 
@@ -2076,8 +2066,8 @@
 
 .v2-team li p {
   margin-top: 14px;
-  max-width: 236px;
-  font-size: 16px;
+  max-width: 320px;
+  font-size: 17px;
   line-height: 1.45;
   color: var(--muted);
 }
@@ -2107,27 +2097,32 @@
   height: 84px;
 }
 
-/* Lugares por preencher: contorno a tracejado, a pulsar devagar. */
-.v2-team li[data-kind="next"] .v2-avatar {
+/* Lugares vazios: pequenos, encostados uns aos outros, só a sugerir que a equipa precisa de crescer. */
+.v2-team-open {
+  position: absolute;
+  left: 1270px;
+  top: 62px;
+  width: 340px;
+}
+
+.v2-team-open div {
+  display: flex;
+}
+
+.v2-team-open i {
+  width: 66px;
+  height: 66px;
+  margin-right: -14px;
   border: 2px dashed var(--sky);
-  background: transparent;
-  font-family: "Manrope", sans-serif;
-  font-size: 56px;
-  font-weight: 300;
-  color: var(--sky);
-  animation: v2-breathe 3.6s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: #ffffff;
+  opacity: 0.8;
 }
 
-.v2-team li[data-kind="next"]:nth-child(5) .v2-avatar {
-  animation-delay: -1.2s;
-}
-
-.v2-team li[data-kind="next"]:nth-child(6) .v2-avatar {
-  animation-delay: -2.4s;
-}
-
-.v2-team li[data-kind="next"] b {
-  color: var(--blue);
+.v2-team-open p {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--muted);
 }
 
 @keyframes v2-breathe {

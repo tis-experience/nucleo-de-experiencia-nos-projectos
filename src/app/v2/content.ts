@@ -402,8 +402,8 @@ export const TEAM: { name: string; role: string; intro: string; photo?: string }
   },
 ];
 
-/** Reforço previsto no cenário a 6 meses da apresentação original (página de composição da equipa). */
-export const TEAM_NEXT = ["Designer Analista", "Designer Analista", "UX Researcher"];
+/** Lugares vazios mostrados ao lado da equipa, só para sugerir que precisa de crescer (sem cargos nem prazos). */
+export const TEAM_OPEN_SEATS = 3;
 
 /** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. Textos da apresentação original, abreviados. */
 export const UX_LAYERS = [
