@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import modalSvg from "../../imports/ModalOverlay/svg-j25njvl7ht";
-import strategyImage from "../../imports/iceberg-estrategia.png";
-import scopeImage from "../../imports/iceberg-escopo.png";
-import structureImage from "../../imports/iceberg-estrutura.png";
-import skeletonImage from "../../imports/iceberg-esqueleto.png";
-import surfaceImage from "../../imports/iceberg-superficie.png";
+import strategyImage from "../v2/assets/camada-estrategia.webp";
+import scopeImage from "../v2/assets/camada-escopo.webp";
+import structureImage from "../v2/assets/camada-estrutura.webp";
+import skeletonImage from "../v2/assets/camada-esqueleto.webp";
+import surfaceImage from "../v2/assets/camada-superficie.webp";
 import { createSlideMetrics } from "../scaling";
 
 interface IcebergLayerModalProps {
