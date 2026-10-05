@@ -573,6 +573,12 @@
 
 .v2-problem {
   position: absolute;
+  left: 0;
+  top: 0;
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  will-change: transform;
 }
 
 .v2-problem > span,

@@ -355,6 +355,8 @@ const PROBLEMS = [
   [0.992, 0.87, 0.5],
 ];
 
+/** As bolas têm um tamanho fixo e mudam de posição e de escala por transformação, sem recalcular o layout. */
+const PROBLEM_SIZE = 84;
 const PROBLEM_TONES = ["#04165d", "#036ef2", "#7db3f8", "#036ef2"];
 const CURRENT_PHASES = ["Proposta comercial", "Ecrãs", "Desenvolvimento", "Release", "Retrabalho"];
 const [ENTRY, MISSING, RESULT] = CURRENT_PROCESS;
@@ -383,20 +385,32 @@ export function ChangeScene({ build }: { build: number }) {
   // As bolas afastam-se ligeiramente do cursor.
   useEffect(() => {
     if (STILL) return undefined;
-    const handleMove = (event: MouseEvent) => {
-      for (const element of pushRefs.current) {
-        if (!element) continue;
-        const rect = element.getBoundingClientRect();
-        const dx = rect.left + rect.width / 2 - event.clientX;
-        const dy = rect.top + rect.height / 2 - event.clientY;
+    let frame = 0;
+    let pointer = { x: 0, y: 0 };
+    // Uma actualização por fotograma: primeiro lêem-se todas as posições, depois escrevem-se os desvios.
+    const update = () => {
+      frame = 0;
+      const elements = pushRefs.current.filter((element): element is HTMLSpanElement => Boolean(element));
+      const rects = elements.map((element) => element.parentElement!.getBoundingClientRect());
+      elements.forEach((element, index) => {
+        const rect = rects[index];
+        const dx = rect.left + rect.width / 2 - pointer.x;
+        const dy = rect.top + rect.height / 2 - pointer.y;
         const distance = Math.hypot(dx, dy) || 1;
         const reach = 240;
         const force = distance < reach ? (1 - distance / reach) * 40 : 0;
-        element.style.transform = `translate(${(dx / distance) * force}px, ${(dy / distance) * force}px)`;
-      }
+        element.style.transform = force ? `translate(${(dx / distance) * force}px, ${(dy / distance) * force}px)` : "";
+      });
+    };
+    const handleMove = (event: MouseEvent) => {
+      pointer = { x: event.clientX, y: event.clientY };
+      if (!frame) frame = requestAnimationFrame(update);
     };
     window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
@@ -426,7 +440,7 @@ export function ChangeScene({ build }: { build: number }) {
               <motion.p className="v2-label" {...fade(0.3)}>
                 {ENTRY.label}
               </motion.p>
-              <motion.p className="v2-label" data-group="result" {...fade(3.4)}>
+              <motion.p className="v2-label" data-group="result" {...fade(1.9)}>
                 {RESULT.label}
               </motion.p>
               <ul>
@@ -434,7 +448,7 @@ export function ChangeScene({ build }: { build: number }) {
                   <motion.li
                     key={card.title}
                     data-kind={index < ENTRY.items.length ? "entry" : "result"}
-                    {...rise(index < ENTRY.items.length ? 0.35 + index * 0.15 : 3.3 + index * 0.12, 24)}
+                    {...rise(index < ENTRY.items.length ? 0.3 + index * 0.12 : 1.6 + index * 0.1, 24)}
                   >
                     <h2>{card.title}</h2>
                     <p>{card.text}</p>
@@ -444,11 +458,11 @@ export function ChangeScene({ build }: { build: number }) {
             </div>
 
             <div className="v2-missing">
-              <motion.p className="v2-label" {...fade(1.3)}>
+              <motion.p className="v2-label" {...fade(0.8)}>
                 {MISSING.label}
               </motion.p>
               {MISSING.items.map((item, index) => (
-                <motion.p key={item.title} className="v2-missing-step" style={{ left: item.stem }} {...rise(1.4 + index * 0.2, 16)}>
+                <motion.p key={item.title} className="v2-missing-step" style={{ left: item.stem }} {...rise(0.85 + index * 0.12, 16)}>
                   {item.title}
                 </motion.p>
               ))}
@@ -458,7 +472,7 @@ export function ChangeScene({ build }: { build: number }) {
       </Swap>
 
       <div className="v2-change-chart">
-        <motion.svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`} fill="none" aria-hidden {...fade(current ? 2.2 : 0, 1)}>
+        <motion.svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`} fill="none" aria-hidden {...fade(current ? 1.1 : 0, 0.6)}>
           <defs>
             <linearGradient id="v2-effort" x1="0" x2="1" y1="0" y2="0">
               <stop offset="0" stopColor="#036EF2" stopOpacity="0" />
@@ -478,16 +492,14 @@ export function ChangeScene({ build }: { build: number }) {
               key={index}
               className="v2-problem"
               aria-hidden
-              style={{ x: "-50%", y: "-50%" }}
-              initial={STILL ? false : { opacity: 0, left: origin, top: CHART_BASELINE, width: 10, height: 10 }}
+              initial={STILL ? false : { opacity: 0, x: origin, y: CHART_BASELINE, scale: 10 / PROBLEM_SIZE }}
               animate={{
                 opacity: 1,
-                left: t * CHART_WIDTH,
-                top: CHART_BASELINE - effort(t) * lift,
-                width: size,
-                height: size,
+                x: t * CHART_WIDTH,
+                y: CHART_BASELINE - effort(t) * lift,
+                scale: size / PROBLEM_SIZE,
               }}
-              transition={spring(current ? 2.3 + index * 0.09 : index * 0.04, 34, 11)}
+              transition={spring(current ? 1.2 + index * 0.05 : index * 0.03, 70, 15)}
             >
               <span
                 ref={(element) => {
@@ -509,7 +521,7 @@ export function ChangeScene({ build }: { build: number }) {
           );
         })}
 
-        <motion.p className="v2-chart-note" data-side="right" {...fade(current ? 2.6 : 0.2)}>
+        <motion.p className="v2-chart-note" data-side="right" {...fade(current ? 1.4 : 0.2)}>
           Esforço para corrigir
         </motion.p>
 
