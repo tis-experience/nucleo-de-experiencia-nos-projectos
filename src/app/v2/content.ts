@@ -455,9 +455,9 @@ export type Step = { id: string; scene: SceneId; label: string; build?: number; 
 
 export const STEPS: Step[] = [
   { id: "capa", scene: "capa", label: "Abertura" },
-  { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
-  { id: "o-que-e-ux", scene: "ux", label: "O que é UX" },
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
+  { id: "o-que-e-ux", scene: "ux", label: "O que é UX" },
+  { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
