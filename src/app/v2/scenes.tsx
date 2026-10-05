@@ -183,9 +183,12 @@ export function ClosingScene() {
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
 const LAYER_GAP = 96;
+const LAYER_OPEN = 76;
 
-/** As cinco camadas em pilha, que se separam ao entrar, como na primeira versão desta cena. */
+/** As cinco camadas em pilha. A pilha abre-se por baixo da camada escolhida (clique ou setas cima e baixo) para mostrar a pergunta a que responde. */
 export function UxScene() {
+  const [selected, select] = useSelected(UX_LAYERS.length);
+
   return (
     <section className="v2-scene" aria-labelledby="v2-ux-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
@@ -196,31 +199,38 @@ export function UxScene() {
           <MaskLine>A experiência</MaskLine>
           <MaskLine delay={0.12}>tem 5 camadas</MaskLine>
         </h1>
-        <motion.p className="v2-lead" {...rise(0.4, 20)}>
-          A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã. O Núcleo de
-          Experiência actua em todas as camadas.
-        </motion.p>
-        <motion.p className="v2-source" style={{ marginTop: 24 }} {...fade(0.8)}>
-          Modelo: Jesse James Garrett (2002)
-        </motion.p>
       </div>
+      <motion.p className="v2-ux-lead" {...rise(0.4, 20)}>
+        A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
+      </motion.p>
+      <motion.p className="v2-ux-claim" {...rise(0.55, 20)}>
+        O Núcleo de Experiência actua em todas as camadas.
+      </motion.p>
+      <motion.p className="v2-source v2-ux-source" {...fade(0.8)}>
+        Modelo: Jesse James Garrett (2002)
+      </motion.p>
 
       <ol className="v2-layers">
-        {UX_LAYERS.map((layer, index) => (
-          <motion.li
-            key={layer.name}
-            style={{ top: index * LAYER_GAP, zIndex: UX_LAYERS.length - index }}
-            initial={STILL ? false : { y: -index * LAYER_GAP, opacity: index === 0 ? 1 : 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={spring(0.6 + index * 0.12, 60, 14)}
-          >
-            <i className="v2-plane" data-depth={index} aria-hidden />
-            <motion.p {...fade(1.1 + index * 0.12)}>
-              <b>{layer.name}</b>
-              {layer.text}
-            </motion.p>
-          </motion.li>
-        ))}
+        {UX_LAYERS.map((layer, index) => {
+          const offset = index > selected ? LAYER_OPEN : 0;
+          return (
+            <motion.li
+              key={layer.name}
+              data-active={selected === index || undefined}
+              style={{ top: index * LAYER_GAP, zIndex: UX_LAYERS.length - index }}
+              initial={STILL ? false : { y: -index * LAYER_GAP, opacity: index === 0 ? 1 : 0 }}
+              animate={{ y: offset, opacity: 1 }}
+              transition={STILL ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 18 }}
+            >
+              <i className="v2-plane" data-depth={index} role="button" aria-hidden onClick={() => select(index)} />
+              <button type="button" aria-expanded={selected === index} onClick={() => select(index)}>
+                <b>{layer.name}</b>
+                {layer.text}
+                <span>{layer.question}</span>
+              </button>
+            </motion.li>
+          );
+        })}
       </ol>
     </section>
   );
