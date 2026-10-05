@@ -2145,40 +2145,52 @@
   height: 84px;
 }
 
-/* Lugares vazios: pequenos, encostados uns aos outros, só a sugerir que a equipa precisa de crescer. */
+/* Lugares vazios: silhuetas pequenas lado a lado, cada vez mais ténues, a sugerir que a equipa pode crescer. */
 .v2-team-open {
   position: absolute;
   left: 1270px;
-  top: 59px;
+  top: 51px;
   width: 340px;
 }
 
 .v2-team-open div {
   display: flex;
+  gap: 14px;
 }
 
-/* Empilhados como avatares: o anel branco separa cada círculo do anterior, sem os tracejados se cruzarem. */
-.v2-team-open i {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  margin-right: -20px;
+.v2-team-open svg {
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
   border: 2px dashed var(--sky);
   border-radius: 50%;
-  background: var(--tint);
-  box-shadow: 0 0 0 5px #ffffff;
+  fill: var(--sky);
+  fill-opacity: 0.35;
+  animation: v2-seat 3.6s ease-in-out infinite alternate;
 }
 
-.v2-team-open i:nth-child(1) {
-  z-index: 3;
+/* Só a escala respira, para não anular a transparência de cada lugar. */
+@keyframes v2-seat {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
-.v2-team-open i:nth-child(2) {
-  z-index: 2;
+.v2-team-open svg:nth-child(2) {
+  opacity: 0.6;
+  animation-delay: -1.2s;
+}
+
+.v2-team-open svg:nth-child(3) {
+  opacity: 0.32;
+  animation-delay: -2.4s;
 }
 
 .v2-team-open p {
-  margin-top: 16px;
+  margin-top: 18px;
   font-size: 15px;
   color: var(--muted);
 }
