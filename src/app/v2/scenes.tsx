@@ -1005,15 +1005,15 @@ export function TeamScene() {
               <p>{person.intro}</p>
             </motion.li>
           ))}
+          <motion.li className="v2-team-open" {...fade(1.1, 0.8)}>
+            <div aria-hidden>
+              {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
+                <i key={index} />
+              ))}
+            </div>
+            <p>Espaço para a equipa crescer</p>
+          </motion.li>
         </ul>
-        <motion.div className="v2-team-open" {...fade(1.1, 0.8)}>
-          <div aria-hidden>
-            {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
-              <i key={index} />
-            ))}
-          </div>
-          <p>Espaço para a equipa crescer</p>
-        </motion.div>
       </div>
     </section>
   );

@@ -2409,7 +2409,7 @@
 
 .v2-team ul {
   display: grid;
-  grid-template-columns: repeat(3, 392px);
+  grid-template-columns: repeat(4, 392px);
   gap: 24px;
   margin: 0;
   padding: 0;
@@ -2479,19 +2479,17 @@
   height: 84px;
 }
 
-/* Lugares vazios: círculos tracejados encostados uns aos outros, só a sugerir que a equipa precisa de crescer. */
-.v2-team-open {
-  position: absolute;
-  left: 1296px;
-  top: 72px;
-  width: 288px;
+/* Lugares vazios: cartão cinzento claro com três círculos tracejados encostados, só a sugerir que a equipa precisa de crescer. */
+.v2-team li.v2-team-open {
+  justify-content: center;
+  background: #f3f5f9;
 }
 
 .v2-team-open div {
   display: flex;
 }
 
-/* Empilhados como avatares: o anel branco separa cada círculo do anterior, sem os tracejados se cruzarem. */
+/* Empilhados como avatares: o anel da cor do cartão separa cada círculo do anterior, sem os tracejados se cruzarem. */
 .v2-team-open i {
   position: relative;
   width: 110px;
@@ -2500,7 +2498,7 @@
   border: 2px dashed var(--sky);
   border-radius: 50%;
   background: var(--tint);
-  box-shadow: 0 0 0 6px #ffffff;
+  box-shadow: 0 0 0 6px #f3f5f9;
 }
 
 .v2-team-open i:nth-child(1) {
@@ -2511,9 +2509,13 @@
   z-index: 2;
 }
 
+.v2-team-open i:last-child {
+  margin-right: 0;
+}
+
 .v2-team-open p {
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 24px;
+  font-size: 16px;
   color: var(--muted);
 }
 
