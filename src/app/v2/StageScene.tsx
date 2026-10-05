@@ -181,8 +181,77 @@ function UsageChart() {
   );
 }
 
+/** Passos do fluxo: [x, y, destaque]. O passo em destaque é o que se transforma no ecrã ao lado. */
+const FLOW_STEPS: [number, number, boolean][] = [
+  [150, 225, false],
+  [440, 82, true],
+  [440, 398, false],
+];
+
+/** Ligações do fluxo, pela ordem em que se desenham; a última é o regresso ao passo anterior. */
+const FLOW_LINKS = [
+  { d: "M112 260H140", dashed: false },
+  { d: "M290 260H338", dashed: false },
+  { d: "M380 222V117H430", dashed: false },
+  { d: "M380 298V433H430", dashed: false },
+  { d: "M580 117H636", dashed: false },
+  { d: "M510 478V510H220V305", dashed: true },
+];
+
+/** O percurso da pessoa em passos e decisões, com um dos passos a dar origem ao ecrã. */
+function Flow() {
+  return (
+    <svg className="v2-flow" viewBox="0 0 1000 540" fill="none">
+      <defs>
+        <marker id="v2-flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M1 1L9 5L1 9" stroke="#036EF2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </marker>
+      </defs>
+      {FLOW_LINKS.map((link, index) => (
+        <motion.path
+          key={link.d}
+          d={link.d}
+          stroke="#036EF2"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray={link.dashed ? "3 9" : undefined}
+          markerEnd="url(#v2-flow-arrow)"
+          initial={STILL ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={tween(0.4, 0.45 + index * 0.14)}
+        />
+      ))}
+      <motion.g {...fade(0.2)}>
+        <rect x="20" y="238" width="92" height="44" rx="22" fill="#036EF2" />
+        <rect x="42" y="255" width="48" height="10" rx="5" fill="#ffffff" opacity="0.85" />
+      </motion.g>
+      <motion.g {...fade(0.6)}>
+        <rect x="353" y="233" width="54" height="54" rx="10" transform="rotate(45 380 260)" fill="#f0f7ff" stroke="#036EF2" strokeWidth="2.5" />
+      </motion.g>
+      {FLOW_STEPS.map(([x, y, active], index) => (
+        <motion.g key={index} {...fade(0.35 + index * 0.25)}>
+          <rect
+            x={x}
+            y={y}
+            width="140"
+            height="70"
+            rx="14"
+            fill={active ? "#f0f7ff" : "#f7f9fc"}
+            stroke={active ? "#036EF2" : "#9aa3b5"}
+            strokeWidth="2"
+            strokeDasharray={active ? undefined : "5 5"}
+          />
+          <rect x={x + 20} y={y + 20} width="70" height="10" rx="5" fill={active ? "#036EF2" : "#b7bfcd"} />
+          <rect x={x + 20} y={y + 40} width="100" height="10" rx="5" fill="#d5dae3" />
+        </motion.g>
+      ))}
+    </svg>
+  );
+}
+
 const MAIN_SCREEN = [
-  { x: 350, y: 70, scale: 1, rotate: 0 },
+  { x: 650, y: 40, scale: 0.9, rotate: 0 },
   { x: 90, y: 30, scale: 1.18, rotate: 0 },
   { x: 323, y: 30, scale: 1.18, rotate: 0 },
   { x: 40, y: 90, scale: 0.9, rotate: 0 },
@@ -201,17 +270,19 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
       <Swap mode="sync">
         {stageIndex === 0 && layer("notes", <Notes />)}
 
+        {stageIndex === 2 && layer("flow", <Flow />)}
+
+        {/* As alternativas ficam em pilha por trás do ecrã escolhido. */}
         {stageIndex === 2 &&
-          (["a", "c"] as const).map((variant, index) => (
+          (["c", "a"] as const).map((variant, index) => (
             <motion.div
               key={variant}
               className="v2-screen-slot"
-              initial={STILL ? false : { opacity: 0, x: 350, y: 70, rotate: 0 }}
-              animate={{ opacity: 1, x: index === 0 ? 30 : 670, y: 96, rotate: index === 0 ? -5 : 5 }}
-              exit={{ opacity: 0, x: 350, transition: { duration: 0.35 } }}
-              transition={spring(0.35, 80, 15)}
+              initial={STILL ? false : { opacity: 0, x: 650, y: 40, scale: 0.9, rotate: 0 }}
+              animate={{ opacity: 0.5, x: index === 0 ? 676 : 702, y: index === 0 ? 62 : 84, scale: 0.9, rotate: 0 }}
+              exit={{ opacity: 0, x: 650, y: 40, transition: { duration: 0.35 } }}
+              transition={spring(1.1 + index * 0.12, 80, 15)}
             >
-              <span className="v2-alt">{variant.toUpperCase()}</span>
               <Screen variant={variant} fidelity="wire" />
             </motion.div>
           ))}
@@ -225,7 +296,6 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
             exit={exit}
             transition={spring(0.1, 70, 16)}
           >
-            {stageIndex === 2 && <span className="v2-alt">B</span>}
             <Screen fidelity={stageIndex >= 4 ? "final" : "wire"} />
             {stageIndex === 3 &&
               PINS.map(([left, top], index) => (
