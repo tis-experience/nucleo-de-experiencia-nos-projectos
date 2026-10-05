@@ -391,7 +391,7 @@ export const THEMES = [
 export const TEAM: { name: string; role: string; intro: string; photo?: string }[] = [
   {
     name: "Marcell da Silva",
-    role: "Design Lead",
+    role: "Líder da Equipa",
     intro: "Define como o Núcleo actua nos projectos e acompanha a qualidade do que é entregue.",
     photo: photoMarcell,
   },
