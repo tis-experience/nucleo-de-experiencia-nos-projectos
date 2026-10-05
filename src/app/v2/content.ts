@@ -137,7 +137,7 @@ export const STAGES: Stage[] = [
     number: "01",
     name: "Descobrir",
     short: "Descobrir",
-    work: "Partir do enquadramento inicial do solicitante e do PO e investigar o problema, as pessoas e o contexto, até ficar claro o que há realmente para resolver.",
+    work: "Investigar o problema, as pessoas e o contexto a partir do enquadramento inicial, para identificar o problema a resolver e as necessidades que o sustentam.",
     aiSupport: "Organiza os materiais, resume as evidências com a origem e prepara perguntas.",
     methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
