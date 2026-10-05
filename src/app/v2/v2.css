@@ -2395,12 +2395,15 @@
   position: absolute;
   left: 120px;
   top: 400px;
-  width: 1680px;
+  width: 1800px;
+  /* Corta só à direita, na margem do palco, para a lista parecer continuar. */
+  clip-path: inset(-200px 0 -200px -200px);
 }
 
 .v2-team ul {
   display: grid;
-  grid-template-columns: repeat(3, 420px);
+  grid-auto-flow: column;
+  grid-auto-columns: 420px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2460,42 +2463,38 @@
   height: 84px;
 }
 
-/* Lugares vazios: pequenos, encostados uns aos outros, só a sugerir que a equipa precisa de crescer. */
-.v2-team-open {
-  position: absolute;
-  left: 1270px;
-  top: 59px;
-  width: 340px;
+/* Lugares por preencher: cartões esqueleto na mesma grelha, a continuar para fora do palco, sem brilho. */
+.v2-team-seat .v2-avatar {
+  background: #e9f2fe;
 }
 
-.v2-team-open div {
-  display: flex;
+.v2-team-seat i {
+  display: block;
+  border-radius: 999px;
+  background: #e9f2fe;
 }
 
-/* Empilhados como avatares: o anel branco separa cada círculo do anterior, sem os tracejados se cruzarem. */
-.v2-team-open i {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  margin-right: -20px;
-  border: 2px dashed var(--sky);
-  border-radius: 50%;
-  background: var(--tint);
-  box-shadow: 0 0 0 5px #ffffff;
+.v2-seat-name {
+  width: 220px;
+  height: 18px;
+  margin-top: 34px;
 }
 
-.v2-team-open i:nth-child(1) {
-  z-index: 3;
+.v2-seat-role {
+  width: 140px;
+  height: 12px;
+  margin-top: 14px;
 }
 
-.v2-team-open i:nth-child(2) {
-  z-index: 2;
+.v2-seat-line {
+  width: 300px;
+  height: 12px;
+  margin-top: 20px;
 }
 
-.v2-team-open p {
-  margin-top: 16px;
-  font-size: 15px;
-  color: var(--muted);
+.v2-seat-line + .v2-seat-line {
+  width: 220px;
+  margin-top: 12px;
 }
 
 @keyframes v2-breathe {

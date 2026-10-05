@@ -472,7 +472,7 @@ export const TEAM: { name: string; role: string; intro: string; photo?: string }
   },
 ];
 
-/** Lugares vazios mostrados ao lado da equipa, só para sugerir que precisa de crescer (sem cargos nem prazos). */
+/** Lugares por preencher, mostrados como cartões esqueleto a seguir à equipa, só para sugerir que precisa de crescer (sem cargos nem prazos). */
 export const TEAM_OPEN_SEATS = 3;
 
 /** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. Textos da apresentação original, abreviados. */
