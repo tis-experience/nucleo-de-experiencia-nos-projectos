@@ -15,6 +15,7 @@ import {
   ResultsScene,
   StartScene,
   TeamScene,
+  UxScene,
 } from "./scenes";
 import "./v2.css";
 
@@ -217,6 +218,7 @@ export default function AppV2() {
               transition={{ duration: 0.35 }}
             >
               {step.scene === "capa" && <CoverScene />}
+              {step.scene === "ux" && <UxScene />}
               {step.scene === "partida" && <StartScene />}
               {step.scene === "mudanca" && <ChangeScene build={step.build ?? 0} />}
               {step.scene === "etapas" && <StageScene stageIndex={step.stageIndex ?? 0} />}

@@ -404,8 +404,34 @@ export const TEAM: { name: string; role: string; intro: string; photo?: string }
 /** Reforço previsto no cenário a 6 meses da apresentação original (página de composição da equipa). */
 export const TEAM_NEXT = ["Designer Analista", "Designer Analista", "UX Researcher"];
 
+/** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. */
+export const UX_LAYERS = [
+  { name: "Superfície", text: "A interface visual", questions: ["Como é visualmente a solução provável?"] },
+  {
+    name: "Esqueleto",
+    text: "Componentes, wireframes e navegação",
+    questions: ["Como são organizadas as informações e acções?"],
+  },
+  {
+    name: "Estrutura",
+    text: "Fluxos, arquitectura de informação e design de interacção",
+    questions: ["Como deve o utilizador interagir com o produto?", "Que interacções podem melhorar a experiência?"],
+  },
+  {
+    name: "Escopo",
+    text: "Funcionalidades, conteúdo e requisitos",
+    questions: ["Quais informações e acções são necessárias?"],
+  },
+  {
+    name: "Estratégia",
+    text: "Necessidades do utilizador e objectivos do produto",
+    questions: ["O quê? Porquê? Para quem? Onde? Quando?", "Que valor isso cria para o utilizador e para o negócio?"],
+  },
+];
+
 export type SceneId =
   | "capa"
+  | "ux"
   | "partida"
   | "mudanca"
   | "etapas"
@@ -421,6 +447,7 @@ export type Step = { id: string; scene: SceneId; label: string; build?: number; 
 export const STEPS: Step[] = [
   { id: "capa", scene: "capa", label: "Abertura" },
   { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
+  { id: "o-que-e-ux", scene: "ux", label: "O que é UX" },
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
