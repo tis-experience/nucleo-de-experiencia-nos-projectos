@@ -158,7 +158,7 @@ export function CoverScene() {
           <MaskLine delay={0.45}>nos projectos</MaskLine>
         </h1>
         <motion.p className="v2-cover-lead" {...rise(1)}>
-          Como o processo de UX, acelerado por IA, se integra nos projectos da TIS.
+          Como o processo de UX se integra nos projectos da TIS.
         </motion.p>
       </div>
     </section>
