@@ -2276,7 +2276,12 @@
   transform: rotateX(62deg) rotateZ(45deg);
   pointer-events: auto;
   cursor: pointer;
-  transition: box-shadow 0.35s ease;
+  transition: box-shadow 0.35s ease, opacity 0.35s ease;
+}
+
+/* As camadas fora de foco ficam translúcidas; a escolhida ganha um anel exterior e uma sombra afastada e suave. */
+.v2-layers li:not([data-active]) .v2-plane {
+  opacity: 0.55;
 }
 
 .v2-plane[data-depth="0"] {
@@ -2300,7 +2305,9 @@
 }
 
 .v2-layers li[data-active] .v2-plane {
-  box-shadow: 0 20px 40px rgba(5, 28, 117, 0.32);
+  box-shadow:
+    0 0 0 10px rgba(3, 110, 242, 0.16),
+    0 48px 70px rgba(5, 28, 117, 0.16);
 }
 
 .v2-layers button {
