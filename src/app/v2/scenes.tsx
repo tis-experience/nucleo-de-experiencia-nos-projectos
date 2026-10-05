@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
-import layerScope from "../../imports/iceberg-escopo.png";
-import layerSkeleton from "../../imports/iceberg-esqueleto.png";
-import layerStrategy from "../../imports/iceberg-estrategia.png";
-import layerStructure from "../../imports/iceberg-estrutura.png";
-import layerSurface from "../../imports/iceberg-superficie.png";
+import layerScope from "./assets/camada-escopo.webp";
+import layerSkeleton from "./assets/camada-esqueleto.webp";
+import layerStrategy from "./assets/camada-estrategia.webp";
+import layerStructure from "./assets/camada-estrutura.webp";
+import layerSurface from "./assets/camada-superficie.webp";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_FLOW,
@@ -187,33 +187,39 @@ export function ClosingScene() {
 
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
-const LAYER_GAP = 70;
-const LAYER_OPEN = 30;
+const LAYER_GAP = 64;
+const LAYER_OPEN = 26;
 const LAYER_IMAGES = [layerSurface, layerSkeleton, layerStructure, layerScope, layerStrategy];
 
-/** A pilha das cinco camadas serve de índice: a camada escolhida (clique ou setas cima e baixo) destaca-se da pilha e o painel ao lado mostra o conteúdo dela. */
+/** A pilha das cinco camadas serve de índice: a camada escolhida (clique ou setas cima e baixo) destaca-se da pilha e o cartão ao lado mostra o conteúdo dela. */
 export function UxScene() {
   const [selected, select] = useSelected(UX_LAYERS.length);
   const layer = UX_LAYERS[selected];
+
+  // As cinco ilustrações ficam em memória logo à entrada, para a troca de camada não esperar pelo carregamento.
+  useEffect(() => {
+    LAYER_IMAGES.forEach((source) => {
+      new Image().src = source;
+    });
+  }, []);
 
   return (
     <section className="v2-scene" aria-labelledby="v2-ux-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
         O que é UX
       </motion.p>
-      <div className="v2-head" data-width="narrow">
+      <div className="v2-head">
         <h1 id="v2-ux-title" className="v2-title">
-          <MaskLine>A experiência</MaskLine>
-          <MaskLine delay={0.12}>tem 5 camadas</MaskLine>
+          <MaskLine>A experiência tem 5 camadas</MaskLine>
         </h1>
-        <motion.p className="v2-lead" {...rise(0.4, 20)}>
+        <motion.p className="v2-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
           A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
         </motion.p>
       </div>
 
       <ol className="v2-layers">
         {UX_LAYERS.map((item, index) => {
-          const offset = selected === 0 ? (index > 0 ? LAYER_OPEN * 2 : 0) : index > selected ? LAYER_OPEN * 2 : index === selected ? LAYER_OPEN : 0;
+          const offset = index > selected || (selected === 0 && index > 0) ? LAYER_OPEN * 2 : index === selected && index > 0 ? LAYER_OPEN : 0;
           return (
             <motion.li
               key={item.name}
@@ -231,28 +237,34 @@ export function UxScene() {
           );
         })}
       </ol>
+      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002)</p>
 
-      <motion.div className="v2-layer-detail" {...rise(0.7, 24)}>
+      <motion.div className="v2-layer-card" {...rise(0.6, 24)}>
         <Swap>
           <motion.div
             key={selected}
-            initial={STILL ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={STILL ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={exit}
             transition={tween(0.35)}
           >
-            <img src={LAYER_IMAGES[selected]} alt="" />
-            <p className="v2-label">
-              Camada {selected + 1} de {UX_LAYERS.length}
-            </p>
-            <h2>{layer.name}</h2>
-            <p className="v2-layer-text">{layer.text}</p>
-            <p className="v2-layer-body">{layer.body}</p>
-            <p className="v2-layer-question">{layer.question}</p>
+            <img src={LAYER_IMAGES[selected]} alt="" width={1040} height={330} decoding="async" />
+            <div className="v2-layer-copy">
+              <div>
+                <p className="v2-label">
+                  Camada {selected + 1} de {UX_LAYERS.length}
+                </p>
+                <h2>{layer.name}</h2>
+                <p className="v2-layer-text">{layer.text}</p>
+              </div>
+              <div>
+                <p className="v2-layer-body">{layer.body}</p>
+                <p className="v2-layer-question">{layer.question}</p>
+              </div>
+            </div>
           </motion.div>
         </Swap>
       </motion.div>
-      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002)</p>
     </section>
   );
 }
