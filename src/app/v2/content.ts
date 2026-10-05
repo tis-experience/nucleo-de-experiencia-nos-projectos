@@ -49,16 +49,17 @@ export const MATURITY_DETAILS: { quote: string; body: string; list?: string[] }[
   },
 ];
 
-/** Como decorre actualmente o trabalho de UX (página 03 da apresentação original).
+/** Uma situação frequente nos projectos, contada sem apontar a ninguém: o que acontece quando UX começa pelo desenho
+    (adaptado da página 03 da apresentação original).
     Nos passos em falta, `stem` é o ponto da linha do processo (em px) onde o passo devia acontecer. */
 export const CURRENT_PROCESS = [
   {
-    label: "Como entramos",
+    label: "Como UX entra",
     headline: "UX entra na proposta comercial, para desenhar ecrãs",
     items: [
       {
         title: "Entrada via proposta comercial",
-        text: "O Núcleo é accionado para produzir ecrãs em prazos curtos, com pouca análise prévia.",
+        text: "A equipa de UX é chamada para produzir ecrãs em prazos curtos, com pouca análise prévia.",
         stem: 30,
       },
       {
@@ -529,7 +530,7 @@ export const STEPS: Step[] = [
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
   { id: "o-que-e-ux", scene: "ux", label: "O que é UX" },
   { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
-  { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
+  { id: "processo-actual", scene: "mudanca", label: "Quando UX começa pelo desenho", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
   { id: "areas", scene: "entregas", label: "Relação com as áreas" },

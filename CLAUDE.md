@@ -53,7 +53,7 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - `#/v2/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
   rever o layout.
 
-Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, processo actual, processo de
+Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, situação em que UX começa pelo desenho, processo de
 UX com os métodos, as seis etapas, relação com as áreas, Design System, resultados (mercado e medição na TIS) e fecho.
 
 ## Comandos e publicação
