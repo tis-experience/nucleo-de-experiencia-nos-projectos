@@ -858,6 +858,127 @@
 }
 
 /* O mesmo ecrã, de esboço a interface final */
+/* Etapa Definir: persona, escopo e critérios lado a lado. */
+.v2-def {
+  position: absolute;
+  inset: 40px 20px;
+  display: grid;
+  grid-template-columns: 280px 1fr 290px;
+  gap: 28px;
+}
+
+.v2-def-card,
+.v2-def-scope {
+  position: relative;
+  padding: 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(5, 28, 117, 0.08);
+}
+
+.v2-def b {
+  display: block;
+  height: 12px;
+  margin-top: 14px;
+  border-radius: 6px;
+  background: #b7bfcd;
+}
+
+.v2-def b[data-soft] {
+  background: #dfe3ea;
+}
+
+.v2-def-avatar {
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin: 26px 0 22px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.v2-def-card > span {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.v2-def-card > span b {
+  width: 76px;
+  height: 28px;
+  margin: 0;
+  border-radius: 14px;
+  background: var(--tint);
+}
+
+/* O que fica dentro do escopo está no contorno a tracejado; o resto fica fora, esbatido. */
+.v2-def-scope {
+  background: transparent;
+  box-shadow: none;
+}
+
+.v2-def-scope > div {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 22px;
+  border: 2px dashed var(--blue);
+  border-radius: 18px;
+}
+
+.v2-def-scope i {
+  display: block;
+  height: 58px;
+  border-radius: 12px;
+  background: rgba(3, 110, 242, 0.85);
+}
+
+.v2-def-scope > div i:nth-child(2) {
+  background: rgba(3, 110, 242, 0.6);
+}
+
+.v2-def-scope > div i:nth-child(3) {
+  background: rgba(3, 110, 242, 0.4);
+}
+
+.v2-def-scope > i[data-out] {
+  width: 62%;
+  height: 34px;
+  margin: 16px 0 0 24px;
+  background: #e3e7ee;
+}
+
+.v2-def-scope > i[data-out] + i[data-out] {
+  width: 44%;
+  margin-top: 10px;
+}
+
+.v2-def-card[data-kind="criteria"] > span {
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.v2-def-card[data-kind="criteria"] > span i {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 50%;
+  background: var(--blue);
+  font-style: normal;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.v2-def-card[data-kind="criteria"] > span b {
+  width: auto;
+  height: 12px;
+  border-radius: 6px;
+  background: #b7bfcd;
+}
+
 .v2-flow {
   position: absolute;
   inset: 0;

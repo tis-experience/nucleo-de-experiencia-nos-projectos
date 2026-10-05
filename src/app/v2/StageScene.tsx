@@ -109,6 +109,57 @@ function Notes() {
   );
 }
 
+/** Etapa Definir: a pessoa a servir, o que fica dentro do escopo e os critérios de sucesso. */
+function Definition() {
+  return (
+    <div className="v2-def">
+      <motion.div className="v2-def-card" {...rise(0.2, 20)}>
+        <p className="v2-canvas-label">Persona</p>
+        <i className="v2-def-avatar" />
+        <b style={{ width: 150 }} />
+        <b style={{ width: 210 }} data-soft />
+        <b style={{ width: 180 }} data-soft />
+        <span>
+          <b />
+          <b />
+        </span>
+      </motion.div>
+
+      <motion.div className="v2-def-scope" {...rise(0.4, 20)}>
+        <p className="v2-canvas-label">Escopo</p>
+        <div>
+          {[0, 1, 2].map((index) => (
+            <motion.i
+              key={index}
+              initial={STILL ? false : { opacity: 0, x: 160 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={spring(0.7 + index * 0.12, 90, 16)}
+            />
+          ))}
+        </div>
+        <i data-out />
+        <i data-out />
+      </motion.div>
+
+      <motion.div className="v2-def-card" data-kind="criteria" {...rise(0.6, 20)}>
+        <p className="v2-canvas-label">Critérios</p>
+        {[170, 200, 150].map((width, index) => (
+          <span key={index}>
+            <motion.i
+              initial={STILL ? false : { scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={spring(1.1 + index * 0.18, 260, 16)}
+            >
+              ✓
+            </motion.i>
+            <b style={{ width }} />
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
 const PINS = [
   [246, 104],
   [36, 250],
@@ -270,6 +321,8 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
       <Swap mode="sync">
         {stageIndex === 0 && layer("notes", <Notes />)}
 
+        {stageIndex === 1 && layer("definition", <Definition />)}
+
         {stageIndex === 2 && layer("flow", <Flow />)}
 
         {/* As alternativas ficam em pilha por trás do ecrã escolhido. */}
@@ -346,14 +399,14 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
     <section className="v2-scene" aria-labelledby="v2-process-title">
       <p className="v2-kicker v2-scene-kicker">O processo de UX</p>
       <h1 id="v2-process-title" className="v2-title v2-scene-title">
-        Cinco etapas, aceleradas por IA
+        Seis etapas, aceleradas por IA
       </h1>
 
       <div className="v2-stage-head">
         <Swap>
           <motion.div key={stage.id} exit={exit}>
             <motion.p className="v2-label" {...fade(0.1)}>
-              Etapa {stage.number} de 05
+              Etapa {stage.number} de 06
             </motion.p>
             <h2 className="v2-stage-name">
               <MaskLine delay={0.05}>{stage.name}</MaskLine>

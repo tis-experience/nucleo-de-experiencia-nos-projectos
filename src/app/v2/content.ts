@@ -79,9 +79,10 @@ export const CURRENT_PROCESS = [
   },
 ];
 
-export type StageId = "compreender" | "desenhar" | "avaliar" | "construir" | "validar";
+export type StageId = "descobrir" | "definir" | "explorar" | "validar" | "entregar" | "acompanhar";
 
-/** As cinco etapas do trabalho de UX, segundo a proposta de actuação do Núcleo. */
+/** As seis etapas do processo de UX, com os nomes da apresentação original (Descobrir, Definir, Explorar, Validar,
+    Entregar, Acompanhar). O trabalho, o apoio de IA e as entregas vêm da proposta de actuação do Núcleo. */
 export type Stage = {
   id: StageId;
   number: string;
@@ -98,58 +99,69 @@ export type Stage = {
 
 export const STAGES: Stage[] = [
   {
-    id: "compreender",
+    id: "descobrir",
     number: "01",
-    name: "Compreender o problema",
-    short: "Compreender",
-    work: "Perceber a dificuldade, o resultado esperado e o que ainda é desconhecido, com o solicitante e o PO.",
+    name: "Descobrir",
+    short: "Descobrir",
+    work: "Entender o problema, o utilizador e o contexto, com o solicitante e o PO, incluindo o que ainda é desconhecido.",
     aiSupport: "Organiza os materiais, resume as evidências com a origem e prepara perguntas.",
     methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
-    deliveryContents: "Problema, pessoas, tarefa prioritária, evidências e dúvidas.",
+    deliveryContents: "Problema, pessoas, contexto, evidências e dúvidas.",
   },
   {
-    id: "desenhar",
+    id: "definir",
     number: "02",
-    name: "Desenhar o fluxo e a solução",
-    short: "Desenhar",
-    work: "Desenhar o percurso da pessoa e o comportamento da interface, com o PO nas alternativas e a engenharia na viabilidade.",
+    name: "Definir",
+    short: "Definir",
+    work: "Estabelecer o escopo, as pessoas a servir e os critérios que dizem quando a solução resolve o problema.",
+    aiSupport: "Cruza as evidências com as regras confirmadas e propõe critérios e cenários para rever.",
+    methods: ["Personas", "Tarefa prioritária", "Critérios de sucesso"],
+    delivery: "Escopo de UX",
+    deliveryContents: "Tarefa prioritária, personas, restrições e critérios de sucesso.",
+  },
+  {
+    id: "explorar",
+    number: "03",
+    name: "Explorar",
+    short: "Explorar",
+    work: "Gerar e comparar possibilidades de solução, do fluxo à interface, com o PO nas alternativas e a engenharia na viabilidade.",
     aiSupport: "Produz alternativas e constrói ecrãs a partir dos padrões do Design System.",
     methods: ["Fluxo de utilizador", "Arquitectura de informação", "Esboços", "Demonstração executável"],
     delivery: "Solução de UX/UI",
     deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
   },
   {
-    id: "avaliar",
-    number: "03",
-    name: "Avaliar a solução e ajustar",
-    short: "Avaliar",
-    work: "Escolher uma validação proporcional à dúvida e observar se a pessoa consegue concluir a tarefa.",
+    id: "validar",
+    number: "04",
+    name: "Validar",
+    short: "Validar",
+    work: "Testar com utilizadores, numa validação proporcional à dúvida, e iterar com a evidência recolhida.",
     aiSupport: "Prepara guiões e cenários e agrupa os problemas observados.",
     methods: ["Revisão especializada", "Conversa sobre o fluxo", "Teste de utilização"],
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
   },
   {
-    id: "construir",
-    number: "04",
-    name: "Acompanhar a construção",
-    short: "Acompanhar",
-    work: "Trabalhar com PO, engenharia e QA sobre a mesma versão executável, sem um handoff separado.",
+    id: "entregar",
+    number: "05",
+    name: "Entregar",
+    short: "Entregar",
+    work: "Especificar, alinhar com o desenvolvimento e acompanhar a construção com PO, engenharia e QA sobre a mesma versão executável.",
     aiSupport: "Prepara a especificação de UX e compara a versão com os critérios.",
-    methods: ["Especificação de UX", "Revisão da implementação", "Verificações com QA"],
+    methods: ["Especificação de UX", "Revisão da implementação", "Avaliação de acessibilidade", "Verificações com QA"],
     delivery: "Especificação de UX",
     deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
   },
   {
-    id: "validar",
-    number: "05",
-    name: "Validar a experiência entregue",
-    short: "Validar",
-    work: "Rever fluxos, conteúdo, consistência visual e acessibilidade na versão entregue.",
+    id: "acompanhar",
+    number: "06",
+    name: "Acompanhar",
+    short: "Acompanhar",
+    work: "Avaliar o impacto da versão entregue a partir do feedback e da utilização, e extrair aprendizagens para o ciclo seguinte.",
     aiSupport: "Compara ecrãs e estados e organiza achados e feedback de utilização.",
-    methods: ["Revisão de fluxos e conteúdo", "Avaliação de acessibilidade", "Análise de feedback"],
-    delivery: "Validação de UX",
+    methods: ["Análise de feedback", "Análise da utilização", "Revisão da experiência"],
+    delivery: "Análise da experiência entregue",
     deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
   },
 ];
@@ -269,11 +281,12 @@ export const DS_POINTS = [
 ];
 
 /** Desenho que representa a entrega de cada etapa de UX (índices do desenho, pela ordem de STAGES). */
-export const STAGE_VISUAL = [0, 2, 3, 4, 5];
+export const STAGE_VISUAL = [0, 1, 2, 3, 4, 5];
 
 /** Legenda do desenho que representa cada tipo de entrega do Núcleo. */
 export const DELIVERY_VISUALS: Record<number, string> = {
   0: "Evidências organizadas por temas",
+  1: "Persona, escopo e critérios de sucesso",
   2: "Fluxo, alternativas e demonstração",
   3: "Achados de validação com evidência",
   4: "Interface, componentes e especificação de UX",
@@ -286,31 +299,31 @@ export const PHASES: { name: string; delivery: string; areas: string[]; stages: 
     name: "Proposta comercial",
     delivery: "Brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
     areas: ["pre-venda"],
-    stages: ["desenhar", "compreender"],
+    stages: ["explorar", "descobrir"],
   },
   {
     name: "Discovery",
     delivery: "Problema, utilizadores e métrica de sucesso, direcção visual e fluxos com os estados relevantes.",
     areas: ["requisitos", "produtos"],
-    stages: ["compreender", "desenhar", "avaliar"],
+    stages: ["descobrir", "definir", "explorar", "validar"],
   },
   {
     name: "Desenvolvimento",
     delivery: "Especificação de UX, componentes e revisão de design sobre a versão em construção.",
     areas: ["fabrica", "requisitos", "qa"],
-    stages: ["construir"],
+    stages: ["entregar"],
   },
   {
     name: "Aceite e release",
-    delivery: "Validação de UX: usabilidade, consistência visual e acessibilidade da versão a entregar.",
+    delivery: "Revisão de UX da versão a entregar: usabilidade, consistência visual e acessibilidade.",
     areas: ["qa", "requisitos"],
-    stages: ["validar"],
+    stages: ["entregar", "validar"],
   },
   {
     name: "Sustentação",
     delivery: "Análise do feedback e do uso real, com recomendações de melhoria.",
     areas: ["produtos", "fabrica"],
-    stages: ["validar"],
+    stages: ["acompanhar"],
   },
 ];
 
@@ -331,29 +344,29 @@ export const AREAS: Area[] = [
     name: "Pré-venda",
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
-    stages: ["desenhar", "compreender"],
+    stages: ["explorar", "descobrir"],
   },
   {
     id: "fabrica",
     name: "Fábrica",
     gives: "Requisitos, limitações técnicas e a aplicação em construção.",
     gets: "Fluxos, interfaces, componentes e orientações de comportamento, com acompanhamento da implementação.",
-    stages: ["construir", "desenhar"],
+    stages: ["entregar", "explorar"],
   },
   {
     id: "requisitos",
     name: "Requisitos e ritos",
     note: "PO e Scrum Master",
-    gives: "Regras e prioridades, com participação directa do PO na compreensão do problema, no desenho e na avaliação.",
+    gives: "Regras e prioridades, com participação directa do PO na descoberta, na definição, na exploração de soluções e na validação.",
     gets: "Fluxos, cenários, conteúdo e demonstrações para o refinamento e as revisões.",
-    stages: ["desenhar", "compreender", "avaliar"],
+    stages: ["definir", "descobrir", "explorar", "validar"],
   },
   {
     id: "qa",
     name: "QA",
     gives: "A versão em teste, os percursos que devem funcionar e os defeitos encontrados.",
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
-    stages: ["validar", "construir"],
+    stages: ["entregar", "validar"],
   },
   {
     id: "produtos",
@@ -361,7 +374,7 @@ export const AREAS: Area[] = [
     note: "Academia, Saúde, Finanças e Setor Público",
     gives: "Necessidades, regras, feedback e dados de utilização.",
     gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
-    stages: ["validar", "compreender"],
+    stages: ["acompanhar", "descobrir"],
   },
   {
     id: "marketing",
@@ -369,21 +382,21 @@ export const AREAS: Area[] = [
     note: "Marca TIS e produtos TIS",
     gives: "A comunicação da marca, o público e os canais.",
     gets: "Compreensão do público e experiência nos pontos de contacto, com apoio a conteúdo e navegação.",
-    stages: ["compreender", "desenhar"],
+    stages: ["descobrir", "explorar"],
   },
   {
     id: "pessoas",
     name: "Pessoas e Cultura",
     gives: "Procedimentos, ferramentas, avaliações e eventos internos.",
     gets: "Fluxos, orientações, materiais ou interfaces, e validações com colaboradores.",
-    stages: ["compreender", "avaliar"],
+    stages: ["descobrir", "validar"],
   },
   {
     id: "inovacao",
     name: "Laboratório de Inovação",
     gives: "A ideia, o objectivo do experimento, o público previsto e as limitações.",
     gets: "Fluxos, demonstrações e recomendações fundamentadas no que foi observado.",
-    stages: ["desenhar", "avaliar"],
+    stages: ["explorar", "validar"],
   },
 ];
 
