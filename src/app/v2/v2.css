@@ -2276,13 +2276,12 @@
   transform: rotateX(62deg) rotateZ(45deg);
   pointer-events: auto;
   cursor: pointer;
-  transition: box-shadow 0.4s ease, opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+  transition: box-shadow 0.4s ease, opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
 }
 
-/* As camadas fora de foco ficam desfocadas e mais claras; a escolhida cresce um pouco e ganha uma sombra afastada e suave. */
+/* As camadas fora de foco ficam mais claras e sem borda; a escolhida cresce um pouco e ganha uma sombra afastada e suave. */
 .v2-layers li:not([data-active]) .v2-plane {
   opacity: 0.6;
-  filter: blur(2px);
   border-color: transparent;
 }
 
@@ -2307,7 +2306,7 @@
 }
 
 .v2-layers li[data-active] .v2-plane {
-  border-width: 4px;
+  border-width: 3px;
   transform: rotateX(62deg) rotateZ(45deg) scale(1.1);
   box-shadow: 0 48px 70px rgba(5, 28, 117, 0.2);
 }
