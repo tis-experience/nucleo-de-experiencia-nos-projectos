@@ -10,7 +10,7 @@ import {
   ChangeScene,
   ClosingScene,
   CoverScene,
-  DeliveriesScene,
+  AreasScene,
   DesignSystemScene,
   ResultsScene,
   StartScene,
@@ -47,8 +47,6 @@ export default function AppV2() {
   const [scale, setScale] = useState(1);
   const [stepIndex, setStepIndex] = useState(() => readHash().stepIndex);
   const [areaId, setAreaId] = useState(() => readHash().areaId);
-  const [phaseIndex, setPhaseIndex] = useState(0);
-  const [deliveryStage, setDeliveryStage] = useState(0);
   const [cursorVisible, setCursorVisible] = useState(false);
   const [isLeftHalf, setIsLeftHalf] = useState(false);
   const [isOnInteractive, setIsOnInteractive] = useState(false);
@@ -128,10 +126,6 @@ export default function AppV2() {
         if (step.id === "areas") {
           const current = AREAS.findIndex((area) => area.id === areaId);
           setAreaId(AREAS[(current + offset + AREAS.length) % AREAS.length].id);
-        } else if (step.id === "fases") {
-          setPhaseIndex((phaseIndex + offset + PHASES.length) % PHASES.length);
-        } else if (step.id === "ia") {
-          setDeliveryStage((deliveryStage + offset + STAGES.length) % STAGES.length);
         } else if (step.scene === "resultados") {
           return; // A cena trata das suas próprias selecções.
         } else if (sceneLength > 1) {
@@ -143,7 +137,7 @@ export default function AppV2() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [stepIndex, step, areaId, phaseIndex, deliveryStage]);
+  }, [stepIndex, step, areaId]);
 
   // ── Navegação pelo cursor: metade direita avança, metade esquerda recua ─
   const handleMouseMove = (event: MouseEvent) => {
@@ -223,18 +217,7 @@ export default function AppV2() {
               {step.scene === "mudanca" && <ChangeScene build={step.build ?? 0} />}
               {step.scene === "etapas" && <StageScene stageIndex={step.stageIndex ?? 0} />}
               {step.scene === "ds" && <DesignSystemScene />}
-              {step.scene === "entregas" && (
-                <DeliveriesScene
-                  lens={step.build ?? 0}
-                  stageIndex={deliveryStage}
-                  phaseIndex={phaseIndex}
-                  areaId={areaId}
-                  onLens={(lens) => goTo(sceneStart + lens - 1)}
-                  onSelectStage={setDeliveryStage}
-                  onSelectPhase={setPhaseIndex}
-                  onSelectArea={setAreaId}
-                />
-              )}
+              {step.scene === "entregas" && <AreasScene areaId={areaId} onSelectArea={setAreaId} />}
               {step.scene === "resultados" && (
                 <ResultsScene lens={step.build ?? 0} onLens={(lens) => goTo(sceneStart + lens)} />
               )}

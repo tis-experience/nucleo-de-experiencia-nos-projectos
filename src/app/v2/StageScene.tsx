@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
-import { STAGES, STAGE_VISUAL } from "./content";
+import { AREAS, PHASES, STAGES, STAGE_VISUAL } from "./content";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
 type Fidelity = "wire" | "final";
@@ -397,9 +397,9 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
 
   return (
     <section className="v2-scene" aria-labelledby="v2-process-title">
-      <p className="v2-kicker v2-scene-kicker">O processo de UX</p>
+      <p className="v2-kicker v2-scene-kicker">O processo de UX nos projectos</p>
       <h1 id="v2-process-title" className="v2-title v2-scene-title">
-        Seis etapas, aceleradas por IA
+        O que o Núcleo faz e entrega em cada etapa
       </h1>
 
       <div className="v2-stage-head">
@@ -418,6 +418,22 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
               <div>
                 <dt>Apoio de IA</dt>
                 <dd>{stage.aiSupport}</dd>
+              </div>
+              <div>
+                <dt>Fases do projecto</dt>
+                <dd className="v2-links">
+                  {PHASES.filter((phase) => phase.stages.includes(stage.id)).map((phase) => (
+                    <span key={phase.name}>{phase.name}</span>
+                  ))}
+                </dd>
+              </div>
+              <div>
+                <dt>Com quem</dt>
+                <dd className="v2-links">
+                  {AREAS.filter((area) => area.stages.includes(stage.id)).map((area) => (
+                    <span key={area.id}>{area.name}</span>
+                  ))}
+                </dd>
               </div>
             </motion.dl>
           </motion.div>

@@ -331,6 +331,8 @@ export type Area = {
   id: string;
   name: string;
   note?: string;
+  /** Como o Núcleo contribui para o trabalho da área, numa frase. */
+  role: string;
   gives: string;
   gets: string;
   /** Etapas de UX em que a área participa; a primeira é a principal e dá o desenho e a entrega mostrados. */
@@ -342,6 +344,7 @@ export const AREAS: Area[] = [
   {
     id: "pre-venda",
     name: "Pré-venda",
+    role: "Ajuda a esclarecer o problema do cliente e a mostrar a solução numa demonstração, dentro do prazo da proposta.",
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
     stages: ["explorar", "descobrir"],
@@ -349,6 +352,7 @@ export const AREAS: Area[] = [
   {
     id: "fabrica",
     name: "Fábrica",
+    role: "Trabalha com a engenharia sobre a versão em construção, para que a implementação preserve as decisões de experiência.",
     gives: "Requisitos, limitações técnicas e a aplicação em construção.",
     gets: "Fluxos, interfaces, componentes e orientações de comportamento, com acompanhamento da implementação.",
     stages: ["entregar", "explorar"],
@@ -357,6 +361,7 @@ export const AREAS: Area[] = [
     id: "requisitos",
     name: "Requisitos e ritos",
     note: "PO e Scrum Master",
+    role: "Analisa as necessidades com o PO e leva fluxos e cenários aos ritos da equipa, para que as decisões sejam tomadas sobre algo concreto.",
     gives: "Regras e prioridades, com participação directa do PO na descoberta, na definição, na exploração de soluções e na validação.",
     gets: "Fluxos, cenários, conteúdo e demonstrações para o refinamento e as revisões.",
     stages: ["definir", "descobrir", "explorar", "validar"],
@@ -364,6 +369,7 @@ export const AREAS: Area[] = [
   {
     id: "qa",
     name: "QA",
+    role: "Ajuda a transformar os comportamentos esperados em critérios e avalia a usabilidade e a acessibilidade da versão em teste.",
     gives: "A versão em teste, os percursos que devem funcionar e os defeitos encontrados.",
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
     stages: ["entregar", "validar"],
@@ -372,6 +378,7 @@ export const AREAS: Area[] = [
     id: "produtos",
     name: "Produtos TIS",
     note: "Academia, Saúde, Finanças e Setor Público",
+    role: "Acompanha os produtos TIS de forma contínua, da pesquisa com utilizadores às melhorias depois da entrega.",
     gives: "Necessidades, regras, feedback e dados de utilização.",
     gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
     stages: ["acompanhar", "descobrir"],
@@ -380,6 +387,7 @@ export const AREAS: Area[] = [
     id: "marketing",
     name: "Marketing",
     note: "Marca TIS e produtos TIS",
+    role: "Apoia a experiência nos pontos de contacto da marca e dos produtos TIS, do conteúdo à navegação.",
     gives: "A comunicação da marca, o público e os canais.",
     gets: "Compreensão do público e experiência nos pontos de contacto, com apoio a conteúdo e navegação.",
     stages: ["descobrir", "explorar"],
@@ -387,6 +395,7 @@ export const AREAS: Area[] = [
   {
     id: "pessoas",
     name: "Pessoas e Cultura",
+    role: "Aplica o processo de UX à experiência dos colaboradores, em procedimentos, ferramentas e eventos internos.",
     gives: "Procedimentos, ferramentas, avaliações e eventos internos.",
     gets: "Fluxos, orientações, materiais ou interfaces, e validações com colaboradores.",
     stages: ["descobrir", "validar"],
@@ -394,6 +403,7 @@ export const AREAS: Area[] = [
   {
     id: "inovacao",
     name: "Laboratório de Inovação",
+    role: "Ajuda a definir o que cada experimento pretende verificar sobre a experiência e constrói a representação para o testar.",
     gives: "A ideia, o objectivo do experimento, o público previsto e as limitações.",
     gets: "Fluxos, demonstrações e recomendações fundamentadas no que foi observado.",
     stages: ["explorar", "validar"],
@@ -489,8 +499,7 @@ export const STEPS: Step[] = [
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
-  { id: "fases", scene: "entregas", label: "O que o Núcleo entrega, por fase", build: 1 },
-  { id: "areas", scene: "entregas", label: "O que o Núcleo entrega, por área", build: 2 },
+  { id: "areas", scene: "entregas", label: "Relação com as áreas" },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
   { id: "mercado", scene: "resultados", label: "Resultados no mercado", build: 0 },
   { id: "medir", scene: "resultados", label: "Como vamos medir na TIS", build: 1 },

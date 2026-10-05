@@ -627,234 +627,112 @@ export function DesignSystemScene() {
   );
 }
 
-/* ── O que o Núcleo entrega: uma cena, três ópticas ─────────────────── */
+/* ── Relação com as áreas ─────────────────────────────────────────────── */
 
-const ORBIT = { cx: 370, cy: 610, rx: 215, ry: 215 };
-/** O apoio de IA faz parte do processo e aparece nos slides das etapas; aqui as entregas vêem-se por fase ou por área. */
-const LENSES = ["Por fase", "Por área"];
+const ORBIT = { cx: 370, cy: 600, rx: 215, ry: 215 };
 
 const orbitPoint = (index: number) => {
   const angle = ((-90 + index * (360 / AREAS.length)) * Math.PI) / 180;
   return { x: ORBIT.cx + ORBIT.rx * Math.cos(angle), y: ORBIT.cy + ORBIT.ry * Math.sin(angle) };
 };
 
-/** A mesma entrega vista pela etapa de UX com apoio de IA, pela fase do projecto ou pela área que a recebe.
-    O desenho e a ficha ao lado são partilhados, e cada item da ficha leva à óptica correspondente. */
-export function DeliveriesScene({
-  lens,
-  stageIndex,
-  phaseIndex,
-  areaId,
-  onLens,
-  onSelectStage,
-  onSelectPhase,
-  onSelectArea,
-}: {
-  lens: number;
-  stageIndex: number;
-  phaseIndex: number;
-  areaId: string;
-  onLens: (lens: number) => void;
-  onSelectStage: (index: number) => void;
-  onSelectPhase: (index: number) => void;
-  onSelectArea: (id: string) => void;
-}) {
-  const phase = PHASES[phaseIndex];
+/** O Núcleo ao centro e as áreas à volta. A ficha mostra como o Núcleo contribui para a área escolhida,
+    o que cada lado traz e as etapas de UX em que trabalham juntos. */
+export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectArea: (id: string) => void }) {
   const area = AREAS.find((item) => item.id === areaId) ?? AREAS[0];
-  // O desenho e a entrega são sempre os da etapa de UX: a escolhida, ou a principal da fase ou da área.
-  const stageId = [STAGES[stageIndex].id, phase.stages[0], area.stages[0]][lens];
-  const stage = STAGES.find((item) => item.id === stageId) ?? STAGES[0];
-  const visual = STAGE_VISUAL[STAGES.indexOf(stage)];
-  const selectionKey = [stage.id, phase.name, area.id][lens];
 
   return (
-    <section className="v2-scene" aria-labelledby="v2-deliveries-title">
+    <section className="v2-scene" aria-labelledby="v2-areas-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
-        Integração com o processo da TIS
+        Relação com as áreas
       </motion.p>
-      <h1 id="v2-deliveries-title" className="v2-title v2-scene-title">
-        <MaskLine>O que o Núcleo entrega</MaskLine>
+      <h1 id="v2-areas-title" className="v2-title v2-scene-title">
+        <MaskLine>Como o Núcleo contribui com cada área</MaskLine>
       </h1>
 
-      <LensToggle id="entregas" options={LENSES} value={lens - 1} onChange={(index) => onLens(index + 1)} />
+      <motion.div className="v2-layer" {...fade(0.1)}>
+        <svg className="v2-orbit-lines" viewBox="0 0 1920 1080" fill="none" aria-hidden>
+          {AREAS.map((item, index) => {
+            const point = orbitPoint(index);
+            return (
+              <line key={item.id} x1={ORBIT.cx} y1={ORBIT.cy} x2={point.x} y2={point.y} data-on={item.id === area.id} />
+            );
+          })}
+        </svg>
+        <motion.div
+          className="v2-orbit-core"
+          style={{ left: ORBIT.cx, top: ORBIT.cy }}
+          initial={STILL ? false : { scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={spring(0.2, 120, 14)}
+        >
+          <Mark className="v2-orbit-mark" />
+        </motion.div>
+        <ul className="v2-orbit" aria-label="Áreas">
+          {AREAS.map((item, index) => {
+            const point = orbitPoint(index);
+            return (
+              <motion.li
+                key={item.id}
+                style={{ left: point.x, top: point.y }}
+                initial={STILL ? false : { opacity: 0, scale: 0.4 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={spring(0.3 + index * 0.06, 160, 16)}
+              >
+                <button type="button" aria-pressed={item.id === area.id} onClick={() => onSelectArea(item.id)}>
+                  {item.name}
+                </button>
+              </motion.li>
+            );
+          })}
+        </ul>
+      </motion.div>
 
-      <Swap>
-        {lens === 0 && (
-          <motion.div key="ia" className="v2-lens" exit={exit}>
-            <ol className="v2-pick-list" data-size="large" aria-label="Etapas de UX">
-              {STAGES.map((item, index) => (
-                <motion.li key={item.id} {...rise(0.3 + index * 0.08, 20)}>
-                  <button type="button" aria-pressed={index === stageIndex} onClick={() => onSelectStage(index)}>
-                    <b>{item.number}</b>
-                    {item.short}
-                  </button>
-                </motion.li>
-              ))}
-            </ol>
-          </motion.div>
-        )}
-
-        {lens === 1 && (
-          <motion.div key="fases" className="v2-lens" exit={exit}>
-            <ol className="v2-pick-list" data-size="large" aria-label="Fases do projecto">
-              {PHASES.map((item, index) => (
-                <motion.li key={item.name} {...rise(0.3 + index * 0.08, 20)}>
-                  <button type="button" aria-pressed={index === phaseIndex} onClick={() => onSelectPhase(index)}>
-                    <b>{number(index)}</b>
-                    {item.name}
-                  </button>
-                </motion.li>
-              ))}
-            </ol>
-          </motion.div>
-        )}
-
-        {lens === 2 && (
-          <motion.div key="areas" className="v2-layer" exit={exit} {...fade(0.1)}>
-            <svg className="v2-orbit-lines" viewBox="0 0 1920 1080" fill="none" aria-hidden>
-              {AREAS.map((item, index) => {
-                const point = orbitPoint(index);
-                return (
-                  <line
-                    key={item.id}
-                    x1={ORBIT.cx}
-                    y1={ORBIT.cy}
-                    x2={point.x}
-                    y2={point.y}
-                    data-on={item.id === area.id}
-                  />
-                );
-              })}
-            </svg>
-            <motion.div
-              className="v2-orbit-core"
-              style={{ left: ORBIT.cx, top: ORBIT.cy }}
-              initial={STILL ? false : { scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={spring(0.2, 120, 14)}
-            >
-              <Mark className="v2-orbit-mark" />
-            </motion.div>
-            <ul className="v2-orbit" aria-label="Áreas">
-              {AREAS.map((item, index) => {
-                const point = orbitPoint(index);
-                return (
-                  <motion.li
-                    key={item.id}
-                    style={{ left: point.x, top: point.y }}
-                    initial={STILL ? false : { opacity: 0, scale: 0.4 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={spring(0.3 + index * 0.06, 160, 16)}
-                  >
-                    <button type="button" aria-pressed={item.id === area.id} onClick={() => onSelectArea(item.id)}>
-                      {item.name}
-                    </button>
-                  </motion.li>
-                );
-              })}
-            </ul>
-          </motion.div>
-        )}
-      </Swap>
-
-      <motion.figure className="v2-delivery-visual" {...rise(0.4, 24)}>
-        <div className="v2-preview">
-          <ArtifactCanvas stageIndex={visual} />
-        </div>
-        <figcaption>
-          <span className="v2-label">Entrega</span>
-          <b>{stage.delivery}</b>
-          {stage.deliveryContents}
-        </figcaption>
-      </motion.figure>
-
-      <div className="v2-delivery" aria-live="polite">
+      <div className="v2-area" aria-live="polite">
         <Swap>
-          <motion.dl key={selectionKey} className="v2-delivery-facts" exit={exit} {...rise(0.2, 16)}>
-            {lens === 0 && (
-              <div data-kind="main">
-                <dt>{stage.name}</dt>
-                <dd>
-                  <span className="v2-label">Apoio de IA</span>
-                  {stage.aiSupport}
-                </dd>
-                <dd>
-                  <span className="v2-label">Os assistentes recebem</span>
-                  Base de conhecimento de UX e contexto do projecto.
-                </dd>
-                <dd>
-                  <span className="v2-label">Revisto por</span>
-                  {AI_FLOW.reviewers.map((reviewer) => reviewer.who).join(", ")}.
-                </dd>
-              </div>
-            )}
-            {lens === 1 && (
-              <div data-kind="main">
-                <dt>{phase.name}</dt>
-                <dd>{phase.delivery}</dd>
-              </div>
-            )}
-            {lens === 2 && (
-              <div data-kind="main">
-                <dt>
-                  {area.name}
-                  {area.note && <small>{area.note}</small>}
-                </dt>
-                <dd>
-                  <span className="v2-label">Recebe do Núcleo</span>
-                  {area.gets}
-                </dd>
-                <dd>
-                  <span className="v2-label">Entrega ao Núcleo</span>
-                  {area.gives}
-                </dd>
-              </div>
-            )}
+          <motion.div key={area.id} exit={exit} {...rise(0.2, 16)}>
+            <h2>
+              {area.name}
+              {area.note && <small>{area.note}</small>}
+            </h2>
+            <p className="v2-area-role">{area.role}</p>
 
-            {lens !== 0 && (
+            <div className="v2-area-exchange">
+              <p>
+                <span className="v2-label">A área traz</span>
+                {area.gives}
+              </p>
+              <svg viewBox="0 0 40 40" fill="none" aria-hidden>
+                <path d="M6 14h26m-7-7 7 7-7 7M34 27H8m7 7-7-7 7-7" />
+              </svg>
+              <p>
+                <span className="v2-label">O Núcleo devolve</span>
+                {area.gets}
+              </p>
+            </div>
+
+            <dl className="v2-area-links">
               <div>
-                <dt>Etapas de UX</dt>
+                <dt>Etapas de UX em conjunto</dt>
                 <dd className="v2-links">
-                  {STAGES.map((item) =>
-                    (lens === 1 ? phase.stages : area.stages).includes(item.id) ? (
-                      <span key={item.id}>
-                        {item.number} {item.name}
-                      </span>
-                    ) : null,
-                  )}
+                  {STAGES.filter((item) => area.stages.includes(item.id)).map((item) => (
+                    <span key={item.id}>
+                      {item.number} {item.name}
+                    </span>
+                  ))}
                 </dd>
               </div>
-            )}
-            {lens !== 1 && (
               <div>
                 <dt>Fases do projecto</dt>
                 <dd className="v2-links">
-                  {PHASES.map((item, index) =>
-                    (lens === 2 ? item.areas.includes(area.id) : item.stages.includes(stage.id)) ? (
-                      <button key={item.name} type="button" onClick={() => (onSelectPhase(index), onLens(1))}>
-                        {item.name}
-                      </button>
-                    ) : null,
-                  )}
-                  {lens === 2 && !PHASES.some((item) => item.areas.includes(area.id)) && "Iniciativas próprias da área"}
+                  {PHASES.filter((item) => item.areas.includes(area.id)).map((item) => (
+                    <span key={item.name}>{item.name}</span>
+                  ))}
+                  {!PHASES.some((item) => item.areas.includes(area.id)) && <span>Iniciativas próprias da área</span>}
                 </dd>
               </div>
-            )}
-            {lens !== 2 && (
-              <div>
-                <dt>Áreas envolvidas</dt>
-                <dd className="v2-links">
-                  {AREAS.filter((item) => (lens === 1 ? phase.areas.includes(item.id) : item.stages.includes(stage.id))).map(
-                    (item) => (
-                      <button key={item.id} type="button" onClick={() => (onSelectArea(item.id), onLens(2))}>
-                        {item.name}
-                      </button>
-                    ),
-                  )}
-                </dd>
-              </div>
-            )}
-          </motion.dl>
+            </dl>
+          </motion.div>
         </Swap>
       </div>
     </section>
