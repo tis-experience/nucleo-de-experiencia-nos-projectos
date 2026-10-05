@@ -93,12 +93,13 @@
   line-height: 1.4;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--muted);
 }
 
 .v2-label {
   font-size: 13px;
   letter-spacing: 1.8px;
+  color: var(--blue);
 }
 
 .v2-scene-kicker {
