@@ -715,10 +715,9 @@
 .v2-missing-step {
   position: absolute;
   top: 32px;
-  padding: 10px 18px;
-  border: 2px dashed var(--sky);
+  padding: 12px 20px;
   border-radius: 14px;
-  background: #ffffff;
+  background: var(--tint);
   font-family: var(--strong);
   font-size: 17px;
   white-space: nowrap;
