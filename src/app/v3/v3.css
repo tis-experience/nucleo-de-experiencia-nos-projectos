@@ -172,6 +172,7 @@
 
 .v3-footnote[data-raised] {
   top: 800px;
+  width: 1100px;
 }
 
 .v3-footnote {
@@ -2293,6 +2294,177 @@
   background: var(--tint);
   font-size: 16px;
   color: var(--navy);
+}
+
+/* ── Como a IA entra ───────────────────────────────────────────────────── */
+
+.v3-ai {
+  position: absolute;
+  left: 120px;
+  top: 330px;
+  width: 1680px;
+  display: grid;
+  grid-template-columns: 420px 48px 1fr 48px 420px;
+  align-items: start;
+}
+
+.v3-ai-column > .v3-label {
+  margin-bottom: 14px;
+}
+
+.v3-ai-card {
+  padding: 24px 28px 26px;
+  border-radius: 20px;
+  background: var(--tint);
+}
+
+.v3-ai-card + .v3-ai-card {
+  margin-top: 16px;
+}
+
+.v3-ai-card h2 {
+  margin-top: 16px;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+.v3-ai-card[data-size="small"] h2 {
+  margin-top: 0;
+}
+
+.v3-ai-card p {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.v3-ai-arrow {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 300px;
+  color: var(--sky);
+}
+
+.v3-ai-outputs {
+  margin: 0;
+  padding: 8px 28px;
+  border-radius: 20px;
+  background: var(--tint);
+  list-style: none;
+}
+
+.v3-ai-outputs li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--navy);
+}
+
+.v3-ai-outputs li + li {
+  border-top: 1px solid rgba(3, 110, 242, 0.12);
+}
+
+.v3-ai-outputs b {
+  font-family: var(--strong);
+  font-weight: normal;
+  color: var(--blue);
+}
+
+.v3-ai-stays {
+  position: absolute;
+  left: 120px;
+  top: 860px;
+  width: 1300px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--strong);
+  font-size: 19px;
+  color: var(--navy);
+}
+
+.v3-ai-stays svg {
+  flex: none;
+  color: var(--blue);
+}
+
+/* ── Como vamos medir na TIS: uma métrica de resultado por pergunta ─────── */
+
+.v3-measures {
+  position: absolute;
+  left: 120px;
+  top: 290px;
+  width: 1680px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-measures li {
+  padding: 28px 32px 30px;
+  border-radius: 24px;
+  background: var(--tint);
+}
+
+.v3-measures h2 {
+  margin-top: 6px;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+.v3-measure-metric {
+  margin-top: 18px;
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1.1;
+  color: var(--blue);
+}
+
+.v3-measure-how {
+  margin-top: 10px;
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.v3-adoption {
+  position: absolute;
+  left: 120px;
+  top: 300px;
+  width: 1680px;
+}
+
+.v3-adoption-note {
+  margin-top: 28px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.v3-measures-more {
+  position: absolute;
+  right: 120px;
+  top: 796px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 15px;
+  color: var(--blue);
+  cursor: pointer;
 }
 
 /* ── O que é UX: as cinco camadas em pilha ────────────────────────────── */

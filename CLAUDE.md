@@ -4,7 +4,10 @@ Apresentação do Núcleo de Experiência da TIS, publicada em
 https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O repositório tem duas versões:
 
 - A apresentação original, na raiz do site (`src/app/App.tsx` e `src/app/components/`).
-- A versão nova, em `#/v2` (`src/app/v2/`), que é onde decorre o trabalho actual. A original só é alterada a pedido.
+- A versão nova, em `#/v2` (`src/app/v2/`). A original só é alterada a pedido.
+- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com três revisões: um slide sobre como a IA entra no processo, as
+  fases da TIS por baixo das etapas no slide "Com um processo de UX" e a medição na TIS com uma métrica de resultado
+  por pergunta. É onde decorre o trabalho actual; a v2 fica como estava. As classes da v3 são `v3-*`.
 
 ## Regras de escrita
 
@@ -53,8 +56,9 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - `#/v2/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
   rever o layout.
 
-Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, situação em que UX começa pelo desenho, processo de
-UX com os métodos, as seis etapas, relação com as áreas, Design System, resultados (mercado e medição na TIS) e fecho.
+Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, situação em que UX começa pelo
+desenho, processo de UX com os métodos, como a IA entra (só na v3), as seis etapas, relação com as áreas, Design
+System, resultados (mercado e medição na TIS) e fecho.
 
 ## Comandos e publicação
 
@@ -69,3 +73,5 @@ UX com os métodos, as seis etapas, relação com as áreas, Design System, resu
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir e as frases de contribuição do Núcleo para cada área.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
+- Na v3: as quatro métricas de resultado e a forma de as observar, a linha de base "nos primeiros projectos, em 2026"
+  e o que o assistente produz em cada etapa (deduzido do apoio de IA de cada etapa).

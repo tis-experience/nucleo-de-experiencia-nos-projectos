@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { Braces, Palette, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Braces, FolderOpen, Palette, ShieldCheck, Sparkles, UserCheck } from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
 import layerStrategy from "./assets/camada-estrategia.webp";
 import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
-import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
+import { OPERACIONAL_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_FLOW,
   AREAS,
+  MEASURE_PLAN,
+  TIS_MEASURES,
   CURRENT_PROCESS,
   DS_POINTS,
   BENEFIT_METRICS,
@@ -713,6 +715,83 @@ export function ChangeScene({ build }: { build: number }) {
 
 /* ── Design System TIS ────────────────────────────────────────────────── */
 
+/* ── Como a IA entra ───────────────────────────────────────────────────── */
+
+const AI_INPUT_ICONS = [BookOpen, FolderOpen];
+
+/** O que o assistente recebe, o que produz em cada etapa e quem revê antes de entrar no projecto. */
+export function AiScene() {
+  return (
+    <section className="v3-scene" aria-labelledby="v3-ai-title">
+      <motion.p className="v3-kicker v3-scene-kicker" {...fade(0.1)}>
+        Aceleração com IA
+      </motion.p>
+      <div className="v3-head">
+        <h1 id="v3-ai-title" className="v3-title">
+          <MaskLine>Como a IA entra no processo</MaskLine>
+        </h1>
+        <motion.p className="v3-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
+          O assistente recebe o contexto, produz um primeiro rascunho em cada etapa e uma pessoa revê antes de entrar no
+          projecto.
+        </motion.p>
+      </div>
+
+      <div className="v3-ai">
+        <motion.div className="v3-ai-column" {...rise(0.4, 20)}>
+          <p className="v3-label">O assistente recebe</p>
+          {AI_FLOW.inputs.map((input, index) => {
+            const Icon = AI_INPUT_ICONS[index];
+            return (
+              <div key={input.title} className="v3-ai-card">
+                <span className="v3-ds-icon" aria-hidden>
+                  <Icon size={22} strokeWidth={1.8} />
+                </span>
+                <h2>{input.title}</h2>
+                <p>{input.text}</p>
+              </div>
+            );
+          })}
+        </motion.div>
+
+        <motion.span className="v3-ai-arrow" aria-hidden {...fade(0.9)}>
+          <ArrowRight size={28} strokeWidth={2} />
+        </motion.span>
+
+        <motion.div className="v3-ai-column" data-role="outputs" {...rise(0.6, 20)}>
+          <p className="v3-label">E produz, em cada etapa</p>
+          <ol className="v3-ai-outputs">
+            {AI_FLOW.outputs.map((output, index) => (
+              <motion.li key={output.stage} {...rise(0.8 + index * 0.08, 10)}>
+                <b>{output.stage}</b>
+                <span>{output.text}</span>
+              </motion.li>
+            ))}
+          </ol>
+        </motion.div>
+
+        <motion.span className="v3-ai-arrow" aria-hidden {...fade(1.3)}>
+          <ArrowRight size={28} strokeWidth={2} />
+        </motion.span>
+
+        <motion.div className="v3-ai-column" {...rise(1.1, 20)}>
+          <p className="v3-label">Uma pessoa revê</p>
+          {AI_FLOW.reviewers.map((reviewer) => (
+            <div key={reviewer.who} className="v3-ai-card" data-size="small">
+              <h2>{reviewer.who}</h2>
+              <p>{reviewer.what}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <motion.p className="v3-ai-stays" {...rise(1.6, 12)}>
+        <UserCheck size={24} strokeWidth={1.8} aria-hidden />
+        {AI_FLOW.stays}
+      </motion.p>
+    </section>
+  );
+}
+
 /** Um ícone por ponto do Design System, pela ordem de DS_POINTS em content.ts. */
 const DS_ICONS = [Braces, Palette, Sparkles, ShieldCheck];
 
@@ -900,12 +979,6 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
 
 /* ── Resultados: uma cena, duas ópticas ───────────────────────────────── */
 
-const MEASURE_GROUPS = [
-  [OPERACIONAL_COLUMNS[0]],
-  [OPERACIONAL_COLUMNS[1]],
-  [OPERACIONAL_COLUMNS[2], OPERACIONAL_COLUMNS[3]],
-  UX_COLUMNS,
-];
 const RESULT_LENSES = ["No mercado", "Na TIS"];
 const RESULT_TITLES = ["O que o mercado já mediu", "Como vamos medir na TIS"];
 
@@ -957,25 +1030,14 @@ function MarketResults() {
 }
 
 function TisMeasures() {
-  const [selected, select] = useSelected(PILLAR_CARDS.length);
+  const [adoption, setAdoption] = useState(false);
 
   return (
     <>
-      <ul className="v3-questions" aria-label="Perguntas">
-        {PILLAR_CARDS.map((pillar, index) => (
-          <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
-            <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
-              <span className="v3-label">{pillar.title}</span>
-              {pillar.body}
-            </button>
-          </motion.li>
-        ))}
-      </ul>
-
-      <div className="v3-metrics" aria-live="polite">
-        <Swap>
-          <motion.div key={selected} exit={exit}>
-            {MEASURE_GROUPS[selected].map((group, groupIndex) => (
+      <Swap>
+        {adoption ? (
+          <motion.div key="adoption" className="v3-adoption" exit={exit} {...fade(0.1)}>
+            {[OPERACIONAL_COLUMNS[0], OPERACIONAL_COLUMNS[1]].map((group, groupIndex) => (
               <motion.div key={group.title} className="v3-metric-group" {...rise(0.1 + groupIndex * 0.12, 16)}>
                 <p className="v3-label">{group.title}</p>
                 <ul>
@@ -992,14 +1054,36 @@ function TisMeasures() {
                 </ul>
               </motion.div>
             ))}
+            <p className="v3-adoption-note">
+              Dizem se o processo está a entrar nos projectos. Não substituem os quatro resultados.
+            </p>
           </motion.div>
-        </Swap>
-      </div>
+        ) : (
+          <motion.ul key="measures" className="v3-measures" exit={exit} aria-label="Métricas de resultado">
+            {TIS_MEASURES.map((measure, index) => (
+              <motion.li key={measure.area} {...rise(0.3 + index * 0.12, 20)}>
+                <p className="v3-label">{measure.area}</p>
+                <h2>{measure.question}</h2>
+                <p className="v3-measure-metric">{measure.metric}</p>
+                <p className="v3-measure-how">{measure.how}</p>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </Swap>
 
       <motion.p className="v3-footnote" data-raised {...fade(1)}>
-        Começamos com poucas perguntas. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão
-        possível.
+        {MEASURE_PLAN}
       </motion.p>
+      <motion.button
+        type="button"
+        className="v3-measures-more"
+        aria-pressed={adoption}
+        onClick={() => setAdoption((value) => !value)}
+        {...fade(1.1)}
+      >
+        {adoption ? "Voltar aos resultados" : "Ver também a adopção"}
+      </motion.button>
     </>
   );
 }

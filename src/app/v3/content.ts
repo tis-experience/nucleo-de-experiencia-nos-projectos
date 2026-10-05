@@ -276,7 +276,8 @@ export const BENEFIT_METRICS: Metric[] = [
   },
 ];
 
-/** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação). */
+/** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação): o que o assistente recebe, o que produz em
+    cada etapa e quem revê antes de entrar no projecto. */
 export const AI_FLOW = {
   inputs: [
     {
@@ -288,12 +289,54 @@ export const AI_FLOW = {
       text: "Problema, utilizadores, regras confirmadas, identidade do cliente e limitações.",
     },
   ],
+  /** Um primeiro rascunho por etapa, pela ordem de STAGES. */
+  outputs: [
+    { stage: "Descobrir", text: "Resumo das evidências, com a origem de cada uma, e perguntas para as entrevistas." },
+    { stage: "Definir", text: "Critérios de sucesso e cenários propostos a partir das evidências e das regras confirmadas." },
+    { stage: "Explorar", text: "Alternativas de fluxo e ecrãs compostos com os componentes do Design System." },
+    { stage: "Validar", text: "Guiões de teste e agrupamento dos problemas observados." },
+    { stage: "Entregar", text: "Rascunho da especificação de UX e comparação da versão construída com os critérios." },
+    { stage: "Acompanhar", text: "Comparação de ecrãs e estados e organização do feedback de utilização." },
+  ],
   reviewers: [
     { who: "Núcleo", what: "revê a coerência da experiência" },
     { who: "Engenharia", what: "revê a implementação" },
     { who: "PO", what: "confirma regras e âmbito" },
   ],
+  stays: "Falar com utilizadores, decidir e validar fica com as pessoas. Nada do que o assistente produz entra no projecto sem revisão.",
 };
+
+/** Como vamos medir na TIS: uma métrica de resultado por pergunta, com a forma de observação. */
+export const TIS_MEASURES = [
+  {
+    area: "Operação",
+    question: "O problema foi entendido antes da solução?",
+    metric: "Problemas encontrados antes da construção",
+    how: "Parte dos problemas de experiência de cada projecto encontrada até Validar, e não depois do release.",
+  },
+  {
+    area: "Design System",
+    question: "Há padrões reutilizáveis a ser aplicados?",
+    metric: "Ecrãs compostos com o Design System",
+    how: "Parte dos ecrãs entregues feita só com componentes do sistema, verificada na revisão da implementação.",
+  },
+  {
+    area: "Qualidade",
+    question: "A entrega reduz dúvidas e retrabalho?",
+    metric: "Defeitos de UX/UI por release",
+    how: "Defeitos de interface e de fluxo registados pelo QA e pelo cliente depois de cada release, por projecto.",
+  },
+  {
+    area: "Impacto",
+    question: "Há sinal real de uso, satisfação ou atrito?",
+    metric: "Sucesso de tarefa nos testes com utilizadores",
+    how: "Parte das tarefas concluídas sem ajuda nos testes de utilização, antes e depois de cada versão.",
+  },
+];
+
+/** Quando se mede: a linha de base e a cadência das leituras. */
+export const MEASURE_PLAN =
+  "Linha de base nos primeiros projectos que entram no processo, em 2026, e uma leitura a cada release. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão possível.";
 
 export const DS_POINTS = [
   {
@@ -515,6 +558,7 @@ export type SceneId =
   | "ux"
   | "partida"
   | "mudanca"
+  | "ia"
   | "etapas"
   | "ds"
   | "entregas"
@@ -532,6 +576,7 @@ export const STEPS: Step[] = [
   { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "processo-actual", scene: "mudanca", label: "Quando UX começa pelo desenho", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
+  { id: "ia", scene: "ia", label: "Como a IA entra" },
   ...STAGES.map((stage, stageIndex) => ({ id: stage.id, scene: "etapas" as const, label: stage.name, stageIndex })),
   { id: "areas", scene: "entregas", label: "Relação com as áreas" },
   { id: "design-system", scene: "ds", label: "Design System TIS" },

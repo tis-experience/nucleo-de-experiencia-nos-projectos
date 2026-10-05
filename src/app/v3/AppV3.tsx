@@ -7,6 +7,7 @@ import { STILL, Swap } from "./fx";
 import { StageScene } from "./StageScene";
 import { TisLogo } from "./TisLogo";
 import {
+  AiScene,
   ChangeScene,
   ClosingScene,
   CoverScene,
@@ -215,6 +216,7 @@ export default function AppV3() {
               {step.scene === "ux" && <UxScene />}
               {step.scene === "partida" && <StartScene />}
               {step.scene === "mudanca" && <ChangeScene build={step.build ?? 0} />}
+              {step.scene === "ia" && <AiScene />}
               {step.scene === "etapas" && <StageScene stageIndex={step.stageIndex ?? 0} />}
               {step.scene === "ds" && <DesignSystemScene />}
               {step.scene === "entregas" && <AreasScene areaId={areaId} onSelectArea={setAreaId} />}
