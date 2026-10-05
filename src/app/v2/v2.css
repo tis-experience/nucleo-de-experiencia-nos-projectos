@@ -937,8 +937,8 @@
 
 .v2-stage-facts {
   display: grid;
-  gap: 22px;
-  margin: 36px 0 0;
+  gap: 36px;
+  margin: 44px 0 0;
 }
 
 .v2-stage-facts dt {
