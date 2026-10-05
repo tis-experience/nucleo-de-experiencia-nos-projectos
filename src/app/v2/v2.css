@@ -1905,6 +1905,19 @@
   color: var(--navy);
 }
 
+.v2-team-role {
+  margin-top: 4px;
+  color: var(--blue);
+}
+
+.v2-team li p {
+  margin-top: 14px;
+  max-width: 236px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
 .v2-avatar {
   width: 190px;
   height: 190px;

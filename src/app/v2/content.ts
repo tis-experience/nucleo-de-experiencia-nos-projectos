@@ -383,10 +383,22 @@ export const THEMES = [
 ];
 
 /** Equipa actual do Núcleo. `photo` é opcional: caminho de uma imagem em src/assets; sem ela mostram-se as iniciais. */
-export const TEAM: { name: string; role: string; photo?: string }[] = [
-  { name: "Marcell da Silva", role: "Design Lead" },
-  { name: "", role: "Designer Analista" },
-  { name: "", role: "Designer Analista" },
+export const TEAM: { name: string; role: string; intro: string; photo?: string }[] = [
+  {
+    name: "Marcell da Silva",
+    role: "Design Lead",
+    intro: "Define como o Núcleo actua nos projectos e acompanha a qualidade do que é entregue.",
+  },
+  {
+    name: "",
+    role: "Designer Analista",
+    intro: "Desenha os fluxos e as interfaces com a equipa de cada projecto e acompanha a construção.",
+  },
+  {
+    name: "",
+    role: "Designer Analista",
+    intro: "Desenha os fluxos e as interfaces com a equipa de cada projecto e acompanha a construção.",
+  },
 ];
 
 /** Reforço previsto no cenário a 6 meses da apresentação original (página de composição da equipa). */
@@ -408,6 +420,7 @@ export type Step = { id: string; scene: SceneId; label: string; build?: number; 
 
 export const STEPS: Step[] = [
   { id: "capa", scene: "capa", label: "Abertura" },
+  { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
   { id: "processo-actual", scene: "mudanca", label: "Como decorre actualmente", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },
@@ -418,6 +431,5 @@ export const STEPS: Step[] = [
   { id: "design-system", scene: "ds", label: "Design System TIS" },
   { id: "mercado", scene: "resultados", label: "Resultados no mercado", build: 0 },
   { id: "medir", scene: "resultados", label: "Como vamos medir na TIS", build: 1 },
-  { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];

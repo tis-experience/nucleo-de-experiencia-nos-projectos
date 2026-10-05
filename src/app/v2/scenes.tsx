@@ -898,7 +898,8 @@ export function TeamScene() {
                 {person.photo ? <img src={person.photo} alt="" /> : initials(person.name) || <Mark className="v2-avatar-mark" />}
               </span>
               <b>{person.name || "Nome a indicar"}</b>
-              {person.role}
+              <span className="v2-team-role">{person.role}</span>
+              <p>{person.intro}</p>
             </motion.li>
           ))}
           {TEAM_NEXT.map((role, index) => (
