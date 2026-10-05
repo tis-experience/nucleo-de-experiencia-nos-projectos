@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
-import icePaths from "../../imports/04CamadasDaExperiencia/svg-n4bcoxy2ji";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_FLOW,
@@ -183,36 +182,15 @@ export function ClosingScene() {
 
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
-/** Formas do iceberg da apresentação original: posição, largura, espelhamento e cor de cada camada. */
-const ICE_SHAPES = [
-  { x: 85, y: 0, width: 434, flip: true, path: icePaths.p2b77ad00, fill: "#3b8dff", label: [242, 92, 138], note: [576, 89, 190] },
-  { x: 4.9, y: 191, width: 610.5, flip: true, path: icePaths.p3f899700, fill: "#0d1f63", label: [196, 231, 231], note: [666, 247, 260] },
-  { x: 0.7, y: 351, width: 630.25, flip: false, path: icePaths.p15759a00, fill: "#203170", label: [173, 391, 277], note: [706, 375, 230] },
-  { x: 33, y: 511, width: 583, flip: false, path: icePaths.p1015e100, fill: "#33437d", label: [201, 551, 220], note: [666, 567, 220] },
-  { x: 94, y: 671, width: 431, flip: false, path: icePaths.p16f1c900, fill: "#46558a", label: [158, 711, 306], note: [576, 713, 230] },
-];
+const LAYER_GAP = 100;
 
-const SHIP_PATHS: [keyof typeof icePaths, string][] = [
-  ["p73e8f00", "#203170"],
-  ["p17d81e80", "#d4dee2"],
-  ["p2fd83500", "#203170"],
-  ["p3ffd3e40", "#709cc2"],
-  ["p1652d380", "#a3b3c2"],
-  ["p17ce3e00", "#6d91b0"],
-  ["p1cad9ff0", "#203170"],
-  ["p39297080", "#d4dee2"],
-  ["p93b5e80", "#d4dee2"],
-  ["p159ddb00", "#203170"],
-  ["pf6a7880", "#d4dee2"],
-  ["p12014000", "#203170"],
-];
-
+/** As cinco camadas em pilha: escolhe-se uma (rato, clique ou setas cima e baixo) para ver as perguntas a que responde. */
 export function UxScene() {
   const [selected, select] = useSelected(UX_LAYERS.length);
+  const layer = UX_LAYERS[selected];
 
   return (
-    <section className="v2-scene v2-ux" aria-labelledby="v2-ux-title">
-      <div className="v2-water" aria-hidden />
+    <section className="v2-scene" aria-labelledby="v2-ux-title">
       <motion.p className="v2-kicker v2-scene-kicker" {...fade(0.1)}>
         O que é UX
       </motion.p>
@@ -221,64 +199,65 @@ export function UxScene() {
           <MaskLine>A experiência</MaskLine>
           <MaskLine delay={0.12}>tem 5 camadas</MaskLine>
         </h1>
+        <motion.p className="v2-lead" {...rise(0.4, 20)}>
+          A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
+        </motion.p>
       </div>
-      <motion.p className="v2-ux-lead" {...rise(0.4, 20)}>
-        A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
-      </motion.p>
-      <motion.p className="v2-ux-claim" {...rise(0.55, 20)}>
+
+      <motion.div className="v2-ux-detail" {...rise(0.9, 20)}>
+        <p className="v2-label">
+          Camada {selected + 1} de {UX_LAYERS.length} · {layer.name}
+        </p>
+        <Swap>
+          <motion.div
+            key={selected}
+            initial={STILL ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={exit}
+            transition={tween(0.3)}
+          >
+            {layer.questions.map((question) => (
+              <p key={question}>{question}</p>
+            ))}
+          </motion.div>
+        </Swap>
+      </motion.div>
+
+      <motion.p className="v2-ux-claim" {...rise(1.05, 20)}>
         O Núcleo de Experiência deve actuar em todas as camadas.
       </motion.p>
-      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002), ilustração de Trevor van Gorp (2007)</p>
+      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002)</p>
 
-      <svg className="v2-ship" viewBox="0 0 200.594 96" fill="none" aria-hidden>
-        {SHIP_PATHS.map(([key, fill]) => (
-          <path key={key} d={icePaths[key]} fill={fill} />
-        ))}
-      </svg>
-
-      <motion.div className="v2-iceberg" {...rise(0.25, 28)}>
-        <svg viewBox="0 0 631 866" fill="none">
-          {ICE_SHAPES.map((shape, index) => (
-            <g
-              key={index}
-              transform={`translate(${shape.flip ? shape.x + shape.width : shape.x},${shape.y}) scale(${shape.flip ? -1 : 1},1)`}
+      <ol className="v2-layers">
+        {UX_LAYERS.map((item, index) => (
+          <motion.li
+            key={item.name}
+            data-active={selected === index || undefined}
+            style={{ top: index * LAYER_GAP, zIndex: UX_LAYERS.length - index }}
+            initial={STILL ? false : { y: -index * LAYER_GAP, opacity: index === 0 ? 1 : 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={spring(0.5 + index * 0.12, 60, 14)}
+          >
+            <i
+              className="v2-plane"
+              data-depth={index}
+              aria-hidden
+              onMouseEnter={() => select(index)}
+              onClick={() => select(index)}
+            />
+            <button
+              type="button"
+              aria-pressed={selected === index}
+              onMouseEnter={() => select(index)}
+              onFocus={() => select(index)}
+              onClick={() => select(index)}
             >
-              <path d={shape.path} fill={shape.fill} />
-              <path
-                className="v2-ice-hit"
-                d={shape.path}
-                role="button"
-                tabIndex={0}
-                aria-label={`Camada ${UX_LAYERS[index].name}`}
-                aria-pressed={selected === index}
-                onMouseEnter={() => select(index)}
-                onFocus={() => select(index)}
-                onClick={() => select(index)}
-              />
-            </g>
-          ))}
-        </svg>
-        {UX_LAYERS.map((layer, index) => {
-          const { label, note } = ICE_SHAPES[index];
-          return (
-            <div key={layer.name}>
-              <p className="v2-ice-label" style={{ left: label[0], top: label[1], width: label[2] }}>
-                <b>{layer.name}</b>
-                {layer.text}
-              </p>
-              <p
-                className="v2-ice-note"
-                data-active={selected === index || undefined}
-                style={{ left: note[0], top: note[1], width: note[2] }}
-              >
-                {layer.questions.map((question) => (
-                  <span key={question}>{question}</span>
-                ))}
-              </p>
-            </div>
-          );
-        })}
-      </motion.div>
+              <b>{item.name}</b>
+              {item.text}
+            </button>
+          </motion.li>
+        ))}
+      </ol>
     </section>
   );
 }
