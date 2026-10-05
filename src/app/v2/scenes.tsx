@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
+import layerScope from "../../imports/iceberg-escopo.png";
+import layerSkeleton from "../../imports/iceberg-esqueleto.png";
+import layerStrategy from "../../imports/iceberg-estrategia.png";
+import layerStructure from "../../imports/iceberg-estrutura.png";
+import layerSurface from "../../imports/iceberg-superficie.png";
 import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_FLOW,
@@ -182,12 +187,14 @@ export function ClosingScene() {
 
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
-const LAYER_GAP = 96;
-const LAYER_OPEN = 76;
+const LAYER_GAP = 70;
+const LAYER_OPEN = 30;
+const LAYER_IMAGES = [layerSurface, layerSkeleton, layerStructure, layerScope, layerStrategy];
 
-/** As cinco camadas em pilha. A pilha abre-se por baixo da camada escolhida (clique ou setas cima e baixo) para mostrar a pergunta a que responde. */
+/** A pilha das cinco camadas serve de índice: a camada escolhida (clique ou setas cima e baixo) destaca-se da pilha e o painel ao lado mostra o conteúdo dela. */
 export function UxScene() {
   const [selected, select] = useSelected(UX_LAYERS.length);
+  const layer = UX_LAYERS[selected];
 
   return (
     <section className="v2-scene" aria-labelledby="v2-ux-title">
@@ -199,23 +206,17 @@ export function UxScene() {
           <MaskLine>A experiência</MaskLine>
           <MaskLine delay={0.12}>tem 5 camadas</MaskLine>
         </h1>
+        <motion.p className="v2-lead" {...rise(0.4, 20)}>
+          A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
+        </motion.p>
       </div>
-      <motion.p className="v2-ux-lead" {...rise(0.4, 20)}>
-        A interface é a parte visível de um trabalho que começa muito antes do desenho do ecrã.
-      </motion.p>
-      <motion.p className="v2-ux-claim" {...rise(0.55, 20)}>
-        O Núcleo de Experiência actua em todas as camadas.
-      </motion.p>
-      <motion.p className="v2-source v2-ux-source" {...fade(0.8)}>
-        Modelo: Jesse James Garrett (2002)
-      </motion.p>
 
       <ol className="v2-layers">
-        {UX_LAYERS.map((layer, index) => {
-          const offset = index > selected ? LAYER_OPEN : 0;
+        {UX_LAYERS.map((item, index) => {
+          const offset = selected === 0 ? (index > 0 ? LAYER_OPEN * 2 : 0) : index > selected ? LAYER_OPEN * 2 : index === selected ? LAYER_OPEN : 0;
           return (
             <motion.li
-              key={layer.name}
+              key={item.name}
               data-active={selected === index || undefined}
               style={{ top: index * LAYER_GAP, zIndex: UX_LAYERS.length - index }}
               initial={STILL ? false : { y: -index * LAYER_GAP, opacity: index === 0 ? 1 : 0 }}
@@ -223,15 +224,35 @@ export function UxScene() {
               transition={STILL ? { duration: 0 } : { type: "spring", stiffness: 90, damping: 18 }}
             >
               <i className="v2-plane" data-depth={index} role="button" aria-hidden onClick={() => select(index)} />
-              <button type="button" aria-expanded={selected === index} onClick={() => select(index)}>
-                <b>{layer.name}</b>
-                {layer.text}
-                <span>{layer.question}</span>
+              <button type="button" aria-pressed={selected === index} onClick={() => select(index)}>
+                {item.name}
               </button>
             </motion.li>
           );
         })}
       </ol>
+
+      <motion.div className="v2-layer-detail" {...rise(0.7, 24)}>
+        <Swap>
+          <motion.div
+            key={selected}
+            initial={STILL ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={exit}
+            transition={tween(0.35)}
+          >
+            <img src={LAYER_IMAGES[selected]} alt="" />
+            <p className="v2-label">
+              Camada {selected + 1} de {UX_LAYERS.length}
+            </p>
+            <h2>{layer.name}</h2>
+            <p className="v2-layer-text">{layer.text}</p>
+            <p className="v2-layer-body">{layer.body}</p>
+            <p className="v2-layer-question">{layer.question}</p>
+          </motion.div>
+        </Swap>
+      </motion.div>
+      <p className="v2-source v2-ux-source">Modelo: Jesse James Garrett (2002)</p>
     </section>
   );
 }

@@ -1864,40 +1864,18 @@
 
 /* ── O que é UX: as cinco camadas em pilha ────────────────────────────── */
 
-.v2-ux-lead,
-.v2-ux-claim,
 .v2-ux-source {
   position: absolute;
-  left: 120px;
-}
-
-.v2-ux-lead {
-  top: 400px;
-  width: 580px;
-  font-size: 26px;
-  line-height: 1.45;
-  color: var(--navy);
-}
-
-.v2-ux-claim {
-  top: 590px;
-  width: 480px;
-  font-family: var(--display);
-  font-size: 30px;
-  line-height: 1.25;
-  color: var(--navy);
-}
-
-.v2-ux-source {
+  left: 960px;
   top: 880px;
 }
 
 .v2-layers {
   position: absolute;
-  left: 860px;
-  top: 170px;
-  width: 940px;
-  height: 700px;
+  left: 120px;
+  top: 372px;
+  width: 760px;
+  height: 540px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1907,18 +1885,18 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: 300px;
+  height: 200px;
   pointer-events: none;
 }
 
 .v2-plane {
   position: absolute;
-  left: 60px;
-  top: -30px;
-  width: 360px;
-  height: 360px;
+  left: 62px;
+  top: -50px;
+  width: 300px;
+  height: 300px;
   border: 2px solid var(--blue);
-  border-radius: 28px;
+  border-radius: 24px;
   transform: rotateX(62deg) rotateZ(45deg);
   pointer-events: auto;
   cursor: pointer;
@@ -1946,69 +1924,89 @@
 }
 
 .v2-layers li[data-active] .v2-plane {
-  box-shadow: 0 24px 48px rgba(5, 28, 117, 0.3);
+  box-shadow: 0 20px 40px rgba(5, 28, 117, 0.32);
 }
 
 .v2-layers button {
   position: absolute;
-  left: 540px;
-  top: 118px;
-  width: 400px;
-  padding: 0;
+  left: 452px;
+  top: 78px;
+  padding: 8px 18px;
   border: 0;
+  border-radius: 999px;
   background: none;
-  font: inherit;
-  font-size: 18px;
-  line-height: 1.3;
-  text-align: left;
-  color: var(--text);
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--navy);
+  opacity: 0.5;
   pointer-events: auto;
   cursor: pointer;
+  transition: opacity 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
 
 .v2-layers button:focus-visible {
   outline: none;
 }
 
-.v2-layers button::before {
-  content: "";
-  position: absolute;
-  right: 100%;
-  top: 18px;
-  width: 44px;
-  height: 2px;
-  margin-right: 16px;
-  background: var(--line);
-}
-
-.v2-layers b {
-  display: block;
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: normal;
-  color: var(--navy);
-  transition: color 0.25s ease;
-}
-
-.v2-layers li[data-active] b {
+.v2-layers li[data-active] button {
+  background: var(--tint);
   color: var(--blue);
-}
-
-/* A pergunta da camada escolhida ocupa o espaço que a pilha abre por baixo dela. */
-.v2-layers span {
-  display: block;
-  margin-top: 10px;
-  font-family: var(--strong);
-  font-size: 18px;
-  line-height: 1.25;
-  color: var(--blue);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.v2-layers li[data-active] span {
   opacity: 1;
-  transition: opacity 0.35s ease 0.15s;
+}
+
+/* Conteúdo da camada escolhida. */
+.v2-layer-detail {
+  position: absolute;
+  left: 960px;
+  top: 150px;
+  width: 840px;
+}
+
+.v2-layer-detail img {
+  display: block;
+  width: 840px;
+  height: 318px;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.v2-layer-detail .v2-label {
+  margin-top: 32px;
+}
+
+.v2-layer-detail h2 {
+  margin-top: 6px;
+  font-family: var(--display);
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: var(--navy);
+}
+
+.v2-layer-text {
+  margin-top: 8px;
+  font-family: var(--strong);
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--navy);
+}
+
+.v2-layer-body {
+  margin-top: 18px;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.v2-layer-question {
+  margin-top: 24px;
+  padding: 18px 24px;
+  border-radius: 18px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--blue);
 }
 
 /* ── A equipa ─────────────────────────────────────────────────────────── */

@@ -404,28 +404,37 @@ export const TEAM: { name: string; role: string; intro: string; photo?: string }
 /** Reforço previsto no cenário a 6 meses da apresentação original (página de composição da equipa). */
 export const TEAM_NEXT = ["Designer Analista", "Designer Analista", "UX Researcher"];
 
-/** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. */
+/** As cinco camadas da experiência (Jesse James Garrett), da mais visível à mais profunda. Textos da apresentação original, abreviados. */
 export const UX_LAYERS = [
-  { name: "Superfície", text: "A interface visual", question: "Como é visualmente a solução provável?" },
+  {
+    name: "Superfície",
+    text: "A interface visual",
+    question: "Como é visualmente a solução provável?",
+    body: "Representa o que os utilizadores vêem e com que interagem directamente: cores, tipografia, ícones, imagens, botões e layout. É a camada mais visível, mas é apenas uma fracção da experiência completa.",
+  },
   {
     name: "Esqueleto",
     text: "Componentes, wireframes e navegação",
     question: "Como são organizadas as informações e acções?",
+    body: "Define como as decisões da estrutura são representadas na interface. É aqui que se organizam os componentes, os controlos, os conteúdos e os elementos de navegação, normalmente em wireframes.",
   },
   {
     name: "Estrutura",
     text: "Fluxos, arquitectura de informação e design de interacção",
     question: "Como deve o utilizador interagir com o produto? Que interacções podem melhorar a experiência?",
+    body: "Define como o conteúdo e as funcionalidades são organizados e ligados, e como o produto responde às acções dos utilizadores, para que cada pessoa encontre o que precisa sem se perder.",
   },
   {
     name: "Escopo",
     text: "Funcionalidades, conteúdo e requisitos",
     question: "Quais informações e acções são necessárias?",
+    body: "Define o que o produto deve fazer e que conteúdo precisa de oferecer. É aqui que as necessidades dos utilizadores e os objectivos de negócio são traduzidos em requisitos funcionais e de conteúdo.",
   },
   {
     name: "Estratégia",
     text: "Necessidades do utilizador e objectivos do produto",
     question: "O quê? Porquê? Para quem? Onde? Quando? Que valor isso cria para o utilizador e para o negócio?",
+    body: "É onde são definidos os objectivos de negócio, as necessidades dos utilizadores e a proposta de valor do produto. É o alicerce que garante que cada escolha de design serve um propósito real.",
   },
 ];
 
