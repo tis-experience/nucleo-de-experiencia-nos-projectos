@@ -469,10 +469,11 @@
   color: #ffffff;
 }
 
-/* Janela de detalhe: cartão branco sobre o ecrã desfocado. */
+/* Janela de detalhe: cartão branco sobre o ecrã desfocado.
+   O fundo ultrapassa o palco em todas as direcções, para cobrir as faixas que a janela deixa fora dele. */
 .v2-modal {
   position: absolute;
-  inset: 0;
+  inset: -300%;
   z-index: 20;
   display: grid;
   place-items: center;
