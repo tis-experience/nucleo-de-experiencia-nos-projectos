@@ -1,3 +1,7 @@
+import photoFelizardo from "./assets/equipa-felizardo.webp";
+import photoJosue from "./assets/equipa-josue.webp";
+import photoMarcell from "./assets/equipa-marcell.webp";
+
 /* Conteúdo da apresentação. Fontes: a apresentação original do Núcleo, a "Proposta de actuação do Núcleo de
    Experiência com IA" e o "Processo de desenvolvimento de software com IA". */
 
@@ -389,16 +393,19 @@ export const TEAM: { name: string; role: string; intro: string; photo?: string }
     name: "Marcell da Silva",
     role: "Design Lead",
     intro: "Define como o Núcleo actua nos projectos e acompanha a qualidade do que é entregue.",
+    photo: photoMarcell,
   },
   {
-    name: "",
+    name: "Felizardo Moisés",
     role: "Designer Analista",
     intro: "Desenha os fluxos e as interfaces com a equipa de cada projecto e acompanha a construção.",
+    photo: photoFelizardo,
   },
   {
-    name: "",
+    name: "Josué Mbala",
     role: "Designer Analista",
     intro: "Desenha os fluxos e as interfaces com a equipa de cada projecto e acompanha a construção.",
+    photo: photoJosue,
   },
 ];
 
