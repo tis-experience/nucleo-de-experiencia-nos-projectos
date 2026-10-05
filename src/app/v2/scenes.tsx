@@ -523,7 +523,7 @@ export function ChangeScene({ build }: { build: number }) {
             <motion.p className="v2-kicker" {...fade(0.05)}>
               {head.kicker}
             </motion.p>
-            <h1 id="v2-change-title" className="v2-title">
+            <h1 id="v2-change-title" className="v2-title v2-title-compact">
               <MaskLine>{head.title}</MaskLine>
             </h1>
             {head.lead && (
