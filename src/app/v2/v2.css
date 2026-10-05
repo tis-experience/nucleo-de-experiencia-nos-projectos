@@ -736,7 +736,7 @@
   top: 100%;
   width: 0;
   height: 138px;
-  border-left: 2px dashed var(--sky);
+  border-left: 2px solid #d3d8e3;
 }
 
 .v2-missing-step:nth-of-type(odd)::after {
