@@ -461,6 +461,24 @@ const PROBLEMS = [
 const PROBLEM_SIZE = 84;
 const PROBLEM_TONES = ["#04165d", "#036ef2", "#7db3f8", "#036ef2"];
 const CURRENT_PHASES = ["Proposta comercial", "Ecrãs", "Desenvolvimento", "Release", "Retrabalho"];
+
+/** As fases da TIS como faixas por baixo das etapas: cada fase cobre da primeira à última etapa em que entra.
+    As faixas que se sobrepõem vão para a linha seguinte. */
+const TIS_PHASE_BANDS = (() => {
+  const order = STAGES.map((stage) => stage.id);
+  const bands = PHASES.map((phase) => {
+    const indexes = phase.stages.map((id) => order.indexOf(id));
+    return { name: phase.name, start: Math.min(...indexes), end: Math.max(...indexes), row: 0 };
+  }).sort((a, b) => a.start - b.start || a.end - b.end);
+  const rows: { start: number; end: number }[][] = [];
+  bands.forEach((band) => {
+    let row = rows.findIndex((items) => items.every((item) => band.start > item.end || band.end < item.start));
+    if (row === -1) row = rows.push([]) - 1;
+    rows[row].push(band);
+    band.row = row;
+  });
+  return { bands, rows: rows.length, columns: order.length };
+})();
 const [ENTRY, MISSING, RESULT] = CURRENT_PROCESS;
 
 const CHANGE_HEADS = [
@@ -472,7 +490,7 @@ const CHANGE_HEADS = [
   {
     kicker: "Com um processo de UX",
     title: "O processo de UX encontra os problemas antes da construção",
-    lead: "O problema é investigado e a solução é avaliada cedo, quando mudar ainda é simples.",
+    lead: "O problema é investigado e a solução é avaliada cedo, quando mudar ainda é simples, dentro das fases que a TIS já tem.",
   },
 ];
 
@@ -596,7 +614,7 @@ export function ChangeScene({ build }: { build: number }) {
         )}
       </Swap>
 
-      <div className="v3-change-chart">
+      <div className="v3-change-chart" data-build={build}>
         <motion.svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`} fill="none" aria-hidden {...fade(current ? 1.1 : 0, 0.6)}>
           <defs>
             <linearGradient id="v3-effort" x1="0" x2="1" y1="0" y2="0">
@@ -656,6 +674,37 @@ export function ChangeScene({ build }: { build: number }) {
               <li key={phase}>{phase}</li>
             ))}
           </motion.ol>
+        </Swap>
+
+        {/* As fases que a TIS já tem, por cima das etapas: o processo de UX entra nelas, sem as substituir. */}
+        <Swap>
+          {!current && (
+            <motion.div
+              key="tis-phases"
+              className="v3-tis-phases"
+              style={{ height: TIS_PHASE_BANDS.rows * 34 }}
+              exit={exit}
+              {...fade(0.9, 0.6)}
+              aria-label="Fases do processo da TIS"
+            >
+              {TIS_PHASE_BANDS.bands.map((band, index) => (
+                <motion.p
+                  key={band.name}
+                  style={{
+                    left: `${(band.start / TIS_PHASE_BANDS.columns) * 100}%`,
+                    width: `calc(${((band.end - band.start + 1) / TIS_PHASE_BANDS.columns) * 100}% - 12px)`,
+                    top: band.row * 34,
+                  }}
+                  {...rise(1 + index * 0.08, 10)}
+                >
+                  {band.name}
+                </motion.p>
+              ))}
+              <span style={{ left: `${((TIS_PHASE_BANDS.columns - 1) / TIS_PHASE_BANDS.columns) * 100}%`, top: 34 }}>
+                Fases do processo da TIS
+              </span>
+            </motion.div>
+          )}
         </Swap>
       </div>
     </section>
