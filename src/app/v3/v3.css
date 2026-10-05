@@ -172,7 +172,7 @@
 
 .v3-footnote[data-raised] {
   top: 800px;
-  width: 1100px;
+  width: 1300px;
 }
 
 .v3-footnote {
@@ -763,9 +763,9 @@
 .v3-methods {
   position: absolute;
   left: 120px;
-  top: 340px;
+  top: 330px;
   width: 1680px;
-  height: 460px;
+  height: 530px;
   display: flex;
   margin: 0;
   padding: 0;
@@ -777,6 +777,16 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+/* O nome da etapa encabeça a coluna dos seus métodos. */
+.v3-methods > li > b {
+  margin-bottom: 14px;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.2;
+  color: var(--blue);
 }
 
 .v3-methods ul {
@@ -812,38 +822,6 @@
   left: 120px;
   top: 570px;
   width: 1680px;
-}
-
-/* Com o processo de UX, o gráfico sobe para caber a faixa das fases da TIS por baixo das etapas. */
-.v3-change-chart[data-build="1"] {
-  top: 510px;
-}
-
-.v3-tis-phases {
-  position: relative;
-  margin-top: 16px;
-}
-
-.v3-tis-phases p {
-  position: absolute;
-  padding-top: 6px;
-  border-top: 2px solid var(--line);
-  font-size: 15px;
-  line-height: 1.3;
-  white-space: nowrap;
-  color: var(--navy);
-}
-
-.v3-tis-phases span {
-  position: absolute;
-  right: 0;
-  padding-top: 8px;
-  font-family: var(--strong);
-  font-size: 12px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  text-align: right;
-  color: var(--muted);
 }
 
 .v3-change-chart > svg {
@@ -941,8 +919,21 @@
   padding-top: 14px;
   font-family: var(--strong);
   font-size: 18px;
+  line-height: 1.25;
   color: var(--muted);
   transition: color 0.4s ease;
+}
+
+.v3-phases li span {
+  display: block;
+}
+
+/* Cada fase começa onde começa a primeira etapa que cobre: a linha marca a fronteira. */
+.v3-phases li + li {
+  border-left: 2px solid var(--line);
+  padding-left: 14px;
+  margin-top: -2px;
+  padding-top: 16px;
 }
 
 .v3-phases li[data-on="true"] {
@@ -2296,85 +2287,183 @@
   color: var(--navy);
 }
 
-/* ── Como a IA entra ───────────────────────────────────────────────────── */
+/* ── Como a IA entra: o fluxo num desenho, uma etapa de cada vez ────────── */
 
 .v3-ai {
   position: absolute;
   left: 120px;
-  top: 330px;
+  top: 300px;
   width: 1680px;
-  display: grid;
-  grid-template-columns: 420px 48px 1fr 48px 420px;
-  align-items: start;
+  height: 300px;
 }
 
-.v3-ai-column > .v3-label {
-  margin-bottom: 14px;
+.v3-ai-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.v3-ai-card {
-  padding: 24px 28px 26px;
+.v3-ai-input {
+  position: absolute;
+  left: 0;
+  width: 330px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
   border-radius: 20px;
   background: var(--tint);
 }
 
-.v3-ai-card + .v3-ai-card {
-  margin-top: 16px;
+.v3-ai-input .v3-ds-icon {
+  background: #ffffff;
 }
 
-.v3-ai-card h2 {
-  margin-top: 16px;
+.v3-ai-input b {
   font-family: var(--display);
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: normal;
   line-height: 1.15;
   color: var(--navy);
 }
 
-.v3-ai-card[data-size="small"] h2 {
-  margin-top: 0;
+/* O tracejado desloca-se no sentido do fluxo. */
+.v3-ai-link {
+  animation: v3-dash 1.2s linear infinite;
 }
 
-.v3-ai-card p {
-  margin-top: 8px;
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--muted);
+.v3-ai-node {
+  position: absolute;
+  top: 30px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.v3-ai-arrow {
+.v3-ai-node > span {
   display: grid;
   place-items: center;
-  height: 100%;
-  min-height: 300px;
-  color: var(--sky);
-}
-
-.v3-ai-outputs {
-  margin: 0;
-  padding: 8px 28px;
-  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
   background: var(--tint);
-  list-style: none;
+  color: var(--blue);
 }
 
-.v3-ai-outputs li {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 16px;
-  padding: 14px 0;
-  font-size: 16px;
-  line-height: 1.4;
+.v3-ai-node > b {
+  margin-top: 14px;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: normal;
   color: var(--navy);
 }
 
-.v3-ai-outputs li + li {
-  border-top: 1px solid rgba(3, 110, 242, 0.12);
+.v3-ai-node .v3-links {
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-.v3-ai-outputs b {
-  font-family: var(--strong);
+/* O rascunho: um documento esquemático, com um bloco a representar um ecrã. */
+.v3-ai-draft {
+  position: absolute;
+  left: 900px;
+  top: 60px;
+  width: 260px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.v3-ai-draft i {
+  height: 10px;
+  border-radius: 999px;
+  background: #d3d8e3;
+}
+
+.v3-ai-draft i[data-block] {
+  height: 34px;
+  border-radius: 8px;
+  background: var(--sky);
+}
+
+.v3-ai-draft b {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin-top: 14px;
+  font-family: var(--display);
+  font-size: 20px;
   font-weight: normal;
+  text-align: center;
+  color: var(--navy);
+}
+
+.v3-ai-end {
+  position: absolute;
+  left: 1580px;
+  top: 128px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--navy);
+  font-family: var(--strong);
+  font-size: 16px;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.v3-ai-stages {
+  position: absolute;
+  left: 120px;
+  top: 660px;
+  width: 1680px;
+}
+
+.v3-ai-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.v3-ai-tabs button {
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--navy);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.v3-ai-tabs button[aria-selected="true"] {
+  background: var(--tint);
   color: var(--blue);
+  opacity: 1;
+}
+
+.v3-ai-output {
+  margin-top: 18px;
+  max-width: 1100px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.v3-ai-output .v3-label {
+  display: block;
+  margin-bottom: 6px;
 }
 
 .v3-ai-stays {
@@ -2397,74 +2486,30 @@
 
 /* ── Como vamos medir na TIS: uma métrica de resultado por pergunta ─────── */
 
-.v3-measures {
+.v3-measure {
   position: absolute;
-  left: 120px;
-  top: 290px;
-  width: 1680px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  left: 860px;
+  top: 318px;
+  width: 940px;
 }
 
-.v3-measures li {
-  padding: 28px 32px 30px;
-  border-radius: 24px;
-  background: var(--tint);
-}
-
-.v3-measures h2 {
-  margin-top: 6px;
+.v3-measure h2 {
+  margin-top: 10px;
   font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.2;
-  color: var(--navy);
-}
-
-.v3-measure-metric {
-  margin-top: 18px;
-  font-family: var(--display);
-  font-size: 30px;
+  font-size: 40px;
   line-height: 1.1;
   color: var(--blue);
 }
 
 .v3-measure-how {
-  margin-top: 10px;
-  max-width: 700px;
-  font-size: 16px;
+  margin: 16px 0 36px;
+  max-width: 760px;
+  font-size: 20px;
   line-height: 1.45;
-  color: var(--muted);
 }
 
-.v3-adoption {
-  position: absolute;
-  left: 120px;
-  top: 300px;
-  width: 1680px;
-}
-
-.v3-adoption-note {
-  margin-top: 28px;
-  font-size: 16px;
-  color: var(--muted);
-}
-
-.v3-measures-more {
-  position: absolute;
-  right: 120px;
-  top: 796px;
-  padding: 8px 18px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--tint);
-  font-family: var(--strong);
-  font-size: 15px;
-  color: var(--blue);
-  cursor: pointer;
+.v3-measure .v3-links {
+  margin-top: 10px;
 }
 
 /* ── O que é UX: as cinco camadas em pilha ────────────────────────────── */

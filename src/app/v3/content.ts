@@ -306,6 +306,15 @@ export const AI_FLOW = {
   stays: "Falar com utilizadores, decidir e validar fica com as pessoas. Nada do que o assistente produz entra no projecto sem revisão.",
 };
 
+/** Como as fases da TIS se distribuem pelas seis etapas no desenho do processo. É uma partição simplificada para o
+    eixo do gráfico; a ligação exacta de cada fase às etapas está em PHASES. */
+export const PHASE_AXIS: { phases: number[]; stages: StageId[] }[] = [
+  { phases: [0], stages: ["descobrir"] },
+  { phases: [1], stages: ["definir", "explorar", "validar"] },
+  { phases: [2, 3], stages: ["entregar"] },
+  { phases: [4], stages: ["acompanhar"] },
+];
+
 /** Como vamos medir na TIS: uma métrica de resultado por pergunta, com a forma de observação. */
 export const TIS_MEASURES = [
   {
@@ -335,8 +344,7 @@ export const TIS_MEASURES = [
 ];
 
 /** Quando se mede: a linha de base e a cadência das leituras. */
-export const MEASURE_PLAN =
-  "Linha de base nos primeiros projectos que entram no processo, em 2026, e uma leitura a cada release. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão possível.";
+export const MEASURE_PLAN = "Linha de base nos primeiros projectos que entram no processo, em 2026, e uma leitura a cada release.";
 
 export const DS_POINTS = [
   {
