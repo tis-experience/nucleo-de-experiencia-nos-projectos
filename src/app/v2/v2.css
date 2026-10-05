@@ -1481,9 +1481,7 @@
 }
 
 .v2-loop svg {
-  width: 26px;
-  height: 26px;
-  fill: currentColor;
+  flex: none;
 }
 
 /* O mesmo desenho, em ponto pequeno, noutras cenas */

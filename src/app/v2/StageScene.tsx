@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import { Check, RotateCw } from "lucide-react";
 import { AREAS, PHASES, STAGES, STAGE_VISUAL } from "./content";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
@@ -150,7 +151,7 @@ function Definition() {
               animate={{ scale: 1 }}
               transition={spring(1.1 + index * 0.18, 260, 16)}
             >
-              ✓
+              <Check size={18} strokeWidth={2.5} aria-hidden />
             </motion.i>
             <b style={{ width }} />
           </span>
@@ -223,9 +224,7 @@ function UsageChart() {
         />
       </svg>
       <p className="v2-loop">
-        <svg viewBox="0 0 24 24" aria-hidden>
-          <path d="M17.7 6.3A8 8 0 1 0 20 12h-2a6 6 0 1 1-1.8-4.2L13 11h7V4z" />
-        </svg>
+        <RotateCw size={26} strokeWidth={2.2} aria-hidden />
         O feedback volta a alimentar o processo
       </p>
     </motion.div>
@@ -361,7 +360,7 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
                   animate={{ scale: 1 }}
                   transition={spring(0.7 + index * 0.2, 260, 14)}
                 >
-                  {resolved ? "✓" : index + 1}
+                  {resolved ? <Check size={20} strokeWidth={2.5} aria-hidden /> : index + 1}
                 </motion.i>
               ))}
           </motion.div>
