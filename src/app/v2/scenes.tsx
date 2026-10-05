@@ -1009,7 +1009,7 @@ export function TeamScene() {
         <motion.div className="v2-team-open" {...fade(1.1, 0.8)}>
           <div aria-hidden>
             {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
-              <i key={index} />
+              <i key={index} className="v2-bob" style={{ animationDelay: `${-(TEAM.length + index) * 0.8}s` }} />
             ))}
           </div>
           <p>Espaço para a equipa crescer</p>
