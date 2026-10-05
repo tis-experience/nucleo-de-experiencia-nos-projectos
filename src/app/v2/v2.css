@@ -121,6 +121,10 @@
   letter-spacing: -1px;
 }
 
+.v2-title-compact .v2-mask > span {
+  text-wrap: balance;
+}
+
 .v2-scene-title {
   position: absolute;
   left: 120px;
