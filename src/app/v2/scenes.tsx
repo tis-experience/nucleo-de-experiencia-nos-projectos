@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { Braces, Palette, ShieldCheck, Sparkles } from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
@@ -663,6 +664,9 @@ export function ChangeScene({ build }: { build: number }) {
 
 /* ── Design System TIS ────────────────────────────────────────────────── */
 
+/** Um ícone por ponto do Design System, pela ordem de DS_POINTS em content.ts. */
+const DS_ICONS = [Braces, Palette, Sparkles, ShieldCheck];
+
 export function DesignSystemScene() {
   // Os temas alternam sozinhos, com alguns segundos em cada um, até alguém escolher um.
   const [selected, select] = useSelected(THEMES.length, 4500);
@@ -689,12 +693,18 @@ export function DesignSystemScene() {
       </div>
 
       <ul className="v2-ds-points">
-        {DS_POINTS.map((point, index) => (
-          <motion.li key={point.title} {...rise(0.4 + index * 0.1, 20)}>
-            <h2>{point.title}</h2>
-            <p>{point.text}</p>
-          </motion.li>
-        ))}
+        {DS_POINTS.map((point, index) => {
+          const Icon = DS_ICONS[index];
+          return (
+            <motion.li key={point.title} {...rise(0.4 + index * 0.1, 20)}>
+              <span className="v2-ds-icon" aria-hidden>
+                <Icon size={24} strokeWidth={1.8} />
+              </span>
+              <h2>{point.title}</h2>
+              <p>{point.text}</p>
+            </motion.li>
+          );
+        })}
       </ul>
 
       <motion.div className="v2-ds-demo" data-theme={theme.id} style={themeStyle} {...rise(0.6, 24)}>

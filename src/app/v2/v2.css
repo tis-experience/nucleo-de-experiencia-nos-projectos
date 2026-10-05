@@ -1661,26 +1661,35 @@
   position: absolute;
   left: 120px;
   top: 400px;
-  width: 780px;
+  width: 744px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px 44px;
+  gap: 64px 32px;
   margin: 0;
-  padding: 36px;
-  border-radius: 24px;
-  background: var(--tint);
+  padding: 0;
   list-style: none;
 }
 
+.v2-ds-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--tint);
+  color: var(--blue);
+}
+
 .v2-ds-points h2 {
+  margin-top: 18px;
   font-family: var(--display);
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.15;
   color: var(--navy);
 }
 
 .v2-ds-points p {
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 16px;
 }
 
@@ -1696,6 +1705,8 @@
   gap: 32px 64px;
   align-items: center;
   padding: 56px;
+  border-radius: 32px;
+  background: var(--tint);
 }
 
 .v2-ds-demo .v2-screen {
