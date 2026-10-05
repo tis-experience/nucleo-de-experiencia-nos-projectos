@@ -1030,13 +1030,10 @@ export function TeamScene() {
         <motion.div className="v2-team-open" {...fade(1.1, 0.8)}>
           <div aria-hidden>
             {Array.from({ length: TEAM_OPEN_SEATS }, (_, index) => (
-              <svg key={index} viewBox="0 0 88 88" fill="none">
-                <circle cx="44" cy="35" r="13" />
-                <path d="M18 80c0-15 11.6-24 26-24s26 9 26 24" />
-              </svg>
+              <i key={index} />
             ))}
           </div>
-          <p>Com espaço para crescer</p>
+          <p>Espaço para a equipa crescer</p>
         </motion.div>
       </div>
     </section>
