@@ -472,6 +472,29 @@ export function ChangeScene({ build }: { build: number }) {
         )}
       </Swap>
 
+      {/* Com o processo de UX, cada etapa mostra os métodos que usa, presos à etapa por uma linha. */}
+      <Swap>
+        {!current && (
+          <motion.ol key="methods" className="v2-methods" exit={exit} aria-label="Métodos de UX por etapa">
+            {STAGES.map((stage, index) => (
+              <motion.li key={stage.id} {...rise(0.5 + index * 0.1, 16)}>
+                <ul>
+                  {stage.methods.map((method) => (
+                    <li key={method}>{method}</li>
+                  ))}
+                </ul>
+                <motion.i
+                  aria-hidden
+                  initial={STILL ? false : { scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  transition={tween(0.6, 0.8 + index * 0.1)}
+                />
+              </motion.li>
+            ))}
+          </motion.ol>
+        )}
+      </Swap>
+
       <div className="v2-change-chart">
         <motion.svg viewBox={`0 0 ${CHART_WIDTH} ${CHART_BASELINE}`} fill="none" aria-hidden {...fade(current ? 1.1 : 0, 0.6)}>
           <defs>

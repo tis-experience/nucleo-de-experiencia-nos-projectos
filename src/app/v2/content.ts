@@ -89,6 +89,8 @@ export type Stage = {
   short: string;
   work: string;
   aiSupport: string;
+  /** Métodos de UX da etapa, segundo a proposta de actuação e o processo técnico do Núcleo. */
+  methods: string[];
   delivery: string;
   /** O que a entrega contém, segundo a tabela de entregáveis da proposta de actuação. */
   deliveryContents: string;
@@ -102,6 +104,7 @@ export const STAGES: Stage[] = [
     short: "Compreender",
     work: "Perceber a dificuldade, o resultado esperado e o que ainda é desconhecido, com o solicitante e o PO.",
     aiSupport: "Organiza os materiais, resume as evidências com a origem e prepara perguntas.",
+    methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
     deliveryContents: "Problema, pessoas, tarefa prioritária, evidências e dúvidas.",
   },
@@ -112,6 +115,7 @@ export const STAGES: Stage[] = [
     short: "Desenhar",
     work: "Desenhar o percurso da pessoa e o comportamento da interface, com o PO nas alternativas e a engenharia na viabilidade.",
     aiSupport: "Produz alternativas e constrói ecrãs a partir dos padrões do Design System.",
+    methods: ["Fluxo de utilizador", "Arquitectura de informação", "Esboços", "Demonstração executável"],
     delivery: "Solução de UX/UI",
     deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
   },
@@ -122,6 +126,7 @@ export const STAGES: Stage[] = [
     short: "Avaliar",
     work: "Escolher uma validação proporcional à dúvida e observar se a pessoa consegue concluir a tarefa.",
     aiSupport: "Prepara guiões e cenários e agrupa os problemas observados.",
+    methods: ["Revisão especializada", "Conversa sobre o fluxo", "Teste de utilização"],
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
   },
@@ -132,6 +137,7 @@ export const STAGES: Stage[] = [
     short: "Acompanhar",
     work: "Trabalhar com PO, engenharia e QA sobre a mesma versão executável, sem um handoff separado.",
     aiSupport: "Prepara a especificação de UX e compara a versão com os critérios.",
+    methods: ["Especificação de UX", "Revisão da implementação", "Verificações com QA"],
     delivery: "Especificação de UX",
     deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
   },
@@ -142,6 +148,7 @@ export const STAGES: Stage[] = [
     short: "Validar",
     work: "Rever fluxos, conteúdo, consistência visual e acessibilidade na versão entregue.",
     aiSupport: "Compara ecrãs e estados e organiza achados e feedback de utilização.",
+    methods: ["Revisão de fluxos e conteúdo", "Avaliação de acessibilidade", "Análise de feedback"],
     delivery: "Validação de UX",
     deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
   },
