@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { BookOpen, Braces, FolderOpen, Palette, ShieldCheck, Sparkles, UserCheck, Users } from "lucide-react";
+import { BookOpen, Braces, Palette, ShieldCheck, Sparkles, UserCheck, Users } from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
@@ -9,10 +9,10 @@ import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
 import { OPERACIONAL_COLUMNS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
-  AI_FLOW,
+  AI_PRINCIPLES,
+  AI_STAYS,
   AREAS,
   MEASURE_PLAN,
-  PHASE_AXIS,
   TIS_MEASURES,
   CURRENT_PROCESS,
   DS_POINTS,
@@ -476,7 +476,7 @@ const CHANGE_HEADS = [
   {
     kicker: "Com um processo de UX",
     title: "O processo de UX encontra os problemas antes da construção",
-    lead: "O problema é investigado e a solução é avaliada cedo, dentro das fases que a TIS já tem.",
+    lead: "O problema é investigado e a solução é avaliada cedo, quando mudar ainda é simples.",
   },
 ];
 
@@ -485,9 +485,7 @@ const CHANGE_HEADS = [
 export function ChangeScene({ build }: { build: number }) {
   const head = CHANGE_HEADS[build];
   const current = build === 0;
-  const phases = current
-    ? CURRENT_PHASES.map((name) => ({ names: [name], span: 1 }))
-    : PHASE_AXIS.map((segment) => ({ names: segment.phases.map((index) => PHASES[index].name), span: segment.stages.length }));
+  const phases = current ? CURRENT_PHASES : STAGES.map((stage) => stage.short);
   const pushRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // As bolas afastam-se ligeiramente do cursor.
@@ -585,7 +583,6 @@ export function ChangeScene({ build }: { build: number }) {
           <motion.ol key="methods" className="v3-methods" exit={exit} aria-label="Métodos de UX por etapa">
             {STAGES.map((stage, index) => (
               <motion.li key={stage.id} {...rise(0.5 + index * 0.1, 16)}>
-                <b>{stage.short}</b>
                 <ul>
                   {stage.methods.map((method) => (
                     <li key={method}>{method}</li>
@@ -658,19 +655,9 @@ export function ChangeScene({ build }: { build: number }) {
         </motion.p>
 
         <Swap>
-          <motion.ol
-            key={build}
-            className="v3-phases"
-            exit={exit}
-            {...fade(0.2)}
-            aria-label={current ? "Fases do processo actual" : "Fases do processo da TIS"}
-          >
+          <motion.ol key={build} className="v3-phases" exit={exit} {...fade(0.2)}>
             {phases.map((phase) => (
-              <li key={phase.names.join()} style={{ flex: phase.span }}>
-                {phase.names.map((name) => (
-                  <span key={name}>{name}</span>
-                ))}
-              </li>
+              <li key={phase}>{phase}</li>
             ))}
           </motion.ol>
         </Swap>
@@ -683,23 +670,10 @@ export function ChangeScene({ build }: { build: number }) {
 
 /* ── Como a IA entra ───────────────────────────────────────────────────── */
 
-const AI_INPUT_ICONS = [BookOpen, FolderOpen];
+const AI_ICONS = [BookOpen, Sparkles, UserCheck];
 
-/** Linhas do fluxo, nas coordenadas do desenho (1680 × 300): das entradas ao assistente, do assistente ao rascunho,
-    do rascunho à revisão e da revisão ao projecto. */
-const AI_LINKS = [
-  "M330 96C460 96 480 150 614 150",
-  "M330 204C460 204 480 150 614 150",
-  "M746 150H896",
-  "M1164 150H1314",
-  "M1446 150H1576",
-];
-
-/** O que o assistente recebe, o que produz e quem revê, num só desenho; a etapa escolhida diz o que sai dela. */
+/** Três princípios; o detalhe de cada etapa fica na fala e no "Apoio de IA" das etapas. */
 export function AiScene() {
-  const [selected, select] = useSelected(AI_FLOW.outputs.length);
-  const output = AI_FLOW.outputs[selected];
-
   return (
     <section className="v3-scene" aria-labelledby="v3-ai-title">
       <motion.p className="v3-kicker v3-scene-kicker" {...fade(0.1)}>
@@ -710,93 +684,28 @@ export function AiScene() {
           <MaskLine>Como a IA entra no processo</MaskLine>
         </h1>
         <motion.p className="v3-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
-          O assistente recebe o contexto, produz um primeiro rascunho e uma pessoa revê antes de entrar no projecto.
+          O assistente acelera o trabalho de cada etapa; as decisões continuam a ser das pessoas.
         </motion.p>
       </div>
 
-      <div className="v3-ai" aria-hidden>
-        <svg className="v3-ai-links" viewBox="0 0 1680 300" fill="none">
-          {AI_LINKS.map((d, index) => (
-            <motion.path
-              key={d}
-              className="v3-ai-link"
-              d={d}
-              stroke="#7db3f8"
-              strokeWidth="2"
-              strokeDasharray="4 10"
-              strokeLinecap="round"
-              initial={STILL ? false : { pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={tween(0.7, 0.6 + index * 0.15)}
-            />
-          ))}
-        </svg>
-
-        {AI_FLOW.inputs.map((input, index) => {
-          const Icon = AI_INPUT_ICONS[index];
+      <ul className="v3-ai-principles">
+        {AI_PRINCIPLES.map((principle, index) => {
+          const Icon = AI_ICONS[index];
           return (
-            <motion.div key={input.title} className="v3-ai-input" style={{ top: index * 108 + 54 }} {...rise(0.4 + index * 0.1, 16)}>
-              <span className="v3-ds-icon">
-                <Icon size={22} strokeWidth={1.8} />
+            <motion.li key={principle.title} {...rise(0.5 + index * 0.15, 24)}>
+              <span className="v3-ds-icon" aria-hidden>
+                <Icon size={26} strokeWidth={1.8} />
               </span>
-              <b>{input.title}</b>
-            </motion.div>
+              <h2>{principle.title}</h2>
+              <p>{principle.text}</p>
+            </motion.li>
           );
         })}
+      </ul>
 
-        <motion.div className="v3-ai-node" style={{ left: 530 }} {...rise(0.9, 16)}>
-          <span className="v3-bob">
-            <Sparkles size={44} strokeWidth={1.6} />
-          </span>
-          <b>Assistente</b>
-        </motion.div>
-
-        <motion.div className="v3-ai-draft" {...rise(1.1, 16)}>
-          <i style={{ width: 120 }} />
-          <i style={{ width: 180 }} data-block />
-          <i style={{ width: 150 }} />
-          <i style={{ width: 90 }} />
-          <b>Rascunho</b>
-        </motion.div>
-
-        <motion.div className="v3-ai-node" style={{ left: 1230 }} {...rise(1.3, 16)}>
-          <span>
-            <UserCheck size={44} strokeWidth={1.6} />
-          </span>
-          <b>Revisão</b>
-          <div className="v3-links">
-            {AI_FLOW.reviewers.map((reviewer) => (
-              <span key={reviewer.who} title={reviewer.what}>
-                {reviewer.who}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.p className="v3-ai-end" {...rise(1.5, 16)}>
-          Entra no projecto
-        </motion.p>
-      </div>
-
-      <div className="v3-ai-stages">
-        <motion.div className="v3-ai-tabs" role="tablist" aria-label="Etapa" {...fade(1.2)}>
-          {AI_FLOW.outputs.map((item, index) => (
-            <button key={item.stage} type="button" role="tab" aria-selected={index === selected} onClick={() => select(index)}>
-              {item.stage}
-            </button>
-          ))}
-        </motion.div>
-        <Swap>
-          <motion.p key={selected} className="v3-ai-output" role="tabpanel" exit={exit} {...rise(0.05, 12)}>
-            <span className="v3-label">O rascunho em {output.stage}</span>
-            {output.text}
-          </motion.p>
-        </Swap>
-      </div>
-
-      <motion.p className="v3-ai-stays" {...rise(1.7, 12)}>
+      <motion.p className="v3-ai-stays" {...rise(1.1, 12)}>
         <Users size={24} strokeWidth={1.8} aria-hidden />
-        {AI_FLOW.stays}
+        {AI_STAYS}
       </motion.p>
     </section>
   );

@@ -5,9 +5,9 @@ https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O reposit
 
 - A apresentação original, na raiz do site (`src/app/App.tsx` e `src/app/components/`).
 - A versão nova, em `#/v2` (`src/app/v2/`). A original só é alterada a pedido.
-- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com três revisões: um slide sobre como a IA entra no processo, as
-  fases da TIS como eixo do slide "Com um processo de UX" e a medição na TIS com uma métrica de resultado por
-  pergunta. É onde decorre o trabalho actual; a v2 fica como estava. As classes da v3 são `v3-*`.
+- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com duas revisões: um slide com os princípios de como a IA entra no
+  processo e a medição na TIS com uma métrica de resultado por pergunta. É onde decorre o trabalho actual; a v2
+  fica como estava. As classes da v3 são `v3-*`.
 
 ## Regras de escrita
 
@@ -26,7 +26,11 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - Sem exemplos fictícios específicos e sem promessas exageradas. Os números de mercado têm sempre fonte.
 - O Núcleo trabalha por trocas declaradas com as áreas, sem imposição. Os ganhos de um projecto são da equipa.
 - O PO participa activamente na UX. O Marketing entra apenas na marca e nos produtos TIS.
-- A IA é descrita de forma concreta: o que o assistente recebe, o que produz e quem revê.
+- A IA é descrita de forma concreta: o que o assistente recebe, o que produz e quem revê. Sem desenhar o fluxo como
+  uma sequência simples (rascunho, revisão, projecto): o processo real tem muito mais passos, e o detalhe fica na
+  fala do apresentador.
+- As fases da TIS e as etapas de UX não se alinham numa linha do tempo. A proposta comercial corre o processo de UX
+  em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual.
 - O fecho é um agradecimento, sem pedidos às lideranças.
 - O processo de UX tem seis etapas, com os nomes da apresentação original: Descobrir, Definir, Explorar, Validar,
   Entregar e Acompanhar. O trabalho, o apoio de IA e as entregas de cada etapa vêm da "Proposta de actuação do
@@ -73,6 +77,5 @@ System, resultados (mercado e medição na TIS) e fecho.
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir e as frases de contribuição do Núcleo para cada área.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
-- Na v3: as quatro métricas de resultado e a forma de as observar, a linha de base "nos primeiros projectos, em 2026",
-  o que o assistente produz em cada etapa (deduzido do apoio de IA de cada etapa) e a distribuição simplificada das
-  cinco fases pelas seis etapas no eixo do gráfico (`PHASE_AXIS`).
+- Na v3: as quatro métricas de resultado e a forma de as observar, e a linha de base "nos primeiros projectos, em
+  2026".

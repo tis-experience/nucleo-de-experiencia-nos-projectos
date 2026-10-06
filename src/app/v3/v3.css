@@ -763,9 +763,9 @@
 .v3-methods {
   position: absolute;
   left: 120px;
-  top: 330px;
+  top: 390px;
   width: 1680px;
-  height: 530px;
+  height: 470px;
   display: flex;
   margin: 0;
   padding: 0;
@@ -777,16 +777,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-/* O nome da etapa encabeça a coluna dos seus métodos. */
-.v3-methods > li > b {
-  margin-bottom: 14px;
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: normal;
-  line-height: 1.2;
-  color: var(--blue);
 }
 
 .v3-methods ul {
@@ -919,21 +909,8 @@
   padding-top: 14px;
   font-family: var(--strong);
   font-size: 18px;
-  line-height: 1.25;
   color: var(--muted);
   transition: color 0.4s ease;
-}
-
-.v3-phases li span {
-  display: block;
-}
-
-/* Cada fase começa onde começa a primeira etapa que cobre: a linha marca a fronteira. */
-.v3-phases li + li {
-  border-left: 2px solid var(--line);
-  padding-left: 14px;
-  margin-top: -2px;
-  padding-top: 16px;
 }
 
 .v3-phases li[data-on="true"] {
@@ -2287,195 +2264,60 @@
   color: var(--navy);
 }
 
-/* ── Como a IA entra: o fluxo num desenho, uma etapa de cada vez ────────── */
+/* ── Como a IA entra: três princípios ───────────────────────────────────── */
 
-.v3-ai {
+.v3-ai-principles {
   position: absolute;
   left: 120px;
-  top: 300px;
+  top: 360px;
   width: 1680px;
-  height: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.v3-ai-links {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.v3-ai-input {
-  position: absolute;
-  left: 0;
-  width: 330px;
-  height: 84px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 0 20px;
-  border-radius: 20px;
+.v3-ai-principles li {
+  padding: 36px 36px 40px;
+  border-radius: 24px;
   background: var(--tint);
 }
 
-.v3-ai-input .v3-ds-icon {
+.v3-ai-principles .v3-ds-icon {
+  width: 56px;
+  height: 56px;
   background: #ffffff;
 }
 
-.v3-ai-input b {
+.v3-ai-principles h2 {
+  margin-top: 24px;
+  max-width: 420px;
   font-family: var(--display);
-  font-size: 20px;
-  font-weight: normal;
+  font-size: 28px;
   line-height: 1.15;
   color: var(--navy);
 }
 
-/* O tracejado desloca-se no sentido do fluxo. */
-.v3-ai-link {
-  animation: v3-dash 1.2s linear infinite;
-}
-
-.v3-ai-node {
-  position: absolute;
-  top: 30px;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.v3-ai-node > span {
-  display: grid;
-  place-items: center;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: var(--tint);
-  color: var(--blue);
-}
-
-.v3-ai-node > b {
-  margin-top: 14px;
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: normal;
-  color: var(--navy);
-}
-
-.v3-ai-node .v3-links {
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-/* O rascunho: um documento esquemático, com um bloco a representar um ecrã. */
-.v3-ai-draft {
-  position: absolute;
-  left: 900px;
-  top: 60px;
-  width: 260px;
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 22px 24px;
-  border: 2px solid var(--line);
-  border-radius: 18px;
-  background: #ffffff;
-}
-
-.v3-ai-draft i {
-  height: 10px;
-  border-radius: 999px;
-  background: #d3d8e3;
-}
-
-.v3-ai-draft i[data-block] {
-  height: 34px;
-  border-radius: 8px;
-  background: var(--sky);
-}
-
-.v3-ai-draft b {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  margin-top: 14px;
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: normal;
-  text-align: center;
-  color: var(--navy);
-}
-
-.v3-ai-end {
-  position: absolute;
-  left: 1580px;
-  top: 128px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: var(--navy);
-  font-family: var(--strong);
-  font-size: 16px;
-  white-space: nowrap;
-  color: #ffffff;
-}
-
-.v3-ai-stages {
-  position: absolute;
-  left: 120px;
-  top: 660px;
-  width: 1680px;
-}
-
-.v3-ai-tabs {
-  display: flex;
-  gap: 6px;
-}
-
-.v3-ai-tabs button {
-  padding: 8px 18px;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.2;
-  color: var(--navy);
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.25s ease, background 0.25s ease, color 0.25s ease;
-}
-
-.v3-ai-tabs button[aria-selected="true"] {
-  background: var(--tint);
-  color: var(--blue);
-  opacity: 1;
-}
-
-.v3-ai-output {
-  margin-top: 18px;
-  max-width: 1100px;
-  font-size: 20px;
-  line-height: 1.45;
-}
-
-.v3-ai-output .v3-label {
-  display: block;
-  margin-bottom: 6px;
+.v3-ai-principles p {
+  margin-top: 12px;
+  max-width: 440px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--muted);
 }
 
 .v3-ai-stays {
   position: absolute;
   left: 120px;
-  top: 860px;
+  top: 780px;
   width: 1300px;
   display: flex;
   align-items: center;
   gap: 14px;
   font-family: var(--strong);
-  font-size: 19px;
+  font-size: 20px;
   color: var(--navy);
 }
 

@@ -276,44 +276,25 @@ export const BENEFIT_METRICS: Metric[] = [
   },
 ];
 
-/** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação): o que o assistente recebe, o que produz em
-    cada etapa e quem revê antes de entrar no projecto. */
-export const AI_FLOW = {
-  inputs: [
-    {
-      title: "Base de conhecimento de UX",
-      text: "Design System, padrões de interacção, linguagem, acessibilidade e critérios de revisão.",
-    },
-    {
-      title: "Contexto do projecto",
-      text: "Problema, utilizadores, regras confirmadas, identidade do cliente e limitações.",
-    },
-  ],
-  /** Um primeiro rascunho por etapa, pela ordem de STAGES. */
-  outputs: [
-    { stage: "Descobrir", text: "Resumo das evidências, com a origem de cada uma, e perguntas para as entrevistas." },
-    { stage: "Definir", text: "Critérios de sucesso e cenários propostos a partir das evidências e das regras confirmadas." },
-    { stage: "Explorar", text: "Alternativas de fluxo e ecrãs compostos com os componentes do Design System." },
-    { stage: "Validar", text: "Guiões de teste e agrupamento dos problemas observados." },
-    { stage: "Entregar", text: "Rascunho da especificação de UX e comparação da versão construída com os critérios." },
-    { stage: "Acompanhar", text: "Comparação de ecrãs e estados e organização do feedback de utilização." },
-  ],
-  reviewers: [
-    { who: "Núcleo", what: "revê a coerência da experiência" },
-    { who: "Engenharia", what: "revê a implementação" },
-    { who: "PO", what: "confirma regras e âmbito" },
-  ],
-  stays: "Falar com utilizadores, decidir e validar fica com as pessoas. Nada do que o assistente produz entra no projecto sem revisão.",
-};
-
-/** Como as fases da TIS se distribuem pelas seis etapas no desenho do processo. É uma partição simplificada para o
-    eixo do gráfico; a ligação exacta de cada fase às etapas está em PHASES. */
-export const PHASE_AXIS: { phases: number[]; stages: StageId[] }[] = [
-  { phases: [0], stages: ["descobrir"] },
-  { phases: [1], stages: ["definir", "explorar", "validar"] },
-  { phases: [2, 3], stages: ["entregar"] },
-  { phases: [4], stages: ["acompanhar"] },
+/** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação), em três princípios. O detalhe de cada etapa
+    fica na fala do apresentador e no "Apoio de IA" de cada etapa. */
+export const AI_PRINCIPLES = [
+  {
+    title: "Trabalha sobre o conhecimento do Núcleo",
+    text: "Design System, padrões de interacção, linguagem, acessibilidade e critérios de revisão, com o contexto de cada projecto.",
+  },
+  {
+    title: "Prepara, em cada etapa, o que as pessoas vão rever",
+    text: "Da organização das evidências aos primeiros ecrãs com o Design System, sempre como ponto de partida.",
+  },
+  {
+    title: "Nada entra no projecto sem revisão",
+    text: "O Núcleo revê a experiência, a engenharia a implementação e o PO confirma regras e âmbito.",
+  },
 ];
+
+/** O que fica com as pessoas. */
+export const AI_STAYS = "Falar com utilizadores, decidir e validar fica com as pessoas.";
 
 /** Como vamos medir na TIS: uma métrica de resultado por pergunta, com a forma de observação. */
 export const TIS_MEASURES = [
@@ -382,7 +363,7 @@ export const DELIVERY_VISUALS: Record<number, string> = {
 export const PHASES: { name: string; delivery: string; areas: string[]; stages: StageId[] }[] = [
   {
     name: "Proposta comercial",
-    delivery: "Brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
+    delivery: "O processo em miniatura: brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
     areas: ["pre-venda"],
     stages: ["explorar", "descobrir"],
   },
@@ -429,7 +410,7 @@ export const AREAS: Area[] = [
   {
     id: "pre-venda",
     name: "Pré-venda",
-    role: "Ajuda a esclarecer o problema do cliente e a mostrar a solução numa demonstração, dentro do prazo da proposta.",
+    role: "Corre o processo de UX em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual dentro do prazo da proposta.",
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
     stages: ["explorar", "descobrir"],
