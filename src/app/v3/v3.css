@@ -942,8 +942,8 @@
 
 .v3-stage-facts {
   display: grid;
-  gap: 36px;
-  margin: 44px 0 0;
+  gap: 28px;
+  margin: 36px 0 0;
 }
 
 .v3-stage-facts dt {
@@ -2142,7 +2142,7 @@
 .v3-area-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 62px;
+  gap: 36px 62px;
   margin: 36px 0 0;
 }
 
@@ -2713,4 +2713,421 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ── Apêndices: ligação no canto do slide e janela larga ──────────────── */
+
+.v3-more {
+  position: absolute;
+  top: 150px;
+  right: 120px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 16px;
+  color: var(--navy);
+  transition: background 0.2s;
+}
+
+.v3-more:hover {
+  background: #dbe9ff;
+}
+
+.v3-more svg {
+  color: var(--blue);
+}
+
+.v3-modal-card[data-size="wide"] {
+  width: 1680px;
+  min-height: 940px;
+  padding: 52px 64px 32px;
+}
+
+.v3-modal-card .v3-ds-layers,
+.v3-modal-card .v3-ds-steps,
+.v3-modal-card .v3-maturity-cards ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+.v3-modal-card[data-size="wide"] h2 {
+  font-size: 46px;
+}
+
+.v3-modal-card[data-size="wide"] p,
+.v3-modal-card[data-size="wide"] ol,
+.v3-modal-card[data-size="wide"] ul {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.v3-modal-card[data-size="wide"] .v3-modal-nav {
+  margin-top: 24px;
+}
+
+.v3-modal-card h3 {
+  margin-top: 6px;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  color: var(--navy);
+}
+
+.v3-modal-card .v3-label {
+  margin: 0;
+  font-size: 13px;
+}
+
+.v3-appendix-lead {
+  max-width: 1180px;
+  margin-top: 16px !important;
+  font-size: 19px !important;
+}
+
+/* Tipos de pedido: tabela com a profundidade de cada etapa. */
+.v3-requests {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.v3-requests > div {
+  display: grid;
+  grid-template-columns: 280px 480px 1fr;
+  gap: 32px;
+  align-items: center;
+  padding: 20px 28px;
+  border-radius: 18px;
+  background: var(--tint);
+}
+
+.v3-requests > .v3-requests-head {
+  padding: 0 28px;
+  background: none;
+  font-family: var(--strong);
+  font-size: 13px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.v3-requests > div > span:first-child b {
+  display: block;
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--navy);
+}
+
+.v3-requests > div > span:first-child small {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.v3-requests-stages {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
+}
+
+.v3-requests-head .v3-requests-stages b {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.v3-requests-stages i,
+.v3-appendix-legend i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  background: #ffffff;
+}
+
+.v3-requests-stages i[data-depth="1"],
+.v3-appendix-legend i[data-depth="1"] {
+  background: linear-gradient(90deg, var(--blue) 50%, #ffffff 50%);
+}
+
+.v3-requests-stages i[data-depth="2"],
+.v3-appendix-legend i[data-depth="2"] {
+  background: var(--blue);
+}
+
+.v3-requests-stages i[data-depth="0"],
+.v3-appendix-legend i[data-depth="0"] {
+  border-color: #c5cad6;
+}
+
+.v3-appendix-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px !important;
+  font-size: 15px !important;
+  color: var(--muted);
+}
+
+.v3-appendix-legend i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 14px;
+}
+
+.v3-appendix-legend i:first-child {
+  margin-left: 0;
+}
+
+/* Cartões em grelha: maturidade do produto, frentes, passos da governança e princípios. */
+.v3-maturity-cards,
+.v3-fronts,
+.v3-ds-steps,
+.v3-principles {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-maturity-cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.v3-fronts,
+.v3-ds-steps {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.v3-principles {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.v3-maturity-cards > li,
+.v3-fronts > li,
+.v3-ds-steps > li,
+.v3-principles > li {
+  padding: 28px 32px;
+  border-radius: 20px;
+  background: var(--tint);
+}
+
+.v3-ds-steps {
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.v3-ds-steps > li {
+  padding: 22px 26px;
+}
+
+.v3-ds-steps > li h3 {
+  font-size: 24px;
+}
+
+.v3-ds-steps > li > p:not(.v3-label) {
+  font-size: 16px;
+}
+
+.v3-maturity-cards > li > p:not(.v3-label),
+.v3-ds-steps > li > p:not(.v3-label),
+.v3-principles > li > p:not(.v3-label) {
+  margin-top: 12px;
+}
+
+.v3-maturity-cards ol {
+  margin-top: 16px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: loop;
+}
+
+.v3-maturity-cards ol li {
+  position: relative;
+  padding: 6px 0 6px 34px;
+  font-size: 16px;
+  counter-increment: loop;
+}
+
+.v3-maturity-cards ol li::before {
+  content: counter(loop);
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--blue);
+  font-family: var(--strong);
+  font-size: 13px;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.v3-fronts ul {
+  margin-top: 14px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.v3-fronts ul li {
+  padding: 5px 0 5px 18px;
+  font-size: 16px;
+  background: radial-gradient(circle, var(--blue) 3px, transparent 3.5px) no-repeat 0 14px / 8px 8px;
+}
+
+.v3-ds-step-ai {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15px !important;
+  color: var(--blue);
+}
+
+.v3-ds-step-ai svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+.v3-ds-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-ds-checks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--blue);
+  font-family: var(--strong);
+  font-size: 15px;
+  color: var(--navy);
+}
+
+.v3-ds-checks svg {
+  color: var(--blue);
+}
+
+/* Arquitectura: as três camadas de tokens ao lado dos pontos. */
+.v3-ds-arch {
+  display: grid;
+  grid-template-columns: 560px 1fr;
+  gap: 64px;
+  margin-top: 36px;
+}
+
+.v3-ds-layers {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-ds-layers li {
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: var(--tint);
+}
+
+.v3-ds-layers li:nth-child(2) {
+  margin-inline: 24px;
+}
+
+.v3-ds-layers li:nth-child(3) {
+  margin-inline: 48px;
+}
+
+.v3-ds-layers b {
+  display: block;
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--navy);
+}
+
+.v3-ds-layers span {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+.v3-appendix-points {
+  padding-left: 0;
+  list-style: none;
+}
+
+.v3-appendix-points li {
+  padding: 12px 0 12px 26px;
+  border-top: 1px solid #e3e8f2;
+  background: radial-gradient(circle, var(--blue) 4px, transparent 4.5px) no-repeat 0 22px / 10px 10px;
+}
+
+.v3-appendix-points li:first-child {
+  border-top: 0;
+}
+
+/* Responsáveis por fase. */
+.v3-roles {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.v3-roles > div {
+  display: grid;
+  grid-template-columns: 280px 1fr 1.3fr 1.3fr;
+  gap: 32px;
+  align-items: center;
+  padding: 22px 28px;
+  border-radius: 18px;
+  background: var(--tint);
+}
+
+.v3-roles > .v3-roles-head {
+  padding: 0 28px;
+  background: none;
+  font-family: var(--strong);
+  font-size: 13px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.v3-roles > div > span:first-child b {
+  font-family: var(--display);
+  font-size: 24px;
+  color: var(--navy);
+}
+
+.v3-roles [data-lead] {
+  font-family: var(--strong);
+  color: var(--navy);
+}
+
+.v3-roles small {
+  display: block;
+  font-family: var(--strong);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* As etiquetas de serviços ocupam a linha inteira da ficha da área. */
+.v3-area-services {
+  grid-column: 1 / -1;
 }

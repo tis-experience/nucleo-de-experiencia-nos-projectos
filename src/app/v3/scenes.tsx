@@ -11,6 +11,7 @@ import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "./metrics";
 import {
   AI_CHAIN,
   AREAS,
+  FRONTS,
   CURRENT_PROCESS,
   DS_POINTS,
   BENEFIT_METRICS,
@@ -28,6 +29,7 @@ import {
 } from "./content";
 import { CountUp, EASE, MaskLine, STILL, Swap, fade, rise, spring, tween } from "./fx";
 import { ArtifactCanvas, Screen } from "./StageScene";
+import { AreasAppendix, DsAppendix, Modal, MoreLink } from "./appendices";
 
 const exit = { opacity: 0, transition: { duration: 0.25 } };
 
@@ -275,91 +277,30 @@ export function UxScene() {
 /** Janela com a descrição de um nível de maturidade. Fecha com Esc ou clique fora e muda de nível com as setas. */
 function MaturityModal({ index, onChange }: { index: number; onChange: (index: number | null) => void }) {
   const detail = MATURITY_DETAILS[index];
-  const count = MATURITY_LEVELS.length;
-
-  // Enquanto a janela está aberta, as teclas ficam com ela e não chegam à navegação da apresentação.
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onChange(null);
-      else if (event.key === "ArrowRight" || event.key === "ArrowDown") onChange((index + 1) % count);
-      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") onChange((index - 1 + count) % count);
-      else if (event.key !== " " && event.key !== "PageDown" && event.key !== "PageUp") return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-    };
-    window.addEventListener("keydown", handleKeyDown, true);
-    return () => window.removeEventListener("keydown", handleKeyDown, true);
-  }, [index, count, onChange]);
 
   return (
-    <motion.div
-      className="v3-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="v3-modal-title"
-      initial={STILL ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={exit}
-      transition={tween(0.25)}
-      onClick={(event) => {
-        event.stopPropagation();
-        if (event.target === event.currentTarget) onChange(null);
-      }}
+    <Modal
+      page={index}
+      pages={MATURITY_LEVELS.length}
+      onPage={onChange}
+      onClose={() => onChange(null)}
+      label={`Nível ${index + 1}: ${MATURITY_LEVELS[index]}`}
     >
-      <motion.div
-        className="v3-modal-card"
-        initial={STILL ? false : { y: 24, scale: 0.97 }}
-        animate={{ y: 0, scale: 1 }}
-        transition={tween(0.35)}
-      >
-        <button type="button" className="v3-modal-close" aria-label="Fechar" onClick={() => onChange(null)}>
-          <svg viewBox="0 0 24 24" aria-hidden>
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
-        <Swap>
-          <motion.div
-            key={index}
-            initial={STILL ? false : { opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={exit}
-            transition={tween(0.25)}
-          >
-            <p className="v3-modal-tag">
-              Nível {index + 1}
-              {index === 2 && <span>TIS hoje, entre o 2 e o 3</span>}
-            </p>
-            <h2 id="v3-modal-title">{MATURITY_LEVELS[index]}</h2>
-            <p className="v3-modal-quote">{detail.quote}</p>
-            <p>{detail.body}</p>
-            {detail.list && (
-              <ol>
-                {detail.list.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            )}
-          </motion.div>
-        </Swap>
-        <div className="v3-modal-nav">
-          <button type="button" aria-label="Nível anterior" onClick={() => onChange((index - 1 + count) % count)}>
-            <svg viewBox="0 0 24 24" aria-hidden>
-              <path d="M19 12H5m6-6-6 6 6 6" />
-            </svg>
-          </button>
-          <span aria-hidden>
-            {MATURITY_LEVELS.map((level, dot) => (
-              <i key={level} data-on={dot === index || undefined} />
-            ))}
-          </span>
-          <button type="button" aria-label="Nível seguinte" onClick={() => onChange((index + 1) % count)}>
-            <svg viewBox="0 0 24 24" aria-hidden>
-              <path d="M5 12h14m-6-6 6 6-6 6" />
-            </svg>
-          </button>
-        </div>
-      </motion.div>
-    </motion.div>
+      <p className="v3-modal-tag">
+        Nível {index + 1}
+        {index === 2 && <span>TIS hoje, entre o 2 e o 3</span>}
+      </p>
+      <h2>{MATURITY_LEVELS[index]}</h2>
+      <p className="v3-modal-quote">{detail.quote}</p>
+      <p>{detail.body}</p>
+      {detail.list && (
+        <ol>
+          {detail.list.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      )}
+    </Modal>
   );
 }
 
@@ -746,6 +687,7 @@ const DS_ICONS = [Braces, Palette, Sparkles, ShieldCheck];
 export function DesignSystemScene() {
   // Os temas alternam sozinhos, com alguns segundos em cada um, até alguém escolher um.
   const [selected, select] = useSelected(THEMES.length, 4500);
+  const [open, setOpen] = useState(false);
   const theme = THEMES[selected];
   const themeStyle = {
     "--theme": theme.color,
@@ -767,6 +709,7 @@ export function DesignSystemScene() {
           Os mesmos componentes dão origem a produtos consistentes, com a identidade de cada cliente.
         </motion.p>
       </div>
+      <MoreLink label="Arquitectura e governança" onClick={() => setOpen(true)} />
 
       <ul className="v3-ds-points">
         {DS_POINTS.map((point, index) => {
@@ -809,6 +752,8 @@ export function DesignSystemScene() {
           ))}
         </div>
       </motion.div>
+
+      <Swap mode="sync">{open && <DsAppendix key="appendix" onClose={() => setOpen(false)} />}</Swap>
     </section>
   );
 }
@@ -826,6 +771,7 @@ const orbitPoint = (index: number) => {
     o que cada lado traz e as etapas de UX em que trabalham juntos. */
 export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectArea: (id: string) => void }) {
   const area = AREAS.find((item) => item.id === areaId) ?? AREAS[0];
+  const [open, setOpen] = useState(false);
 
   return (
     <section className="v3-scene" aria-labelledby="v3-areas-title">
@@ -835,6 +781,7 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
       <h1 id="v3-areas-title" className="v3-title v3-scene-title">
         <MaskLine>Como o Núcleo contribui com cada área</MaskLine>
       </h1>
+      <MoreLink label="Frentes, responsáveis e princípios" onClick={() => setOpen(true)} />
 
       <motion.div className="v3-layer" {...fade(0.1)}>
         <svg className="v3-orbit-lines" viewBox="0 0 1920 1080" fill="none" aria-hidden>
@@ -898,6 +845,14 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
             </div>
 
             <dl className="v3-area-links">
+              <div className="v3-area-services">
+                <dt>Serviços do Núcleo</dt>
+                <dd className="v3-links">
+                  {FRONTS.filter((front) => area.fronts.includes(front.id)).map((front) => (
+                    <span key={front.id}>{front.name}</span>
+                  ))}
+                </dd>
+              </div>
               <div>
                 <dt>Etapas de UX em conjunto</dt>
                 <dd className="v3-links">
@@ -921,6 +876,8 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
           </motion.div>
         </Swap>
       </div>
+
+      <Swap mode="sync">{open && <AreasAppendix key="appendix" onClose={() => setOpen(false)} />}</Swap>
     </section>
   );
 }

@@ -42,6 +42,13 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - O processo de desenvolvimento da TIS tem cinco fases: Proposta comercial, Discovery, Desenvolvimento, Aceite e
   release, Sustentação.
 - Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v3/content.ts`, para os slides dizerem o mesmo.
+- As seis frentes de actuação (Pesquisa e Discovery, Design de Interface e Interacção, Design de Serviço, Design
+  System, Acessibilidade e Compliance, Validação e Testes) aparecem como etiquetas em cada etapa e como serviços na
+  ficha de cada área, e explicam-se no apêndice das áreas.
+- O conteúdo opcional fica em apêndices, janelas de ecrã inteiro abertas por uma ligação no canto do slide: tipos de
+  pedido e maturidade do produto (etapas), arquitectura e governança (Design System), frentes, responsáveis por fase
+  e princípios (áreas). Os textos vêm da apresentação original, resumidos e adaptados às cinco fases e aos nomes das
+  áreas desta apresentação. Nada de essencial à apresentação pode depender de um apêndice.
 
 ## Direcção visual
 
@@ -59,7 +66,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
-  as listas de métricas do slide da medição.
+  as listas de métricas do slide da medição. `appendices.tsx`: a janela partilhada (`Modal`), a ligação `MoreLink` e
+  os três apêndices.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
   redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco.
@@ -85,3 +93,9 @@ System, resultados (mercado e medição na TIS) e fecho.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
   experimentados e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.
+- Nos apêndices: a profundidade de cada etapa por tipo de pedido (a matriz original usava outras colunas), as frentes
+  atribuídas a cada etapa e a cada área, e a tabela de responsáveis por fase, adaptada das seis etapas originais às
+  cinco fases (a original tinha Produto, Dados/BI, Comercial e Suporte/CS, que não existem na lista de áreas). O que
+  Desenvolvimento e QA fazem na proposta e no Discovery também é dedução.
+- Um mapa do processo de UX cruzado com as áreas de execução e as fases da TIS foi desenhado como infográfico fora da
+  apresentação e ficou guardado para uma versão futura.

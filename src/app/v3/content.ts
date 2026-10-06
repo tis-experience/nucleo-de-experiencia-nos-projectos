@@ -129,6 +129,8 @@ export type Stage = {
   delivery: string;
   /** O que a entrega contém, segundo a tabela de entregáveis da proposta de actuação. */
   deliveryContents: string;
+  /** Frentes de actuação do Núcleo que mais pesam nesta etapa. */
+  fronts: FrontId[];
 };
 
 export const STAGES: Stage[] = [
@@ -142,6 +144,7 @@ export const STAGES: Stage[] = [
     methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
     deliveryContents: "Problema, pessoas, contexto, evidências e dúvidas.",
+    fronts: ["pesquisa", "servico"],
   },
   {
     id: "definir",
@@ -153,6 +156,7 @@ export const STAGES: Stage[] = [
     methods: ["Personas", "Tarefa prioritária", "Critérios de sucesso"],
     delivery: "Escopo de UX",
     deliveryContents: "Tarefa prioritária, personas, restrições e critérios de sucesso.",
+    fronts: ["pesquisa", "servico"],
   },
   {
     id: "explorar",
@@ -164,6 +168,7 @@ export const STAGES: Stage[] = [
     methods: ["Fluxo de utilizador", "Arquitectura de informação", "Esboços", "Demonstração executável"],
     delivery: "Solução de UX/UI",
     deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
+    fronts: ["interface", "design-system"],
   },
   {
     id: "validar",
@@ -175,6 +180,7 @@ export const STAGES: Stage[] = [
     methods: ["Revisão especializada", "Conversa sobre o fluxo", "Teste de utilização"],
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
+    fronts: ["validacao", "acessibilidade"],
   },
   {
     id: "entregar",
@@ -186,6 +192,7 @@ export const STAGES: Stage[] = [
     methods: ["Especificação de UX", "Revisão da implementação", "Avaliação de acessibilidade", "Verificações com QA"],
     delivery: "Especificação de UX",
     deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
+    fronts: ["interface", "design-system", "acessibilidade"],
   },
   {
     id: "acompanhar",
@@ -197,6 +204,7 @@ export const STAGES: Stage[] = [
     methods: ["Análise de feedback", "Análise da utilização", "Revisão da experiência"],
     delivery: "Análise da experiência entregue",
     deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
+    fronts: ["validacao", "pesquisa"],
   },
 ];
 
@@ -402,6 +410,8 @@ export type Area = {
   gets: string;
   /** Etapas de UX em que a área participa; a primeira é a principal e dá o desenho e a entrega mostrados. */
   stages: StageId[];
+  /** Frentes de actuação que o Núcleo presta à área, mostradas como etiquetas de serviço. */
+  fronts: FrontId[];
 };
 
 /** Participação do Núcleo nas áreas da TIS (secção 5 da proposta de actuação). */
@@ -413,6 +423,7 @@ export const AREAS: Area[] = [
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
     stages: ["explorar", "descobrir"],
+    fronts: ["pesquisa", "interface"],
   },
   {
     id: "fabrica",
@@ -421,6 +432,7 @@ export const AREAS: Area[] = [
     gives: "Requisitos, limitações técnicas e a aplicação em construção.",
     gets: "Fluxos, interfaces, componentes e orientações de comportamento, com acompanhamento da implementação.",
     stages: ["entregar", "explorar"],
+    fronts: ["interface", "design-system", "acessibilidade"],
   },
   {
     id: "requisitos",
@@ -430,6 +442,7 @@ export const AREAS: Area[] = [
     gives: "Regras e prioridades, com participação directa do PO na descoberta, na definição, na exploração de soluções e na validação.",
     gets: "Fluxos, cenários, conteúdo e demonstrações para o refinamento e as revisões.",
     stages: ["definir", "descobrir", "explorar", "validar"],
+    fronts: ["pesquisa", "servico", "interface"],
   },
   {
     id: "qa",
@@ -438,6 +451,7 @@ export const AREAS: Area[] = [
     gives: "A versão em teste, os percursos que devem funcionar e os defeitos encontrados.",
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
     stages: ["entregar", "validar"],
+    fronts: ["validacao", "acessibilidade"],
   },
   {
     id: "produtos",
@@ -447,6 +461,7 @@ export const AREAS: Area[] = [
     gives: "Necessidades, regras, feedback e dados de utilização.",
     gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
     stages: ["acompanhar", "descobrir"],
+    fronts: ["pesquisa", "interface", "validacao", "acessibilidade"],
   },
   {
     id: "marketing",
@@ -456,6 +471,7 @@ export const AREAS: Area[] = [
     gives: "A comunicação da marca, o público e os canais.",
     gets: "Compreensão do público e experiência nos pontos de contacto, com apoio a conteúdo e navegação.",
     stages: ["descobrir", "explorar"],
+    fronts: ["interface", "design-system"],
   },
   {
     id: "pessoas",
@@ -464,6 +480,7 @@ export const AREAS: Area[] = [
     gives: "Procedimentos, ferramentas, avaliações e eventos internos.",
     gets: "Fluxos, orientações, materiais ou interfaces, e validações com colaboradores.",
     stages: ["descobrir", "validar"],
+    fronts: ["servico", "pesquisa"],
   },
   {
     id: "inovacao",
@@ -472,6 +489,201 @@ export const AREAS: Area[] = [
     gives: "A ideia, o objectivo do experimento, o público previsto e as limitações.",
     gets: "Fluxos, demonstrações e recomendações fundamentadas no que foi observado.",
     stages: ["explorar", "validar"],
+    fronts: ["pesquisa", "interface", "validacao"],
+  },
+];
+
+/** As seis frentes de actuação do Núcleo, com os nomes da apresentação original e três exemplos de trabalho cada. */
+export type FrontId = "pesquisa" | "interface" | "servico" | "design-system" | "acessibilidade" | "validacao";
+
+export const FRONTS: { id: FrontId; name: string; items: string[] }[] = [
+  {
+    id: "pesquisa",
+    name: "Pesquisa e Discovery",
+    items: ["Entrevistas com utilizadores e stakeholders", "Personas e jornadas", "Benchmarks e análise de contexto"],
+  },
+  {
+    id: "interface",
+    name: "Design de Interface e Interacção",
+    items: ["Wireframes, fluxos e protótipos", "Design de alta fidelidade", "Especificação para o desenvolvimento"],
+  },
+  {
+    id: "servico",
+    name: "Design de Serviço",
+    items: ["Mapeamento de processos", "Service blueprints", "Desenho de jornadas operacionais"],
+  },
+  {
+    id: "design-system",
+    name: "Design System",
+    items: ["Tokens, componentes e padrões", "Documentação e governança", "Integração com o desenvolvimento"],
+  },
+  {
+    id: "acessibilidade",
+    name: "Acessibilidade e Compliance",
+    items: ["Auditoria WCAG", "Documentação de boas práticas", "Testes com utilizadores diversos"],
+  },
+  {
+    id: "validacao",
+    name: "Validação e Testes",
+    items: ["Testes de usabilidade", "Análise de dados qualitativos", "Iteração com base em evidência"],
+  },
+];
+
+/** Apêndice das etapas: os tipos de pedido, classificados pelo risco e pela incerteza, e a profundidade de cada
+    etapa em cada tipo (0 não corre, 1 corre de forma leve, 2 corre inteira). Adaptado da matriz da apresentação
+    original, que usava as colunas Discovery, Pesquisa, Ideação, Design e Monitoramento. */
+export const REQUEST_INTRO = {
+  title: "Nem todo o pedido precisa do processo inteiro",
+  text: "Cada pedido é classificado pelo risco e pela incerteza, e isso define os métodos, os prazos, os papéis e as entregas. A triagem, feita pelo Núcleo com quem pede e com o Desenvolvimento quando há risco técnico, diz se o pedido segue para discovery, para desenho, para apoio consultivo, para o backlog ou se é redireccionado.",
+};
+
+export const REQUEST_TYPES: { name: string; certainty: string; text: string; depth: Record<StageId, 0 | 1 | 2> }[] = [
+  {
+    name: "Ajuste rápido",
+    certainty: "Muita certeza, risco baixo",
+    text: "Ajuste visual ou alteração simples num fluxo, com necessidade comprovada e fácil de reverter.",
+    depth: { descobrir: 0, definir: 0, explorar: 1, validar: 0, entregar: 2, acompanhar: 2 },
+  },
+  {
+    name: "Melhoria",
+    certainty: "Alguma certeza, risco médio",
+    text: "Mudança numa funcionalidade existente. Pede alinhamento com os stakeholders e leitura das métricas; desk research, benchmark e, quando possível, teste A/B, num ciclo curto.",
+    depth: { descobrir: 1, definir: 1, explorar: 2, validar: 1, entregar: 2, acompanhar: 2 },
+  },
+  {
+    name: "Nova funcionalidade",
+    certainty: "Pouca certeza, risco alto",
+    text: "O risco de construir algo que não é usado é real. Discovery mais estruturado: pesquisa, benchmark, entrevistas, fluxo, ideação, testes de usabilidade e uma entrega mais robusta.",
+    depth: { descobrir: 1, definir: 2, explorar: 2, validar: 2, entregar: 2, acompanhar: 2 },
+  },
+  {
+    name: "Novo produto",
+    certainty: "Escopo estratégico ou incerto",
+    text: "Risco elevado e muita incerteza. Discovery e pesquisa são obrigatórios, com o utilizador como participante activo e todas as áreas envolvidas em cada etapa, até ao MVP que dá base para escalar.",
+    depth: { descobrir: 2, definir: 2, explorar: 2, validar: 2, entregar: 2, acompanhar: 2 },
+  },
+];
+
+/** Apêndice das etapas: a actuação muda com a maturidade do produto (página 3 dos modelos de actuação originais). */
+export const PRODUCT_MATURITY = [
+  {
+    name: "Apostas",
+    stage: "Início",
+    text: "Produtos com muita incerteza. O foco é a aprendizagem validada: protótipos, testes com o público-alvo e decisão rápida de continuar, ajustar ou despriorizar.",
+    loop: ["Protótipo", "Teste com o público-alvo", "Decisão: continuar a aprender, pivotar ou passar ao backlog"],
+  },
+  {
+    name: "Produtos em escala",
+    stage: "Crescimento",
+    text: "Produtos já validados em parte, com base activa e sinais de uso. O foco passa a ser escalar e medir adopção, retenção, satisfação, qualidade e operação em produção.",
+    loop: ["Protótipo", "Teste rápido com clientes", "Produção", "Ciclo de testes e acompanhamento até à versão validada"],
+  },
+  {
+    name: "Produtos maduros",
+    stage: "Consolidação",
+    text: "Produtos estabelecidos. O foco é a optimização contínua: retenção, eficiência, suporte, evolução incremental e decisões de refresh, consolidação ou descontinuação.",
+    loop: ["Pesquisas, feedback, pedidos de suporte e analytics", "Oportunidades de melhoria", "Protótipo e teste", "Backlog ou produção"],
+  },
+];
+
+/** Apêndice do Design System: arquitectura e governança, resumidos das páginas 2 e 3 do slide original. */
+export const DS_ARCHITECTURE = {
+  layers: [
+    { name: "Foundation", text: "Valores primitivos do sistema: cores, tipografia, espaçamentos, raios." },
+    { name: "Semantic", text: "Intenções, estados, hierarquia e contexto, por cima dos valores primitivos." },
+    { name: "Component", text: "Tokens específicos de cada componente, que o tema de cada cliente redefine." },
+  ],
+  points: [
+    "Núcleo independente da stack, preparado para vários produtos, frameworks e contextos.",
+    "Tokens em JSON, no formato DTCG, como contrato entre design, código, documentação e agentes.",
+    "Tokens sincronizados entre Figma e código, com Storybook como documentação viva para consumo técnico.",
+    "QA visual e acessibilidade (WCAG AA) fazem parte de cada componente: contraste, foco visível, estados e ARIA.",
+    "ADRs registam decisões e compromissos; changelog, inventários e guias de processo garantem rastreabilidade; AGENTS.md define as regras para os agentes.",
+  ],
+};
+
+export const DS_GOVERNANCE = {
+  intro:
+    "A IA acelera análise, síntese e produção. Decisão, qualidade, acessibilidade e aceite ficam com a equipa. A evolução é decidida pelo Núcleo com o Desenvolvimento e, quando há impacto no roadmap, com o Produto.",
+  steps: [
+    {
+      name: "Entrada e triagem",
+      text: "A necessidade vem de um projecto real, de um incidente, de dívida ou de um padrão recorrente, e fica registada com responsável, objectivo, impacto e urgência.",
+      ai: "O agente compara o pedido com o que já existe; a equipa valida a necessidade e as variações.",
+    },
+    {
+      name: "Descoberta e especificação",
+      text: "Mapear variantes, estados, conteúdo, acessibilidade, tokens e dependências, e verificar se um componente existente resolve o caso.",
+      ai: "O agente identifica padrões e pontos de ajuste; a equipa decide o que muda.",
+    },
+    {
+      name: "Design e protótipo",
+      text: "Criar o componente com propriedades, estados e adaptação responsiva, com os tokens e a nomenclatura do sistema.",
+      ai: "O agente sugere estrutura e nomes; o designer valida anatomia e uso.",
+    },
+    {
+      name: "Aprovação e plano técnico",
+      text: "Revisão pelo responsável do Design System e pela engenharia; versão, impacto e migração definidos quando necessário.",
+      ai: "O agente resume o impacto; o responsável avalia e aprova.",
+    },
+    {
+      name: "Implementação e QA",
+      text: "Código, testes de estados, acessibilidade e exemplos; verificação de tokens, temas e comportamento responsivo.",
+      ai: "O agente apoia a implementação e a documentação; a engenharia valida qualidade e testes.",
+    },
+    {
+      name: "Release e adopção",
+      text: "Publicar em Figma, código e documentação, e comunicar o uso recomendado e as substituições.",
+      ai: "O agente identifica desvios de uso; a equipa ajusta documentação e adopção.",
+    },
+  ],
+  checks: [
+    "Necessidade comprovada",
+    "Sem duplicação funcional",
+    "Componente com tokens, estados e acessibilidade",
+    "Documentação publicada",
+    "Adopção por projecto",
+  ],
+};
+
+/** Apêndice das áreas: quem conduz, quem apoia e quem valida em cada fase da TIS. Adaptado da tabela original de
+    seis etapas às cinco fases e aos nomes das áreas desta apresentação. */
+export const PHASE_ROLES: { phase: string; leads: string; supports: string; validates: string; validateLabel?: string }[] = [
+  { phase: "Proposta comercial", leads: "Pré-venda", supports: "Núcleo de Experiência e Requisitos", validates: "Direcção" },
+  {
+    phase: "Discovery",
+    leads: "Núcleo de Experiência",
+    supports: "PO, Desenvolvimento e stakeholders",
+    validates: "PO, stakeholders e utilizadores",
+  },
+  { phase: "Desenvolvimento", leads: "Fábrica", supports: "Núcleo de Experiência e PO", validates: "QA, PO e Núcleo de Experiência" },
+  { phase: "Aceite e release", leads: "QA", supports: "Núcleo de Experiência", validates: "PO e stakeholders" },
+  {
+    phase: "Sustentação",
+    leads: "Produtos TIS e Fábrica",
+    supports: "Núcleo de Experiência e suporte",
+    validates: "Núcleo de Experiência e PO",
+    validateLabel: "Avalia",
+  },
+];
+
+/** Apêndice das áreas: os princípios da relação com as outras áreas (página 1 das conexões operacionais originais). */
+export const AREA_PRINCIPLES = [
+  {
+    name: "Tradução entre partes",
+    text: "O Núcleo traduz a estratégia do negócio, a necessidade do utilizador e a viabilidade do desenvolvimento numa linguagem única, e mantém o produto coerente entre essas três perspectivas durante todo o projecto.",
+  },
+  {
+    name: "Trocas declaradas",
+    text: "Cada relação com outra área tem entradas e saídas declaradas. O que recebemos e o que devolvemos faz parte de um acordo de trabalho explícito, sem ficar subentendido nem depender de boa vontade.",
+  },
+  {
+    name: "Responsabilidade partilhada",
+    text: "Uma boa experiência é responsabilidade de todas as áreas que tocam o projecto. Cada equipa carrega a sua parte do compromisso com o utilizador, dentro do que a sua competência permite entregar.",
+  },
+  {
+    name: "Difusão de conhecimento",
+    text: "O Núcleo amplia a maturidade da empresa ao partilhar método, vocabulário e referências com as equipas com que trabalha. O ganho de cada projecto espalha-se pela organização em vez de ficar restrito à entrega.",
   },
 ];
 
