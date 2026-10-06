@@ -191,7 +191,7 @@ export const STAGES: Stage[] = [
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
     deliverables: ["Lista de problemas encontrados", "Evidências dos testes", "Registo de decisões"],
-    people: ["Utilizadores", "POs", "QAs"],
+    people: ["Utilizadores", "Stakeholders", "POs", "QAs"],
     fronts: ["validacao", "acessibilidade"],
   },
   {
