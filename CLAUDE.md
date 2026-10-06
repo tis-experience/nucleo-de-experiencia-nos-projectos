@@ -43,15 +43,12 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   release, Sustentação.
 - Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v3/content.ts`, para os slides dizerem o mesmo.
 - As seis frentes de actuação (Pesquisa e Discovery, Design de Interface e Interacção, Design de Serviço, Design
-  System, Acessibilidade e Compliance, Validação e Testes) aparecem como etiquetas em cada etapa e como serviços na
-  ficha de cada área, e explicam-se no apêndice das áreas.
-- O conteúdo opcional fica em apêndices, janelas de ecrã inteiro abertas por uma ligação no canto do slide: tipos de
-  pedido e maturidade do produto (etapas), arquitectura e governança (Design System), frentes, responsáveis por fase
-  e princípios (áreas). Cada página é o próprio slide do playbook (slides 5, 7, 8 e 9), com os componentes originais
-  copiados para `src/app/components` e mostrados tal e qual, com a sua navegação interna, a grafia e os nomes das
-  áreas da original (Produto, Desenvolvimento, Comercial, Dados/BI, Suporte/CS). Não adaptar esse texto nem esse
-  desenho; uma alteração faz-se primeiro no playbook e copia-se depois. Nada de essencial à apresentação pode
-  depender de um apêndice.
+  System, Acessibilidade e Compliance, Validação e Testes) aparecem como serviços na ficha de cada área. Cada etapa
+  mostra três artefactos principais e as áreas envolvidas.
+- Sem apêndices. Houve três (tipos de pedido e maturidade do produto, arquitectura e governança do Design System,
+  frentes e conexões operacionais), primeiro desenhados à mão e depois com os slides do playbook embutidos, e foram
+  retirados por gerarem confusão e excesso de informação (commits até 0058254). O detalhe fica na fala do
+  apresentador ou no playbook.
 
 ## Direcção visual
 
@@ -69,11 +66,9 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
-  as listas de métricas do slide da medição. `appendices.tsx`: a janela partilhada (`Modal`), a ligação `MoreLink` e
-  os três apêndices, que montam os slides do playbook dentro da janela de ecrã inteiro.
-- `src/app/components`, `src/app/scaling.ts`, `src/app/constants` e `src/imports`: código e recursos copiados do
-  playbook para os apêndices, sem alterações além das imagens convertidas para WebP. Os estilos genéricos da janela
-  (`.v3-modal-card p`, botões) excluem a janela de ecrã inteiro para não contaminarem esses slides.
+  as listas de métricas do slide da medição. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
+- `src/imports` e `src/assets/slide*`: vectores e imagens herdados da apresentação original; só o logótipo e as setas
+  de navegação são usados.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
   redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco. Numa janela mais
@@ -102,7 +97,7 @@ System, resultados (mercado e medição na TIS) e fecho.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
   experimentados e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.
-- Nos apêndices: as frentes atribuídas a cada etapa e a cada área. Os números de retorno do Design System (70%, 65%,
-  85%, 800%) vieram do playbook sem fonte.
+- As frentes atribuídas a cada área, mostradas como serviços, e as frentes por etapa que ficaram em `content.ts` sem
+  uso.
 - Um mapa do processo de UX cruzado com as áreas de execução e as fases da TIS foi desenhado como infográfico fora da
   apresentação e ficou guardado para uma versão futura.
