@@ -444,7 +444,7 @@ export const AREAS: Area[] = [
   },
   {
     id: "requisitos",
-    name: "Requisitos e ritos",
+    name: "Requisitos",
     note: "PO e Scrum Master",
     role: "Analisa as necessidades com o PO e leva fluxos e cenários aos ritos da equipa, para que as decisões sejam tomadas sobre algo concreto.",
     gives: "Regras e prioridades, com participação directa do PO na descoberta, na definição, na exploração de soluções e na validação.",
