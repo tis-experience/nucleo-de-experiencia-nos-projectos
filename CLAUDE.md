@@ -47,9 +47,11 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   ficha de cada área, e explicam-se no apêndice das áreas.
 - O conteúdo opcional fica em apêndices, janelas de ecrã inteiro abertas por uma ligação no canto do slide: tipos de
   pedido e maturidade do produto (etapas), arquitectura e governança (Design System), frentes, responsáveis por fase
-  e princípios (áreas). Cada página reproduz a estrutura e o texto do slide correspondente do playbook (slides 5, 7, 8
-  e 9) tal e qual, incluindo a grafia e os nomes das áreas da original (Produto, Desenvolvimento, Comercial, Dados/BI,
-  Suporte/CS). Não adaptar esse texto. Nada de essencial à apresentação pode depender de um apêndice.
+  e princípios (áreas). Cada página é o próprio slide do playbook (slides 5, 7, 8 e 9), com os componentes originais
+  copiados para `src/app/components` e mostrados tal e qual, com a sua navegação interna, a grafia e os nomes das
+  áreas da original (Produto, Desenvolvimento, Comercial, Dados/BI, Suporte/CS). Não adaptar esse texto nem esse
+  desenho; uma alteração faz-se primeiro no playbook e copia-se depois. Nada de essencial à apresentação pode
+  depender de um apêndice.
 
 ## Direcção visual
 
@@ -68,7 +70,10 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
   as listas de métricas do slide da medição. `appendices.tsx`: a janela partilhada (`Modal`), a ligação `MoreLink` e
-  os três apêndices.
+  os três apêndices, que montam os slides do playbook dentro da janela de ecrã inteiro.
+- `src/app/components`, `src/app/scaling.ts`, `src/app/constants` e `src/imports`: código e recursos copiados do
+  playbook para os apêndices, sem alterações além das imagens convertidas para WebP. Os estilos genéricos da janela
+  (`.v3-modal-card p`, botões) excluem a janela de ecrã inteiro para não contaminarem esses slides.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
   redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco. Numa janela mais
