@@ -131,6 +131,8 @@ export type Stage = {
   deliveryContents: string;
   /** Os três artefactos principais da entrega, para as etiquetas do slide da etapa. */
   deliverables: string[];
+  /** Com quem o Núcleo trabalha nesta etapa, por papel. */
+  people: string[];
   /** Frentes de actuação do Núcleo que mais pesam nesta etapa. */
   fronts: FrontId[];
 };
@@ -147,6 +149,7 @@ export const STAGES: Stage[] = [
     delivery: "Brief de UX",
     deliveryContents: "Problema, pessoas, contexto, evidências e dúvidas.",
     deliverables: ["Enunciado do problema", "Perfil das pessoas", "Registo de evidências"],
+    people: ["Stakeholders", "POs", "Utilizadores"],
     fronts: ["pesquisa", "servico"],
   },
   {
@@ -160,6 +163,7 @@ export const STAGES: Stage[] = [
     delivery: "Escopo de UX",
     deliveryContents: "Tarefa prioritária, personas, restrições e critérios de sucesso.",
     deliverables: ["Personas", "Descrição da tarefa prioritária", "Critérios de sucesso"],
+    people: ["POs", "Stakeholders"],
     fronts: ["pesquisa", "servico"],
   },
   {
@@ -173,6 +177,7 @@ export const STAGES: Stage[] = [
     delivery: "Solução de UX/UI",
     deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
     deliverables: ["Fluxos de utilizador", "Desenho das interfaces", "Registo de decisões"],
+    people: ["POs", "Desenvolvedores"],
     fronts: ["interface", "design-system"],
   },
   {
@@ -186,6 +191,7 @@ export const STAGES: Stage[] = [
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
     deliverables: ["Lista de problemas encontrados", "Evidências dos testes", "Registo de decisões"],
+    people: ["Utilizadores", "POs", "QAs"],
     fronts: ["validacao", "acessibilidade"],
   },
   {
@@ -199,6 +205,7 @@ export const STAGES: Stage[] = [
     delivery: "Especificação de UX",
     deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
     deliverables: ["Especificação de comportamentos", "Critérios ligados aos requisitos", "Revisão da versão construída"],
+    people: ["Desenvolvedores", "QAs", "POs"],
     fronts: ["interface", "design-system", "acessibilidade"],
   },
   {
@@ -212,6 +219,7 @@ export const STAGES: Stage[] = [
     delivery: "Análise da experiência entregue",
     deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
     deliverables: ["Relatório de utilização", "Lista de problemas observados", "Recomendações"],
+    people: ["POs", "Utilizadores", "Desenvolvedores"],
     fronts: ["validacao", "pesquisa"],
   },
 ];
@@ -385,7 +393,7 @@ export const PHASES: { name: string; delivery: string; areas: string[]; stages: 
   {
     name: "Discovery",
     delivery: "Problema, utilizadores e métrica de sucesso, direcção visual e fluxos com os estados relevantes.",
-    areas: ["requisitos", "produtos"],
+    areas: ["requisitos"],
     stages: ["descobrir", "definir", "explorar", "validar"],
   },
   {
@@ -403,7 +411,7 @@ export const PHASES: { name: string; delivery: string; areas: string[]; stages: 
   {
     name: "Sustentação",
     delivery: "Análise do feedback e do uso real, com recomendações de melhoria.",
-    areas: ["produtos", "fabrica"],
+    areas: ["fabrica"],
     stages: ["acompanhar"],
   },
 ];
@@ -421,9 +429,6 @@ export type Area = {
   /** Frentes de actuação que o Núcleo presta à área, mostradas como etiquetas de serviço. */
   fronts: FrontId[];
 };
-
-/** Áreas que constroem os produtos; só estas aparecem na linha de áreas envolvidas de cada etapa. */
-export const PRODUCT_AREAS = ["requisitos", "fabrica", "qa", "produtos"];
 
 /** Participação do Núcleo nas áreas da TIS (secção 5 da proposta de actuação). */
 export const AREAS: Area[] = [
@@ -463,16 +468,6 @@ export const AREAS: Area[] = [
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
     stages: ["entregar", "validar"],
     fronts: ["validacao", "acessibilidade"],
-  },
-  {
-    id: "produtos",
-    name: "Produtos TIS",
-    note: "Academia, Saúde, Finanças e Setor Público",
-    role: "Acompanha os produtos TIS de forma contínua, da pesquisa com utilizadores às melhorias depois da entrega.",
-    gives: "Necessidades, regras, feedback e dados de utilização.",
-    gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
-    stages: ["acompanhar", "descobrir"],
-    fronts: ["pesquisa", "interface", "validacao", "acessibilidade"],
   },
   {
     id: "marketing",

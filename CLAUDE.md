@@ -44,8 +44,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v3/content.ts`, para os slides dizerem o mesmo.
 - As seis frentes de actuação (Pesquisa e Discovery, Design de Interface e Interacção, Design de Serviço, Design
   System, Acessibilidade e Compliance, Validação e Testes) aparecem como serviços na ficha de cada área. Cada etapa
-  mostra três artefactos principais e, das áreas envolvidas, só as que constroem produtos (Requisitos, Fábrica, QA e
-  Produtos TIS).
+  mostra três artefactos principais e com quem o Núcleo trabalha, por papel (POs, QAs, Desenvolvedores, Stakeholders,
+  Utilizadores).
 - Sem apêndices. Houve três (tipos de pedido e maturidade do produto, arquitectura e governança do Design System,
   frentes e conexões operacionais), primeiro desenhados à mão e depois com os slides do playbook embutidos, e foram
   retirados por gerarem confusão e excesso de informação (commits até 0058254). O detalhe fica na fala do
@@ -94,7 +94,7 @@ System, resultados (mercado e medição na TIS) e fecho.
 
 - Fonte primária de três números de mercado: McKinsey (+32 p.p.), Keep the Change e Xbox (19 entradas).
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
-- Texto da etapa Definir e as frases de contribuição do Núcleo para cada área.
+- Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
   experimentados e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.

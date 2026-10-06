@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import { Check, RotateCw } from "lucide-react";
-import { AREAS, PRODUCT_AREAS, STAGES, STAGE_VISUAL } from "./content";
+import { STAGES, STAGE_VISUAL } from "./content";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
 type Fidelity = "wire" | "final";
@@ -427,10 +427,10 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
                 </dd>
               </div>
               <div>
-                <dt>Áreas envolvidas</dt>
+                <dt>Com quem</dt>
                 <dd className="v3-links">
-                  {AREAS.filter((area) => PRODUCT_AREAS.includes(area.id) && area.stages.includes(stage.id)).map((area) => (
-                    <span key={area.id}>{area.name}</span>
+                  {stage.people.map((person) => (
+                    <span key={person}>{person}</span>
                   ))}
                 </dd>
               </div>
