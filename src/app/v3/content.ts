@@ -276,25 +276,55 @@ export const BENEFIT_METRICS: Metric[] = [
   },
 ];
 
-/** Como a IA entra no trabalho de UX (secção 2 da proposta de actuação), em três princípios. O detalhe de cada etapa
-    fica na fala do apresentador e no "Apoio de IA" de cada etapa. */
-export const AI_PRINCIPLES = [
-  {
-    title: "Trabalha sobre o conhecimento do Núcleo",
-    text: "Design System, padrões de interacção, linguagem, acessibilidade e critérios de revisão, com o contexto de cada projecto.",
+/** Como a IA entra no processo da empresa: as equipas em cadeia sobre a mesma base do projecto. Cada equipa diz o que
+    recebe da base, o que prepara com o assistente, o que devolve à base e quem revê. */
+export const AI_CHAIN = {
+  base: {
+    title: "A mesma base do projecto",
+    text: "Requisitos, design e critérios, documentados desde o princípio e lidos pelas equipas e pelos assistentes.",
   },
-  {
-    title: "Prepara, em cada etapa, o que as pessoas vão rever",
-    text: "Da organização das evidências aos primeiros ecrãs com o Design System, sempre como ponto de partida.",
-  },
-  {
-    title: "Nada entra no projecto sem revisão",
-    text: "O Núcleo revê a experiência, a engenharia a implementação e o PO confirma regras e âmbito.",
-  },
-];
-
-/** O que fica com as pessoas. */
-export const AI_STAYS = "Falar com utilizadores, decidir e validar fica com as pessoas.";
+  teams: [
+    {
+      id: "requisitos",
+      name: "Requisitos",
+      ai: "escreve e detalha os requisitos",
+      receives: "O problema, as pessoas e o contexto do brief de UX.",
+      produces: "Requisitos escritos e detalhados com o assistente, com critérios de aceitação.",
+      feeds: "Requisitos e regras confirmadas.",
+      reviews: "O PO confirma regras e âmbito.",
+    },
+    {
+      id: "design",
+      name: "Núcleo de Experiência",
+      ai: "compõe ecrãs e protótipos em código",
+      receives: "Requisitos e regras confirmadas.",
+      produces:
+        "Fluxos e ecrãs compostos com o Design System, entregues como protótipo funcional em código, o mesmo que serve aos testes de utilização e à validação pelo cliente.",
+      feeds: "Protótipo, especificação de UX e critérios de experiência.",
+      reviews: "O Núcleo revê a experiência e o PO valida com o cliente.",
+    },
+    {
+      id: "qa",
+      name: "QA",
+      ai: "gera casos e testes automatizados",
+      receives: "Requisitos, critérios e protótipo.",
+      produces: "Casos de teste e testes automatizados preparados a partir dos requisitos e do protótipo.",
+      feeds: "Critérios verificáveis e defeitos encontrados.",
+      reviews: "QA revê os casos antes de os correr.",
+    },
+    {
+      id: "fabrica",
+      name: "Fábrica",
+      ai: "constrói sobre o protótipo",
+      receives: "Protótipo em código, especificação de UX e testes.",
+      produces: "A construção segue o protótipo e os componentes do Design System, sem reinterpretar o design.",
+      feeds: "A versão construída e as limitações técnicas.",
+      reviews: "A engenharia revê o código e o Núcleo revê a implementação.",
+    },
+  ],
+  closing:
+    "Tudo bebe da mesma fonte: menos interpretação em cada camada e uma base documental desde o princípio, à qual o feedback da utilização volta.",
+};
 
 /** Como vamos medir na TIS: uma métrica de resultado por pergunta, com a forma de observação. */
 export const TIS_MEASURES = [

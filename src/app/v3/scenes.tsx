@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { BookOpen, Braces, Palette, ShieldCheck, Sparkles, UserCheck, Users } from "lucide-react";
+import { Braces, Palette, ShieldCheck, Sparkles } from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
@@ -9,8 +9,7 @@ import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
 import { OPERACIONAL_COLUMNS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
-  AI_PRINCIPLES,
-  AI_STAYS,
+  AI_CHAIN,
   AREAS,
   MEASURE_PLAN,
   TIS_MEASURES,
@@ -670,10 +669,11 @@ export function ChangeScene({ build }: { build: number }) {
 
 /* ── Como a IA entra ───────────────────────────────────────────────────── */
 
-const AI_ICONS = [BookOpen, Sparkles, UserCheck];
-
-/** Três princípios; o detalhe de cada etapa fica na fala e no "Apoio de IA" das etapas. */
+/** As equipas em cadeia sobre a mesma base; a equipa escolhida mostra o que recebe, prepara, devolve e quem revê. */
 export function AiScene() {
+  const [selected, select] = useSelected(AI_CHAIN.teams.length);
+  const team = AI_CHAIN.teams[selected];
+
   return (
     <section className="v3-scene" aria-labelledby="v3-ai-title">
       <motion.p className="v3-kicker v3-scene-kicker" {...fade(0.1)}>
@@ -681,31 +681,62 @@ export function AiScene() {
       </motion.p>
       <div className="v3-head">
         <h1 id="v3-ai-title" className="v3-title">
-          <MaskLine>Como a IA entra no processo</MaskLine>
+          <MaskLine>Todas as equipas bebem da mesma fonte</MaskLine>
         </h1>
         <motion.p className="v3-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
-          O assistente acelera o trabalho de cada etapa; as decisões continuam a ser das pessoas.
+          Requisitos, design, testes e construção partem da mesma base do projecto, com assistentes a preparar o trabalho
+          de cada equipa.
         </motion.p>
       </div>
 
-      <ul className="v3-ai-principles">
-        {AI_PRINCIPLES.map((principle, index) => {
-          const Icon = AI_ICONS[index];
-          return (
-            <motion.li key={principle.title} {...rise(0.5 + index * 0.15, 24)}>
-              <span className="v3-ds-icon" aria-hidden>
-                <Icon size={26} strokeWidth={1.8} />
-              </span>
-              <h2>{principle.title}</h2>
-              <p>{principle.text}</p>
+      <div className="v3-chain">
+        <ol className="v3-chain-teams" aria-label="Equipas">
+          {AI_CHAIN.teams.map((item, index) => (
+            <motion.li key={item.id} {...rise(0.4 + index * 0.12, 20)}>
+              <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
+                <b>{item.name}</b>
+                <span>
+                  <Sparkles size={15} strokeWidth={2} aria-hidden />
+                  {item.ai}
+                </span>
+              </button>
+              {index < AI_CHAIN.teams.length - 1 && <i className="v3-chain-next" aria-hidden />}
+              <i className="v3-chain-drop" aria-hidden />
             </motion.li>
-          );
-        })}
-      </ul>
+          ))}
+        </ol>
 
-      <motion.p className="v3-ai-stays" {...rise(1.1, 12)}>
-        <Users size={24} strokeWidth={1.8} aria-hidden />
-        {AI_STAYS}
+        <motion.div className="v3-chain-base" {...rise(0.9, 16)}>
+          <b>{AI_CHAIN.base.title}</b>
+          <span>{AI_CHAIN.base.text}</span>
+        </motion.div>
+      </div>
+
+      <div className="v3-chain-detail" aria-live="polite">
+        <Swap>
+          <motion.dl key={selected} exit={exit} {...rise(0.05, 12)}>
+            <div>
+              <dt className="v3-label">Recebe da base</dt>
+              <dd>{team.receives}</dd>
+            </div>
+            <div>
+              <dt className="v3-label">Prepara com o assistente</dt>
+              <dd>{team.produces}</dd>
+            </div>
+            <div>
+              <dt className="v3-label">Devolve à base</dt>
+              <dd>{team.feeds}</dd>
+            </div>
+            <div>
+              <dt className="v3-label">Quem revê</dt>
+              <dd>{team.reviews}</dd>
+            </div>
+          </motion.dl>
+        </Swap>
+      </div>
+
+      <motion.p className="v3-footnote" data-raised {...fade(1.2)}>
+        {AI_CHAIN.closing}
       </motion.p>
     </section>
   );

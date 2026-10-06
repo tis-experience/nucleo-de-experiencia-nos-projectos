@@ -5,8 +5,8 @@ https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O reposit
 
 - A apresentação original, na raiz do site (`src/app/App.tsx` e `src/app/components/`).
 - A versão nova, em `#/v2` (`src/app/v2/`). A original só é alterada a pedido.
-- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com duas revisões: um slide com os princípios de como a IA entra no
-  processo e a medição na TIS com uma métrica de resultado por pergunta. É onde decorre o trabalho actual; a v2
+- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com duas revisões: um slide sobre como a IA liga as equipas sobre a
+  mesma base do projecto e a medição na TIS com uma métrica de resultado por pergunta. É onde decorre o trabalho actual; a v2
   fica como estava. As classes da v3 são `v3-*`.
 
 ## Regras de escrita
@@ -29,6 +29,10 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - A IA é descrita de forma concreta: o que o assistente recebe, o que produz e quem revê. Sem desenhar o fluxo como
   uma sequência simples (rascunho, revisão, projecto): o processo real tem muito mais passos, e o detalhe fica na
   fala do apresentador.
+- A IA mostra-se ao nível da empresa: Requisitos escreve e detalha os requisitos com IA, o Núcleo compõe ecrãs e
+  protótipos funcionais em código com o Design System (os mesmos que servem aos testes de utilização e à validação
+  pelo cliente), QA gera casos e testes automatizados a partir dos requisitos e do protótipo, e a Fábrica constrói
+  sobre o protótipo sem reinterpretar o design. Tudo bebe da mesma base documental do projecto.
 - As fases da TIS e as etapas de UX não se alinham numa linha do tempo. A proposta comercial corre o processo de UX
   em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual.
 - O fecho é um agradecimento, sem pedidos às lideranças.
