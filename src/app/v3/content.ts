@@ -422,6 +422,9 @@ export type Area = {
   fronts: FrontId[];
 };
 
+/** Áreas que constroem os produtos; só estas aparecem na linha de áreas envolvidas de cada etapa. */
+export const PRODUCT_AREAS = ["requisitos", "fabrica", "qa", "produtos"];
+
 /** Participação do Núcleo nas áreas da TIS (secção 5 da proposta de actuação). */
 export const AREAS: Area[] = [
   {

@@ -44,7 +44,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v3/content.ts`, para os slides dizerem o mesmo.
 - As seis frentes de actuação (Pesquisa e Discovery, Design de Interface e Interacção, Design de Serviço, Design
   System, Acessibilidade e Compliance, Validação e Testes) aparecem como serviços na ficha de cada área. Cada etapa
-  mostra três artefactos principais e as áreas envolvidas.
+  mostra três artefactos principais e, das áreas envolvidas, só as que constroem produtos (Requisitos, Fábrica, QA e
+  Produtos TIS).
 - Sem apêndices. Houve três (tipos de pedido e maturidade do produto, arquitectura e governança do Design System,
   frentes e conexões operacionais), primeiro desenhados à mão e depois com os slides do playbook embutidos, e foram
   retirados por gerarem confusão e excesso de informação (commits até 0058254). O detalhe fica na fala do
