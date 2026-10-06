@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Check, RotateCw } from "lucide-react";
-import { AREAS, FRONTS, PHASES, STAGES, STAGE_VISUAL } from "./content";
+import { STAGES, STAGE_VISUAL } from "./content";
 import { MoreLink, StagesAppendix } from "./appendices";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
@@ -422,26 +422,10 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
                 <dd>{stage.aiSupport}</dd>
               </div>
               <div>
-                <dt>Fases do projecto</dt>
+                <dt>Entregáveis</dt>
                 <dd className="v3-links">
-                  {PHASES.filter((phase) => phase.stages.includes(stage.id)).map((phase) => (
-                    <span key={phase.name}>{phase.name}</span>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt>Com quem</dt>
-                <dd className="v3-links">
-                  {AREAS.filter((area) => area.stages.includes(stage.id)).map((area) => (
-                    <span key={area.id}>{area.name}</span>
-                  ))}
-                </dd>
-              </div>
-              <div>
-                <dt>Frentes do Núcleo</dt>
-                <dd className="v3-links">
-                  {FRONTS.filter((front) => stage.fronts.includes(front.id)).map((front) => (
-                    <span key={front.id}>{front.name}</span>
+                  {stage.deliverables.map((item) => (
+                    <span key={item}>{item}</span>
                   ))}
                 </dd>
               </div>
@@ -462,7 +446,6 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
               <span className="v3-label">Entrega</span>
               <b>{stage.delivery}</b>
             </p>
-            <p>{stage.deliveryContents}</p>
             <p className="v3-stage-next">
               <span className="v3-label">{next ? "Segue para" : "Volta a alimentar"}</span>
               {next ? next.name : STAGES[0].name}
