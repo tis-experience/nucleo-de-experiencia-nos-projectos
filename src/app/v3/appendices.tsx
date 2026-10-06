@@ -28,8 +28,8 @@ import {
   DS_INTRO,
   DS_PREMISES,
   DS_ROI,
-  FRONTS,
-  FRONTS_INTRO,
+  PLAYBOOK_FRONTS,
+  PLAYBOOK_FRONTS_INTRO,
   INTERACTION_MAP,
   MODELS_CLASSIFICATION,
   MODELS_CULTURE,
@@ -178,13 +178,26 @@ export function Appendix({
   );
 }
 
-/** Lista com marcadores quadrados, como nos slides originais. */
-function SquareList({ items, className }: { items: ReactNode[]; className?: string }) {
+/** Lista com marcadores quadrados, como nos slides originais. Um item pode trazer uma sublista numerada. */
+type SquareItem = ReactNode | { text: string; sub: string[] };
+
+function SquareList({ items, className }: { items: SquareItem[]; className?: string }) {
   return (
     <ul className={`v3-pb-bullets${className ? ` ${className}` : ""}`}>
-      {items.map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
+      {items.map((item, index) =>
+        item && typeof item === "object" && "sub" in item ? (
+          <li key={index}>
+            <b>{item.text}</b>
+            <ol>
+              {item.sub.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ol>
+          </li>
+        ) : (
+          <li key={index}>{item}</li>
+        ),
+      )}
     </ul>
   );
 }
@@ -198,7 +211,8 @@ function ModelsCulture() {
         <SquareList
           items={MODELS_CULTURE.bullets.map((item) => (
             <>
-              {item.lead} {item.strong && <b>{item.strong}</b>} {item.tail}
+              {item.lead} {item.strong && <b data-block={"block" in item && item.block ? "" : undefined}>{item.strong}</b>}{" "}
+              {item.tail}
             </>
           ))}
         />
@@ -375,7 +389,7 @@ function DsGovernance() {
         {DS_GOVERNANCE.steps.map((step) => (
           <li key={step.name}>
             <h3>{step.name}</h3>
-            <SquareList items={step.text.split(". ").map((part) => part.replace(/\.?$/, "."))} className="v3-pb-outlined-box" />
+            <SquareList items={step.items} className="v3-pb-outlined-box" />
             <p className="v3-pb-ai">{step.ai}</p>
           </li>
         ))}
@@ -420,10 +434,10 @@ const STEP_ICONS: LucideIcon[] = [FolderInput, Compass, ListChecks, Code, Thumbs
 function Fronts() {
   return (
     <ul className="v3-pb-outlined v3-pb-fronts v3-pb-fill">
-      {FRONTS.map((front, index) => {
+      {PLAYBOOK_FRONTS.map((front, index) => {
         const Icon = FRONT_ICONS[index];
         return (
-          <li key={front.id}>
+          <li key={front.name}>
             <h3>
               <Icon size={26} strokeWidth={2} aria-hidden />
               {front.name}
@@ -526,7 +540,7 @@ function StepRoles() {
 export function AreasAppendix({ onClose }: { onClose: () => void }) {
   const map = {
     kicker: "Conexões operacionais",
-    title: "Mapa de interacções",
+    title: "Mapa de interações",
     lead: "Áreas com as quais o Núcleo de Experiência interage e o tipo de relação em cada caso.",
   };
 
@@ -537,13 +551,13 @@ export function AreasAppendix({ onClose }: { onClose: () => void }) {
       pages={[
         {
           kicker: "Mudança de paradigma",
-          title: "Núcleo de Experiência, além do design de interfaces",
-          lead: FRONTS_INTRO,
+          title: "Núcleo de Experiência indo além do design de interfaces",
+          lead: PLAYBOOK_FRONTS_INTRO,
           content: <Fronts />,
         },
         {
           kicker: "Conexões operacionais",
-          title: "Interacções com as demais áreas",
+          title: "Interações com as demais áreas",
           lead: "O Núcleo de Experiência como conexão entre negócio, utilizador e tecnologia.",
           content: <Principles />,
         },

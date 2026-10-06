@@ -4031,3 +4031,29 @@
 .v3-pb-statement {
   margin-top: 64px !important;
 }
+
+/* Nos modelos de actuação, a lista em negrito do primeiro ponto fica numa linha própria, como na original. */
+.v3-pb-bullets b[data-block] {
+  display: block;
+  margin-top: 6px;
+}
+
+.v3-pb-bullets ol {
+  margin: 8px 0 0;
+  padding-left: 22px;
+  list-style: decimal;
+  font-size: 16px;
+}
+
+.v3-pb-bullets ol li {
+  padding: 0;
+  font-size: 16px;
+}
+
+.v3-pb-bullets ol li + li {
+  margin-top: 4px;
+}
+
+.v3-pb-bullets ol li::before {
+  content: none;
+}

@@ -48,8 +48,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - O conteúdo opcional fica em apêndices, janelas de ecrã inteiro abertas por uma ligação no canto do slide: tipos de
   pedido e maturidade do produto (etapas), arquitectura e governança (Design System), frentes, responsáveis por fase
   e princípios (áreas). Cada página reproduz a estrutura e o texto do slide correspondente do playbook (slides 5, 7, 8
-  e 9), com os nomes das áreas ajustados aos desta apresentação (PO, Fábrica, Pré-venda). Nada de essencial à
-  apresentação pode depender de um apêndice.
+  e 9) tal e qual, incluindo a grafia e os nomes das áreas da original (Produto, Desenvolvimento, Comercial, Dados/BI,
+  Suporte/CS). Não adaptar esse texto. Nada de essencial à apresentação pode depender de um apêndice.
 
 ## Direcção visual
 

@@ -537,26 +537,28 @@ export const FRONTS: { id: FrontId; name: string; items: string[] }[] = [
   },
 ];
 
-/** Apêndices: o conteúdo dos slides da apresentação original (playbook), com os nomes das áreas ajustados aos desta
-    apresentação. Modelos de actuação (slide 7), Design System (slide 8) e conexões operacionais (slide 9). */
+/** Apêndices: o conteúdo dos slides da apresentação original (playbook), palavra por palavra, incluindo a grafia e os
+    nomes das áreas da original. Modelos de actuação (slide 7), Design System (slide 8), frentes (slide 5) e conexões
+    operacionais (slide 9). Não adaptar. */
 export const MODELS_CULTURE = {
   subtitle: "Mudança cultural e actuação orientada ao problema.",
   bullets: [
     {
-      lead: "É necessário ter uma mudança de cultura, onde se deve questionar:",
-      strong: "objectivos de negócio, público (personas), stakeholders, contexto de uso, restrições, prazo e critérios de sucesso.",
+      lead: "É necessário ter uma mudança de cultura, onde deve-se questionar:",
+      strong: "Objectivos de negócio, público (personas), stakeholders, contexto de uso, restrições, prazo e critérios de sucesso.",
+      block: true,
     },
     {
       lead: "Envolver o utilizador no processo desde o início:",
       strong: "entrevistas, testes de usabilidade e validações contínuas",
-      tail: "contribuem para que as decisões respondam a necessidades reais.",
+      tail: "contribui para que as decisões respondam a necessidades reais.",
     },
     {
-      lead: "Cada pedido deve ser classificado considerando o nível de risco e incerteza. Isso permite definir os métodos, prazos, papéis e entregáveis.",
+      lead: "Cada demanda deve ser classificada considerando o nível de risco e incerteza. Isso permite definir os métodos, prazos, papéis e entregáveis.",
     },
   ],
   statement:
-    "Ao focar no problema real e envolver o utilizador desde o início, eliminamos retrabalho causado por decisões baseadas apenas em percepção interna.",
+    "Ao focar no problema real e envolver o utilizador desde o início, eliminamos retrabalho causado por decisões baseadas apenas em perceção interna.",
   card: {
     title: "Pesquisa e Discovery",
     text: "Compreender o problema antes de resolver reduz o risco de construir o produto errado.",
@@ -568,32 +570,32 @@ export const MODELS_CULTURE = {
 
 export const MODELS_CLASSIFICATION = {
   intro:
-    "O processo e os entregáveis mudam conforme a necessidade, considerando o grau de risco e incerteza envolvidos. Nem todo o pedido precisa de Discovery completo, mas todo o pedido precisa de seguir um critério claro.",
-  columns: ["Discovery", "Pesquisa", "Ideação", "Design", "Monitorização"],
+    "O processo e os entregáveis mudam conforme a necessidade, considerando o grau de risco e incerteza envolvidos. Nem toda demanda precisa de Discovery completo, mas toda demanda precisa seguir um critério claro.",
+  columns: ["Discovery", "Pesquisa", "Ideação", "Design", "Monitoramento"],
   /** Profundidade por coluna: 0 não corre, 1 leve, 2 média, 3 inteira. */
   types: [
     {
       name: "Quick win",
-      certainty: "Muita certeza, baixo risco",
+      certainty: "Muita certeza + Baixo risco",
       text: "Ajuste visual rápido ou alteração simples no fluxo com grande potencial de sucesso, que já seja uma necessidade comprovada e também de fácil reversão, se necessário.",
       depth: [0, 0, 1, 3, 3],
     },
     {
       name: "Melhoria",
-      certainty: "Alguma certeza, risco médio",
-      text: "Possui um maior risco por se tratar de mudança em funcionalidade existente, sendo necessário alinhamento com os stakeholders e análise de métricas. Desk research e benchmark ajudam na exploração de ideias, e também o teste A/B (idealmente), num ciclo mais curto.",
+      certainty: "Alguma certeza + Risco médio",
+      text: "Possui um maior risco por se tratar de mudança em funcionalidade existente, sendo necessário alinhamento com os stakeholders e análise de métricas. Neste caso, a execução de desk research e benchmark podem ajudar na exploração de ideias, e também teste A/B (idealmente), num ciclo mais curto.",
       depth: [0, 1, 2, 3, 3],
     },
     {
       name: "Nova funcionalidade",
-      certainty: "Pouca certeza, risco alto",
-      text: "É importante aumentar o grau de certeza, pois o risco de criar algo que pode não ser utilizado é real. Convém um discovery mais estruturado, com pesquisa, benchmark, entrevistas com os utilizadores, definição de fluxo, ideação, testes de usabilidade e handoff mais robusto.",
+      certainty: "Pouca certeza + Risco alto",
+      text: "Neste caso é importante aumentar o grau de certeza, pois o risco de criar algo que pode não ser utilizado é real, então é interessante um discovery um pouco mais estruturado, com pesquisa, benchmark, entrevistas com os utilizadores, definição de fluxo, ideação, testes de usabilidade e handoff mais robusto.",
       depth: [1, 2, 3, 3, 3],
     },
     {
       name: "Novo produto",
       certainty: "Escopo estratégico ou incerto",
-      text: "A construção de um novo produto envolve um risco muito elevado aliado a muitas incertezas. É importante focar nos problemas certos para alcançar o MVP que dará base para escalar. Discovery e pesquisa são obrigatórios, com o utilizador como participante activo e todas as áreas da equipa envolvidas em cada etapa.",
+      text: "A construção de um novo produto envolve um risco altamente elevado aliado a um mar de incertezas, é importante ter a máxima preocupação em focar nos problemas certos para alcançar o MVP necessário que dará base para que se possa escalar. Para isso, Discovery e Pesquisa são obrigatórios, com o utilizador como integrante ativo e todas as áreas do time envolvidas em cada etapa.",
       depth: [3, 3, 3, 3, 3],
     },
   ],
@@ -604,65 +606,74 @@ export const PRODUCT_MATURITY = [
   {
     name: "Apostas (Early stage)",
     text: "Produtos com alta incerteza. O foco correcto é aprendizagem validada, protótipos, testes com clientes e decisão rápida: continuar, ajustar ou despriorizar.",
-    flow: ["Protótipos", "Testes com público-alvo (gerar aprendizagem)", "?", "Backlog de produto e/ou produção"],
-    branches: ["Despriorizar ou pivotar", "Continuar a aprender (novos testes)"],
+    flow: ["Protótipos", "Testes com público alvo (gerar aprendizado)", "?", "Backlog de produto e/ou produção"],
+    branches: ["Despriorizar/Pivotar", "Continuar aprendendo (novos testes)"],
   },
   {
     name: "Produtos em escala (Growth)",
     text: "Produtos já validados parcialmente, com base activa e sinais de uso. O foco passa a ser escalar, medir adopção, retenção, satisfação, qualidade e operação em produção.",
-    flow: ["Protótipos", "Testes com clientes (rápidos, de avaliação)", "Produto em produção", "Versão validada"],
-    branches: ["Ciclo de testes e acompanhamento"],
+    flow: ["Protótipos", "Testes com clientes (Rápido de avaliação)", "Produto em produção", "Versão validada"],
+    branches: ["Ciclo de testes/acompanhamento"],
   },
   {
     name: "Produtos maduros (Core)",
     text: "Produtos estabelecidos. O foco é optimização contínua, retenção, eficiência, suporte, evolução incremental e decisões de refresh, consolidação ou eventual descontinuação.",
-    flow: ["Pesquisas, feedback, pedidos de suporte e analytics", "Oportunidades de melhoria", "Protótipos", "Testes com clientes (gerar aprendizagem)", "Backlog de produto e/ou produção"],
-    branches: ["Ciclo de testes e acompanhamento"],
+    flow: ["Pesquisas, análise de feedbacks, pedidos de suporte e analytics", "Oportunidades de melhoria", "Protótipos", "Testes com clientes (Gerar aprendizado)", "Backlog de produto e/ou produção"],
+    branches: ["Ciclo de testes/acompanhamento"],
   },
 ];
 
 /** Design System (slide 8): benefícios, retorno, arquitectura e integração, e o fluxo de governança. */
 export const DS_INTRO =
-  "Design System como infra-estrutura operacional para consistência, velocidade, acessibilidade e integração com o desenvolvimento.";
+  "Design System como infraestrutura operacional para consistência, velocidade, acessibilidade e integração com o desenvolvimento.";
 
 export const DS_BENEFITS = [
   { name: "Escalabilidade", text: "Permite criar novos ecrãs e funcionalidades muito mais rápido." },
   {
     name: "Consistência",
-    text: "Garante que o utilizador tem a mesma experiência em diferentes partes do produto ou em dispositivos variados.",
+    text: "Garante que o utilizador tenha a mesma experiência em diferentes partes do produto ou em dispositivos variados.",
   },
   {
-    name: "Eficiência de custos",
+    name: "Eficiência de Custos",
     text: "Reduz o retrabalho de designers e programadores ao evitar que criem o mesmo componente do zero várias vezes.",
   },
-  { name: "Melhor comunicação", text: "Serve como uma linguagem comum entre as equipas de design e engenharia." },
+  { name: "Melhor Comunicação", text: "Serve como uma linguagem comum entre times de design e engenharia." },
 ];
 
 export const DS_ROI = {
-  title: "Redução de custos e retorno (Design System com IA)",
+  title: "Redução de Custos e ROI (Design system + IA)",
   items: [
-    { value: "Até 70%", label: "Redução de custos com front-end", text: "Automação da escrita de código e geração de componentes com IA." },
+    { value: "Até 70%", label: "Redução de custos com Front-end", text: "Automação da escrita de código e geração de componentes com IA." },
     { value: "65%", label: "Mais velocidade nas entregas", text: "Redução do ciclo entre a descoberta do problema e a entrega da solução." },
-    { value: "85%", label: "Redução de dívida técnica", text: "Eliminação de componentes duplicados e padronização automática de código legado." },
-    { value: "800%", label: "Retorno sobre o investimento anual", text: "Impacto gerado pela escala da automação em múltiplos produtos e equipas." },
+    { value: "85%", label: "Redução de débitos técnicos", text: "Eliminação de componentes duplicados e padronização automática de código legado." },
+    { value: "800%", label: "Retorno sobre o Investimento anual", text: "Impacto gerado pela escala da automação em múltiplos produtos e squads." },
   ],
-  statement: "O nosso Design System já nasce preparado para o uso por agentes, fornecendo contexto e acelerando o processo.",
+  statement: "Nosso Design System já nasce preparado para o uso por agentes, fornecendo contexto e acelerando o processo.",
 };
 
-export const DS_FEATURES = [
+export type DsFeatureItem = string | { text: string; sub: string[] };
+
+export const DS_FEATURES: { title: string; items: DsFeatureItem[] }[] = [
   {
-    title: "Arquitectura",
+    title: "Arquitetura",
     items: [
-      "Core agnóstico à stack, preparado para múltiplos produtos, frameworks e contextos.",
-      "Tokens em JSON (DTCG) como contrato entre design, código, documentação e IA.",
-      "Arquitectura em três camadas: Foundation (valores primitivos do sistema), Semantic (intenções, estados, hierarquia e contexto) e Component (tokens específicos de componentes).",
+      "Core agnóstico a stack, preparado para múltiplos produtos, frameworks e contextos",
+      "Tokens em JSON/DTCG como contrato entre design, código, documentação e IA.",
+      {
+        text: "Arquitetura em 3 camadas:",
+        sub: [
+          "Foundation: valores primitivos do sistema.",
+          "Semantic: intenções, estados, hierarquia e contexto.",
+          "Component: tokens específicos de componentes.",
+        ],
+      },
     ],
   },
   {
     title: "Governança e documentação",
     items: [
-      "Documentação estruturada em páginas publicadas e ficheiros .md.",
-      "ADRs registam decisões arquitecturais, compromissos e mudanças de direcção.",
+      "Documentação estruturada em páginas publicadas e arquivos .md.",
+      "ADRs registam decisões arquitecturais, trade-offs e mudanças de direcção.",
       "Brand Principles orientam fundamentos de marca, tom, identidade e critérios de evolução.",
       "Changelog, inventários, guias de processo e documentação técnica garantem rastreabilidade.",
     ],
@@ -672,6 +683,7 @@ export const DS_FEATURES = [
     items: [
       "Tokens sincronizados entre Figma e código.",
       "Handoff com propriedades, estados, adaptação responsiva e critérios de aceite.",
+      "Changelog, inventários, guias de processo e documentação técnica garantem rastreabilidade.",
       "Storybook com documentação viva para consumo técnico.",
       "QA visual e acessibilidade como parte do componente.",
     ],
@@ -679,10 +691,14 @@ export const DS_FEATURES = [
   {
     title: "Operação e métricas",
     items: [
-      "% de projectos a consumir o DS e % de reutilização de componentes.",
-      "Tempo de design para desenvolvimento e redução de retrabalho.",
-      "Cobertura de templates e playbooks, e conformidade WCAG AA.",
-      "Bugs de UI por release; componentes activos, deprecated e backlog crítico.",
+      "% de projectos consumindo o DS.",
+      "% de reutilização de componentes.",
+      "Tempo design → dev.",
+      "Redução de retrabalho.",
+      "Cobertura de templates e playbooks.",
+      "Conformidade WCAG AA.",
+      "Bugs de UI por release.",
+      "Componentes ativos, deprecated e backlog crítico.",
     ],
   },
 ];
@@ -694,7 +710,7 @@ export const DS_PREMISES = [
   },
   {
     title: "Acessibilidade como premissa",
-    text: "WCAG AA como referência de qualidade. Tokens, componentes e documentação consideram contraste, foco visível, estados, ARIA e padrões acessíveis de interacção.",
+    text: "WCAG AA como referência de qualidade. Tokens, componentes e documentação consideram contraste, foco visível, estados, ARIA e padrões acessíveis de interação.",
   },
 ];
 
@@ -704,33 +720,45 @@ export const DS_GOVERNANCE = {
   steps: [
     {
       name: "Entrada e triagem",
-      text: "A necessidade vem de um projecto real, incidente, dívida ou padrão recorrente. Responsável, objectivo, impacto e urgência ficam registados na solicitação.",
-      ai: "A IA compara o pedido com o que já existe. A equipa valida a necessidade e as variações.",
+      items: [
+        "Necessidade vem de projecto real, incidente, dívida ou padrão recorrente.",
+        "Responsável, objectivo, impacto e urgência ficam registados na solicitação.",
+      ],
+      ai: "IA compara o pedido com o que já existe. A equipa valida necessidade e variações.",
     },
     {
       name: "Descoberta e especificação",
-      text: "Mapear variantes, estados, conteúdo, acessibilidade, tokens e dependências. Verificar se um componente existente resolve o caso.",
-      ai: "A IA identifica padrões e pontos de ajuste. A equipa decide o que muda.",
+      items: [
+        "Mapear variantes, estados, conteúdo, acessibilidade, tokens e dependências.",
+        "Verificar se um componente existente resolve o caso.",
+      ],
+      ai: "IA identifica padrões e pontos de ajuste. A equipa decide o que muda.",
     },
     {
       name: "Design e protótipo",
-      text: "Criar o componente em Figma com propriedades, estados e adaptação responsiva. Aplicar tokens e nomenclatura do Design System.",
-      ai: "A IA sugere estrutura e nomes. O designer valida anatomia e uso.",
+      items: [
+        "Criar componente em Figma com propriedades, estados e adaptação responsiva.",
+        "Aplicar tokens e nomenclatura do Design System.",
+      ],
+      ai: "IA sugere estrutura e nomes. Designer valida anatomia e uso.",
     },
     {
       name: "Aprovação e plano técnico",
-      text: "Revisão pelo responsável do Design System e pela engenharia. Definir versão, impacto e migração quando necessário.",
-      ai: "A IA resume o impacto. O responsável avalia e aprova o avanço.",
+      items: [
+        "Revisão por responsável do Design System e engenharia.",
+        "Definir versão, impacto e migração quando necessário.",
+      ],
+      ai: "IA resume impacto. Responsável avalia e aprova avanço.",
     },
     {
       name: "Implementação e QA",
-      text: "Código, testes de estados, acessibilidade e exemplos. Verificar tokens, temas e comportamento responsivo.",
-      ai: "A IA apoia a implementação e a documentação. A engenharia valida qualidade e testes.",
+      items: ["Código, testes de estados, acessibilidade e exemplos.", "Verificar tokens, temas e comportamento responsivo."],
+      ai: "IA apoia implementação e documentação. Engenharia valida qualidade e testes.",
     },
     {
       name: "Release e adopção",
-      text: "Publicar em Figma, código e documentação. Comunicar uso recomendado e substituições.",
-      ai: "A IA identifica desvios de uso. A equipa ajusta documentação e adopção.",
+      items: ["Publicar em Figma, código e documentação.", "Comunicar uso recomendado e substituições."],
+      ai: "IA identifica desvios de uso. A equipa ajusta documentação e adopção.",
     },
   ],
   checks: [
@@ -742,17 +770,27 @@ export const DS_GOVERNANCE = {
   ],
 };
 
-/** Conexões operacionais (slide 9): princípios, mapa de interacções e responsáveis por etapa. */
-export const FRONTS_INTRO =
-  "O Núcleo deve assegurar que as soluções atendem a problemas reais, funcionam adequadamente em cada contexto de uso e cumprem os requisitos de negócio. Para isso, existem seis frentes nas quais devemos actuar com protagonismo.";
+/** Frentes de actuação (slide 5), com os títulos e os itens da original. */
+export const PLAYBOOK_FRONTS_INTRO =
+  "O núcleo deve assegurar que as soluções atendam a problemas reais, funcionem adequadamente em cada contexto de uso e cumpram os requisitos de negócio. Para isso, existem seis frentes nas quais devemos actuar com protagonismo:";
 
+export const PLAYBOOK_FRONTS = [
+  { name: "Pesquisa e Discovery", items: ["Entrevistas com utilizadores e stakeholders", "Personas e jornadas", "Benchmarks e análise de contexto"] },
+  { name: "Design de Interface e Interação", items: ["Wireframes, fluxos e protótipos", "Design de alta fidelidade", "Especificação técnica para DEV"] },
+  { name: "Design de Serviço", items: ["Mapeamento de processos", "Service blueprints", "Desenho de jornadas operacionais"] },
+  { name: "Design System", items: ["Tokens, componentes e padrões", "Documentação e governança", "Integração com desenvolvimento"] },
+  { name: "Acessibilidade e Compliance", items: ["Auditoria WCAG", "Documentação de boas práticas", "Testes com utilizadores diversos"] },
+  { name: "Validação e Testes", items: ["Testes de usabilidade", "Análise de dados qualitativos", "Iteração baseada em evidência"] },
+];
+
+/** Conexões operacionais (slide 9): princípios, mapa de interações e responsáveis por etapa. */
 export const AREA_PRINCIPLES = [
   {
     name: "Tradução entre partes",
-    text: "O Núcleo traduz a estratégia do negócio, a necessidade do utilizador e a viabilidade do desenvolvimento numa linguagem única, mantendo o produto coerente entre essas três perspectivas durante todo o projecto.",
+    text: "O núcleo traduz a estratégia do negócio, a necessidade do utilizador e a viabilidade do desenvolvimento numa linguagem única, mantendo o produto coerente entre essas três perspectivas durante todo o projecto.",
   },
   {
-    name: "Trocas declaradas",
+    name: "Trocas explícitas",
     text: "Cada relação com outra área tem entradas e saídas declaradas, de forma que aquilo que recebemos e devolvemos faz parte de um contrato explícito de trabalho, sem ficar subentendido ou dependente da boa vontade.",
   },
   {
@@ -761,25 +799,22 @@ export const AREA_PRINCIPLES = [
   },
   {
     name: "Difusão de conhecimento",
-    text: "O Núcleo amplia a maturidade da empresa ao partilhar método, vocabulário e referências com as equipas com que opera, e o ganho de cada projecto espalha-se pela organização em vez de ficar restrito à entrega.",
+    text: "O núcleo amplia a maturidade da empresa ao partilhar método, vocabulário e referências com as equipas com que opera, e o ganho de cada projecto espalha-se pela organização em vez de ficar restrito à entrega.",
   },
 ];
 
-/** Mapa de interacções: cada área com o que faz, o papel do Núcleo, o que o Núcleo recebe e o que entrega. Os nomes
-    das áreas que existem nesta apresentação (PO, Fábrica, Pré-venda) substituem os originais (Produto, Desenvolvimento,
-    Comercial). */
 export const INTERACTION_MAP = [
   {
-    name: "Requisitos e ritos (PO)",
-    intro: "Recebe o pedido, enquadra e prioriza o backlog.",
+    name: "Produto (PM/PO)",
+    intro: "Recebe a demanda, enquadra e prioriza o backlog.",
     role: "investiga o problema real e desenha a solução que serve o utilizador final.",
-    receives: "Pedido priorizado, contexto de negócio e expectativas de resultado.",
+    receives: "Demanda priorizada, contexto de negócio e expectativas de resultado.",
     delivers: "Fluxos validados, protótipos e especificações de handoff.",
   },
   {
-    name: "Fábrica",
+    name: "Desenvolvimento",
     intro: "Recebe o handoff e implementa.",
-    role: "acompanha a fidelidade e resolve dúvidas técnicas.",
+    role: "acompanha fidelidade e resolve dúvidas técnicas.",
     receives: "Feedback técnico e limitações de plataforma.",
     delivers: "Handoff estruturado e suporte durante o desenvolvimento.",
   },
@@ -788,18 +823,18 @@ export const INTERACTION_MAP = [
     intro: "Valida a experiência antes do release.",
     role: "apoia na definição dos critérios de aceite.",
     receives: "Reporte de divergências entre protótipo e produto entregue.",
-    delivers: "Critérios de aceite visuais e interactivos, e suporte na revisão.",
+    delivers: "Critérios de aceite visuais e interativos, e suporte na revisão.",
   },
   {
-    name: "Dados e BI",
+    name: "Dados/BI",
     intro: "Fornece métricas de comportamento.",
     role: "usa dados para validar hipóteses e orientar decisões.",
-    receives: "Métricas de comportamento, dashboards e insights quantitativos sobre o uso.",
-    delivers: "Perguntas de pesquisa, hipóteses a validar e eventos e jornadas a instrumentar.",
+    receives: "Perguntas de pesquisa, hipóteses a validar e eventos/jornadas a instrumentar.",
+    delivers: "Métricas de comportamento, dashboards e insights quantitativos sobre uso.",
   },
   {
-    name: "Pré-venda",
-    intro: "Levanta pedidos e contexto do cliente.",
+    name: "Comercial",
+    intro: "Levanta demandas e contexto do cliente.",
     role: "valida viabilidade e propõe soluções.",
     receives: "Contexto do cliente, restrições e expectativas do projecto.",
     delivers: "Proposta de solução e materiais de apresentação.",
@@ -808,60 +843,59 @@ export const INTERACTION_MAP = [
     name: "Marketing",
     intro: "Define identidade e tom de voz da marca.",
     role: "alinha a experiência com o posicionamento.",
-    receives: "Directrizes de marca, tom de voz e activos visuais.",
+    receives: "Diretrizes de marca, tom de voz e activos visuais.",
     delivers: "Experiências alinhadas à identidade e ao posicionamento.",
   },
   {
-    name: "Suporte e CS",
+    name: "Suporte/CS",
     intro: "Traz fricções e problemas reais dos utilizadores.",
-    role: "transforma-os em oportunidades de melhoria.",
+    role: "transforma em oportunidades de melhoria.",
     receives: "Reporte de problemas recorrentes dos utilizadores.",
     delivers: "Melhorias priorizadas com foco na redução de fricção.",
   },
   {
-    name: "Segurança e Compliance",
+    name: "Segurança/Compliance",
     intro: "Estabelece restrições técnicas e regulatórias.",
     role: "assegura que o design respeita esses limites.",
-    receives: "Restrições regulatórias, requisitos de privacidade e critérios de conformidade (protecção de dados, acessibilidade, auditoria).",
-    delivers: "Fluxos, protótipos e pontos de recolha e tratamento de dados para revisão.",
+    receives: "Fluxos, protótipos e pontos de coleta/tratamento de dados para revisão.",
+    delivers: "Restrições regulatórias, requisitos de privacidade e critérios de conformidade (LGPD, acessibilidade, auditoria).",
   },
   {
     name: "Digital Office",
     intro: "Define a estratégia de transição para o ambiente de trabalho digital.",
     role: "garante a adopção dessas tecnologias através de um design centrado no comportamento humano.",
     receives: "Requisitos de negócio, escopo de projectos de digitalização e regras de compliance.",
-    delivers: "Visão de produto (Product Discovery), fluxos de navegação validados e protótipos de média e alta fidelidade.",
+    delivers: "Visão de produto (Product Discovery), fluxos de navegação validados e protótipos de média/alta fidelidade.",
   },
   {
-    name: "Analytics e IA",
-    intro: "Desenvolve inteligência preditiva, modelos de IA e análises de dados para o negócio.",
+    name: "Analytics e AI",
+    intro: "Desenvolve inteligência preditiva, modelos de Inteligência Artificial (IA) e análises de dados para o negócio.",
     role: "transforma os dados em melhorias práticas na experiência do produto.",
     receives: "Modelos de inteligência artificial aplicados e insights baseados em dados de negócio.",
-    delivers: "Experiências digitais inteligentes e interacções personalizadas para o utilizador.",
+    delivers: "Experiências digitais inteligentes e interações personalizadas para o utilizador.",
   },
 ];
 
-/** Responsáveis por etapa: em cada etapa do projecto uma área conduz, outras apoiam e uma valida. */
 export const STEP_ROLES: { step: string; leads: string; supports: string; validates: string; validateLabel?: string }[] = [
-  { step: "Entrada do pedido", leads: "Pré-venda e stakeholder", supports: "Núcleo de Experiência e PO", validates: "Direcção" },
-  { step: "Discovery", leads: "Núcleo de Experiência", supports: "PO e Dados e BI", validates: "PO" },
+  { step: "Entrada da demanda", leads: "Comercial/Stakeholder", supports: "Núcleo de Experiência e Produto", validates: "Direcção" },
+  { step: "Discovery", leads: "Núcleo de Experiência", supports: "Produto, Dados/BI", validates: "Produto" },
   {
     step: "Desenho da solução",
     leads: "Núcleo de Experiência",
-    supports: "PO, Fábrica, stakeholder e utilizador",
-    validates: "PO, stakeholder e utilizador",
+    supports: "Produto, Desenvolvimento, Stakeholder e Utilizador",
+    validates: "Produto, Stakeholder e Utilizador",
   },
-  { step: "Implementação", leads: "Fábrica", supports: "Núcleo de Experiência e PO", validates: "QA, PO e Núcleo de Experiência" },
-  { step: "Aceite", leads: "QA", supports: "Núcleo de Experiência", validates: "PO e stakeholder" },
+  { step: "Implementação", leads: "Desenvolvimento", supports: "Núcleo de Experiência e Produto", validates: "QA, Produto e Núcleo de Experiência" },
+  { step: "Aceite", leads: "QA", supports: "Núcleo de Experiência", validates: "Produto e Stakeholder" },
   {
     step: "Pós-release",
-    leads: "Dados e BI",
-    supports: "Núcleo de Experiência e Suporte e CS",
-    validates: "Núcleo de Experiência e PO",
-    validateLabel: "Avalia",
+    leads: "Dados/BI",
+    supports: "Núcleo de Experiência e Suporte/CS",
+    validates: "Núcleo de Experiência e Produto",
+    validateLabel: "Avaliação",
   },
 ];
-export const STEP_ROLES_NOTE = "Núcleo de Experiência como guardião da experiência ao longo do ciclo.";
+export const STEP_ROLES_NOTE = "Núcleo de Experiência como guardião da experiência ao longo do ciclo";
 
 /** Temas de cliente sobre os mesmos componentes: cor, cantos e tratamento visual diferentes. */
 export const THEMES = [
