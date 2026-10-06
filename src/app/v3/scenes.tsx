@@ -7,7 +7,7 @@ import layerSkeleton from "./assets/camada-esqueleto.webp";
 import layerStrategy from "./assets/camada-estrategia.webp";
 import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
-import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
+import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "./metrics";
 import {
   AI_CHAIN,
   AREAS,

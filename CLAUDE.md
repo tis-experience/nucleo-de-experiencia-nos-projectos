@@ -1,12 +1,11 @@
 # Núcleo de Experiência nos projectos
 
 Apresentação do Núcleo de Experiência da TIS, publicada em
-https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O repositório tem duas versões:
+https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O repositório tem uma única versão, em
+`src/app/v3/` (o nome da pasta e o prefixo das classes, `v3-*`, ficaram da fase em que coexistiam três versões).
 
-- A apresentação original, na raiz do site (`src/app/App.tsx` e `src/app/components/`).
-- A versão nova, em `#/v2` (`src/app/v2/`). A original só é alterada a pedido.
-- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com uma única diferença: o slide sobre como a IA liga as equipas
-  sobre a mesma base do projecto. É onde decorre o trabalho actual; a v2 fica como estava. As classes da v3 são `v3-*`.
+A apresentação original, que esteve neste endereço até Outubro de 2026, vive agora no repositório `playbook`, em
+https://tis-experience.github.io/playbook/. A v2 (a versão nova sem o slide da IA) ficou só no histórico do git.
 
 ## Regras de escrita
 
@@ -25,11 +24,11 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - Sem exemplos fictícios específicos e sem promessas exageradas. Os números de mercado têm sempre fonte.
 - O Núcleo trabalha por trocas declaradas com as áreas, sem imposição. Os ganhos de um projecto são da equipa.
 - O PO participa activamente na UX. O Marketing entra apenas na marca e nos produtos TIS.
-- A IA é descrita de forma concreta: o que os agentes recebem, o que produzem e quem revê. Na v3 diz-se "agentes",
-  e já não "assistentes". Sem desenhar o fluxo como
+- A IA é descrita de forma concreta: o que os agentes recebem, o que produzem e quem revê. No slide da IA diz-se
+  "agentes"; nas etapas e no Design System ficou "assistente", a uniformizar quando se rever esse texto. Sem desenhar o fluxo como
   uma sequência simples (rascunho, revisão, projecto): o processo real tem muito mais passos, e o detalhe fica na
   fala do apresentador.
-- A IA mostra-se ao nível da empresa, pela ordem Requisitos, Núcleo, Desenvolvimento e QA: Requisitos escreve e
+- A IA mostra-se ao nível da empresa, no slide a seguir à relação com as áreas, pela ordem Requisitos, Núcleo, Desenvolvimento e QA: Requisitos escreve e
   detalha os requisitos com IA, o Núcleo compõe ecrãs e protótipos funcionais em código com o Design System (os
   mesmos que servem aos testes de utilização e à validação pelo cliente), o Desenvolvimento (nome genérico, sem
   nomear a Fábrica) constrói sobre o protótipo e os requisitos sem reinterpretar o design, e QA gera casos e testes automatizados a
@@ -42,9 +41,9 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   Núcleo de Experiência com IA".
 - O processo de desenvolvimento da TIS tem cinco fases: Proposta comercial, Discovery, Desenvolvimento, Aceite e
   release, Sustentação.
-- Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v2/content.ts`, para os slides dizerem o mesmo.
+- Qualquer slide que cite etapas, fases ou áreas lê-as de `src/app/v3/content.ts`, para os slides dizerem o mesmo.
 
-## Direcção visual da v2
+## Direcção visual
 
 - Segue as cores e a navegação da apresentação original: ecrãs brancos, títulos `#04165d`, destaques `#036ef2`,
   azul-escuro só na capa e no fecho, rodapé com número, nome e logótipo.
@@ -56,18 +55,20 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - A interacção tem de ser clara à primeira: o conteúdo ligado a um elemento aparece junto dele ou num painel único.
 - Imagens sempre tratadas antes de entrarem no repositório (WebP, na dimensão em que são mostradas).
 
-## Estrutura da v2
+## Estrutura
 
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
-- `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV2.tsx`: navegação, teclado, cursor e ecrã inteiro.
-- `v2.css`: estilos, com classes `v2-*`. `fx.tsx`: animações partilhadas.
+- `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
+  as listas de métricas do slide da medição.
+- `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
+  redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco.
-- `#/v2/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
+- `#/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
   rever o layout.
 
 Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, situação em que UX começa pelo
-desenho, processo de UX com os métodos, as seis etapas, relação com as áreas, como a IA liga as equipas (só na v3),
-Design System, resultados (mercado e medição na TIS) e fecho.
+desenho, processo de UX com os métodos, as seis etapas, relação com as áreas, como a IA liga as equipas, Design
+System, resultados (mercado e medição na TIS) e fecho.
 
 ## Comandos e publicação
 
@@ -83,4 +84,4 @@ Design System, resultados (mercado e medição na TIS) e fecho.
 - Texto da etapa Definir e as frases de contribuição do Núcleo para cada área.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
-  experimentados na v3 e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.
+  experimentados e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.

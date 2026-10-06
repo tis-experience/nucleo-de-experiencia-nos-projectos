@@ -1,28 +1,13 @@
 # Núcleo de Experiência nos projectos
 
-Apresentação executiva destinada às lideranças das áreas da TIS.
+Apresentação do Núcleo de Experiência da TIS, publicada em
+https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/.
 
-Este projecto deriva de `plano-de-implantacao`, mas possui outro propósito: demonstrar como o Núcleo de Experiência actua nos projectos, quais perguntas ajuda a responder, que evidências e entregáveis produz e o que muda quando existe um processo estruturado de UX.
+Mostra como o Núcleo actua nos projectos da TIS: o ponto de partida, o que é UX, a equipa, o processo de UX com as
+seis etapas, a relação com as áreas, como a IA liga as equipas sobre a mesma base do projecto, o Design System e os
+resultados. `#/<passo>` abre um slide directamente e `?still` mostra o estado final sem animações.
 
-## Estado
-
-**Apresentação adaptada.** A sequência activa possui 11 páginas contínuas e apresenta como o Núcleo de Experiência actua nos projectos da TIS.
-
-## Público e formato
-
-- Público principal: lideranças de negócio, produto, tecnologia e áreas parceiras.
-- Duração de referência: 12 a 15 minutos.
-- Extensão actual: 11 páginas no total.
-- Identificação na capa: **Apresentação executiva**.
-- Não é um kickoff, playbook ou plano de implantação.
-
-## Segurança do projecto
-
-A cópia local não possui repositório remoto configurado. Isso impede que alterações desta apresentação sejam publicadas acidentalmente no projecto original.
-
-## Planeamento
-
-O mapa completo de adaptação encontra-se em [PLANO-DE-ADAPTACAO.md](./PLANO-DE-ADAPTACAO.md).
+A apresentação original, que esteve neste endereço até Outubro de 2026, está em https://tis-experience.github.io/playbook/.
 
 ## Execução local
 

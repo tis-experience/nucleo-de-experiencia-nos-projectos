@@ -20,7 +20,7 @@ import {
 } from "./scenes";
 import "./v3.css";
 
-const V3_HASH_PREFIX = "#/v3";
+const HASH_PREFIX = "#";
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
 const REPEAT_ICON_PATH =
@@ -33,9 +33,9 @@ const INTERACTIVE = "button, a, input, select, textarea, [role='button'], [role=
 const PROXIMITY_BUFFER = 32;
 const CURSOR_SPRING = { damping: 28, stiffness: 350, mass: 0.5 };
 
-/** `#/v3/<passo>/<área>`: ligação directa para um ecrã ou para a página de uma área. */
+/** `#/<passo>/<área>`: ligação directa para um ecrã ou para a página de uma área. */
 function readHash() {
-  const [, , stepId, areaId] = window.location.hash.split("?")[0].split("/");
+  const [, stepId, areaId] = window.location.hash.split("?")[0].split("/");
   const stepIndex = STEPS.findIndex((step) => step.id === stepId);
 
   return {
@@ -90,7 +90,7 @@ export default function AppV3() {
 
   useEffect(() => {
     const path = step.id === "areas" ? `${step.id}/${areaId}` : step.id;
-    window.history.replaceState(null, "", `${V3_HASH_PREFIX}/${path}${STILL ? "?still" : ""}`);
+    window.history.replaceState(null, "", `${HASH_PREFIX}/${path}${STILL ? "?still" : ""}`);
     document.title = `${step.label} · Núcleo de Experiência`;
   }, [step, areaId]);
 
