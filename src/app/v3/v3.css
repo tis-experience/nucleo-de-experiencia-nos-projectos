@@ -3150,3 +3150,168 @@
 .v3-area-services {
   grid-column: 1 / -1;
 }
+
+/* Os apêndices enchem a altura do ecrã: as grelhas esticam até à navegação e o texto é maior. */
+.v3-modal-card[data-size="wide"] .v3-modal-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.v3-modal-card[data-size="wide"] .v3-appendix-lead {
+  font-size: 21px !important;
+  max-width: 1300px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-maturity-cards,
+.v3-modal-card[data-size="wide"] .v3-fronts,
+.v3-modal-card[data-size="wide"] .v3-ds-steps,
+.v3-modal-card[data-size="wide"] .v3-principles,
+.v3-modal-card[data-size="wide"] .v3-requests,
+.v3-modal-card[data-size="wide"] .v3-roles,
+.v3-modal-card[data-size="wide"] .v3-ds-arch {
+  flex: 1;
+  grid-auto-rows: 1fr;
+  margin-top: 40px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests,
+.v3-modal-card[data-size="wide"] .v3-roles {
+  grid-auto-rows: auto;
+  grid-template-rows: auto;
+  grid-auto-flow: row;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests > div:not(.v3-requests-head),
+.v3-modal-card[data-size="wide"] .v3-roles > div:not(.v3-roles-head) {
+  min-height: 0;
+  flex: 1;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests,
+.v3-modal-card[data-size="wide"] .v3-roles {
+  display: flex;
+  flex-direction: column;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests > div,
+.v3-modal-card[data-size="wide"] .v3-roles > div {
+  display: grid;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests > div:not(.v3-requests-head) > span:last-child,
+.v3-modal-card[data-size="wide"] .v3-roles > div:not(.v3-roles-head) > span {
+  font-size: 19px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests > div > span:first-child b,
+.v3-modal-card[data-size="wide"] .v3-roles > div > span:first-child b {
+  font-size: 28px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-requests-stages i {
+  width: 26px;
+  height: 26px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-maturity-cards > li,
+.v3-modal-card[data-size="wide"] .v3-fronts > li,
+.v3-modal-card[data-size="wide"] .v3-principles > li {
+  padding: 40px 44px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-maturity-cards > li > p:not(.v3-label),
+.v3-modal-card[data-size="wide"] .v3-principles > li > p,
+.v3-modal-card[data-size="wide"] .v3-ds-steps > li > p:not(.v3-label):not(.v3-ds-step-ai),
+.v3-modal-card[data-size="wide"] .v3-maturity-cards ol li,
+.v3-modal-card[data-size="wide"] .v3-fronts ul li,
+.v3-modal-card[data-size="wide"] .v3-appendix-points li {
+  font-size: 19px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-maturity-cards h3,
+.v3-modal-card[data-size="wide"] .v3-fronts h3,
+.v3-modal-card[data-size="wide"] .v3-principles h3 {
+  font-size: 32px;
+}
+
+/* Frentes e princípios: número grande à esquerda, como na apresentação original. */
+.v3-fronts > li,
+.v3-principles > li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 28px;
+  align-content: start;
+}
+
+.v3-fronts > li > *,
+.v3-principles > li > * {
+  grid-column: 2;
+}
+
+.v3-big-number {
+  grid-column: 1 !important;
+  grid-row: 1 / span 3;
+  font-family: var(--display);
+  font-size: 72px;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--blue);
+}
+
+.v3-fronts .v3-big-number {
+  font-size: 56px;
+}
+
+.v3-principles > li > p {
+  margin-top: 14px !important;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-step-ai {
+  font-size: 17px !important;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-layers b {
+  font-size: 30px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-layers span {
+  font-size: 19px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-layers {
+  align-content: center;
+  gap: 20px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-layers li {
+  padding: 36px 40px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-appendix-points li {
+  padding: 22px 0 22px 30px;
+  background-position: 0 32px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-checks li {
+  padding: 12px 22px;
+  font-size: 17px;
+}
+
+/* Dentro de cada cartão esticado, o conteúdo fica centrado na vertical. */
+.v3-fronts > li,
+.v3-principles > li {
+  align-content: center;
+}
+
+.v3-modal-card[data-size="wide"] .v3-maturity-cards > li,
+.v3-modal-card[data-size="wide"] .v3-ds-steps > li,
+.v3-modal-card[data-size="wide"] .v3-ds-layers li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-arch > ul {
+  align-self: center;
+}

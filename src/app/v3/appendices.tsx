@@ -79,6 +79,7 @@ export function Modal({
         <Swap>
           <motion.div
             key={page}
+            className="v3-modal-body"
             initial={STILL ? false : { opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={exit}
@@ -310,7 +311,9 @@ function Fronts() {
       <ul className="v3-fronts">
         {FRONTS.map((front, index) => (
           <li key={front.id}>
-            <p className="v3-label">0{index + 1}</p>
+            <b className="v3-big-number" aria-hidden>
+              0{index + 1}
+            </b>
             <h3>{front.name}</h3>
             <ul>
               {front.items.map((item) => (
@@ -366,7 +369,9 @@ function Principles() {
       <ul className="v3-principles">
         {AREA_PRINCIPLES.map((item, index) => (
           <li key={item.name}>
-            <p className="v3-label">0{index + 1}</p>
+            <b className="v3-big-number" aria-hidden>
+              0{index + 1}
+            </b>
             <h3>{item.name}</h3>
             <p>{item.text}</p>
           </li>
