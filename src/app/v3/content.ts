@@ -129,7 +129,7 @@ export type Stage = {
   delivery: string;
   /** O que a entrega contém, segundo a tabela de entregáveis da proposta de actuação. */
   deliveryContents: string;
-  /** Os mesmos entregáveis, item a item, para as etiquetas do slide da etapa. */
+  /** Os artefactos da entrega, item a item, para as etiquetas do slide da etapa. */
   deliverables: string[];
   /** Frentes de actuação do Núcleo que mais pesam nesta etapa. */
   fronts: FrontId[];

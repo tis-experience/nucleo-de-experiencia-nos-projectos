@@ -422,7 +422,7 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
                 <dd>{stage.aiSupport}</dd>
               </div>
               <div>
-                <dt>Entregáveis</dt>
+                <dt>Artefactos</dt>
                 <dd className="v3-links">
                   {stage.deliverables.map((item) => (
                     <span key={item}>{item}</span>
