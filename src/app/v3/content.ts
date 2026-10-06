@@ -277,11 +277,11 @@ export const BENEFIT_METRICS: Metric[] = [
 ];
 
 /** Como a IA entra no processo da empresa: as equipas em cadeia sobre a mesma base do projecto. Cada equipa diz o que
-    recebe da base, o que prepara com o assistente, o que devolve à base e quem revê. */
+    recebe da base, o que prepara com os agentes, o que devolve à base e quem revê. */
 export const AI_CHAIN = {
   base: {
     title: "A mesma base do projecto",
-    text: "Requisitos, design e critérios, documentados desde o princípio e lidos pelas equipas e pelos assistentes.",
+    text: "Requisitos, design e critérios, documentados desde o princípio e lidos pelas equipas e pelos agentes.",
   },
   teams: [
     {
@@ -289,7 +289,7 @@ export const AI_CHAIN = {
       name: "Requisitos",
       ai: "escreve e detalha os requisitos",
       receives: "O problema, as pessoas e o contexto do brief de UX.",
-      produces: "Requisitos escritos e detalhados com o assistente, com critérios de aceitação.",
+      produces: "Requisitos escritos e detalhados com os agentes, com critérios de aceitação.",
       feeds: "Requisitos e regras confirmadas.",
       reviews: "O PO confirma regras e âmbito.",
     },
@@ -318,7 +318,7 @@ export const AI_CHAIN = {
       ai: "gera casos e testes automatizados",
       receives: "Requisitos, critérios, protótipo e a versão construída.",
       produces: "Casos de teste e testes automatizados preparados a partir dos requisitos e do protótipo.",
-      feeds: "Critérios verificáveis e defeitos encontrados.",
+      feeds: "Casos de teste, resultados e defeitos encontrados, que voltam à base para corrigir requisitos, protótipo e construção.",
       reviews: "QA revê os casos antes de os correr.",
     },
   ],
@@ -367,7 +367,7 @@ export const DS_POINTS = [
     text: "Tipografia, cor e densidade definidas pelo designer antes de qualquer geração.",
   },
   {
-    title: "Contexto para os assistentes de IA",
+    title: "Contexto para os agentes de IA",
     text: "Os ecrãs são compostos com os componentes do sistema, o que evita interfaces genéricas.",
   },
   {

@@ -684,8 +684,8 @@ export function AiScene() {
           <MaskLine>Todas as equipas bebem da mesma fonte</MaskLine>
         </h1>
         <motion.p className="v3-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
-          Requisitos, design, testes e construção partem da mesma base do projecto, com assistentes a preparar o trabalho
-          de cada equipa.
+          Requisitos, design, testes e construção partem da mesma base do projecto, com agentes a preparar o trabalho de
+          cada equipa.
         </motion.p>
       </div>
 
@@ -720,7 +720,7 @@ export function AiScene() {
               <dd>{team.receives}</dd>
             </div>
             <div>
-              <dt className="v3-label">Prepara com o assistente</dt>
+              <dt className="v3-label">Prepara com os agentes</dt>
               <dd>{team.produces}</dd>
             </div>
             <div>
