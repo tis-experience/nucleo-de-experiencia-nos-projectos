@@ -393,7 +393,7 @@ export const PHASES: { name: string; delivery: string; areas: string[]; stages: 
   {
     name: "Discovery",
     delivery: "Problema, utilizadores e métrica de sucesso, direcção visual e fluxos com os estados relevantes.",
-    areas: ["requisitos"],
+    areas: ["requisitos", "produtos"],
     stages: ["descobrir", "definir", "explorar", "validar"],
   },
   {
@@ -411,7 +411,7 @@ export const PHASES: { name: string; delivery: string; areas: string[]; stages: 
   {
     name: "Sustentação",
     delivery: "Análise do feedback e do uso real, com recomendações de melhoria.",
-    areas: ["fabrica"],
+    areas: ["produtos", "fabrica"],
     stages: ["acompanhar"],
   },
 ];
@@ -468,6 +468,16 @@ export const AREAS: Area[] = [
     gets: "Critérios de interface e avaliação de usabilidade e acessibilidade, com achados e evidência.",
     stages: ["entregar", "validar"],
     fronts: ["validacao", "acessibilidade"],
+  },
+  {
+    id: "produtos",
+    name: "Produtos TIS",
+    note: "Academia, Saúde, Finanças e Setor Público",
+    role: "Acompanha os produtos TIS de forma contínua, da pesquisa com utilizadores às melhorias depois da entrega.",
+    gives: "Necessidades, regras, feedback e dados de utilização.",
+    gets: "Pesquisas, fluxos, interfaces, validações e recomendações de melhoria.",
+    stages: ["acompanhar", "descobrir"],
+    fronts: ["pesquisa", "interface", "validacao", "acessibilidade"],
   },
   {
     id: "marketing",
