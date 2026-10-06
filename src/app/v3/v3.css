@@ -2820,3 +2820,8 @@
   inset: 0;
   overflow: hidden;
 }
+
+/* O logótipo da TIS no rodapé dos slides do playbook (o único elemento com máscara) fica escondido na janela. */
+.v3-playbook [style*="mask-image"] {
+  display: none;
+}
