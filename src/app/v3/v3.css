@@ -2742,7 +2742,17 @@
   color: var(--blue);
 }
 
-/* Os apêndices ocupam o palco inteiro, como um slide. */
+/* Os apêndices ocupam o ecrã inteiro: o fundo cobre a janela toda e o conteúdo tem as margens de um slide. */
+.v3-modal[data-size="wide"] {
+  background: #ffffff;
+  backdrop-filter: none;
+}
+
+.v3-root:has(.v3-modal) .v3-fullscreen {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .v3-modal-card[data-size="wide"] {
   width: 1920px;
   height: 1080px;

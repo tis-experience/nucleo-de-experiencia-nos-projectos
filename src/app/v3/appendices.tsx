@@ -51,6 +51,7 @@ export function Modal({
   return (
     <motion.div
       className="v3-modal"
+      data-size={size}
       role="dialog"
       aria-modal="true"
       aria-label={label}
