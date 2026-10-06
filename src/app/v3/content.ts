@@ -306,9 +306,9 @@ export const AI_CHAIN = {
     {
       id: "desenvolvimento",
       name: "Desenvolvimento",
-      ai: "constrói sobre o protótipo",
-      receives: "Protótipo em código e especificação de UX.",
-      produces: "A construção segue o protótipo e os componentes do Design System, sem reinterpretar o design.",
+      ai: "constrói sobre o protótipo e os requisitos",
+      receives: "Requisitos, protótipo em código e especificação de UX.",
+      produces: "A construção segue os requisitos, o protótipo e os componentes do Design System, sem reinterpretar o design.",
       feeds: "A versão construída e as limitações técnicas.",
       reviews: "A engenharia revê o código e o Núcleo revê a implementação.",
     },

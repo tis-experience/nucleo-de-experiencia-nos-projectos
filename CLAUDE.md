@@ -32,7 +32,7 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - A IA mostra-se ao nível da empresa, pela ordem Requisitos, Núcleo, Desenvolvimento e QA: Requisitos escreve e
   detalha os requisitos com IA, o Núcleo compõe ecrãs e protótipos funcionais em código com o Design System (os
   mesmos que servem aos testes de utilização e à validação pelo cliente), o Desenvolvimento (nome genérico, sem
-  nomear a Fábrica) constrói sobre o protótipo sem reinterpretar o design, e QA gera casos e testes automatizados a
+  nomear a Fábrica) constrói sobre o protótipo e os requisitos sem reinterpretar o design, e QA gera casos e testes automatizados a
   partir dos requisitos e do protótipo. Tudo bebe da mesma base documental do projecto.
 - As fases da TIS e as etapas de UX não se alinham numa linha do tempo. A proposta comercial corre o processo de UX
   em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual.
