@@ -2468,6 +2468,11 @@
   background: var(--tint);
 }
 
+/* A Superfície tem o azul da borda como preenchimento, por isso a borda dela, quando escolhida, é azul-escura. */
+.v3-layers li[data-active] .v3-plane[data-depth="0"] {
+  border-color: var(--navy);
+}
+
 .v3-layers li[data-active] .v3-plane {
   border-width: 4px;
   transform: rotateX(62deg) rotateZ(45deg) scale(1.1);
