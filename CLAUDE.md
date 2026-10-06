@@ -47,8 +47,9 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   ficha de cada área, e explicam-se no apêndice das áreas.
 - O conteúdo opcional fica em apêndices, janelas de ecrã inteiro abertas por uma ligação no canto do slide: tipos de
   pedido e maturidade do produto (etapas), arquitectura e governança (Design System), frentes, responsáveis por fase
-  e princípios (áreas). Os textos vêm da apresentação original, resumidos e adaptados às cinco fases e aos nomes das
-  áreas desta apresentação. Nada de essencial à apresentação pode depender de um apêndice.
+  e princípios (áreas). Cada página reproduz a estrutura e o texto do slide correspondente do playbook (slides 5, 7, 8
+  e 9), com os nomes das áreas ajustados aos desta apresentação (PO, Fábrica, Pré-venda). Nada de essencial à
+  apresentação pode depender de um apêndice.
 
 ## Direcção visual
 
@@ -96,9 +97,7 @@ System, resultados (mercado e medição na TIS) e fecho.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
   experimentados e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.
-- Nos apêndices: a profundidade de cada etapa por tipo de pedido (a matriz original usava outras colunas), as frentes
-  atribuídas a cada etapa e a cada área, e a tabela de responsáveis por fase, adaptada das seis etapas originais às
-  cinco fases (a original tinha Produto, Dados/BI, Comercial e Suporte/CS, que não existem na lista de áreas). O que
-  Desenvolvimento e QA fazem na proposta e no Discovery também é dedução.
+- Nos apêndices: as frentes atribuídas a cada etapa e a cada área. Os números de retorno do Design System (70%, 65%,
+  85%, 800%) vieram do playbook sem fonte.
 - Um mapa do processo de UX cruzado com as áreas de execução e as fases da TIS foi desenhado como infográfico fora da
   apresentação e ficou guardado para uma versão futura.

@@ -3332,3 +3332,702 @@
   left: 120px;
   top: 300px;
 }
+
+/* ── Apêndices com a estrutura dos slides do playbook ─────────────────── */
+
+.v3-pb-fill {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+}
+
+.v3-pb-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-pb-bullets li {
+  position: relative;
+  padding: 0 0 0 28px;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.v3-pb-bullets li + li {
+  margin-top: 22px;
+}
+
+.v3-pb-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  background: var(--blue);
+}
+
+.v3-pb-bullets b {
+  color: var(--navy);
+}
+
+.v3-pb-heading {
+  font-family: var(--display);
+  font-size: 26px;
+  color: var(--navy);
+}
+
+.v3-pb-heading + .v3-pb-bullets {
+  margin-top: 28px;
+}
+
+.v3-pb-statement {
+  margin-top: 56px !important;
+  max-width: 900px;
+  font-family: var(--display);
+  font-size: 26px !important;
+  line-height: 1.3 !important;
+  color: var(--navy);
+}
+
+/* Texto à esquerda e cartão de estatística à direita (modelos de actuação, benefícios do DS). */
+.v3-pb-models {
+  flex-direction: row;
+  align-items: center;
+  gap: 120px;
+}
+
+.v3-pb-models > div {
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 0 40px;
+}
+
+.v3-pb-stat-card {
+  width: 620px;
+  padding: 44px 56px 36px;
+  border-radius: 32px;
+  background: var(--tint);
+}
+
+.v3-pb-stat-card h3 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.v3-pb-stat-card > p {
+  margin-top: 16px !important;
+  font-size: 18px !important;
+}
+
+.v3-pb-stat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 36px !important;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #c9d1dd;
+}
+
+.v3-pb-stat b {
+  font-family: var(--display);
+  font-size: 64px;
+  line-height: 1;
+  color: var(--blue);
+}
+
+.v3-pb-stat span {
+  font-family: var(--strong);
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--navy);
+}
+
+.v3-pb-stat-card small {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.v3-pb-roi ul {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-pb-roi li {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.v3-pb-roi li + li {
+  margin-top: 28px;
+}
+
+.v3-pb-roi b {
+  font-family: var(--display);
+  font-size: 52px;
+  line-height: 1;
+  color: var(--blue);
+}
+
+.v3-pb-roi strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--strong);
+  font-size: 17px;
+  color: var(--navy);
+}
+
+.v3-pb-roi span {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* Critérios de classificação: texto à esquerda, barras por fase à direita. */
+.v3-pb-classify {
+  flex-direction: row;
+  gap: 96px;
+  align-items: stretch;
+}
+
+.v3-pb-classify > div:first-child {
+  flex: 1;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.v3-pb-classify > div:first-child > .v3-label {
+  margin-top: 36px;
+}
+
+.v3-pb-types {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-pb-types li + li {
+  margin-top: 18px;
+}
+
+.v3-pb-types h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.v3-pb-types h3 span {
+  font-family: var(--strong);
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.v3-pb-types p {
+  margin-top: 4px !important;
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+.v3-pb-matrix {
+  width: 760px;
+  padding: 36px 48px;
+  border-radius: 32px;
+  background: var(--tint);
+}
+
+.v3-pb-matrix > div + div {
+  margin-top: 26px;
+}
+
+.v3-pb-matrix h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.v3-pb-matrix-head {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 10px !important;
+  font-family: var(--strong);
+  font-size: 14px !important;
+  text-align: center;
+  color: var(--navy);
+}
+
+.v3-pb-matrix-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin-top: 10px !important;
+  padding: 6px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.v3-pb-matrix-track i {
+  height: 24px;
+  border-radius: 999px;
+}
+
+.v3-pb-matrix-track i[data-depth="1"] {
+  background: #dbe9ff;
+}
+
+.v3-pb-matrix-track i[data-depth="2"] {
+  background: #8ab8f7;
+}
+
+.v3-pb-matrix-track i[data-depth="3"] {
+  background: var(--blue);
+}
+
+/* Maturidade do produto: três fluxos empilhados dentro de um cartão de contorno. */
+.v3-pb-maturity {
+  padding: 36px 56px 24px;
+  border: 2px solid var(--blue);
+  border-radius: 36px;
+}
+
+.v3-pb-maturity section + section {
+  margin-top: 26px;
+  padding-top: 26px;
+  border-top: 1px solid #dfe5ef;
+}
+
+.v3-pb-maturity section h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.v3-pb-maturity section > p {
+  margin-top: 6px !important;
+  font-size: 17px !important;
+  line-height: 1.45 !important;
+}
+
+.v3-pb-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 0;
+  margin-top: 14px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--tint);
+}
+
+.v3-pb-flow span {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--strong);
+  font-size: 15px;
+  color: var(--blue);
+}
+
+.v3-pb-flow span i {
+  display: inline-block;
+  width: 44px;
+  height: 2px;
+  margin: 0 14px;
+  background: var(--navy);
+  position: relative;
+}
+
+.v3-pb-flow span i::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border: 5px solid transparent;
+  border-left: 7px solid var(--navy);
+}
+
+.v3-pb-flow span[data-decision] b {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+}
+
+.v3-pb-flow small {
+  width: 100%;
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Cartões de contorno azul (frentes, Design System, responsáveis). */
+.v3-pb-outlined {
+  display: grid;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-pb-outlined > li {
+  padding: 32px 36px;
+  border: 2px solid var(--blue);
+  border-radius: 28px;
+}
+
+.v3-pb-outlined h3 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.v3-pb-outlined h3 svg {
+  color: var(--blue);
+}
+
+.v3-pb-outlined .v3-pb-bullets li {
+  font-size: 17px;
+}
+
+.v3-pb-outlined .v3-pb-bullets li + li {
+  margin-top: 14px;
+}
+
+.v3-pb-fronts {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+}
+
+.v3-pb-features {
+  flex: 1;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.v3-pb-features .v3-pb-bullets li {
+  font-size: 16px;
+}
+
+.v3-pb-premises {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
+
+.v3-pb-premises > li {
+  padding: 24px 32px;
+  background: var(--tint);
+}
+
+.v3-pb-premises h3 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.v3-pb-premises p {
+  margin: 0 !important;
+  font-size: 16px !important;
+}
+
+/* Fluxo de governança: seis colunas com cabeçalho, passos e nota da IA. */
+.v3-pb-flowchart {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-pb-flowchart li {
+  display: flex;
+  flex-direction: column;
+}
+
+.v3-pb-flowchart h3 {
+  display: grid;
+  place-items: center;
+  min-height: 72px;
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: var(--blue);
+  font-size: 18px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.v3-pb-flowchart .v3-pb-outlined-box {
+  flex: 1;
+  margin-top: 14px;
+  padding: 20px 18px;
+  border: 1.5px solid #c9d1dd;
+  border-radius: 16px;
+}
+
+.v3-pb-flowchart .v3-pb-bullets li {
+  padding-left: 22px;
+  font-size: 15px;
+}
+
+.v3-pb-flowchart .v3-pb-bullets li + li {
+  margin-top: 14px;
+}
+
+.v3-pb-flowchart .v3-pb-bullets li::before {
+  top: 7px;
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border: 2px solid var(--blue);
+}
+
+.v3-pb-ai {
+  margin-top: 14px !important;
+  padding: 16px 18px;
+  border: 1.5px solid var(--blue);
+  border-radius: 16px;
+  background: var(--tint);
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  color: var(--navy);
+}
+
+.v3-pb-divider {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #c9d1dd;
+}
+
+.v3-pb-divider + .v3-ds-checks {
+  margin-top: 16px;
+}
+
+.v3-modal-card[data-size="wide"] .v3-ds-checks li {
+  flex: 1;
+  justify-content: center;
+  padding: 16px 22px;
+  border-color: #c9d1dd;
+  border-radius: 16px;
+}
+
+/* Mapa de interacções: o cartão azul-escuro do Núcleo e os cartões das áreas. */
+.v3-pb-map {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.v3-pb-anchor {
+  width: 320px;
+  flex: none;
+  padding: 44px 32px;
+  border-radius: 32px;
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.v3-pb-anchor h3 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.v3-pb-anchor h3::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin-top: 26px;
+  background: var(--blue);
+}
+
+.v3-pb-anchor p {
+  margin-top: 26px !important;
+  font-size: 16px !important;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.v3-pb-map article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 28px 24px;
+  border: 1.5px solid #c9d1dd;
+  border-radius: 28px;
+}
+
+.v3-pb-map article h3 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.v3-pb-map article > p {
+  margin-top: 12px !important;
+  font-size: 17px !important;
+  line-height: 1.45 !important;
+}
+
+.v3-pb-map article > p b {
+  color: var(--navy);
+}
+
+.v3-pb-exchange {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.v3-pb-exchange p {
+  margin: 0 !important;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+.v3-pb-exchange p + p {
+  margin-top: 10px !important;
+}
+
+.v3-pb-exchange p[data-kind="in"] {
+  border: 1.5px solid var(--blue);
+  background: var(--tint);
+}
+
+.v3-pb-exchange p[data-kind="out"] {
+  border: 1.5px solid var(--navy);
+  background: #ffffff;
+}
+
+.v3-pb-exchange span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-family: var(--strong);
+  font-size: 16px;
+  color: var(--blue);
+}
+
+.v3-pb-exchange p[data-kind="out"] span {
+  color: var(--navy);
+}
+
+/* Responsáveis por etapa: seis cartões com etiquetas de apoio e validação. */
+.v3-pb-steps {
+  flex: 1;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+}
+
+.v3-pb-steps > li {
+  position: relative;
+  padding: 28px 32px 24px;
+  border-color: #c9d1dd;
+  border-width: 1.5px;
+}
+
+.v3-pb-steps > li > svg {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  color: var(--blue);
+}
+
+.v3-pb-steps h3 {
+  margin: 2px 0 14px;
+  font-size: 24px;
+}
+
+.v3-pb-owner {
+  margin: 0 0 16px !important;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #c9d1dd;
+  font-family: var(--strong);
+  font-size: 18px !important;
+  color: var(--navy);
+}
+
+.v3-pb-owner span {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 14px;
+  color: var(--blue);
+}
+
+.v3-pb-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 0 !important;
+  font-size: 16px !important;
+}
+
+.v3-pb-tag span {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.v3-pb-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px !important;
+  padding: 16px;
+  border: 1.5px solid var(--blue);
+  border-radius: 16px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 18px !important;
+  color: var(--navy);
+}
+
+.v3-pb-note svg {
+  color: var(--blue);
+}
+
+/* Afinações: cartões compactos e centrados, como nos slides originais. */
+.v3-pb-types {
+  list-style: none;
+}
+
+.v3-pb-fronts {
+  grid-auto-rows: auto;
+  align-content: center;
+  gap: 24px;
+}
+
+.v3-pb-fronts > li {
+  padding-bottom: 40px;
+}
+
+.v3-pb-features {
+  flex: none;
+}
+
+.v3-pb-fill:has(> .v3-pb-features) {
+  justify-content: center;
+}
+
+.v3-pb-models > div {
+  justify-content: center;
+}
+
+.v3-pb-statement {
+  margin-top: 64px !important;
+}
