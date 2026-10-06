@@ -2742,10 +2742,19 @@
   color: var(--blue);
 }
 
+/* Os apêndices ocupam o palco inteiro, como um slide. */
 .v3-modal-card[data-size="wide"] {
-  width: 1680px;
-  min-height: 940px;
-  padding: 52px 64px 32px;
+  width: 1920px;
+  height: 1080px;
+  min-height: 0;
+  padding: 100px 120px 56px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.v3-modal-card[data-size="wide"] .v3-modal-close {
+  top: 92px;
+  right: 120px;
 }
 
 .v3-modal-card .v3-ds-layers,
