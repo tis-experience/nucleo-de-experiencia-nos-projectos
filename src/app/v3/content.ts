@@ -129,7 +129,7 @@ export type Stage = {
   delivery: string;
   /** O que a entrega contém, segundo a tabela de entregáveis da proposta de actuação. */
   deliveryContents: string;
-  /** Os artefactos da entrega, item a item, para as etiquetas do slide da etapa. */
+  /** Artefactos produzidos na etapa, que acompanham a entrega (a própria entrega não se repete aqui). */
   deliverables: string[];
   /** Frentes de actuação do Núcleo que mais pesam nesta etapa. */
   fronts: FrontId[];
@@ -146,7 +146,7 @@ export const STAGES: Stage[] = [
     methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
     deliveryContents: "Problema, pessoas, contexto, evidências e dúvidas.",
-    deliverables: ["Problema", "Pessoas", "Contexto", "Evidências", "Dúvidas"],
+    deliverables: ["Síntese das entrevistas", "Notas de observação", "Matriz CSD", "Benchmark"],
     fronts: ["pesquisa", "servico"],
   },
   {
@@ -159,7 +159,7 @@ export const STAGES: Stage[] = [
     methods: ["Personas", "Tarefa prioritária", "Critérios de sucesso"],
     delivery: "Escopo de UX",
     deliveryContents: "Tarefa prioritária, personas, restrições e critérios de sucesso.",
-    deliverables: ["Tarefa prioritária", "Personas", "Restrições", "Critérios de sucesso"],
+    deliverables: ["Personas", "Mapa da jornada", "Tarefa prioritária", "Critérios de sucesso"],
     fronts: ["pesquisa", "servico"],
   },
   {
@@ -172,7 +172,7 @@ export const STAGES: Stage[] = [
     methods: ["Fluxo de utilizador", "Arquitectura de informação", "Esboços", "Demonstração executável"],
     delivery: "Solução de UX/UI",
     deliveryContents: "Fluxos, conteúdo, interfaces, componentes, estados e decisões.",
-    deliverables: ["Fluxos", "Conteúdo", "Interfaces", "Componentes", "Estados", "Decisões"],
+    deliverables: ["Fluxos de utilizador", "Arquitectura de informação", "Wireframes", "Protótipo funcional em código"],
     fronts: ["interface", "design-system"],
   },
   {
@@ -185,7 +185,7 @@ export const STAGES: Stage[] = [
     methods: ["Revisão especializada", "Conversa sobre o fluxo", "Teste de utilização"],
     delivery: "Solução revista",
     deliveryContents: "Problemas encontrados, evidências, decisões e questões ainda abertas.",
-    deliverables: ["Problemas encontrados", "Evidências", "Decisões", "Questões em aberto"],
+    deliverables: ["Guião de teste", "Relatório de usabilidade", "Avaliação heurística", "Lista de achados"],
     fronts: ["validacao", "acessibilidade"],
   },
   {
@@ -198,7 +198,7 @@ export const STAGES: Stage[] = [
     methods: ["Especificação de UX", "Revisão da implementação", "Avaliação de acessibilidade", "Verificações com QA"],
     delivery: "Especificação de UX",
     deliveryContents: "Comportamentos e critérios ligados aos requisitos e à versão construída.",
-    deliverables: ["Comportamentos", "Critérios ligados aos requisitos", "Revisão da versão construída"],
+    deliverables: ["Componentes no Design System", "Critérios de aceitação", "Relatório de acessibilidade", "Notas de revisão da implementação"],
     fronts: ["interface", "design-system", "acessibilidade"],
   },
   {
@@ -211,7 +211,7 @@ export const STAGES: Stage[] = [
     methods: ["Análise de feedback", "Análise da utilização", "Revisão da experiência"],
     delivery: "Análise da experiência entregue",
     deliveryContents: "Problemas observados, efeitos na utilização, prioridades e recomendações.",
-    deliverables: ["Problemas observados", "Efeitos na utilização", "Prioridades", "Recomendações"],
+    deliverables: ["Análise de feedback", "Relatório de utilização", "Recomendações de melhoria", "Itens para o backlog"],
     fronts: ["validacao", "pesquisa"],
   },
 ];
