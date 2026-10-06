@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Check, RotateCw } from "lucide-react";
-import { STAGES, STAGE_VISUAL } from "./content";
+import { AREAS, STAGES, STAGE_VISUAL } from "./content";
 import { MoreLink, StagesAppendix } from "./appendices";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
@@ -426,6 +426,14 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
                 <dd className="v3-links">
                   {stage.deliverables.map((item) => (
                     <span key={item}>{item}</span>
+                  ))}
+                </dd>
+              </div>
+              <div>
+                <dt>Áreas envolvidas</dt>
+                <dd className="v3-links">
+                  {AREAS.filter((area) => area.stages.includes(stage.id)).map((area) => (
+                    <span key={area.id}>{area.name}</span>
                   ))}
                 </dd>
               </div>
