@@ -172,13 +172,13 @@
 }
 
 .v3-footnote[data-raised] {
-  top: calc(800px + var(--extra) * 0.8);
+  top: calc(800px + var(--extra) * 0.9);
 }
 
 .v3-footnote {
   position: absolute;
   left: 120px;
-  top: calc(884px + var(--extra) * 0.91);
+  top: calc(884px + var(--extra) * 0.92);
   width: 1300px;
   font-size: 16px;
   color: var(--muted);
@@ -318,13 +318,13 @@
 .v3-cover {
   position: absolute;
   left: 120px;
-  top: calc(249px + var(--extra) * 0.03);
+  top: calc(249px + var(--extra) * 0.4);
   width: 1300px;
   color: #ffffff;
 }
 
 .v3-cover[data-position="middle"] {
-  top: calc(340px + var(--extra) * 0.15);
+  top: calc(340px + var(--extra) * 0.45);
 }
 
 .v3-cover-title {
@@ -368,7 +368,7 @@
 .v3-maturity {
   position: absolute;
   left: 120px;
-  top: calc(420px + var(--extra) * 0.27);
+  top: calc(420px + var(--extra) * 0.45);
   width: 940px;
 }
 
@@ -627,7 +627,7 @@
 .v3-survey {
   position: absolute;
   left: 1180px;
-  top: calc(330px + var(--extra) * 0.14);
+  top: calc(330px + var(--extra) * 0.42);
   width: 620px;
   padding: 56px;
   border-radius: 40px;
@@ -665,7 +665,7 @@
 .v3-story {
   position: absolute;
   left: 120px;
-  top: calc(290px + var(--extra) * 0.08);
+  top: calc(290px + var(--extra) * 0.25);
   width: 1680px;
 }
 
@@ -718,7 +718,7 @@
 .v3-missing {
   position: absolute;
   left: 120px;
-  top: calc(640px + var(--extra) * 0.57);
+  top: calc(640px + var(--extra) * 0.6);
   width: 1680px;
   height: 220px;
 }
@@ -763,7 +763,7 @@
 .v3-methods {
   position: absolute;
   left: 120px;
-  top: calc(390px + var(--extra) * 0.22);
+  top: calc(390px + var(--extra) * 0.3);
   width: 1680px;
   height: 470px;
   display: flex;
@@ -810,7 +810,7 @@
 .v3-change-chart {
   position: absolute;
   left: 120px;
-  top: calc(570px + var(--extra) * 0.47);
+  top: calc(570px + var(--extra) * 0.6);
   width: 1680px;
 }
 
@@ -922,7 +922,7 @@
 .v3-stage-head {
   position: absolute;
   left: 120px;
-  top: calc(310px + var(--extra) * 0.11);
+  top: calc(310px + var(--extra) * 0.35);
   width: 560px;
 }
 
@@ -1003,7 +1003,7 @@
 .v3-canvas {
   position: absolute;
   left: 800px;
-  top: calc(280px + var(--extra) * 0.07);
+  top: calc(280px + var(--extra) * 0.3);
   width: 1000px;
   height: 540px;
 }
@@ -1510,7 +1510,7 @@
 .v3-preview[data-size="stage"] {
   position: absolute;
   left: 800px;
-  top: calc(270px + var(--extra) * 0.06);
+  top: calc(270px + var(--extra) * 0.3);
   width: 880px;
   height: 475px;
   overflow: visible;
@@ -1535,7 +1535,7 @@
 .v3-cases {
   position: absolute;
   left: 120px;
-  top: calc(270px + var(--extra) * 0.06);
+  top: calc(270px + var(--extra) * 0.3);
   width: 1680px;
   height: 330px;
   display: flex;
@@ -1626,13 +1626,13 @@
 .v3-studies-label {
   position: absolute;
   left: 120px;
-  top: calc(650px + var(--extra) * 0.59);
+  top: calc(650px + var(--extra) * 0.75);
 }
 
 .v3-studies {
   position: absolute;
   left: 120px;
-  top: calc(686px + var(--extra) * 0.64);
+  top: calc(686px + var(--extra) * 0.75);
   width: 1680px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1674,7 +1674,7 @@
 .v3-ds-points {
   position: absolute;
   left: 120px;
-  top: calc(400px + var(--extra) * 0.24);
+  top: calc(400px + var(--extra) * 0.4);
   width: 744px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1710,7 +1710,7 @@
 .v3-ds-demo {
   position: absolute;
   left: 900px;
-  top: 150px;
+  top: calc(150px + var(--extra) * 0.3);
   width: 900px;
   height: 730px;
   display: grid;
@@ -1880,7 +1880,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(868px + var(--extra) * 0.89);
+  top: calc(868px + var(--extra) * 0.9);
   z-index: 2;
   width: fit-content;
   margin: 0 auto;
@@ -1933,7 +1933,7 @@
 .v3-lens {
   position: absolute;
   left: 104px;
-  top: calc(290px + var(--extra) * 0.08);
+  top: calc(290px + var(--extra) * 0.3);
   width: 520px;
 }
 
@@ -2082,7 +2082,7 @@
 .v3-area {
   position: absolute;
   left: 780px;
-  top: calc(300px + var(--extra) * 0.1);
+  top: calc(300px + var(--extra) * 0.4);
   width: 1020px;
 }
 
@@ -2198,7 +2198,7 @@
 .v3-questions {
   position: absolute;
   left: 104px;
-  top: calc(300px + var(--extra) * 0.1);
+  top: calc(300px + var(--extra) * 0.3);
   width: 620px;
   margin: 0;
   padding: 0;
@@ -2206,7 +2206,7 @@
 }
 
 .v3-questions li + li {
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
 .v3-questions button {
@@ -2240,29 +2240,37 @@
 .v3-metrics {
   position: absolute;
   left: 860px;
-  top: calc(318px + var(--extra) * 0.12);
+  top: calc(300px + var(--extra) * 0.3);
   width: 940px;
+  padding: 40px 48px 32px;
+  border-radius: 28px;
+  background: var(--tint);
 }
 
 .v3-metric-group + .v3-metric-group {
-  margin-top: 28px;
+  margin-top: 36px;
 }
 
 .v3-metric-group ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .v3-metric-group li {
-  padding: 9px 18px;
-  border-radius: 999px;
-  background: var(--tint);
-  font-size: 16px;
+  padding: 16px 0 16px 22px;
+  border-top: 1px solid rgba(43, 118, 193, 0.18);
+  background: radial-gradient(circle, var(--blue) 3.5px, transparent 4px) no-repeat 0 26px / 9px 9px;
+  font-size: 19px;
+  line-height: 1.4;
   color: var(--navy);
+}
+
+.v3-metric-group li:nth-child(-n + 2) {
+  border-top: 0;
 }
 
 /* ── Como a IA entra: as equipas em cadeia sobre a mesma base ───────────── */
@@ -2270,7 +2278,7 @@
 .v3-chain {
   position: absolute;
   left: 120px;
-  top: calc(320px + var(--extra) * 0.13);
+  top: calc(320px + var(--extra) * 0.3);
   width: 1680px;
 }
 
@@ -2382,7 +2390,7 @@
 .v3-chain-detail {
   position: absolute;
   left: 120px;
-  top: calc(620px + var(--extra) * 0.54);
+  top: calc(620px + var(--extra) * 0.45);
   width: 1680px;
 }
 
@@ -2408,13 +2416,13 @@
 .v3-ux-source {
   position: absolute;
   left: 120px;
-  top: calc(880px + var(--extra) * 0.91);
+  top: calc(880px + var(--extra) * 0.8);
 }
 
 .v3-layers {
   position: absolute;
   left: 120px;
-  top: calc(340px + var(--extra) * 0.15);
+  top: calc(340px + var(--extra) * 0.45);
   width: 620px;
   height: 520px;
   margin: 0;
@@ -2513,7 +2521,7 @@
 .v3-layer-card {
   position: absolute;
   left: 760px;
-  top: calc(320px + var(--extra) * 0.13);
+  top: calc(320px + var(--extra) * 0.45);
   width: 1040px;
   height: 580px;
   overflow: hidden;
@@ -2572,7 +2580,7 @@
 .v3-team {
   position: absolute;
   left: 120px;
-  top: calc(380px + var(--extra) * 0.21);
+  top: calc(380px + var(--extra) * 0.45);
   width: 1680px;
 }
 
