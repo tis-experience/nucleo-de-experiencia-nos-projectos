@@ -2763,8 +2763,8 @@
 }
 
 .v3-modal-card[data-size="wide"] .v3-modal-close {
-  top: 92px;
-  right: 120px;
+  top: 24px;
+  right: 24px;
 }
 
 .v3-modal-card .v3-ds-layers,
