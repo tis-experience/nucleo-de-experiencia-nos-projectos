@@ -922,7 +922,7 @@
 .v3-stage-head {
   position: absolute;
   left: 120px;
-  top: calc(310px + var(--extra) * 0.35);
+  top: calc(280px + var(--extra) * 0.35);
   width: 560px;
 }
 
@@ -963,7 +963,7 @@
 .v3-stage-delivery {
   position: absolute;
   left: 800px;
-  top: calc(770px + var(--extra) * 0.75);
+  top: calc(740px + var(--extra) * 0.75);
   width: 1000px;
 }
 
@@ -1003,7 +1003,7 @@
 .v3-canvas {
   position: absolute;
   left: 800px;
-  top: calc(280px + var(--extra) * 0.3);
+  top: calc(250px + var(--extra) * 0.3);
   width: 1000px;
   height: 540px;
 }
@@ -1510,7 +1510,7 @@
 .v3-preview[data-size="stage"] {
   position: absolute;
   left: 800px;
-  top: calc(270px + var(--extra) * 0.3);
+  top: calc(240px + var(--extra) * 0.3);
   width: 880px;
   height: 475px;
   overflow: visible;
