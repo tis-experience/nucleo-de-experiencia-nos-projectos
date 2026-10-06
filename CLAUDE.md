@@ -67,8 +67,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   rever o layout.
 
 Ordem actual: capa, ponto de partida (maturidade e inquérito), camadas de UX, equipa, situação em que UX começa pelo
-desenho, processo de UX com os métodos, como a IA entra (só na v3), as seis etapas, relação com as áreas, Design
-System, resultados (mercado e medição na TIS) e fecho.
+desenho, processo de UX com os métodos, as seis etapas, relação com as áreas, como a IA liga as equipas (só na v3),
+Design System, resultados (mercado e medição na TIS) e fecho.
 
 ## Comandos e publicação
 
