@@ -7,12 +7,10 @@ import layerSkeleton from "./assets/camada-esqueleto.webp";
 import layerStrategy from "./assets/camada-estrategia.webp";
 import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
-import { OPERACIONAL_COLUMNS, UX_COLUMNS } from "../components/slide14MetricsData";
+import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "../components/slide14MetricsData";
 import {
   AI_CHAIN,
   AREAS,
-  MEASURE_PLAN,
-  TIS_MEASURES,
   CURRENT_PROCESS,
   DS_POINTS,
   BENEFIT_METRICS,
@@ -929,6 +927,12 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
 
 /* ── Resultados: uma cena, duas ópticas ───────────────────────────────── */
 
+const MEASURE_GROUPS = [
+  [OPERACIONAL_COLUMNS[0]],
+  [OPERACIONAL_COLUMNS[1]],
+  [OPERACIONAL_COLUMNS[2], OPERACIONAL_COLUMNS[3]],
+  UX_COLUMNS,
+];
 const RESULT_LENSES = ["No mercado", "Na TIS"];
 const RESULT_TITLES = ["O que o mercado já mediu", "Como vamos medir na TIS"];
 
@@ -979,55 +983,49 @@ function MarketResults() {
   );
 }
 
-/** Métricas de adopção que acompanham cada pergunta, em segundo plano. */
-const ADOPTION_BY_QUESTION = [
-  OPERACIONAL_COLUMNS[0].items.slice(0, 4),
-  OPERACIONAL_COLUMNS[1].items.slice(0, 4),
-  OPERACIONAL_COLUMNS[2].items.slice(0, 4),
-  UX_COLUMNS[1].items.slice(0, 4),
-];
-
 function TisMeasures() {
-  const [selected, select] = useSelected(TIS_MEASURES.length);
-  const measure = TIS_MEASURES[selected];
+  const [selected, select] = useSelected(PILLAR_CARDS.length);
 
   return (
     <>
       <ul className="v3-questions" aria-label="Perguntas">
-        {TIS_MEASURES.map((item, index) => (
-          <motion.li key={item.area} {...rise(0.3 + index * 0.1, 20)}>
+        {PILLAR_CARDS.map((pillar, index) => (
+          <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
             <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
-              <span className="v3-label">{item.area}</span>
-              {item.question}
+              <span className="v3-label">{pillar.title}</span>
+              {pillar.body}
             </button>
           </motion.li>
         ))}
       </ul>
 
-      <div className="v3-measure" aria-live="polite">
+      <div className="v3-metrics" aria-live="polite">
         <Swap>
           <motion.div key={selected} exit={exit}>
-            <motion.p className="v3-label" {...fade(0.05)}>
-              Métrica de resultado
-            </motion.p>
-            <motion.h2 {...rise(0.1, 14)}>{measure.metric}</motion.h2>
-            <motion.p className="v3-measure-how" {...rise(0.2, 14)}>
-              {measure.how}
-            </motion.p>
-            <motion.p className="v3-label" {...fade(0.35)}>
-              Também acompanhamos
-            </motion.p>
-            <motion.div className="v3-links" {...fade(0.4)}>
-              {ADOPTION_BY_QUESTION[selected].map((item) => (
-                <span key={item}>{item}</span>
-              ))}
-            </motion.div>
+            {MEASURE_GROUPS[selected].map((group, groupIndex) => (
+              <motion.div key={group.title} className="v3-metric-group" {...rise(0.1 + groupIndex * 0.12, 16)}>
+                <p className="v3-label">{group.title}</p>
+                <ul>
+                  {group.items.map((item, itemIndex) => (
+                    <motion.li
+                      key={item}
+                      initial={STILL ? false : { opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.35, delay: 0.15 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
+                    >
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
           </motion.div>
         </Swap>
       </div>
 
       <motion.p className="v3-footnote" data-raised {...fade(1)}>
-        {MEASURE_PLAN} Uma métrica só entra se tiver pergunta clara, forma de observação e decisão possível.
+        Começamos com poucas perguntas. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão
+        possível.
       </motion.p>
     </>
   );

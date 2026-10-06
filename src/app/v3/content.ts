@@ -326,37 +326,6 @@ export const AI_CHAIN = {
     "Tudo bebe da mesma fonte: menos interpretação em cada camada e uma base documental desde o princípio, à qual o feedback da utilização volta.",
 };
 
-/** Como vamos medir na TIS: uma métrica de resultado por pergunta, com a forma de observação. */
-export const TIS_MEASURES = [
-  {
-    area: "Operação",
-    question: "O problema foi entendido antes da solução?",
-    metric: "Problemas encontrados antes da construção",
-    how: "Parte dos problemas de experiência de cada projecto encontrada até Validar, e não depois do release.",
-  },
-  {
-    area: "Design System",
-    question: "Há padrões reutilizáveis a ser aplicados?",
-    metric: "Ecrãs compostos com o Design System",
-    how: "Parte dos ecrãs entregues feita só com componentes do sistema, verificada na revisão da implementação.",
-  },
-  {
-    area: "Qualidade",
-    question: "A entrega reduz dúvidas e retrabalho?",
-    metric: "Defeitos de UX/UI por release",
-    how: "Defeitos de interface e de fluxo registados pelo QA e pelo cliente depois de cada release, por projecto.",
-  },
-  {
-    area: "Impacto",
-    question: "Há sinal real de uso, satisfação ou atrito?",
-    metric: "Sucesso de tarefa nos testes com utilizadores",
-    how: "Parte das tarefas concluídas sem ajuda nos testes de utilização, antes e depois de cada versão.",
-  },
-];
-
-/** Quando se mede: a linha de base e a cadência das leituras. */
-export const MEASURE_PLAN = "Linha de base nos primeiros projectos que entram no processo, em 2026, e uma leitura a cada release.";
-
 export const DS_POINTS = [
   {
     title: "Tokens e componentes em código",
@@ -367,7 +336,7 @@ export const DS_POINTS = [
     text: "Tipografia, cor e densidade definidas pelo designer antes de qualquer geração.",
   },
   {
-    title: "Contexto para os agentes de IA",
+    title: "Contexto para os assistentes de IA",
     text: "Os ecrãs são compostos com os componentes do sistema, o que evita interfaces genéricas.",
   },
   {
@@ -393,7 +362,7 @@ export const DELIVERY_VISUALS: Record<number, string> = {
 export const PHASES: { name: string; delivery: string; areas: string[]; stages: StageId[] }[] = [
   {
     name: "Proposta comercial",
-    delivery: "O processo em miniatura: brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
+    delivery: "Brief, fluxo principal e demonstração com a identidade do cliente, a tempo da proposta.",
     areas: ["pre-venda"],
     stages: ["explorar", "descobrir"],
   },
@@ -440,7 +409,7 @@ export const AREAS: Area[] = [
   {
     id: "pre-venda",
     name: "Pré-venda",
-    role: "Corre o processo de UX em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual dentro do prazo da proposta.",
+    role: "Ajuda a esclarecer o problema do cliente e a mostrar a solução numa demonstração, dentro do prazo da proposta.",
     gives: "Contexto da oportunidade, prazo e restrições.",
     gets: "Brief, fluxo e demonstração, proposta de UX e estimativa da participação do Núcleo.",
     stages: ["explorar", "descobrir"],

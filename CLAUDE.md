@@ -5,9 +5,8 @@ https://tis-experience.github.io/nucleo-de-experiencia-nos-projectos/. O reposit
 
 - A apresentação original, na raiz do site (`src/app/App.tsx` e `src/app/components/`).
 - A versão nova, em `#/v2` (`src/app/v2/`). A original só é alterada a pedido.
-- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com duas revisões: um slide sobre como a IA liga as equipas sobre a
-  mesma base do projecto e a medição na TIS com uma métrica de resultado por pergunta. É onde decorre o trabalho actual; a v2
-  fica como estava. As classes da v3 são `v3-*`.
+- A v3, em `#/v3` (`src/app/v3/`), cópia da v2 com uma única diferença: o slide sobre como a IA liga as equipas
+  sobre a mesma base do projecto. É onde decorre o trabalho actual; a v2 fica como estava. As classes da v3 são `v3-*`.
 
 ## Regras de escrita
 
@@ -83,5 +82,5 @@ Design System, resultados (mercado e medição na TIS) e fecho.
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir e as frases de contribuição do Núcleo para cada área.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
-- Na v3: as quatro métricas de resultado e a forma de as observar, e a linha de base "nos primeiros projectos, em
-  2026".
+- A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram
+  experimentados na v3 e retirados; estão no histórico do git (commits 4b2ea13 e 49f1e82) se voltarem a ser precisos.

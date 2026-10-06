@@ -172,7 +172,6 @@
 
 .v3-footnote[data-raised] {
   top: 800px;
-  width: 1300px;
 }
 
 .v3-footnote {
@@ -2400,34 +2399,6 @@
   margin: 0;
   font-size: 17px;
   line-height: 1.45;
-}
-
-/* ── Como vamos medir na TIS: uma métrica de resultado por pergunta ─────── */
-
-.v3-measure {
-  position: absolute;
-  left: 860px;
-  top: 318px;
-  width: 940px;
-}
-
-.v3-measure h2 {
-  margin-top: 10px;
-  font-family: var(--display);
-  font-size: 40px;
-  line-height: 1.1;
-  color: var(--blue);
-}
-
-.v3-measure-how {
-  margin: 16px 0 36px;
-  max-width: 760px;
-  font-size: 20px;
-  line-height: 1.45;
-}
-
-.v3-measure .v3-links {
-  margin-top: 10px;
 }
 
 /* ── O que é UX: as cinco camadas em pilha ────────────────────────────── */
