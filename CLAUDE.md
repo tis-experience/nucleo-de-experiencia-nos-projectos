@@ -24,6 +24,10 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - Sem exemplos fictícios específicos e sem promessas exageradas. Os números de mercado têm sempre fonte.
 - O Núcleo trabalha por trocas declaradas com as áreas, sem imposição. Os ganhos de um projecto são da equipa.
 - O PO participa activamente na UX. O Marketing entra apenas na marca e nos produtos TIS.
+- A narrativa central é a base documental única do projecto (PRD, blueprint, requisitos, protótipo, critérios e
+  decisões, num só repositório), que dá insumo a Design, Desenvolvimento e QA. O trabalho e o apoio de IA de cada
+  etapa dizem como o Núcleo se integra nesse fluxo com Requisitos, Desenvolvimento e QA, e o slide da IA mostra-o ao
+  nível da empresa.
 - A IA é descrita de forma concreta: o que os agentes recebem, o que produzem e quem revê. No slide da IA diz-se
   "agentes"; nas etapas e no Design System ficou "assistente", a uniformizar quando se rever esse texto. Sem desenhar o fluxo como
   uma sequência simples (rascunho, revisão, projecto): o processo real tem muito mais passos, e o detalhe fica na
