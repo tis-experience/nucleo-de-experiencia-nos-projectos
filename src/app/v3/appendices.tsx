@@ -143,10 +143,7 @@ export function Appendix({
 
   return (
     <Modal page={page} pages={pages.length} onPage={setPage} onClose={onClose} label={title} size="wide">
-      <p className="v3-modal-tag">
-        {title}
-        <span>{pages[page].name}</span>
-      </p>
+      <p className="v3-modal-tag">{pages[page].name}</p>
       {pages[page].content}
     </Modal>
   );
