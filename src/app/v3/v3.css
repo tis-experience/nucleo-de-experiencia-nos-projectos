@@ -60,6 +60,7 @@
 /* ── Palco e tipografia comum ─────────────────────────────────────────── */
 
 .v3-stage {
+  --extra: 0px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -171,13 +172,13 @@
 }
 
 .v3-footnote[data-raised] {
-  top: 800px;
+  top: calc(800px + var(--extra) * 0.8);
 }
 
 .v3-footnote {
   position: absolute;
   left: 120px;
-  top: 884px;
+  top: calc(884px + var(--extra) * 0.91);
   width: 1300px;
   font-size: 16px;
   color: var(--muted);
@@ -208,7 +209,7 @@
 .v3-footer {
   position: absolute;
   left: 120px;
-  top: 946px;
+  top: calc(946px + var(--extra));
   width: 1680px;
   height: 56px;
   z-index: 2;
@@ -317,13 +318,13 @@
 .v3-cover {
   position: absolute;
   left: 120px;
-  top: 249px;
+  top: calc(249px + var(--extra) * 0.03);
   width: 1300px;
   color: #ffffff;
 }
 
 .v3-cover[data-position="middle"] {
-  top: 340px;
+  top: calc(340px + var(--extra) * 0.15);
 }
 
 .v3-cover-title {
@@ -367,7 +368,7 @@
 .v3-maturity {
   position: absolute;
   left: 120px;
-  top: 420px;
+  top: calc(420px + var(--extra) * 0.27);
   width: 940px;
 }
 
@@ -626,7 +627,7 @@
 .v3-survey {
   position: absolute;
   left: 1180px;
-  top: 330px;
+  top: calc(330px + var(--extra) * 0.14);
   width: 620px;
   padding: 56px;
   border-radius: 40px;
@@ -664,7 +665,7 @@
 .v3-story {
   position: absolute;
   left: 120px;
-  top: 290px;
+  top: calc(290px + var(--extra) * 0.08);
   width: 1680px;
 }
 
@@ -717,7 +718,7 @@
 .v3-missing {
   position: absolute;
   left: 120px;
-  top: 640px;
+  top: calc(640px + var(--extra) * 0.57);
   width: 1680px;
   height: 220px;
 }
@@ -762,7 +763,7 @@
 .v3-methods {
   position: absolute;
   left: 120px;
-  top: 390px;
+  top: calc(390px + var(--extra) * 0.22);
   width: 1680px;
   height: 470px;
   display: flex;
@@ -809,7 +810,7 @@
 .v3-change-chart {
   position: absolute;
   left: 120px;
-  top: 570px;
+  top: calc(570px + var(--extra) * 0.47);
   width: 1680px;
 }
 
@@ -921,7 +922,7 @@
 .v3-stage-head {
   position: absolute;
   left: 120px;
-  top: 310px;
+  top: calc(310px + var(--extra) * 0.11);
   width: 560px;
 }
 
@@ -962,7 +963,7 @@
 .v3-stage-delivery {
   position: absolute;
   left: 800px;
-  top: 770px;
+  top: calc(770px + var(--extra) * 0.75);
   width: 1000px;
 }
 
@@ -1002,7 +1003,7 @@
 .v3-canvas {
   position: absolute;
   left: 800px;
-  top: 280px;
+  top: calc(280px + var(--extra) * 0.07);
   width: 1000px;
   height: 540px;
 }
@@ -1509,7 +1510,7 @@
 .v3-preview[data-size="stage"] {
   position: absolute;
   left: 800px;
-  top: 270px;
+  top: calc(270px + var(--extra) * 0.06);
   width: 880px;
   height: 475px;
   overflow: visible;
@@ -1534,7 +1535,7 @@
 .v3-cases {
   position: absolute;
   left: 120px;
-  top: 270px;
+  top: calc(270px + var(--extra) * 0.06);
   width: 1680px;
   height: 330px;
   display: flex;
@@ -1625,13 +1626,13 @@
 .v3-studies-label {
   position: absolute;
   left: 120px;
-  top: 650px;
+  top: calc(650px + var(--extra) * 0.59);
 }
 
 .v3-studies {
   position: absolute;
   left: 120px;
-  top: 686px;
+  top: calc(686px + var(--extra) * 0.64);
   width: 1680px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1673,7 +1674,7 @@
 .v3-ds-points {
   position: absolute;
   left: 120px;
-  top: 400px;
+  top: calc(400px + var(--extra) * 0.24);
   width: 744px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1879,7 +1880,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 868px;
+  top: calc(868px + var(--extra) * 0.89);
   z-index: 2;
   width: fit-content;
   margin: 0 auto;
@@ -1932,7 +1933,7 @@
 .v3-lens {
   position: absolute;
   left: 104px;
-  top: 290px;
+  top: calc(290px + var(--extra) * 0.08);
   width: 520px;
 }
 
@@ -2001,9 +2002,10 @@
 
 .v3-orbit-lines {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1080px;
 }
 
 .v3-orbit-lines line {
@@ -2080,7 +2082,7 @@
 .v3-area {
   position: absolute;
   left: 780px;
-  top: 300px;
+  top: calc(300px + var(--extra) * 0.1);
   width: 1020px;
 }
 
@@ -2196,7 +2198,7 @@
 .v3-questions {
   position: absolute;
   left: 104px;
-  top: 300px;
+  top: calc(300px + var(--extra) * 0.1);
   width: 620px;
   margin: 0;
   padding: 0;
@@ -2238,7 +2240,7 @@
 .v3-metrics {
   position: absolute;
   left: 860px;
-  top: 318px;
+  top: calc(318px + var(--extra) * 0.12);
   width: 940px;
 }
 
@@ -2268,7 +2270,7 @@
 .v3-chain {
   position: absolute;
   left: 120px;
-  top: 320px;
+  top: calc(320px + var(--extra) * 0.13);
   width: 1680px;
 }
 
@@ -2380,7 +2382,7 @@
 .v3-chain-detail {
   position: absolute;
   left: 120px;
-  top: 620px;
+  top: calc(620px + var(--extra) * 0.54);
   width: 1680px;
 }
 
@@ -2406,13 +2408,13 @@
 .v3-ux-source {
   position: absolute;
   left: 120px;
-  top: 880px;
+  top: calc(880px + var(--extra) * 0.91);
 }
 
 .v3-layers {
   position: absolute;
   left: 120px;
-  top: 340px;
+  top: calc(340px + var(--extra) * 0.15);
   width: 620px;
   height: 520px;
   margin: 0;
@@ -2511,7 +2513,7 @@
 .v3-layer-card {
   position: absolute;
   left: 760px;
-  top: 320px;
+  top: calc(320px + var(--extra) * 0.13);
   width: 1040px;
   height: 580px;
   overflow: hidden;
@@ -2570,7 +2572,7 @@
 .v3-team {
   position: absolute;
   left: 120px;
-  top: 380px;
+  top: calc(380px + var(--extra) * 0.21);
   width: 1680px;
 }
 
@@ -2755,7 +2757,7 @@
 
 .v3-modal-card[data-size="wide"] {
   width: 1920px;
-  height: 1080px;
+  height: calc(1080px + var(--extra));
   min-height: 0;
   padding: 100px 120px 56px;
   border-radius: 0;
@@ -3314,4 +3316,11 @@
 
 .v3-modal-card[data-size="wide"] .v3-ds-arch > ul {
   align-self: center;
+}
+
+/* No Design System o bloco de demonstração ocupa o canto direito, por isso a ligação fica na coluna da esquerda. */
+.v3-root[data-scene="ds"] .v3-more {
+  right: auto;
+  left: 120px;
+  top: 300px;
 }

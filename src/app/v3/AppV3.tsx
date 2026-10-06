@@ -1,4 +1,4 @@
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useState, type CSSProperties, type MouseEvent } from "react";
 import { AnimatePresence, MotionConfig, motion, useMotionValue, useSpring } from "motion/react";
 import forwardPaths from "../../imports/01Capa/svg-9xym7sn689";
 import backPaths from "../../imports/Back/svg-v4jzanzdmi";
@@ -23,6 +23,15 @@ import "./v3.css";
 const HASH_PREFIX = "#";
 const DESIGN_WIDTH = 1920;
 const DESIGN_HEIGHT = 1080;
+/** Numa janela mais alta do que 16:9 (16:10, 3:2), o palco cresce em altura até este limite, e os blocos de cada
+    slide afastam-se para usar o espaço; numa janela mais larga ficam faixas dos lados. */
+const MAX_STAGE_HEIGHT = 1320;
+
+function fitStage() {
+  const wanted = Math.round((DESIGN_WIDTH * window.innerHeight) / window.innerWidth);
+  const height = Math.min(MAX_STAGE_HEIGHT, Math.max(DESIGN_HEIGHT, wanted));
+  return { height, scale: Math.min(window.innerWidth / DESIGN_WIDTH, window.innerHeight / height) };
+}
 const REPEAT_ICON_PATH =
   "M35.3 12.65C32.4 9.75 28.4 8 24 8C15.15 8 8 15.15 8 24C8 32.85 15.15 40 24 40C31.45 40 37.7 34.9 39.45 28H35.25C33.6 32.65 29.15 36 24 36C17.35 36 12 30.65 12 24C12 17.35 17.35 12 24 12C27.3 12 30.25 13.35 32.4 15.5L26 22H40V8L35.3 12.65Z";
 // Os mesmos ícones de expandir e recolher usados no infográfico da apresentação actual.
@@ -45,7 +54,8 @@ function readHash() {
 }
 
 export default function AppV3() {
-  const [scale, setScale] = useState(1);
+  const [stage, setStage] = useState(() => ({ height: DESIGN_HEIGHT, scale: 1 }));
+  const scale = stage.scale;
   const [stepIndex, setStepIndex] = useState(() => readHash().stepIndex);
   const [areaId, setAreaId] = useState(() => readHash().areaId);
   const [cursorVisible, setCursorVisible] = useState(false);
@@ -71,8 +81,7 @@ export default function AppV3() {
   const sectionIndex = stepIndex - sceneStart;
 
   useEffect(() => {
-    const update = () =>
-      setScale(Math.min(window.innerWidth / DESIGN_WIDTH, window.innerHeight / DESIGN_HEIGHT));
+    const update = () => setStage(fitStage());
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -202,7 +211,16 @@ export default function AppV3() {
           Ecrã {stepIndex + 1} de {STEPS.length}: {step.label}
         </p>
 
-        <div className="v3-stage" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
+        <div
+          className="v3-stage"
+          style={
+            {
+              height: stage.height,
+              transform: `translate(-50%, -50%) scale(${scale})`,
+              "--extra": `${stage.height - DESIGN_HEIGHT}px`,
+            } as CSSProperties
+          }
+        >
           <Swap>
             <motion.main
               key={step.scene}

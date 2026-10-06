@@ -70,7 +70,10 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   os três apêndices.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
   redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
-- O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco.
+- O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco. Numa janela mais
+  alta do que 16:9 (16:10, 3:2) o palco cresce em altura até 1320 e `--extra` guarda a diferença: os blocos de cada
+  slide têm `top: calc(<px> + var(--extra) * <fracção>)`, com a fracção maior quanto mais abaixo estão, para o espaço
+  a mais se repartir entre os grupos. Um bloco novo posicionado em absoluto deve seguir a mesma regra.
 - `#/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
   rever o layout.
 
