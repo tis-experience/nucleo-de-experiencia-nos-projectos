@@ -558,15 +558,15 @@ export const THEMES = [
 /** O convite do penúltimo slide: três situações em que vale a pena chamar o Núcleo no Teams. */
 export const CONTACT_CASES = [
   {
-    title: "Um projecto a começar",
+    title: "Projectos a começar",
     text: "Entramos na proposta ou no Discovery, para o problema ficar claro antes do desenho.",
   },
   {
-    title: "Um produto em curso",
+    title: "Produtos em curso",
     text: "Revemos fluxos, ecrãs e acessibilidade sobre a versão em construção.",
   },
   {
-    title: "Uma dúvida de UX",
+    title: "Dúvidas de UX",
     text: "Meia hora de conversa chega para perceber o passo seguinte.",
   },
 ];

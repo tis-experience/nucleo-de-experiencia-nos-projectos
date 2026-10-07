@@ -2362,11 +2362,24 @@
 
 .v3-contact-people li {
   display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 24px 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.v3-contact-people img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.v3-contact-people li > div {
+  display: flex;
   flex-direction: column;
   gap: 2px;
-  padding: 12px 22px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
 }
 
 .v3-contact-people b {

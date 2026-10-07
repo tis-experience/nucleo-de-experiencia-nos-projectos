@@ -206,8 +206,8 @@ export function ContactScene() {
           <MaskLine>Falem connosco</MaskLine>
         </h1>
         <motion.p className="v3-lead" {...rise(0.3, 20)}>
-          Uma mensagem no Teams chega para continuarmos a conversa e percebermos, com a vossa equipa, como o Núcleo pode
-          contribuir no vosso projecto.
+          Estamos disponíveis para conversar sobre o vosso projecto. Chamem-nos no Teams e vemos juntos onde o Núcleo
+          pode entrar.
         </motion.p>
       </div>
 
@@ -234,8 +234,11 @@ export function ContactScene() {
         <ul>
           {TEAM.filter((person) => person.name).map((person) => (
             <li key={person.name}>
-              <b>{person.name}</b>
-              <span>{person.role}</span>
+              {person.photo && <img src={person.photo} alt="" />}
+              <div>
+                <b>{person.name}</b>
+                <span>{person.role}</span>
+              </div>
             </li>
           ))}
         </ul>
