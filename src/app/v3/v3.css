@@ -2181,7 +2181,7 @@
 .v3-pillars {
   position: absolute;
   left: 120px;
-  top: calc(280px + var(--extra) * 0.5);
+  top: calc(250px + var(--extra) * 0.5);
   width: 1680px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2225,23 +2225,23 @@
 .v3-measures {
   position: absolute;
   left: 120px;
-  top: calc(466px + var(--extra) * 0.7);
+  top: calc(478px + var(--extra) * 0.7);
   width: 1680px;
 }
 
 .v3-measures-tabs {
   display: flex;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .v3-measures-tabs button {
-  padding: 11px 22px;
+  padding: 14px 28px;
   border: 0;
-  border-radius: 14px;
-  background: transparent;
+  border-radius: 999px;
+  background: var(--tint);
   font-family: var(--strong);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.25;
   color: var(--navy);
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -2251,9 +2251,13 @@
   color: var(--blue);
 }
 
+.v3-measures-tabs button[aria-selected="true"]:hover {
+  color: #ffffff;
+}
+
 .v3-measures-tabs button[aria-selected="true"] {
-  background: var(--tint);
-  color: var(--blue);
+  background: var(--navy);
+  color: #ffffff;
 }
 
 .v3-measures-columns {
