@@ -97,10 +97,10 @@ System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem
 
 ## Por confirmar com o autor
 
-- Fonte primária dos números de mercado: McKinsey (+32 p.p.), Keep the Change, Airbnb (receita semanal a duplicar em
-  2009, contada por Paul Graham e Joe Gebbia), Figma AI Report 2025 (78% e 47%), zeroheight Design Systems Report
-  2026 (56%) e DORA 2025 (90% e mais de 80%, este lido na origem). Os da Figma e da zeroheight vieram de resumos
-  concordantes, porque os sites estavam bloqueados na sessão em que entraram.
+- Fonte primária dos números de mercado: McKinsey (+32 p.p.), Forrester (301%), Figma (34%), Sparkbox (47%), Keep
+  the Change e Airbnb (receita semanal a duplicar em 2009, contada por Paul Graham e Joe Gebbia). Os estudos ficam
+  os de retorno e de tempo poupado; números de adopção de IA (Figma 2025, zeroheight 2026, DORA 2025) foram
+  experimentados e retirados por não falarem de retorno. Falta um estudo recente com retorno medido da IA no design.
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
