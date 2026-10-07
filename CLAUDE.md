@@ -71,7 +71,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
-  as listas de métricas do slide da medição. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
+  as quatro perguntas da medição e as três métricas de cada uma (o que se mede, como se observa, que decisão
+  permite). `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
 - `src/imports` e `src/assets/slide*`: vectores e imagens herdados da apresentação original; só o logótipo e as setas
   de navegação são usados.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e

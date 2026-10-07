@@ -2214,40 +2214,59 @@
   padding-left: 36px;
 }
 
-.v3-metrics {
+/* A pergunta escolhida ganha uma barra à esquerda, para a escolha se ver à primeira. */
+.v3-questions button[aria-pressed="true"] {
+  box-shadow: inset 5px 0 0 var(--blue);
+}
+
+/* O painel das métricas: uma linha de cabeçalho e três linhas, com a métrica, como se observa e a decisão. */
+.v3-measures {
   position: absolute;
-  left: 860px;
+  left: 820px;
   top: calc(300px + var(--extra) * 0.3);
-  width: 940px;
-  padding: 40px 48px 32px;
+  width: 980px;
+  padding: 36px 48px 20px;
   border-radius: 28px;
   background: var(--tint);
 }
 
-.v3-metric-group + .v3-metric-group {
-  margin-top: 36px;
-}
-
-.v3-metric-group ul {
+.v3-measures-head,
+.v3-measures dl > div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 40px;
-  margin: 12px 0 0;
-  padding: 0;
-  list-style: none;
+  grid-template-columns: 260px 1fr 250px;
+  gap: 0 36px;
 }
 
-.v3-metric-group li {
-  padding: 16px 0 16px 22px;
+.v3-measures-head {
+  padding-bottom: 14px;
+}
+
+.v3-measures dl {
+  margin: 0;
+}
+
+.v3-measures dl > div {
+  padding: 22px 0;
   border-top: 1px solid rgba(43, 118, 193, 0.18);
-  background: radial-gradient(circle, var(--blue) 3.5px, transparent 4px) no-repeat 0 26px / 9px 9px;
-  font-size: 19px;
-  line-height: 1.4;
+}
+
+.v3-measures dt {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
   color: var(--navy);
 }
 
-.v3-metric-group li:nth-child(-n + 2) {
-  border-top: 0;
+.v3-measures dd {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--navy);
+}
+
+.v3-measures dd:last-child {
+  color: var(--blue);
 }
 
 /* ── Como a IA entra: as equipas em cadeia sobre a mesma base ───────────── */

@@ -7,7 +7,7 @@ import layerSkeleton from "./assets/camada-esqueleto.webp";
 import layerStrategy from "./assets/camada-estrategia.webp";
 import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
-import { OPERACIONAL_COLUMNS, PILLAR_CARDS, UX_COLUMNS } from "./metrics";
+import { MEASURES, PILLAR_CARDS } from "./metrics";
 import {
   AI_CHAIN,
   AREAS,
@@ -864,12 +864,6 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
 
 /* ── Resultados: uma cena, duas ópticas ───────────────────────────────── */
 
-const MEASURE_GROUPS = [
-  [OPERACIONAL_COLUMNS[0]],
-  [OPERACIONAL_COLUMNS[1]],
-  [OPERACIONAL_COLUMNS[2], OPERACIONAL_COLUMNS[3]],
-  UX_COLUMNS,
-];
 const RESULT_TITLES = ["Dados de mercado sobre UX", "Como vamos medir na TIS"];
 
 function MarketResults() {
@@ -935,33 +929,28 @@ function TisMeasures() {
         ))}
       </ul>
 
-      <div className="v3-metrics" aria-live="polite">
+      <div className="v3-measures" aria-live="polite">
+        <div className="v3-measures-head" aria-hidden>
+          <span className="v3-label">Métrica</span>
+          <span className="v3-label">Como observamos</span>
+          <span className="v3-label">Decisão que permite</span>
+        </div>
         <Swap>
-          <motion.div key={selected} exit={exit}>
-            {MEASURE_GROUPS[selected].map((group, groupIndex) => (
-              <motion.div key={group.title} className="v3-metric-group" {...rise(0.1 + groupIndex * 0.12, 16)}>
-                <p className="v3-label">{group.title}</p>
-                <ul>
-                  {group.items.map((item, itemIndex) => (
-                    <motion.li
-                      key={item}
-                      initial={STILL ? false : { opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.35, delay: 0.15 + groupIndex * 0.12 + itemIndex * 0.04, ease: EASE }}
-                    >
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
+          <motion.dl key={selected} exit={exit}>
+            {MEASURES[selected].map((measure, index) => (
+              <motion.div key={measure.name} {...rise(0.08 + index * 0.1, 14)}>
+                <dt>{measure.name}</dt>
+                <dd>{measure.how}</dd>
+                <dd>{measure.decision}</dd>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.dl>
         </Swap>
       </div>
 
       <motion.p className="v3-footnote" data-raised {...fade(1)}>
-        Começamos com poucas perguntas. Uma métrica só entra se tiver pergunta clara, forma de observação e decisão
-        possível.
+        Três métricas por pergunta, cada uma com forma de observação e decisão possível. Linha de base nos primeiros
+        projectos que entram no processo e uma leitura a cada release.
       </motion.p>
     </>
   );
