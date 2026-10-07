@@ -79,7 +79,9 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco. Numa janela mais
   alta do que 16:9 (16:10, 3:2) o palco cresce em altura até 1320 e `--extra` guarda a diferença: os blocos de cada
   slide têm `top: calc(<px> + var(--extra) * <fracção>)`, com a fracção maior quanto mais abaixo estão, para o espaço
-  a mais se repartir entre os grupos. Um bloco novo posicionado em absoluto deve seguir a mesma regra.
+  a mais se repartir entre os grupos. O primeiro bloco de conteúdo fica por volta de 0,5, para o espaço se repartir
+  entre o cimo e o fundo em vez de se acumular em baixo. Um bloco novo posicionado em absoluto deve seguir a mesma
+  regra.
 - `#/<passo>` abre um slide directamente. Acrescentar `?still` mostra o estado final sem animações, útil para
   rever o layout.
 
