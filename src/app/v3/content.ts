@@ -283,20 +283,20 @@ export const BENEFIT_METRICS: Metric[] = [
   {
     number: 301,
     unit: "%",
-    caption: "de retorno em três anos do investimento numa prática de design, com 75% menos tempo de design.",
+    caption: "de retorno em três anos do investimento numa prática de design.",
     source: "Forrester para a IBM, 2018.",
   },
   {
-    number: 34,
+    number: 55,
     unit: "%",
-    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
-    source: "Figma, 2019. Experiência com designers.",
+    caption: "mais depressa a concluir uma tarefa de programação com um assistente de IA.",
+    source: "GitHub, Peng et al., 2023. Estudo controlado com 95 programadores.",
   },
   {
-    number: 47,
+    number: 25,
     unit: "%",
-    caption: "mais depressa a desenvolver um formulário com um Design System.",
-    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
+    caption: "mais depressa, e com 40% mais qualidade, em tarefas de conhecimento feitas com IA generativa.",
+    source: "Harvard Business School com a BCG, 2023. 758 consultores.",
   },
 ];
 
