@@ -281,22 +281,22 @@ export const BENEFIT_METRICS: Metric[] = [
     source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
   },
   {
-    number: 301,
+    number: 78,
     unit: "%",
-    caption: "de retorno em três anos do investimento numa prática de design.",
-    source: "Forrester para a IBM, 2018.",
+    caption: "dos designers dizem que a IA os torna mais eficientes; só 47% dizem que os torna melhores no seu papel.",
+    source: "Figma, AI Report, 2025.",
   },
   {
-    number: 55,
+    number: 56,
     unit: "%",
-    caption: "mais depressa a concluir uma tarefa de programação com um assistente de IA.",
-    source: "GitHub, Peng et al., 2023. Estudo controlado com 95 programadores.",
+    caption: "das equipas de Design System já usam IA, sobretudo em documentação e automatização de processos.",
+    source: "zeroheight, Design Systems Report, 2026.",
   },
   {
-    number: 25,
+    number: 90,
     unit: "%",
-    caption: "mais depressa, e com 40% mais qualidade, em tarefas de conhecimento feitas com IA generativa.",
-    source: "Harvard Business School com a BCG, 2023. 758 consultores.",
+    caption: "dos profissionais de tecnologia usam IA no trabalho e mais de 80% dizem produzir mais.",
+    source: "Google, DORA, 2025. Cerca de 5 000 inquiridos.",
   },
 ];
 
