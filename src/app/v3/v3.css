@@ -2345,19 +2345,21 @@
 .v3-contact-people {
   position: absolute;
   left: 120px;
-  top: calc(740px + var(--extra) * 0.75);
+  top: calc(700px + var(--extra) * 0.75);
   width: 1680px;
   display: flex;
-  align-items: center;
-  gap: 28px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
 }
 
 .v3-contact-teams {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin: 0;
   font-family: var(--strong);
-  font-size: 20px;
+  font-size: 22px;
   color: var(--blue);
 }
 

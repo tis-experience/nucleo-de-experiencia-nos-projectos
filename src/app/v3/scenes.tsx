@@ -228,10 +228,10 @@ export function ContactScene() {
       </ul>
 
       <motion.div className="v3-contact-people" {...rise(1, 16)}>
-        <span className="v3-contact-teams">
-          <MessagesSquare size={22} strokeWidth={2} aria-hidden />
-          No Teams
-        </span>
+        <p className="v3-contact-teams">
+          <MessagesSquare size={24} strokeWidth={2} aria-hidden />
+          Chamem-nos no Teams
+        </p>
         <ul>
           {TEAM.filter((person) => person.name).map((person) => (
             <li key={person.name}>
