@@ -288,16 +288,17 @@ export const BENEFIT_METRICS: Metric[] = [
     source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
   },
   {
-    number: 34,
+    number: 83,
     unit: "%",
-    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
-    source: "Figma, 2019. Experiência com designers.",
+    caption: "de melhoria média nos indicadores depois de um redesenho focado em usabilidade; a conversão sobe 100% em média.",
+    source: "Nielsen Norman Group, Return on Investment for Usability, 4.ª edição.",
   },
   {
-    number: 47,
-    unit: "%",
-    caption: "mais depressa a desenvolver um formulário com um Design System.",
-    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
+    number: 20.6,
+    decimals: 1,
+    unit: "M",
+    caption: "de dólares poupados pela IBM com o seu Design System, mais 18,6 milhões em custos de risco evitados.",
+    source: "IBM, citado por Anja Klüver, Design Systems London, 2019.",
   },
 ];
 
