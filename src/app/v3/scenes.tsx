@@ -966,11 +966,6 @@ function TisMeasures() {
           </motion.div>
         </Swap>
       </div>
-
-      <motion.p className="v3-footnote" {...fade(1)}>
-        Indicadores do playbook. Linha de base nos primeiros projectos que entram no processo e uma leitura a cada
-        release; uma métrica só fica se tiver pergunta clara, forma de observação e decisão possível.
-      </motion.p>
     </>
   );
 }
