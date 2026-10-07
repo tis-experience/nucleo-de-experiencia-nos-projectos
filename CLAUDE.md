@@ -97,11 +97,10 @@ System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem
 
 ## Por confirmar com o autor
 
-- Fonte primária dos números de mercado: McKinsey (+32 p.p.), Forrester (301%), GitHub com Peng et al. (55%),
-  Harvard Business School com a BCG (25% e 40%), Keep the Change e Airbnb (receita semanal a duplicar em 2009,
-  contada por Paul Graham e Joe Gebbia). Os estudos são de retorno e de tempo poupado; números de adopção de IA
-  (Figma 2025, zeroheight 2026, DORA 2025) foram experimentados e retirados por não falarem de retorno. Falta um
-  estudo posterior a 2023 com retorno medido da IA no design.
+- Números de mercado: os quatro de redução de custos e retorno (até 70%, 65%, 85%, 800%) são os da apresentação
+  original, sem fonte publicada, e ficam por decisão do autor. Os casos Keep the Change e Airbnb (receita semanal a
+  duplicar em 2009, contada por Paul Graham e Joe Gebbia) têm fonte. Estudos de retorno (McKinsey, Forrester, GitHub,
+  Harvard com a BCG) e de adopção de IA (Figma 2025, zeroheight 2026, DORA 2025) foram experimentados e retirados.
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.

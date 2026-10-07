@@ -891,20 +891,20 @@ function MarketResults() {
       </ul>
 
       <motion.p className="v3-label v3-studies-label" {...fade(0.7)}>
-        Estudos publicados
+        Redução de custos e ROI (Design System + IA)
       </motion.p>
       <ul className="v3-studies">
         {BENEFIT_METRICS.map((metric, index) => {
           const delay = 0.75 + index * 0.12;
           return (
-            <motion.li key={metric.source} {...rise(delay, 20)}>
+            <motion.li key={metric.caption} {...rise(delay, 20)}>
               <p className="v3-number">
-                {metric.prefix}
+                {metric.prefix && <i>{metric.prefix}</i>}
                 <CountUp value={metric.number} decimals={metric.decimals} delay={delay} />
                 <small>{metric.unit}</small>
               </p>
               <p>{metric.caption}</p>
-              <p className="v3-source">{metric.source}</p>
+              {metric.source && <p className="v3-source">{metric.source}</p>}
             </motion.li>
           );
         })}

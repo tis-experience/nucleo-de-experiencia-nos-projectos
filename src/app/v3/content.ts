@@ -269,34 +269,36 @@ export type Metric = {
   decimals?: number;
   unit: string;
   caption: string;
+  /** Vazia quando o número vem da apresentação original sem fonte publicada. */
   source: string;
 };
 
+/** Os números de redução de custos e retorno do Design System com IA, tal como estavam na apresentação original. */
 export const BENEFIT_METRICS: Metric[] = [
   {
-    prefix: "+",
-    number: 32,
-    unit: "p.p.",
-    caption: "de crescimento de receita, em cinco anos, nas empresas que mais investem em design.",
-    source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
+    prefix: "até ",
+    number: 70,
+    unit: "%",
+    caption: "de redução de custos com front-end, com a escrita de código e a geração de componentes automatizadas com IA.",
+    source: "",
   },
   {
-    number: 301,
+    number: 65,
     unit: "%",
-    caption: "de retorno em três anos do investimento numa prática de design.",
-    source: "Forrester para a IBM, 2018.",
+    caption: "mais velocidade nas entregas: um ciclo mais curto entre a descoberta do problema e a entrega da solução.",
+    source: "",
   },
   {
-    number: 55,
+    number: 85,
     unit: "%",
-    caption: "mais depressa a concluir uma tarefa de programação com um assistente de IA.",
-    source: "GitHub, Peng et al., 2023. Estudo controlado com 95 programadores.",
+    caption: "de redução de débitos técnicos, com a eliminação de componentes duplicados e a padronização do código legado.",
+    source: "",
   },
   {
-    number: 25,
+    number: 800,
     unit: "%",
-    caption: "mais depressa, e com 40% mais qualidade, em tarefas de conhecimento feitas com IA generativa.",
-    source: "Harvard Business School com a BCG, 2023. 758 consultores.",
+    caption: "de retorno sobre o investimento anual, pela escala da automação em múltiplos produtos e equipas.",
+    source: "",
   },
 ];
 
