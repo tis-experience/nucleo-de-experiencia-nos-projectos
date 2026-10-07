@@ -622,6 +622,7 @@ export type SceneId =
   | "entregas"
   | "resultados"
   | "equipa"
+  | "papel"
   | "fecho";
 
 /** Cada passo é um avanço do apresentador; uma cena pode ter vários passos. */
@@ -631,6 +632,7 @@ export const STEPS: Step[] = [
   { id: "capa", scene: "capa", label: "Abertura" },
   { id: "ponto-de-partida", scene: "partida", label: "Ponto de partida" },
   { id: "equipa", scene: "equipa", label: "A equipa do Núcleo" },
+  { id: "papel", scene: "papel", label: "O papel do Núcleo" },
   { id: "o-que-e-ux", scene: "ux", label: "O que é UX" },
   { id: "processo-actual", scene: "mudanca", label: "Quando UX começa pelo desenho", build: 0 },
   { id: "com-processo", scene: "mudanca", label: "Com o processo de UX", build: 1 },

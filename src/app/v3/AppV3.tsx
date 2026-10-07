@@ -14,6 +14,7 @@ import {
   AreasScene,
   DesignSystemScene,
   ResultsScene,
+  RoleScene,
   StartScene,
   TeamScene,
   UxScene,
@@ -242,6 +243,7 @@ export default function AppV3() {
                 <ResultsScene lens={step.build ?? 0} onLens={(lens) => goTo(sceneStart + lens)} />
               )}
               {step.scene === "equipa" && <TeamScene />}
+              {step.scene === "papel" && <RoleScene />}
               {step.scene === "fecho" && <ClosingScene />}
             </motion.main>
           </Swap>

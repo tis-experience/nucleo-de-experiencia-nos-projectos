@@ -189,6 +189,23 @@ export function ClosingScene() {
   );
 }
 
+/** O papel do Núcleo numa frase, centrada no ecrã, logo a seguir à equipa. */
+export function RoleScene() {
+  return (
+    <section className="v3-scene" aria-labelledby="v3-role-title">
+      <div className="v3-statement">
+        <motion.p className="v3-kicker v3-statement-kicker" {...rise(0.1, 12)}>
+          O papel do Núcleo de Experiência
+        </motion.p>
+        <h1 id="v3-role-title" className="v3-statement-title">
+          <MaskLine delay={0.35}>Entender o real problema</MaskLine>
+          <MaskLine delay={0.5}>para projectar a melhor solução</MaskLine>
+        </h1>
+      </div>
+    </section>
+  );
+}
+
 /* ── Ponto de partida: maturidade e inquérito ─────────────────────────── */
 
 const LAYER_GAP = 64;
