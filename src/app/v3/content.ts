@@ -567,7 +567,7 @@ export const CONTACT_CASES = [
   },
   {
     title: "Dúvidas de UX",
-    text: "Meia hora de conversa chega para perceber o passo seguinte e se vale a pena ir mais longe.",
+    text: "Qualquer dúvida sobre UX, sobre o processo ou sobre como podemos ajudar, não hesitem em chamar-nos.",
   },
 ];
 
