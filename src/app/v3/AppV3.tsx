@@ -240,7 +240,7 @@ export default function AppV3() {
               {step.scene === "ds" && <DesignSystemScene />}
               {step.scene === "entregas" && <AreasScene areaId={areaId} onSelectArea={setAreaId} />}
               {step.scene === "resultados" && (
-                <ResultsScene lens={step.build ?? 0} onLens={(lens) => goTo(sceneStart + lens)} />
+                <ResultsScene lens={step.build ?? 0} />
               )}
               {step.scene === "equipa" && <TeamScene />}
               {step.scene === "papel" && <RoleScene />}

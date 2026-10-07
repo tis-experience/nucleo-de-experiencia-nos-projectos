@@ -85,7 +85,7 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 Ordem actual: capa, ponto de partida (maturidade e inquérito), equipa, papel do Núcleo (uma frase centrada), camadas de UX, situação em que UX começa pelo
 desenho, processo de UX com os métodos, as seis etapas, relação com as áreas, como a IA liga as equipas, Design
-System, resultados (mercado e medição na TIS) e fecho.
+System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem selector) e fecho.
 
 ## Comandos e publicação
 
@@ -96,7 +96,9 @@ System, resultados (mercado e medição na TIS) e fecho.
 
 ## Por confirmar com o autor
 
-- Fonte primária de três números de mercado: McKinsey (+32 p.p.), Keep the Change e Xbox (19 entradas).
+- Fonte primária dos números de mercado: McKinsey (+32 p.p.), Forrester (301%), Keep the Change, Airbnb (receita
+  semanal a duplicar em 2009, contada por Paul Graham e Joe Gebbia), GitHub (55%) e Harvard Business School com a BCG
+  (25% e 40%).
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.

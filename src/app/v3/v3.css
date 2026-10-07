@@ -1906,61 +1906,6 @@
 
 /* ── O que o Núcleo entrega: por fase e por área ──────────────────────── */
 
-/* Selector de ópticas, centrado na parte de baixo do ecrã. O posicionamento usa margens para não
-   colidir com o transform da animação de entrada. */
-.v3-toggle {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(868px + var(--extra) * 0.9);
-  z-index: 2;
-  width: fit-content;
-  margin: 0 auto;
-  display: flex;
-  gap: 4px;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(5, 28, 117, 0.1);
-}
-
-.v3-toggle button {
-  position: relative;
-  min-width: 132px;
-  padding: 11px 26px;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  font-family: var(--strong);
-  font-size: 17px;
-  color: var(--navy);
-  transition: color 0.25s ease;
-}
-
-.v3-toggle button > span:last-child {
-  position: relative;
-}
-
-.v3-toggle button:hover {
-  color: var(--blue);
-}
-
-.v3-toggle button[aria-pressed="true"] {
-  color: #ffffff;
-}
-
-.v3-toggle-thumb {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: var(--blue);
-}
-
-.v3-toggle button:focus-visible {
-  outline-offset: 2px;
-}
-
 /* Coluna da esquerda: o que se escolhe em cada óptica. */
 .v3-lens {
   position: absolute;

@@ -253,13 +253,13 @@ export const MARKET_EXAMPLES: MarketExample[] = [
     source: "Public Digital, GDS",
   },
   {
-    company: "Microsoft",
-    name: "Xbox Adaptive Controller",
+    company: "Airbnb",
+    name: "Anúncios dos anfitriões",
     description:
-      "Um comando desenhado com jogadores com mobilidade reduzida e com organizações que os representam, do primeiro protótipo à embalagem.",
-    result: "19 entradas",
-    resultCaption: "para ligar os dispositivos de que cada jogador precisa.",
-    source: "Microsoft, 2018",
+      "A visita aos anfitriões em Nova Iorque mostrou que as fotografias dos anúncios afastavam os hóspedes. Fotografá-los de novo foi a primeira grande decisão de produto tomada no terreno.",
+    result: "2×",
+    resultCaption: "a receita semanal, logo na semana seguinte, em 2009.",
+    source: "Paul Graham, Do Things That Don't Scale, 2013; Joe Gebbia, TED, 2016",
   },
 ];
 
@@ -277,26 +277,26 @@ export const BENEFIT_METRICS: Metric[] = [
     prefix: "+",
     number: 32,
     unit: "p.p.",
-    caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
+    caption: "de crescimento de receita, em cinco anos, nas empresas que mais investem em design.",
     source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
   },
   {
     number: 301,
     unit: "%",
-    caption: "de retorno em três anos de uma prática de design, com 75% menos tempo de design.",
-    source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
+    caption: "de retorno em três anos do investimento numa prática de design.",
+    source: "Forrester para a IBM, 2018.",
   },
   {
-    number: 34,
+    number: 55,
     unit: "%",
-    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
-    source: "Figma, 2019. Experiência com designers.",
+    caption: "mais depressa a concluir uma tarefa de programação com um assistente de IA.",
+    source: "GitHub, Peng et al., 2023. Estudo controlado com 95 programadores.",
   },
   {
-    number: 47,
+    number: 25,
     unit: "%",
-    caption: "mais depressa a desenvolver um formulário com um Design System.",
-    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
+    caption: "mais depressa, e com 40% mais qualidade, em tarefas de conhecimento feitas com IA generativa.",
+    source: "Harvard Business School com a BCG, 2023. 758 consultores.",
   },
 ];
 
@@ -640,7 +640,7 @@ export const STEPS: Step[] = [
   { id: "areas", scene: "entregas", label: "Relação com as áreas" },
   { id: "ia", scene: "ia", label: "Como a IA entra" },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
-  { id: "mercado", scene: "resultados", label: "Resultados no mercado", build: 0 },
+  { id: "mercado", scene: "resultados", label: "Dados de mercado sobre UX", build: 0 },
   { id: "medir", scene: "resultados", label: "Como vamos medir na TIS", build: 1 },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];

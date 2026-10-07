@@ -74,35 +74,6 @@ function useSelected(count: number, autoAdvanceMs = 0, initial = 0) {
 }
 
 /** Selector de ópticas: o marcador azul desliza para a opção escolhida. */
-function LensToggle({
-  id,
-  options,
-  value,
-  onChange,
-}: {
-  id: string;
-  options: string[];
-  value: number;
-  onChange: (index: number) => void;
-}) {
-  return (
-    <motion.div className="v3-toggle" role="group" aria-label="Óptica" {...rise(0.5, 16)}>
-      {options.map((label, index) => (
-        <button key={label} type="button" aria-pressed={value === index} onClick={() => onChange(index)}>
-          {value === index && (
-            <motion.span
-              layoutId={`v3-toggle-${id}`}
-              className="v3-toggle-thumb"
-              transition={STILL ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 32 }}
-            />
-          )}
-          <span>{label}</span>
-        </button>
-      ))}
-    </motion.div>
-  );
-}
-
 const number = (index: number) => String(index + 1).padStart(2, "0");
 
 /* ── Abertura e fecho ─────────────────────────────────────────────────── */
@@ -899,8 +870,7 @@ const MEASURE_GROUPS = [
   [OPERACIONAL_COLUMNS[2], OPERACIONAL_COLUMNS[3]],
   UX_COLUMNS,
 ];
-const RESULT_LENSES = ["No mercado", "Na TIS"];
-const RESULT_TITLES = ["O que o mercado já mediu", "Como vamos medir na TIS"];
+const RESULT_TITLES = ["Dados de mercado sobre UX", "Como vamos medir na TIS"];
 
 function MarketResults() {
   const [selected, select] = useSelected(MARKET_EXAMPLES.length);
@@ -997,7 +967,8 @@ function TisMeasures() {
   );
 }
 
-export function ResultsScene({ lens, onLens }: { lens: number; onLens: (lens: number) => void }) {
+/** Dois passos: os dados de mercado e, no passo seguinte, a medição na TIS. */
+export function ResultsScene({ lens }: { lens: number }) {
   return (
     <section className="v3-scene" aria-labelledby="v3-results-title">
       <p className="v3-kicker v3-scene-kicker">Resultados</p>
@@ -1008,8 +979,6 @@ export function ResultsScene({ lens, onLens }: { lens: number; onLens: (lens: nu
           </motion.span>
         </Swap>
       </h1>
-
-      <LensToggle id="resultados" options={RESULT_LENSES} value={lens} onChange={onLens} />
 
       <Swap>
         <motion.div key={lens} className="v3-layer" exit={exit}>
