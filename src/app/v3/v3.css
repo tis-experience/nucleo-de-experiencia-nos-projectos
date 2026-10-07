@@ -2236,7 +2236,8 @@
   color: var(--navy);
 }
 
-/* As três métricas da pergunta escolhida, em cartões brancos com a métrica, como se observa e a decisão. */
+/* O painel dos indicadores da pergunta escolhida: um grupo por coluna e, dentro de cada grupo, a lista em tantas
+   colunas quantas couberem (três com um grupo, duas com dois, uma com três). */
 .v3-measures {
   position: absolute;
   left: 120px;
@@ -2244,48 +2245,44 @@
   width: 1680px;
 }
 
+.v3-measures > div {
+  display: grid;
+  grid-template-columns: repeat(var(--groups), 1fr);
+  gap: 48px;
+  padding: 36px 48px 24px;
+  border-radius: 28px;
+  background: var(--tint);
+}
+
+.v3-measures section > .v3-label {
+  margin: 0 0 8px;
+}
+
 .v3-measures ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 0 48px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .v3-measures li {
-  padding: 28px 32px 30px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: #ffffff;
-}
-
-.v3-measures li > b {
-  display: block;
-  margin-bottom: 6px;
-  font-family: var(--display);
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 1.2;
-  letter-spacing: -0.2px;
+  padding: 13px 0 13px 22px;
+  border-top: 1px solid rgba(43, 118, 193, 0.18);
+  background: radial-gradient(circle, var(--blue) 3.5px, transparent 4px) no-repeat 0 23px / 9px 9px;
+  font-size: 19px;
+  line-height: 1.4;
   color: var(--navy);
 }
 
-.v3-measures li .v3-label {
-  display: block;
-  margin-top: 16px;
-  font-size: 12px;
+.v3-measures li:nth-child(-n + 1) {
+  border-top: 0;
 }
 
-.v3-measures li p {
-  margin: 4px 0 0;
-  font-size: 17px;
-  line-height: 1.45;
-  color: var(--navy);
-}
-
-.v3-measures li p[data-decision] {
-  color: var(--blue);
+.v3-measures > div[style*="--cols: 2"] li:nth-child(-n + 2),
+.v3-measures > div[style*="--cols: 3"] li:nth-child(-n + 3) {
+  border-top: 0;
 }
 
 /* ── Como a IA entra: as equipas em cadeia sobre a mesma base ───────────── */

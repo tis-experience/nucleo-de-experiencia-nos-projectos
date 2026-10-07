@@ -643,6 +643,6 @@ export const STEPS: Step[] = [
   { id: "ia", scene: "ia", label: "Como a IA entra" },
   { id: "design-system", scene: "ds", label: "Design System TIS" },
   { id: "mercado", scene: "resultados", label: "Dados de mercado sobre UX", build: 0 },
-  { id: "medir", scene: "resultados", label: "Como vamos medir na TIS", build: 1 },
+  { id: "medir", scene: "resultados", label: "Como devemos medir", build: 1 },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];
