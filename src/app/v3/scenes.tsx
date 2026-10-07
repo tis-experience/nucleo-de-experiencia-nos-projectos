@@ -891,7 +891,7 @@ function MarketResults() {
       </ul>
 
       <motion.p className="v3-label v3-studies-label" {...fade(0.7)}>
-        Redução de custos e ROI (Design System + IA)
+        Estudos publicados
       </motion.p>
       <ul className="v3-studies">
         {BENEFIT_METRICS.map((metric, index) => {
@@ -899,12 +899,12 @@ function MarketResults() {
           return (
             <motion.li key={metric.caption} {...rise(delay, 20)}>
               <p className="v3-number">
-                {metric.prefix && <i>{metric.prefix}</i>}
+                {metric.prefix}
                 <CountUp value={metric.number} decimals={metric.decimals} delay={delay} />
                 <small>{metric.unit}</small>
               </p>
               <p>{metric.caption}</p>
-              {metric.source && <p className="v3-source">{metric.source}</p>}
+              <p className="v3-source">{metric.source}</p>
             </motion.li>
           );
         })}

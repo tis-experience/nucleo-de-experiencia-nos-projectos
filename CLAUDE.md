@@ -97,10 +97,12 @@ System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem
 
 ## Por confirmar com o autor
 
-- Números de mercado: os quatro de redução de custos e retorno (até 70%, 65%, 85%, 800%) são os da apresentação
-  original, sem fonte publicada, e ficam por decisão do autor. Os casos Keep the Change e Airbnb (receita semanal a
-  duplicar em 2009, contada por Paul Graham e Joe Gebbia) têm fonte. Estudos de retorno (McKinsey, Forrester, GitHub,
-  Harvard com a BCG) e de adopção de IA (Figma 2025, zeroheight 2026, DORA 2025) foram experimentados e retirados.
+- Números de mercado: os quatro estudos (McKinsey +32 p.p., Forrester 301% e 75%, Figma 34%, Sparkbox 47%) têm
+  fonte publicada; a fonte primária do +32 p.p. ainda está por confirmar. Os casos Keep the Change e Airbnb (receita
+  semanal a duplicar em 2009, contada por Paul Graham e Joe Gebbia) têm fonte. Foram experimentados e retirados: os
+  números de redução de custos e ROI do playbook (até 70%, 65%, 85%, 800%), por não terem estudo por trás; estudos
+  de IA de 2023 (GitHub, Harvard com a BCG); e números de adopção de IA (Figma 2025, zeroheight 2026, DORA 2025).
+  O 135% da NN/g (melhoria média após redesenho focado em usabilidade) é uma alternativa com fonte.
 - Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.

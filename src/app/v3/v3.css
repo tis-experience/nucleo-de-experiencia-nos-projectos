@@ -1694,17 +1694,6 @@
   color: var(--navy);
 }
 
-/* O "até" antes do número fica em Manrope, mais pequeno, para o número continuar a mandar. */
-.v3-number > i {
-  margin-right: 6px;
-  font-family: "Manrope", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-
 .v3-number small {
   margin-left: 4px;
   font-size: 28px;

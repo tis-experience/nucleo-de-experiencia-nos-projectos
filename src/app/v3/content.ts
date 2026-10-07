@@ -269,36 +269,35 @@ export type Metric = {
   decimals?: number;
   unit: string;
   caption: string;
-  /** Vazia quando o número vem da apresentação original sem fonte publicada. */
   source: string;
 };
 
-/** Os números de redução de custos e retorno do Design System com IA, tal como estavam na apresentação original. */
+/** Estudos publicados sobre o retorno do design e do Design System, com fonte. */
 export const BENEFIT_METRICS: Metric[] = [
   {
-    prefix: "até ",
-    number: 70,
-    unit: "%",
-    caption: "de redução de custos com front-end, com a escrita de código e a geração de componentes automatizadas com IA.",
-    source: "",
+    prefix: "+",
+    number: 32,
+    unit: "p.p.",
+    caption: "de crescimento de receita em cinco anos nas empresas do quartil superior em design.",
+    source: "McKinsey, The Business Value of Design, 2018. 300 empresas.",
   },
   {
-    number: 65,
+    number: 301,
     unit: "%",
-    caption: "mais velocidade nas entregas: um ciclo mais curto entre a descoberta do problema e a entrega da solução.",
-    source: "",
+    caption: "de retorno em três anos de uma prática de design, com 75% menos tempo de design.",
+    source: "Forrester para a IBM, 2018. 4 clientes entrevistados e 60 inquiridos.",
   },
   {
-    number: 85,
+    number: 34,
     unit: "%",
-    caption: "de redução de débitos técnicos, com a eliminação de componentes duplicados e a padronização do código legado.",
-    source: "",
+    caption: "mais depressa a concluir o mesmo objectivo de design com um Design System.",
+    source: "Figma, 2019. Experiência com designers.",
   },
   {
-    number: 800,
+    number: 47,
     unit: "%",
-    caption: "de retorno sobre o investimento anual, pela escala da automação em múltiplos produtos e equipas.",
-    source: "",
+    caption: "mais depressa a desenvolver um formulário com um Design System.",
+    source: "Sparkbox, com o Carbon da IBM. 8 programadores.",
   },
 ];
 
