@@ -2221,36 +2221,28 @@
   color: var(--navy);
 }
 
-/* As tabelas do playbook: separador à esquerda, colunas à direita, uma por categoria. */
+/* As tabelas do playbook: separadores por cima do painel e, dentro dele, uma coluna por categoria. */
 .v3-measures {
   position: absolute;
   left: 120px;
-  top: calc(480px + var(--extra) * 0.7);
+  top: calc(466px + var(--extra) * 0.7);
   width: 1680px;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 40px;
-  padding: 32px 44px 24px;
-  border-radius: 28px;
-  background: var(--tint);
 }
 
 .v3-measures-tabs {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 4px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .v3-measures-tabs button {
-  padding: 12px 18px;
+  padding: 11px 22px;
   border: 0;
   border-radius: 14px;
   background: transparent;
   font-family: var(--strong);
   font-size: 17px;
   line-height: 1.25;
-  text-align: left;
   color: var(--navy);
   transition: background-color 0.25s ease, color 0.25s ease;
 }
@@ -2260,15 +2252,17 @@
 }
 
 .v3-measures-tabs button[aria-selected="true"] {
-  background: #ffffff;
+  background: var(--tint);
   color: var(--blue);
-  box-shadow: 0 2px 8px rgba(5, 28, 117, 0.08);
 }
 
 .v3-measures-columns {
   display: grid;
   grid-template-columns: repeat(var(--groups), 1fr);
   gap: 0 40px;
+  padding: 28px 44px 20px;
+  border-radius: 28px;
+  background: var(--tint);
 }
 
 .v3-measures-columns section > .v3-label {
@@ -2283,9 +2277,9 @@
 }
 
 .v3-measures-columns li {
-  padding: 10px 0 10px 20px;
+  padding: 9px 0 9px 20px;
   border-top: 1px solid rgba(43, 118, 193, 0.18);
-  background: radial-gradient(circle, var(--blue) 3px, transparent 3.5px) no-repeat 0 19px / 8px 8px;
+  background: radial-gradient(circle, var(--blue) 3px, transparent 3.5px) no-repeat 0 18px / 8px 8px;
   font-size: 16px;
   line-height: 1.35;
   color: var(--navy);
