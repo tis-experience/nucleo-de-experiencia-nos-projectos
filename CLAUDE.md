@@ -32,7 +32,7 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   "agentes"; nas etapas e no Design System ficou "assistente", a uniformizar quando se rever esse texto. Sem desenhar o fluxo como
   uma sequência simples (rascunho, revisão, projecto): o processo real tem muito mais passos, e o detalhe fica na
   fala do apresentador.
-- A IA mostra-se ao nível da empresa, no slide a seguir às etapas e antes da relação com as áreas, pela ordem Requisitos, Núcleo, Desenvolvimento e QA: Requisitos escreve e
+- A IA mostra-se ao nível da empresa, no slide a seguir às etapas e antes do Design System, pela ordem Requisitos, Núcleo, Desenvolvimento e QA: Requisitos escreve e
   detalha os requisitos com IA, o Núcleo compõe ecrãs e protótipos funcionais em código com o Design System (os
   mesmos que servem aos testes de utilização e à validação pelo cliente), o Desenvolvimento (nome genérico, sem
   nomear a Fábrica) constrói sobre o protótipo e os requisitos sem reinterpretar o design, e QA gera casos e testes automatizados a
@@ -91,8 +91,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   rever o layout.
 
 Ordem actual: capa, ponto de partida (maturidade e inquérito), equipa, papel do Núcleo (uma frase centrada), camadas de UX, situação em que UX começa pelo
-desenho, processo de UX com os métodos, as seis etapas, como a IA liga as equipas, relação com as áreas, Design
-System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem selector), convite para falar no Teams
+desenho, processo de UX com os métodos, as seis etapas, como a IA liga as equipas, Design System, relação com as áreas,
+resultados (dados de mercado e, no passo seguinte, medição na TIS, sem selector), convite para falar no Teams
 e fecho.
 
 ## Comandos e publicação
