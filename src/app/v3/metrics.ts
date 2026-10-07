@@ -1,5 +1,5 @@
-/** As quatro perguntas da medição na TIS e os indicadores de cada uma, vindos do playbook (slide dos indicadores de
-    sucesso) e agrupados pela pergunta a que respondem. */
+/** As quatro perguntas da medição e as tabelas de métricas, copiadas do slide dos indicadores de sucesso do
+    playbook. As perguntas e as tabelas são coisas separadas, como lá. */
 export const PILLAR_CARDS = [
   {
     icon: "flowsheet",
@@ -28,72 +28,79 @@ export type MetricColumn = {
   items: string[];
 };
 
-/** Os grupos de indicadores de cada pergunta, pela ordem de PILLAR_CARDS. Os indicadores são os do playbook,
-    redistribuídos pela pergunta a que respondem; "Sucesso de tarefa" e "Usability Score" saíram por repetirem a taxa
-    de sucesso e o SUS. */
-export const MEASURE_GROUPS: MetricColumn[][] = [
-  [
-    {
-      title: "Entrada e adopção do processo",
-      items: [
-        "% de projectos com UX desde o kickoff",
-        "% de pedidos com briefing completo",
-        "Participação nos ritos",
-        "Relação Design:DEV (Meta: 1:3)",
-        "Nível de Maturidade (NN/g)",
-      ],
-    },
-  ],
-  [
-    {
-      title: "Adopção e saúde do Design System",
-      items: [
-        "% de projectos consumindo o Design System",
-        "Adopção por projecto",
-        "% de reutilização de componentes",
-        "Componentes activos",
-        "Cobertura de componentes, templates e padrões",
-        "Backlog do DS",
-        "Tempo de resposta",
-        "Contribuição das áreas",
-        "Itens deprecated",
-      ],
-    },
-  ],
-  [
-    {
-      title: "Qualidade",
-      items: ["Taxa de bugs de UX/UI", "Consistência visual", "Conformidade com a WCAG AA", "Satisfação interna do time"],
-    },
-    {
-      title: "Eficiência",
-      items: [
-        "Redução de retrabalho",
-        "Tempo design -> dev",
-        "Lead time de entrega",
-        "Pedidos de suporte",
-        "Tempo de manutenção",
-        "Impacto em propostas comerciais",
-      ],
-    },
-  ],
-  [
-    {
-      title: "Usabilidade",
-      items: ["Taxa de sucesso", "Tempo médio de conclusão de tarefas", "Taxa de erro"],
-    },
-    {
-      title: "Satisfação",
-      items: [
-        "NPS (Net Promoter Score)",
-        "CSAT (Customer Satisfaction Score)",
-        "SUS (System Usability Scale)",
-        "CES (Customer Effort Score)",
-      ],
-    },
-    {
-      title: "Comportamentais",
-      items: ["Tempo de permanência (Dwell Time)", "Profundidade de rolagem (Scroll Depth)", "Taxa de retorno (Bounce Rate)"],
-    },
-  ],
+/** As métricas do playbook, tal e qual, em dois separadores: operacionais e de UX. */
+export const METRIC_TABS: { title: string; columns: MetricColumn[] }[] = [
+  {
+    title: "Métricas operacionais",
+    columns: [
+      {
+        title: "Maturidade e adopção",
+        items: [
+          "Nível de Maturidade (NN/g)",
+          "% de projectos com UX desde o kickoff",
+          "% de projectos consumindo o Design System",
+          "% de pedidos com briefing completo",
+          "Relação Design:DEV (Meta: 1:3)",
+          "Participação nos ritos",
+        ],
+      },
+      {
+        title: "Saúde da operação",
+        items: [
+          "Backlog do DS",
+          "Tempo de resposta",
+          "Contribuição das áreas",
+          "Componentes activos",
+          "Adopção por projecto",
+          "Itens deprecated",
+          "Cobertura de componentes, templates e padrões",
+        ],
+      },
+      {
+        title: "Qualidade",
+        items: [
+          "Sucesso de tarefa",
+          "Usability Score",
+          "Taxa de bugs de UX/UI",
+          "Satisfação interna do time",
+          "Consistência visual",
+          "Conformidade com a WCAG AA",
+        ],
+      },
+      {
+        title: "Eficiência",
+        items: [
+          "Tempo design -> dev",
+          "Lead time de entrega",
+          "% de reutilização de componentes",
+          "Redução de retrabalho",
+          "Pedidos de suporte",
+          "Tempo de manutenção",
+          "Impacto em propostas comerciais",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Métricas de UX",
+    columns: [
+      {
+        title: "Usabilidade",
+        items: ["Taxa de sucesso", "Tempo médio de conclusão de tarefas", "Taxa de erro"],
+      },
+      {
+        title: "Satisfação",
+        items: [
+          "NPS (Net Promoter Score)",
+          "CSAT (Customer Satisfaction Score)",
+          "SUS (System Usability Scale)",
+          "CES (Customer Effort Score)",
+        ],
+      },
+      {
+        title: "Comportamentais",
+        items: ["Tempo de permanência (Dwell Time)", "Profundidade de rolagem (Scroll Depth)", "Taxa de retorno (Bounce Rate)"],
+      },
+    ],
+  },
 ];

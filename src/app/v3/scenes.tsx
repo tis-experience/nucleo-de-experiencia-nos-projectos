@@ -7,7 +7,7 @@ import layerSkeleton from "./assets/camada-esqueleto.webp";
 import layerStrategy from "./assets/camada-estrategia.webp";
 import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
-import { MEASURE_GROUPS, PILLAR_CARDS } from "./metrics";
+import { METRIC_TABS, PILLAR_CARDS } from "./metrics";
 import {
   AI_CHAIN,
   AREAS,
@@ -917,7 +917,8 @@ function MarketResults() {
 const PILLAR_ICONS = [Workflow, Blocks, BadgeCheck, Activity];
 
 function TisMeasures() {
-  const [selected, select] = useSelected(PILLAR_CARDS.length);
+  const [tab, selectTab] = useSelected(METRIC_TABS.length);
+  const active = METRIC_TABS[tab];
 
   return (
     <>
@@ -926,36 +927,42 @@ function TisMeasures() {
           const Icon = PILLAR_ICONS[index];
           return (
             <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
-              <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
-                <span className="v3-pillar-icon">
-                  <Icon size={22} strokeWidth={2} aria-hidden />
-                </span>
-                <span className="v3-label">{pillar.title}</span>
-                <b>{pillar.body}</b>
-              </button>
+              <span className="v3-pillar-icon">
+                <Icon size={22} strokeWidth={2} aria-hidden />
+              </span>
+              <span className="v3-label">{pillar.title}</span>
+              <b>{pillar.body}</b>
             </motion.li>
           );
         })}
       </ol>
 
-      {/* Um painel com os grupos de indicadores da pergunta escolhida; com menos grupos, cada lista abre em mais colunas. */}
-      <div className="v3-measures" aria-live="polite">
+      {/* As tabelas do playbook: um separador à esquerda escolhe entre as métricas operacionais e as de UX. */}
+      <motion.div className="v3-measures" {...rise(0.7, 16)}>
+        <div className="v3-measures-tabs" role="tablist" aria-label="Métricas">
+          {METRIC_TABS.map((item, index) => (
+            <button key={item.title} type="button" role="tab" aria-selected={index === tab} onClick={() => selectTab(index)}>
+              {item.title}
+            </button>
+          ))}
+        </div>
         <Swap>
           <motion.div
-            key={selected}
+            key={tab}
+            className="v3-measures-columns"
             exit={exit}
-            style={{ "--groups": MEASURE_GROUPS[selected].length, "--cols": 4 - MEASURE_GROUPS[selected].length } as CSSProperties}
+            style={{ "--groups": active.columns.length } as CSSProperties}
           >
-            {MEASURE_GROUPS[selected].map((group, groupIndex) => (
-              <motion.section key={group.title} {...rise(0.08 + groupIndex * 0.1, 14)}>
-                <p className="v3-label">{group.title}</p>
+            {active.columns.map((column, columnIndex) => (
+              <motion.section key={column.title} {...rise(0.05 + columnIndex * 0.08, 12)}>
+                <p className="v3-label">{column.title}</p>
                 <ul>
-                  {group.items.map((item, itemIndex) => (
+                  {column.items.map((item, itemIndex) => (
                     <motion.li
                       key={item}
-                      initial={STILL ? false : { opacity: 0, y: 8 }}
+                      initial={STILL ? false : { opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: 0.15 + groupIndex * 0.1 + itemIndex * 0.04, ease: EASE }}
+                      transition={{ duration: 0.3, delay: 0.1 + columnIndex * 0.08 + itemIndex * 0.03, ease: EASE }}
                     >
                       {item}
                     </motion.li>
@@ -965,7 +972,7 @@ function TisMeasures() {
             ))}
           </motion.div>
         </Swap>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -71,7 +71,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
-  as quatro perguntas da medição e os indicadores de cada uma, os do playbook redistribuídos por pergunta. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
+  as quatro perguntas da medição e as duas tabelas de métricas (operacionais e de UX), copiadas do playbook, sem
+  ligação entre perguntas e tabelas, como lá. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
 - `src/imports` e `src/assets/slide*`: vectores e imagens herdados da apresentação original; só o logótipo e as setas
   de navegação são usados.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
@@ -104,8 +105,7 @@ System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem
   semanal a duplicar em 2009, contada por Paul Graham e Joe Gebbia) têm fonte. Foram experimentados e retirados: os
   números de redução de custos e ROI do playbook (até 70%, 65%, 85%, 800%), por não terem estudo por trás; estudos
   de IA de 2023 (GitHub, Harvard com a BCG); e números de adopção de IA (Figma 2025, zeroheight 2026, DORA 2025).
-- Ligações deduzidas entre fases, áreas e etapas de UX, os métodos atribuídos a cada etapa e a distribuição dos
-  indicadores do playbook pelas quatro perguntas da medição.
+- Ligações deduzidas entre fases, áreas e etapas de UX, e os métodos atribuídos a cada etapa.
 - Texto da etapa Definir, as frases de contribuição do Núcleo para cada área e os papéis listados em cada etapa.
 - As frases de papel dos dois designers na cena da equipa, que hoje são iguais.
 - A medição na TIS com uma métrica de resultado por pergunta, e o texto da Pré-venda como processo em miniatura, foram

@@ -2177,11 +2177,11 @@
 
 /* ── Como se mede a UX ────────────────────────────────────────────────── */
 
-/* As quatro perguntas em cartões, como as equipas no slide da IA: a escolhida fica branca com contorno azul. */
+/* As quatro perguntas em cartões, como as equipas no slide da IA, sem selecção: são o enquadramento das tabelas. */
 .v3-pillars {
   position: absolute;
   left: 120px;
-  top: calc(290px + var(--extra) * 0.55);
+  top: calc(280px + var(--extra) * 0.5);
   width: 1680px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2191,102 +2191,107 @@
   list-style: none;
 }
 
-.v3-pillars button {
-  width: 100%;
-  height: 100%;
+.v3-pillars li {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  padding: 26px 28px 28px;
-  border: 1px solid transparent;
+  gap: 8px;
+  padding: 22px 26px 24px;
   border-radius: 24px;
   background: var(--tint);
-  text-align: left;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.v3-pillars button:hover {
-  border-color: var(--line);
-}
-
-.v3-pillars button[aria-pressed="true"] {
-  border-color: var(--blue);
-  background: #ffffff;
-  box-shadow: var(--shadow);
 }
 
 .v3-pillar-icon {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   border-radius: 12px;
   background: #ffffff;
   color: var(--blue);
-  transition: background-color 0.3s ease;
-}
-
-.v3-pillars button[aria-pressed="true"] .v3-pillar-icon {
-  background: var(--tint);
 }
 
 .v3-pillars b {
   font-family: var(--display);
   font-weight: normal;
-  font-size: 23px;
+  font-size: 22px;
   line-height: 1.2;
   letter-spacing: -0.2px;
   color: var(--navy);
 }
 
-/* O painel dos indicadores da pergunta escolhida: um grupo por coluna e, dentro de cada grupo, a lista em tantas
-   colunas quantas couberem (três com um grupo, duas com dois, uma com três). */
+/* As tabelas do playbook: separador à esquerda, colunas à direita, uma por categoria. */
 .v3-measures {
   position: absolute;
   left: 120px;
-  top: calc(540px + var(--extra) * 0.85);
+  top: calc(480px + var(--extra) * 0.7);
   width: 1680px;
-}
-
-.v3-measures > div {
   display: grid;
-  grid-template-columns: repeat(var(--groups), 1fr);
-  gap: 48px;
-  padding: 36px 48px 24px;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  padding: 32px 44px 24px;
   border-radius: 28px;
   background: var(--tint);
 }
 
-.v3-measures section > .v3-label {
-  margin: 0 0 8px;
+.v3-measures-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
 }
 
-.v3-measures ul {
+.v3-measures-tabs button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  font-family: var(--strong);
+  font-size: 17px;
+  line-height: 1.25;
+  text-align: left;
+  color: var(--navy);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.v3-measures-tabs button:hover {
+  color: var(--blue);
+}
+
+.v3-measures-tabs button[aria-selected="true"] {
+  background: #ffffff;
+  color: var(--blue);
+  box-shadow: 0 2px 8px rgba(5, 28, 117, 0.08);
+}
+
+.v3-measures-columns {
   display: grid;
-  grid-template-columns: repeat(var(--cols), 1fr);
-  gap: 0 48px;
+  grid-template-columns: repeat(var(--groups), 1fr);
+  gap: 0 40px;
+}
+
+.v3-measures-columns section > .v3-label {
+  margin: 0 0 4px;
+  font-size: 12px;
+}
+
+.v3-measures-columns ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.v3-measures li {
-  padding: 13px 0 13px 22px;
+.v3-measures-columns li {
+  padding: 10px 0 10px 20px;
   border-top: 1px solid rgba(43, 118, 193, 0.18);
-  background: radial-gradient(circle, var(--blue) 3.5px, transparent 4px) no-repeat 0 23px / 9px 9px;
-  font-size: 19px;
-  line-height: 1.4;
+  background: radial-gradient(circle, var(--blue) 3px, transparent 3.5px) no-repeat 0 19px / 8px 8px;
+  font-size: 16px;
+  line-height: 1.35;
   color: var(--navy);
 }
 
-.v3-measures li:nth-child(-n + 1) {
-  border-top: 0;
-}
-
-.v3-measures > div[style*="--cols: 2"] li:nth-child(-n + 2),
-.v3-measures > div[style*="--cols: 3"] li:nth-child(-n + 3) {
+.v3-measures-columns li:first-child {
   border-top: 0;
 }
 
