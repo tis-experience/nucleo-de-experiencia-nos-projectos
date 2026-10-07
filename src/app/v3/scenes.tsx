@@ -1,6 +1,19 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { Activity, BadgeCheck, Blocks, Braces, Palette, ShieldCheck, Sparkles, Workflow } from "lucide-react";
+import {
+  Activity,
+  BadgeCheck,
+  Blocks,
+  Braces,
+  FolderPlus,
+  LayoutDashboard,
+  MessageCircleQuestion,
+  MessagesSquare,
+  Palette,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
@@ -9,6 +22,7 @@ import layerStructure from "./assets/camada-estrutura.webp";
 import layerSurface from "./assets/camada-superficie.webp";
 import { METRIC_TABS, PILLAR_CARDS } from "./metrics";
 import {
+  CONTACT_CASES,
   AI_CHAIN,
   AREAS,
   FRONTS,
@@ -173,6 +187,59 @@ export function RoleScene() {
           <MaskLine delay={0.5}>para projectar a melhor solução</MaskLine>
         </h1>
       </div>
+    </section>
+  );
+}
+
+/** Um ícone por situação, pela ordem de CONTACT_CASES em content.ts. */
+const CONTACT_ICONS = [FolderPlus, LayoutDashboard, MessageCircleQuestion];
+
+/** O penúltimo slide: o convite para continuar a conversa no Teams, com as pessoas a contactar. */
+export function ContactScene() {
+  return (
+    <section className="v3-scene" aria-labelledby="v3-contact-title">
+      <motion.p className="v3-kicker v3-scene-kicker" {...fade(0.1)}>
+        Próximos passos
+      </motion.p>
+      <div className="v3-head">
+        <h1 id="v3-contact-title" className="v3-title">
+          <MaskLine>Falem connosco</MaskLine>
+        </h1>
+        <motion.p className="v3-lead" {...rise(0.3, 20)}>
+          Uma mensagem no Teams chega para continuarmos a conversa e percebermos, com a vossa equipa, como o Núcleo pode
+          contribuir no vosso projecto.
+        </motion.p>
+      </div>
+
+      <ul className="v3-contact-cases">
+        {CONTACT_CASES.map((item, index) => {
+          const Icon = CONTACT_ICONS[index];
+          return (
+            <motion.li key={item.title} {...rise(0.5 + index * 0.12, 24)}>
+              <span className="v3-ds-icon">
+                <Icon size={24} strokeWidth={1.8} aria-hidden />
+              </span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </motion.li>
+          );
+        })}
+      </ul>
+
+      <motion.div className="v3-contact-people" {...rise(1, 16)}>
+        <span className="v3-contact-teams">
+          <MessagesSquare size={22} strokeWidth={2} aria-hidden />
+          No Teams
+        </span>
+        <ul>
+          {TEAM.filter((person) => person.name).map((person) => (
+            <li key={person.name}>
+              <b>{person.name}</b>
+              <span>{person.role}</span>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
     </section>
   );
 }

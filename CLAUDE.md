@@ -39,7 +39,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   partir dos requisitos e do protótipo e devolve os defeitos à base. Tudo bebe da mesma base documental do projecto.
 - As fases da TIS e as etapas de UX não se alinham numa linha do tempo. A proposta comercial corre o processo de UX
   em miniatura, do problema à demonstração, para mostrar a solução possível e a sua identidade visual.
-- O fecho é um agradecimento, sem pedidos às lideranças.
+- O penúltimo slide convida a continuar a conversa no Teams, com três situações em que vale a pena chamar o Núcleo e
+  as pessoas a contactar. O fecho é um agradecimento, sem pedidos às lideranças.
 - O processo de UX tem seis etapas, com os nomes da apresentação original: Descobrir, Definir, Explorar, Validar,
   Entregar e Acompanhar. O trabalho, o apoio de IA e as entregas de cada etapa vêm da "Proposta de actuação do
   Núcleo de Experiência com IA".
@@ -88,7 +89,8 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 
 Ordem actual: capa, ponto de partida (maturidade e inquérito), equipa, papel do Núcleo (uma frase centrada), camadas de UX, situação em que UX começa pelo
 desenho, processo de UX com os métodos, as seis etapas, como a IA liga as equipas, relação com as áreas, Design
-System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem selector) e fecho.
+System, resultados (dados de mercado e, no passo seguinte, medição na TIS, sem selector), convite para falar no Teams
+e fecho.
 
 ## Comandos e publicação
 

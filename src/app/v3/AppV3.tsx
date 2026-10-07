@@ -10,6 +10,7 @@ import {
   AiScene,
   ChangeScene,
   ClosingScene,
+  ContactScene,
   CoverScene,
   AreasScene,
   DesignSystemScene,
@@ -244,6 +245,7 @@ export default function AppV3() {
               )}
               {step.scene === "equipa" && <TeamScene />}
               {step.scene === "papel" && <RoleScene />}
+              {step.scene === "contacto" && <ContactScene />}
               {step.scene === "fecho" && <ClosingScene />}
             </motion.main>
           </Swap>

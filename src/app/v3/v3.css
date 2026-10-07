@@ -2293,6 +2293,93 @@
   border-top: 0;
 }
 
+/* ── Falem connosco: três situações e as pessoas a contactar no Teams ───── */
+
+.v3-contact-cases {
+  position: absolute;
+  left: 120px;
+  top: calc(400px + var(--extra) * 0.5);
+  width: 1680px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-contact-cases li {
+  padding: 32px 36px 36px;
+  border-radius: 24px;
+  background: var(--tint);
+}
+
+.v3-contact-cases .v3-ds-icon {
+  background: #ffffff;
+}
+
+.v3-contact-cases h3 {
+  margin-top: 22px;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  color: var(--navy);
+}
+
+.v3-contact-cases p {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.v3-contact-people {
+  position: absolute;
+  left: 120px;
+  top: calc(740px + var(--extra) * 0.75);
+  width: 1680px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.v3-contact-teams {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--strong);
+  font-size: 20px;
+  color: var(--blue);
+}
+
+.v3-contact-people ul {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-contact-people li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.v3-contact-people b {
+  font-family: var(--strong);
+  font-size: 18px;
+  color: var(--navy);
+}
+
+.v3-contact-people li span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
 /* ── Como a IA entra: as equipas em cadeia sobre a mesma base ───────────── */
 
 .v3-chain {

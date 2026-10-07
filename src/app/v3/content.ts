@@ -555,6 +555,22 @@ export const THEMES = [
 ];
 
 /** Equipa actual do Núcleo. `photo` é opcional: caminho de uma imagem em src/assets; sem ela mostram-se as iniciais. */
+/** O convite do penúltimo slide: três situações em que vale a pena chamar o Núcleo no Teams. */
+export const CONTACT_CASES = [
+  {
+    title: "Um projecto a começar",
+    text: "Entramos na proposta ou no Discovery, para o problema ficar claro antes do desenho.",
+  },
+  {
+    title: "Um produto em curso",
+    text: "Revemos fluxos, ecrãs e acessibilidade sobre a versão em construção.",
+  },
+  {
+    title: "Uma dúvida de UX",
+    text: "Meia hora de conversa chega para perceber o passo seguinte.",
+  },
+];
+
 export const TEAM: { name: string; role: string; intro: string; photo?: string }[] = [
   {
     name: "Marcell da Silva",
@@ -625,6 +641,7 @@ export type SceneId =
   | "resultados"
   | "equipa"
   | "papel"
+  | "contacto"
   | "fecho";
 
 /** Cada passo é um avanço do apresentador; uma cena pode ter vários passos. */
@@ -644,5 +661,6 @@ export const STEPS: Step[] = [
   { id: "design-system", scene: "ds", label: "Design System TIS" },
   { id: "mercado", scene: "resultados", label: "Dados de mercado sobre UX", build: 0 },
   { id: "medir", scene: "resultados", label: "Como devemos medir", build: 1 },
+  { id: "falem-connosco", scene: "contacto", label: "Falem connosco" },
   { id: "fecho", scene: "fecho", label: "Obrigado" },
 ];
