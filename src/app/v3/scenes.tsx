@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { Braces, Palette, ShieldCheck, Sparkles } from "lucide-react";
+import { Activity, BadgeCheck, Blocks, Braces, Palette, ShieldCheck, Sparkles, Workflow } from "lucide-react";
 import logoPaths from "../../imports/01Capa/svg-9xym7sn689";
 import layerScope from "./assets/camada-escopo.webp";
 import layerSkeleton from "./assets/camada-esqueleto.webp";
@@ -913,38 +913,44 @@ function MarketResults() {
   );
 }
 
+/** Um ícone por pergunta da medição, pela ordem de PILLAR_CARDS. */
+const PILLAR_ICONS = [Workflow, Blocks, BadgeCheck, Activity];
+
 function TisMeasures() {
   const [selected, select] = useSelected(PILLAR_CARDS.length);
 
   return (
     <>
-      <ul className="v3-questions" aria-label="Perguntas">
-        {PILLAR_CARDS.map((pillar, index) => (
-          <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
-            <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
-              <span className="v3-label">{pillar.title}</span>
-              {pillar.body}
-            </button>
-          </motion.li>
-        ))}
-      </ul>
+      <ol className="v3-pillars" aria-label="Perguntas">
+        {PILLAR_CARDS.map((pillar, index) => {
+          const Icon = PILLAR_ICONS[index];
+          return (
+            <motion.li key={pillar.title} {...rise(0.3 + index * 0.1, 20)}>
+              <button type="button" aria-pressed={index === selected} onClick={() => select(index)}>
+                <span className="v3-pillar-icon">
+                  <Icon size={22} strokeWidth={2} aria-hidden />
+                </span>
+                <span className="v3-label">{pillar.title}</span>
+                <b>{pillar.body}</b>
+              </button>
+            </motion.li>
+          );
+        })}
+      </ol>
 
       <div className="v3-measures" aria-live="polite">
-        <div className="v3-measures-head" aria-hidden>
-          <span className="v3-label">Métrica</span>
-          <span className="v3-label">Como observamos</span>
-          <span className="v3-label">Decisão que permite</span>
-        </div>
         <Swap>
-          <motion.dl key={selected} exit={exit}>
+          <motion.ul key={selected} exit={exit}>
             {MEASURES[selected].map((measure, index) => (
-              <motion.div key={measure.name} {...rise(0.08 + index * 0.1, 14)}>
-                <dt>{measure.name}</dt>
-                <dd>{measure.how}</dd>
-                <dd>{measure.decision}</dd>
-              </motion.div>
+              <motion.li key={measure.name} {...rise(0.08 + index * 0.1, 14)}>
+                <b>{measure.name}</b>
+                <span className="v3-label">Como observamos</span>
+                <p>{measure.how}</p>
+                <span className="v3-label">Decisão que permite</span>
+                <p data-decision>{measure.decision}</p>
+              </motion.li>
             ))}
-          </motion.dl>
+          </motion.ul>
         </Swap>
       </div>
 

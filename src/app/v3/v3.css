@@ -2172,100 +2172,119 @@
 
 /* ── Como se mede a UX ────────────────────────────────────────────────── */
 
-.v3-questions {
+/* As quatro perguntas em cartões, como as equipas no slide da IA: a escolhida fica branca com contorno azul. */
+.v3-pillars {
   position: absolute;
-  left: 104px;
-  top: calc(300px + var(--extra) * 0.3);
-  width: 620px;
+  left: 120px;
+  top: calc(290px + var(--extra) * 0.3);
+  width: 1680px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.v3-questions li + li {
-  margin-top: 16px;
-}
-
-.v3-questions button {
+.v3-pillars button {
   width: 100%;
-  padding: 18px 24px 20px;
-  border: 0;
-  border-radius: 20px;
-  background: transparent;
-  font-family: var(--display);
-  font-size: 24px;
-  line-height: 1.2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 26px 28px 28px;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: var(--tint);
   text-align: left;
-  color: var(--navy);
-  transition: background-color 0.3s ease, padding 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.v3-questions .v3-label {
-  display: block;
-  margin-bottom: 4px;
+.v3-pillars button:hover {
+  border-color: var(--line);
 }
 
-.v3-questions button:hover,
-.v3-questions button[aria-pressed="true"] {
-  background: var(--tint);
+.v3-pillars button[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: #ffffff;
+  box-shadow: var(--shadow);
 }
 
-.v3-questions button[aria-pressed="true"] {
-  padding-left: 36px;
-}
-
-/* A pergunta escolhida ganha uma barra à esquerda, para a escolha se ver à primeira. */
-.v3-questions button[aria-pressed="true"] {
-  box-shadow: inset 5px 0 0 var(--blue);
-}
-
-/* O painel das métricas: uma linha de cabeçalho e três linhas, com a métrica, como se observa e a decisão. */
-.v3-measures {
-  position: absolute;
-  left: 820px;
-  top: calc(300px + var(--extra) * 0.3);
-  width: 980px;
-  padding: 36px 48px 20px;
-  border-radius: 28px;
-  background: var(--tint);
-}
-
-.v3-measures-head,
-.v3-measures dl > div {
+.v3-pillar-icon {
+  width: 44px;
+  height: 44px;
   display: grid;
-  grid-template-columns: 260px 1fr 250px;
-  gap: 0 36px;
+  place-items: center;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--blue);
+  transition: background-color 0.3s ease;
 }
 
-.v3-measures-head {
-  padding-bottom: 14px;
+.v3-pillars button[aria-pressed="true"] .v3-pillar-icon {
+  background: var(--tint);
 }
 
-.v3-measures dl {
-  margin: 0;
-}
-
-.v3-measures dl > div {
-  padding: 22px 0;
-  border-top: 1px solid rgba(43, 118, 193, 0.18);
-}
-
-.v3-measures dt {
+.v3-pillars b {
   font-family: var(--display);
-  font-size: 22px;
+  font-weight: normal;
+  font-size: 23px;
   line-height: 1.2;
   letter-spacing: -0.2px;
   color: var(--navy);
 }
 
-.v3-measures dd {
+/* As três métricas da pergunta escolhida, em cartões brancos com a métrica, como se observa e a decisão. */
+.v3-measures {
+  position: absolute;
+  left: 120px;
+  top: calc(540px + var(--extra) * 0.6);
+  width: 1680px;
+}
+
+.v3-measures ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v3-measures li {
+  padding: 28px 32px 30px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #ffffff;
+}
+
+.v3-measures li > b {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--display);
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  color: var(--navy);
+}
+
+.v3-measures li .v3-label {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.v3-measures li p {
+  margin: 4px 0 0;
   font-size: 17px;
   line-height: 1.45;
   color: var(--navy);
 }
 
-.v3-measures dd:last-child {
+.v3-measures li p[data-decision] {
   color: var(--blue);
 }
 
