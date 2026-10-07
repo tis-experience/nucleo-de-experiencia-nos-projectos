@@ -144,7 +144,7 @@ export const STAGES: Stage[] = [
     name: "Descobrir",
     short: "Descobrir",
     work: "Investigar o problema, as pessoas e o contexto, em conjunto com Requisitos ou antes deles, para fixar o problema a resolver e dar uma base real ao PRD e aos requisitos.",
-    aiSupport: "Lê a base do projecto, resume as evidências com a origem e prepara perguntas. O brief entra no mesmo repositório, ao lado dos requisitos.",
+    aiSupport: "Ajuda a construir a base do projecto: organiza entrevistas, dados e documentos, resume as evidências com a origem e prepara perguntas. O brief fica no repositório, ao lado dos requisitos.",
     methods: ["Entrevistas", "Observação da tarefa", "Análise de dados", "Revisão documental"],
     delivery: "Brief de UX",
     deliveryContents: "Problema, pessoas, contexto, evidências e dúvidas.",
