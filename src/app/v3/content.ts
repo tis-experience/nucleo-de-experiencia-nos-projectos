@@ -563,11 +563,11 @@ export const CONTACT_CASES = [
   },
   {
     title: "Produtos em curso",
-    text: "Revemos fluxos, ecrãs e acessibilidade sobre a versão em construção.",
+    text: "Revemos fluxos, ecrãs e acessibilidade sobre a versão em construção, com quem a desenvolve.",
   },
   {
     title: "Dúvidas de UX",
-    text: "Meia hora de conversa chega para perceber o passo seguinte.",
+    text: "Meia hora de conversa chega para perceber o passo seguinte e se vale a pena ir mais longe.",
   },
 ];
 
