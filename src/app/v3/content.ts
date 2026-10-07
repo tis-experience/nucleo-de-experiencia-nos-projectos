@@ -445,7 +445,7 @@ export const AREAS: Area[] = [
   },
   {
     id: "fabrica",
-    name: "Fábrica",
+    name: "Desenvolvimento",
     role: "Trabalha com a engenharia sobre a versão em construção, para que a implementação preserve as decisões de experiência.",
     gives: "Requisitos, limitações técnicas e a aplicação em construção.",
     gets: "Fluxos, interfaces, componentes e orientações de comportamento, com acompanhamento da implementação.",
