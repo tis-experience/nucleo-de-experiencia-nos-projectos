@@ -611,7 +611,7 @@ export function AiScene() {
           <MaskLine>Todas as equipas bebem da mesma fonte</MaskLine>
         </h1>
         <motion.p className="v3-lead" style={{ maxWidth: "none" }} {...rise(0.3, 20)}>
-          Requisitos, design, construção e testes partem do mesmo repositório de documentos do projecto, com agentes a
+          Requisitos, design, desenvolvimento e testes partem do mesmo repositório de documentos do projecto, com agentes a
           preparar o trabalho de cada equipa.
         </motion.p>
       </div>
