@@ -531,7 +531,7 @@
   box-shadow: 0 30px 80px rgba(5, 28, 117, 0.18);
 }
 
-.v3-modal-card > div:first-of-type {
+.v3-modal-card:not([data-size="full"]) > div:first-of-type {
   flex: 1;
 }
 
@@ -556,7 +556,7 @@
   color: var(--navy);
 }
 
-.v3-modal-card h2 {
+.v3-modal-card:not([data-size="full"]) h2 {
   margin-top: 8px;
   font-family: var(--display);
   font-size: 56px;
@@ -565,8 +565,8 @@
   color: var(--navy);
 }
 
-.v3-modal-card p,
-.v3-modal-card ol {
+.v3-modal-card:not([data-size="full"]) p,
+.v3-modal-card:not([data-size="full"]) ol {
   margin-top: 20px;
   font-size: 19px;
   line-height: 1.55;
@@ -585,7 +585,7 @@
   color: var(--navy);
 }
 
-.v3-modal-card ol {
+.v3-modal-card:not([data-size="full"]) ol {
   margin-top: 10px;
   padding-left: 26px;
   list-style: decimal;
@@ -2843,6 +2843,84 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ── Apêndices: ligação no canto superior direito, alinhada com a etiqueta, onde nenhum slide tem conteúdo ───── */
+
+.v3-more {
+  position: absolute;
+  top: 88px;
+  right: 120px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--tint);
+  font-family: var(--strong);
+  font-size: 16px;
+  color: var(--navy);
+  transition: background 0.2s;
+}
+
+.v3-more:hover {
+  background: #dbe9ff;
+}
+
+.v3-more svg {
+  color: var(--blue);
+}
+
+/* A janela de ecrã inteiro com um slide do playbook. */
+.v3-modal-card[data-size="full"] {
+  width: 1920px;
+  height: calc(1080px + var(--extra));
+  min-height: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.v3-modal[data-size="full"] {
+  background: #ffffff;
+  backdrop-filter: none;
+}
+
+.v3-modal-card[data-size="full"] .v3-modal-close {
+  top: 24px;
+  right: 24px;
+  z-index: 5;
+}
+
+.v3-modal-card[data-size="full"] .v3-modal-body {
+  position: absolute;
+  inset: 0;
+}
+
+.v3-modal-card[data-size="full"] .v3-modal-nav {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  bottom: 24px;
+  z-index: 4;
+  margin: 0;
+  pointer-events: none;
+}
+
+.v3-modal-card[data-size="full"] .v3-modal-nav button {
+  pointer-events: auto;
+}
+
+.v3-playbook {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* O logótipo da TIS no rodapé dos slides do playbook (o único elemento com máscara) fica escondido na janela. */
+.v3-playbook [style*="mask-image"] {
+  display: none;
 }
 
 .v3-root:has(.v3-modal) .v3-fullscreen {

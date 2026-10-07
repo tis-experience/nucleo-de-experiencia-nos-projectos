@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Check, RotateCw } from "lucide-react";
 import { STAGES, STAGE_VISUAL } from "./content";
+import { MoreLink, StagesAppendix } from "./appendices";
 import { EASE, MaskLine, STILL, Swap, fade, rise, spring, tween, useAfter } from "./fx";
 
 type Fidelity = "wire" | "final";
@@ -393,6 +394,7 @@ export function ArtifactCanvas({ stageIndex }: { stageIndex: number }) {
 export function StageScene({ stageIndex }: { stageIndex: number }) {
   const stage = STAGES[stageIndex];
   const next = STAGES[stageIndex + 1];
+  const [open, setOpen] = useState(false);
 
   return (
     <section className="v3-scene" aria-labelledby="v3-process-title">
@@ -400,6 +402,7 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
       <h1 id="v3-process-title" className="v3-title v3-scene-title">
         O que o Núcleo faz e entrega em cada etapa
       </h1>
+      <MoreLink label="Tipos de pedido e maturidade do produto" onClick={() => setOpen(true)} />
 
       <div className="v3-stage-head">
         <Swap>
@@ -458,6 +461,8 @@ export function StageScene({ stageIndex }: { stageIndex: number }) {
           </motion.div>
         </Swap>
       </div>
+
+      <Swap mode="sync">{open && <StagesAppendix key="appendix" onClose={() => setOpen(false)} />}</Swap>
     </section>
   );
 }

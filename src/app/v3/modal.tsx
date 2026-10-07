@@ -12,6 +12,7 @@ export function Modal({
   onPage,
   onClose,
   label,
+  size,
   children,
 }: {
   page: number;
@@ -19,6 +20,8 @@ export function Modal({
   onPage: (page: number) => void;
   onClose: () => void;
   label: string;
+  /** "full": a janela ocupa o ecrã inteiro, para os slides do playbook. */
+  size?: "full";
   children: ReactNode;
 }) {
   // Enquanto a janela está aberta, as teclas ficam com ela e não chegam à navegação da apresentação.
@@ -38,6 +41,7 @@ export function Modal({
   return (
     <motion.div
       className="v3-modal"
+      data-size={size}
       role="dialog"
       aria-modal="true"
       aria-label={label}
@@ -52,7 +56,8 @@ export function Modal({
     >
       <motion.div
         className="v3-modal-card"
-          initial={STILL ? false : { y: 24, scale: 0.97 }}
+        data-size={size}
+        initial={STILL ? false : { y: 24, scale: 0.97 }}
         animate={{ y: 0, scale: 1 }}
         transition={tween(0.35)}
       >

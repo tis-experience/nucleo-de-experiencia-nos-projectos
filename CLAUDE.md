@@ -51,10 +51,11 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
   System, Acessibilidade e Compliance, Validação e Testes) aparecem como serviços na ficha de cada área. Cada etapa
   mostra três artefactos principais e com quem o Núcleo trabalha, por papel (POs, QAs, Desenvolvedores, Stakeholders,
   Utilizadores).
-- Sem apêndices. Houve três (tipos de pedido e maturidade do produto, arquitectura e governança do Design System,
-  frentes e conexões operacionais), primeiro desenhados à mão e depois com os slides do playbook embutidos, e foram
-  retirados por gerarem confusão e excesso de informação (commits até 0058254). O detalhe fica na fala do
-  apresentador ou no playbook.
+- Três apêndices com slides do playbook embutidos tal e qual (tipos de pedido e maturidade do produto nas etapas,
+  arquitectura e governança no Design System, frentes e conexões operacionais na relação com as áreas), abertos por
+  uma ligação no canto superior direito, alinhada com a etiqueta do slide, onde nenhum slide tem conteúdo. Abrem
+  numa janela de ecrã inteiro, sem o logótipo da TIS do playbook. Já estiveram retirados por gerarem confusão
+  (commits até 0058254) e voltaram a pedido do autor, com a ligação fora do conteúdo.
 
 ## Direcção visual
 
@@ -73,9 +74,11 @@ Valem para qualquer texto: respostas, textos dos slides, documentação, commits
 - `content.ts`: todos os textos e dados, e a ordem dos slides em `STEPS`.
 - `scenes.tsx` e `StageScene.tsx`: as cenas. `AppV3.tsx`: navegação, teclado, cursor e ecrã inteiro. `metrics.ts`:
   as quatro perguntas da medição e as duas tabelas de métricas (operacionais e de UX), copiadas do playbook, sem
-  ligação entre perguntas e tabelas, como lá. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade.
-- `src/imports` e `src/assets/slide*`: vectores e imagens herdados da apresentação original; só o logótipo e as setas
-  de navegação são usados.
+  ligação entre perguntas e tabelas, como lá. `modal.tsx`: a janela sobre o slide, usada pelos níveis de maturidade e, em tamanho `full`, pelos apêndices.
+  `appendices.tsx`: a ligação `MoreLink` e os três apêndices, que montam os componentes do playbook em
+  `src/app/components` (com `src/app/scaling.ts`, `src/app/constants` e os vectores em `src/imports`).
+- `src/imports` e `src/assets/slide*`: vectores e imagens herdados da apresentação original, usados pelo logótipo,
+  pelas setas de navegação e pelos slides do playbook nos apêndices.
 - `v3.css`: estilos, com classes `v3-*`. `fx.tsx`: animações partilhadas. `src/main.tsx` monta a apresentação e
   redirecciona os endereços antigos `#/v2/<passo>` e `#/v3/<passo>` para `#/<passo>`.
 - O palco tem 1920 × 1080 e é escalado para a janela. As medidas no CSS são em px desse palco. Numa janela mais

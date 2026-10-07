@@ -43,6 +43,7 @@ import {
 } from "./content";
 import { CountUp, EASE, MaskLine, STILL, Swap, fade, rise, spring, tween } from "./fx";
 import { ArtifactCanvas, Screen } from "./StageScene";
+import { AreasAppendix, DsAppendix, MoreLink } from "./appendices";
 import { Modal } from "./modal";
 
 const exit = { opacity: 0, transition: { duration: 0.25 } };
@@ -746,6 +747,7 @@ export function DesignSystemScene() {
   // Os temas alternam sozinhos, com alguns segundos em cada um, até alguém escolher um.
   const [selected, select] = useSelected(THEMES.length, 4500);
   const theme = THEMES[selected];
+  const [open, setOpen] = useState(false);
   const themeStyle = {
     "--theme": theme.color,
     "--r-card": `${theme.card}px`,
@@ -766,6 +768,8 @@ export function DesignSystemScene() {
           Os mesmos componentes dão origem a produtos consistentes, com a identidade de cada cliente.
         </motion.p>
       </div>
+
+      <MoreLink label="Arquitectura e governança" onClick={() => setOpen(true)} />
 
       <ul className="v3-ds-points">
         {DS_POINTS.map((point, index) => {
@@ -808,6 +812,8 @@ export function DesignSystemScene() {
           ))}
         </div>
       </motion.div>
+
+      <Swap mode="sync">{open && <DsAppendix key="appendix" onClose={() => setOpen(false)} />}</Swap>
     </section>
   );
 }
@@ -824,6 +830,7 @@ const orbitPoint = (index: number) => {
 /** O Núcleo ao centro e as áreas à volta. A ficha mostra como o Núcleo contribui para a área escolhida,
     o que cada lado traz e as etapas de UX em que trabalham juntos. */
 export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectArea: (id: string) => void }) {
+  const [open, setOpen] = useState(false);
   const area = AREAS.find((item) => item.id === areaId) ?? AREAS[0];
 
   return (
@@ -834,6 +841,8 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
       <h1 id="v3-areas-title" className="v3-title v3-scene-title">
         <MaskLine>Como o Núcleo contribui com cada área</MaskLine>
       </h1>
+
+      <MoreLink label="Frentes, responsáveis e princípios" onClick={() => setOpen(true)} />
 
       <motion.div className="v3-layer" {...fade(0.1)}>
         <svg className="v3-orbit-lines" viewBox="0 0 1920 1080" fill="none" aria-hidden>
@@ -928,6 +937,8 @@ export function AreasScene({ areaId, onSelectArea }: { areaId: string; onSelectA
           </motion.div>
         </Swap>
       </div>
+
+      <Swap mode="sync">{open && <AreasAppendix key="appendix" onClose={() => setOpen(false)} />}</Swap>
     </section>
   );
 }
